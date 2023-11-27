@@ -32,12 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CodeGeneration\Controller\" />
-    <Folder Include="CodeGeneration\Entity\" />
-    <Folder Include="CodeGeneration\Project\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Templates\Table.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
