@@ -58,6 +58,7 @@
             lblProjectName = new Label();
             label2 = new Label();
             tblpnlMain = new TableLayoutPanel();
+            openFileDialogbox = new OpenFileDialog();
             pnlLog.SuspendLayout();
             pnlProgressStatus.SuspendLayout();
             pnlProgressBar.SuspendLayout();
@@ -257,6 +258,7 @@
             btnSourcefile.Size = new Size(87, 43);
             btnSourcefile.TabIndex = 4;
             btnSourcefile.TextAlign = ContentAlignment.MiddleCenter;
+            btnSourcefile.Click += btnSourcefile_Click;
             // 
             // btnProjectLocation
             // 
@@ -281,6 +283,7 @@
             btnProjectLocation.Size = new Size(87, 41);
             btnProjectLocation.TabIndex = 3;
             btnProjectLocation.TextAlign = ContentAlignment.MiddleCenter;
+            btnProjectLocation.Click += btnProjectLocation_Click;
             // 
             // btnAdd
             // 
@@ -469,6 +472,10 @@
             tblpnlMain.Size = new Size(1014, 597);
             tblpnlMain.TabIndex = 2;
             // 
+            // openFileDialogbox
+            // 
+            openFileDialogbox.FileName = "openFileDialog";
+            // 
             // CreateControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -523,5 +530,6 @@
         private RichTextBox txtLog;
         private Label lblValidProjSource;
         private Label lblValidProjLoc;
+        private OpenFileDialog openFileDialogbox;
     }
 }

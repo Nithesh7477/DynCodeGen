@@ -1,32 +1,104 @@
-﻿using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace DynCodeGen.UserControls
+﻿namespace DynCodeGen.UserControls
 {
+    using global::DynCodeGen.CodeGeneration.Controller;
+    using global::DynCodeGen.CodeGeneration.Entity;
+    using global::DynCodeGen.CodeGeneration.Project;
+    using OfficeOpenXml;
+
+    /// <summary>
+    /// CreateControl.
+    /// </summary>
     public partial class CreateControl : UserControl
     {
         private Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string, string>>>();
         private string folderPath = string.Empty;
 
+        /// <summary>
+        /// CreateControl.
+        /// </summary>
         public CreateControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// btnAdd_Click.
+        /// </summary>
+        /// <param name="sender">sender.</param>
+        /// <param name="e">e.</param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             BuildConnection frm = new BuildConnection(this);
             frm.Show();
         }
 
+        /// <summary>
+        /// btnProjectLocation_Click.
+        /// </summary>
+        /// <param name="sender">sender.</param>
+        /// <param name="e">e.</param>
+        private void btnProjectLocation_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                // Set the initial directory (optional)
+                // folderDialog.SelectedPath = "C:\\";
+
+                DialogResult result = folderDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    folderPath = folderDialog.SelectedPath;
+                }
+                txtProjectLocationPath.Text = folderPath;
+
+            }
+        }
+
+        /// <summary>
+        /// btnSourcefile_Click.
+        /// </summary>
+        /// <param name="sender">sender.</param>
+        /// <param name="e">e.</param>
+        private void btnSourcefile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogbox.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialogbox.FileName;
+
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
+                {
+                    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                    // Iterate through all worksheets in the Excel package
+                    foreach (ExcelWorksheet worksheet in package.Workbook.Worksheets)
+                    {
+                        List<Tuple<string, string, string, string>> sheetData = new List<Tuple<string, string, string, string>>();
+
+                        int rowCount = worksheet.Dimension.End.Row;
+
+                        for (int row = 2; row <= rowCount; row++)
+                        {
+                            string valueA = worksheet.Cells[row, 1].Text; // Column A
+                            string valueB = worksheet.Cells[row, 2].Text; // Column B
+                            string valueC = worksheet.Cells[row, 3].Text; // Column C (Annotations)
+                            string valueD = worksheet.Cells[row, 4].Text; // Column D (Relationship)
+
+                            sheetData.Add(new Tuple<string, string, string, string>(valueA, valueB, valueC, valueD));
+                        }
+
+                        sheetsData.Add(worksheet.Name, sheetData);
+                    }
+                }
+
+                txtSourceFilePath.Text = filePath;
+            }
+        }
+
+        /// <summary>
+        /// btnCreate_Click.
+        /// </summary>
+        /// <param name="sender">sender.</param>
+        /// <param name="e">e.</param>
         private void btnCreate_Click(object sender, EventArgs e)
         {
             if (Validation())
@@ -89,6 +161,10 @@ namespace DynCodeGen.UserControls
             }
         }
 
+        /// <summary>
+        /// Validation.
+        /// </summary>
+        /// <returns>bool.</returns>
         public bool Validation()
         {
             lblvalidConnStr.Visible = false;
@@ -121,6 +197,106 @@ namespace DynCodeGen.UserControls
             }
         }
 
+        private void GenerateWebAPI(string apiName, string apiPath, string connectionString)
+        {
+            // Create a WebAPI project
+            ExecuteCliCommand.ExecuteCommand($"new webapi -n {apiName} -o {apiPath}\\{apiName}.WebAPI");
+
+            // Set the connection string in appsettings.json
+            string appSettingsPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.json");
+            AddConnectionString.SetConnectionString(appSettingsPath, connectionString);
+
+            // Set the connection string in appsettings.Development.json
+            string appSettingsDevPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.Development.json");
+            AddConnectionString.SetConnectionString(appSettingsDevPath, connectionString);
+
+            // Create a solution
+            ExecuteCliCommand.ExecuteCommand($"new sln -n {apiName} -o {apiPath}");
+
+            // Create Application, Domain, and Infrastructure projects
+            ExecuteCliCommand.ExecuteCommand($"new classlib -n {apiName}.Application -o {apiPath}/{apiName}.Application");
+            ExecuteCliCommand.ExecuteCommand($"new classlib -n {apiName}.Domain -o {apiPath}/{apiName}.Domain");
+            ExecuteCliCommand.ExecuteCommand($"new classlib -n {apiName}.Infrastructure -o {apiPath}/{apiName}.Infrastructure");
+
+            Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Domain", "Entities"));
+            Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data"));
+
+            // Add all projects to the solution
+            ExecuteCliCommand.ExecuteCommand($"sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.WebAPI/{apiName}.csproj");
+            ExecuteCliCommand.ExecuteCommand($"sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Application/{apiName}.Application.csproj");
+            ExecuteCliCommand.ExecuteCommand($"sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj");
+            ExecuteCliCommand.ExecuteCommand($"sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj");
+
+            UpdateProgressBar(25);
+            UpdateLabel("adding project dependencies...");
+
+            // You can even add project references
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Application/{apiName}.Application.csproj");
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj");
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.Application/{apiName}.Application.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj");
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj");
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Application/{apiName}.Application.csproj");
+
+            // Add EF Core packages to the Infrastructure and WebAPI projects
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.11");
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design --version 7.0.11");
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Tools --version 7.0.11");
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Hosting");
+            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.Extensions.Hosting");
+            ExecuteCliCommand.ExecuteCommand("tool install --global dotnet-ef");
+
+            UpdateLabel("generating classes...");
+
+            string dbContextPath = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data", "ApplicationDbContext.cs");
+            DBContext.GenerateApplicationDbContext(dbContextPath, $"{apiName}.Infrastructure");
+
+            string modelClassPath = Path.Combine(apiPath, $"{apiName}.Domain", "Entities");
+            ModelClassGenerator.GenerateModelClassesFromData(sheetsData, modelClassPath);
+
+            // Now update ApplicationDbContext with models
+            DBContext.UpdateApplicationDbContextWithModels(sheetsData, dbContextPath);
+
+            UpdateStartupFile.CreateStartupFile(apiName, apiPath);
+            UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
+
+            UpdateProgressBar(50);
+            UpdateLabel("creating repositories...");
+
+
+            foreach (var sheetEntry in sheetsData)
+            {
+                string IdName = "";
+                foreach (var Value in sheetEntry.Value)
+                {
+                    if (Value.Item1.Contains("Id") && !Value.Item3.Contains("ForeignKey"))
+                    {
+                        IdName = Value.Item1;
+                    }
+                }
+
+                // Generate repositories
+                string className = sheetEntry.Key;
+                InterfaceGenerator.GenerateRepositoryInterface(apiName, apiPath, className, IdName);
+                RepositoryGenerator.GenerateRepositoryImplementation(apiName, apiPath, className, IdName);
+
+                // Generate services
+                InterfaceGenerator.GenerateServiceInterface(apiName, apiPath, className, IdName);
+                ServiceGenerator.GenerateServiceImplementation(apiName, apiPath, className, IdName);
+
+                // Generate controllers
+                ControllerGenerator.GenerateController(apiName, apiPath, className, IdName);
+            }
+
+            UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData);
+
+            UpdateProgressBar(75);
+            UpdateLabel("running migrations...");
+
+            string migrationPath = Path.Combine(apiPath, $"{apiName}.WebAPI");
+            string infrastructurePath = Path.Combine(apiPath, $"{apiName}.Infrastructure");
+            Migrations.RunMigrationsAndUpdates(migrationPath, infrastructurePath, "InitialCreate", "ApplicationDbContext");
+        }
+
         private void ShowOrHideProgressBar(string text)
         {
             if (progressBar.InvokeRequired)
@@ -142,60 +318,26 @@ namespace DynCodeGen.UserControls
 
         }
 
-        //private void btnSourcefile_Click(object sender, EventArgs e)
-        //{
-        //  //  if (openFileDialogbox.ShowDialog() == DialogResult.OK)
-        //    {
-        //        string filePath = openFileDialogbox.FileName;
+        private void showorhidelabel(string text)
+        {
+            if (lblProgressStatus.InvokeRequired)
+            {
+                // if this method is being called from a different thread, invoke it on the main ui thread.
+                this.Invoke(new Action<string>(showorhidelabel), text);
+            }
+            else
+            {
+                if (text == "show")
+                {
+                    lblProgressStatus.Visible = true;  // show the label
+                }
+                else
+                {
+                    lblProgressStatus.Visible = false;  // hide the label
+                }
+            }
+        }
 
-        //        using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
-        //        {
-        //            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-
-        //            // Iterate through all worksheets in the Excel package
-        //            foreach (ExcelWorksheet worksheet in package.Workbook.Worksheets)
-        //            {
-        //                List<Tuple<string, string, string, string>> sheetData = new List<Tuple<string, string, string, string>>();
-
-        //                int rowCount = worksheet.Dimension.End.Row;
-
-        //                for (int row = 2; row <= rowCount; row++)
-        //                {
-        //                    string valueA = worksheet.Cells[row, 1].Text; // Column A
-        //                    string valueB = worksheet.Cells[row, 2].Text; // Column B
-        //                    string valueC = worksheet.Cells[row, 3].Text; // Column C (Annotations)
-        //                    string valueD = worksheet.Cells[row, 4].Text; // Column D (Relationship)
-
-        //                    sheetData.Add(new Tuple<string, string, string, string>(valueA, valueB, valueC, valueD));
-        //                }
-
-        //                sheetsData.Add(worksheet.Name, sheetData);
-        //            }
-        //        }
-
-        //        // txtSourceFilePath.Text = filePath;
-        //    }
-        //}
-
-        //private void showorhidelabel(string text)
-        //{
-        //    if (lblprogressstatus.invokerequired)
-        //    {
-        //        // if this method is being called from a different thread, invoke it on the main ui thread.
-        //        this.invoke(new action<string>(showorhidelabel), text);
-        //    }
-        //    else
-        //    {
-        //        if (text == "show")
-        //        {
-        //            lblprogressstatus.visible = true;  // show the label
-        //        }
-        //        else
-        //        {
-        //            lblprogressstatus.visible = false;  // hide the label
-        //        }
-        //    }
-        //}
         private void UpdateProgressBar(int value)
         {
             if (progressBar.InvokeRequired)
@@ -220,6 +362,21 @@ namespace DynCodeGen.UserControls
             {
                 lblProgressStatus.Text = text;
             }
+        }
+
+        public void AppendLog(string logText)
+        {
+            // Check if invoking is required and, if so, invoke the method on the UI thread
+            if (txtLog.InvokeRequired)
+            {
+                txtLog.Invoke(new Action<string>(AppendLog), logText);
+                return;
+            }
+
+            // Continue with the UI update on the UI thread
+            string formattedLog = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {logText}";
+            txtLog.AppendText(formattedLog + Environment.NewLine);
+            txtLog.ScrollToCaret();
         }
 
         private void lblValidProjLoc_Click(object sender, EventArgs e)

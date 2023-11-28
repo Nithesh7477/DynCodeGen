@@ -38,8 +38,8 @@ namespace DynCodeGen
                 if (result == DialogResult.OK)
                 {
 
-                    //_parent.txtConnectionString.Text = ConnectionString;
-                    //_parent.txtConnectionString.ReadOnly = true;
+                    _parent.txtConnectionString.Text = ConnectionString;
+                    _parent.txtConnectionString.ReadOnly = true;
                     this.Close();
                 }
             }
