@@ -61,9 +61,9 @@
         /// <param name="e">e.</param>
         private void btnSourcefile_Click(object sender, EventArgs e)
         {
-            if (openFileDialogbox.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string filePath = openFileDialogbox.FileName;
+                string filePath = openFileDialog.FileName;
 
                 using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
                 {

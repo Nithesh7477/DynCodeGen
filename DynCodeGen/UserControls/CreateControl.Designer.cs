@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateControl));
             pnlLog = new Panel();
             txtLog = new RichTextBox();
             pnlProgressStatus = new Panel();
@@ -36,14 +35,14 @@
             pnlProgressBar = new Panel();
             progressBar = new ProgressBar();
             pnlInputFields = new Panel();
+            btnCreate = new Button();
+            btnSourcefile = new Button();
+            btnProjectLocation = new Button();
+            btnAdd = new Button();
             lblValidProjSource = new Label();
             lblValidProjLoc = new Label();
             lblValidProjName = new Label();
             lblvalidConnStr = new Label();
-            btnCreate = new Bunifu.Framework.UI.BunifuFlatButton();
-            btnSourcefile = new Bunifu.Framework.UI.BunifuThinButton2();
-            btnProjectLocation = new Bunifu.Framework.UI.BunifuThinButton2();
-            btnAdd = new Bunifu.Framework.UI.BunifuThinButton2();
             txtConnectionString = new TextBox();
             txtSourceFilePath = new TextBox();
             txtProjectLocationPath = new TextBox();
@@ -58,7 +57,7 @@
             lblProjectName = new Label();
             label2 = new Label();
             tblpnlMain = new TableLayoutPanel();
-            openFileDialogbox = new OpenFileDialog();
+            openFileDialog = new OpenFileDialog();
             pnlLog.SuspendLayout();
             pnlProgressStatus.SuspendLayout();
             pnlProgressBar.SuspendLayout();
@@ -132,14 +131,14 @@
             // 
             pnlInputFields.AutoSize = true;
             pnlInputFields.BackColor = SystemColors.Window;
-            pnlInputFields.Controls.Add(lblValidProjSource);
-            pnlInputFields.Controls.Add(lblValidProjLoc);
-            pnlInputFields.Controls.Add(lblValidProjName);
-            pnlInputFields.Controls.Add(lblvalidConnStr);
             pnlInputFields.Controls.Add(btnCreate);
             pnlInputFields.Controls.Add(btnSourcefile);
             pnlInputFields.Controls.Add(btnProjectLocation);
             pnlInputFields.Controls.Add(btnAdd);
+            pnlInputFields.Controls.Add(lblValidProjSource);
+            pnlInputFields.Controls.Add(lblValidProjLoc);
+            pnlInputFields.Controls.Add(lblValidProjName);
+            pnlInputFields.Controls.Add(lblvalidConnStr);
             pnlInputFields.Controls.Add(txtConnectionString);
             pnlInputFields.Controls.Add(txtSourceFilePath);
             pnlInputFields.Controls.Add(txtProjectLocationPath);
@@ -149,6 +148,59 @@
             pnlInputFields.Name = "pnlInputFields";
             pnlInputFields.Size = new Size(703, 277);
             pnlInputFields.TabIndex = 1;
+            // 
+            // btnCreate
+            // 
+            btnCreate.BackColor = Color.SeaGreen;
+            btnCreate.FlatStyle = FlatStyle.Flat;
+            btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreate.ForeColor = Color.White;
+            btnCreate.Location = new Point(280, 223);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(127, 46);
+            btnCreate.TabIndex = 18;
+            btnCreate.Text = "Create";
+            btnCreate.UseVisualStyleBackColor = false;
+            btnCreate.Click += btnCreate_Click;
+            // 
+            // btnSourcefile
+            // 
+            btnSourcefile.FlatStyle = FlatStyle.Flat;
+            btnSourcefile.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSourcefile.ForeColor = Color.SeaGreen;
+            btnSourcefile.Location = new Point(555, 181);
+            btnSourcefile.Name = "btnSourcefile";
+            btnSourcefile.Size = new Size(92, 36);
+            btnSourcefile.TabIndex = 17;
+            btnSourcefile.Text = "Browse";
+            btnSourcefile.UseVisualStyleBackColor = true;
+            btnSourcefile.Click += btnSourcefile_Click;
+            // 
+            // btnProjectLocation
+            // 
+            btnProjectLocation.FlatStyle = FlatStyle.Flat;
+            btnProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnProjectLocation.ForeColor = Color.SeaGreen;
+            btnProjectLocation.Location = new Point(555, 123);
+            btnProjectLocation.Name = "btnProjectLocation";
+            btnProjectLocation.Size = new Size(92, 36);
+            btnProjectLocation.TabIndex = 16;
+            btnProjectLocation.Text = "Select";
+            btnProjectLocation.UseVisualStyleBackColor = true;
+            btnProjectLocation.Click += btnProjectLocation_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdd.ForeColor = Color.SeaGreen;
+            btnAdd.Location = new Point(555, 19);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(92, 36);
+            btnAdd.TabIndex = 15;
+            btnAdd.Text = "Build";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // lblValidProjSource
             // 
@@ -198,117 +250,6 @@
             lblvalidConnStr.TabIndex = 8;
             lblvalidConnStr.Text = "Connection String is required.";
             lblvalidConnStr.Visible = false;
-            // 
-            // btnCreate
-            // 
-            btnCreate.Active = false;
-            btnCreate.Activecolor = Color.FromArgb(46, 139, 87);
-            btnCreate.BackColor = Color.FromArgb(46, 139, 87);
-            btnCreate.BackgroundImageLayout = ImageLayout.Stretch;
-            btnCreate.BorderRadius = 6;
-            btnCreate.ButtonText = "Create";
-            btnCreate.DisabledColor = Color.Gray;
-            btnCreate.Iconcolor = Color.Transparent;
-            btnCreate.Iconimage = (Image)resources.GetObject("btnCreate.Iconimage");
-            btnCreate.Iconimage_right = null;
-            btnCreate.Iconimage_right_Selected = null;
-            btnCreate.Iconimage_Selected = null;
-            btnCreate.IconMarginLeft = 0;
-            btnCreate.IconMarginRight = 0;
-            btnCreate.IconRightVisible = true;
-            btnCreate.IconRightZoom = 0D;
-            btnCreate.IconVisible = true;
-            btnCreate.IconZoom = 90D;
-            btnCreate.IsTab = false;
-            btnCreate.Location = new Point(256, 232);
-            btnCreate.Margin = new Padding(5, 4, 5, 4);
-            btnCreate.Name = "btnCreate";
-            btnCreate.Normalcolor = Color.FromArgb(46, 139, 87);
-            btnCreate.OnHovercolor = Color.FromArgb(36, 129, 77);
-            btnCreate.OnHoverTextColor = Color.White;
-            btnCreate.selected = false;
-            btnCreate.Size = new Size(138, 39);
-            btnCreate.TabIndex = 5;
-            btnCreate.Text = "Create";
-            btnCreate.TextAlign = ContentAlignment.MiddleLeft;
-            btnCreate.Textcolor = Color.White;
-            btnCreate.TextFont = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCreate.Click += btnCreate_Click;
-            // 
-            // btnSourcefile
-            // 
-            btnSourcefile.ActiveBorderThickness = 1;
-            btnSourcefile.ActiveCornerRadius = 20;
-            btnSourcefile.ActiveFillColor = Color.SeaGreen;
-            btnSourcefile.ActiveForecolor = Color.White;
-            btnSourcefile.ActiveLineColor = Color.SeaGreen;
-            btnSourcefile.BackColor = SystemColors.Window;
-            btnSourcefile.BackgroundImage = (Image)resources.GetObject("btnSourcefile.BackgroundImage");
-            btnSourcefile.ButtonText = "Browse";
-            btnSourcefile.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSourcefile.ForeColor = Color.SeaGreen;
-            btnSourcefile.IdleBorderThickness = 1;
-            btnSourcefile.IdleCornerRadius = 20;
-            btnSourcefile.IdleFillColor = Color.White;
-            btnSourcefile.IdleForecolor = Color.SeaGreen;
-            btnSourcefile.IdleLineColor = Color.SeaGreen;
-            btnSourcefile.Location = new Point(559, 175);
-            btnSourcefile.Margin = new Padding(5);
-            btnSourcefile.Name = "btnSourcefile";
-            btnSourcefile.Size = new Size(87, 43);
-            btnSourcefile.TabIndex = 4;
-            btnSourcefile.TextAlign = ContentAlignment.MiddleCenter;
-            btnSourcefile.Click += btnSourcefile_Click;
-            // 
-            // btnProjectLocation
-            // 
-            btnProjectLocation.ActiveBorderThickness = 1;
-            btnProjectLocation.ActiveCornerRadius = 20;
-            btnProjectLocation.ActiveFillColor = Color.SeaGreen;
-            btnProjectLocation.ActiveForecolor = Color.White;
-            btnProjectLocation.ActiveLineColor = Color.SeaGreen;
-            btnProjectLocation.BackColor = SystemColors.Window;
-            btnProjectLocation.BackgroundImage = (Image)resources.GetObject("btnProjectLocation.BackgroundImage");
-            btnProjectLocation.ButtonText = "Select";
-            btnProjectLocation.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btnProjectLocation.ForeColor = Color.SeaGreen;
-            btnProjectLocation.IdleBorderThickness = 1;
-            btnProjectLocation.IdleCornerRadius = 20;
-            btnProjectLocation.IdleFillColor = Color.White;
-            btnProjectLocation.IdleForecolor = Color.SeaGreen;
-            btnProjectLocation.IdleLineColor = Color.SeaGreen;
-            btnProjectLocation.Location = new Point(559, 119);
-            btnProjectLocation.Margin = new Padding(5);
-            btnProjectLocation.Name = "btnProjectLocation";
-            btnProjectLocation.Size = new Size(87, 41);
-            btnProjectLocation.TabIndex = 3;
-            btnProjectLocation.TextAlign = ContentAlignment.MiddleCenter;
-            btnProjectLocation.Click += btnProjectLocation_Click;
-            // 
-            // btnAdd
-            // 
-            btnAdd.ActiveBorderThickness = 1;
-            btnAdd.ActiveCornerRadius = 20;
-            btnAdd.ActiveFillColor = Color.SeaGreen;
-            btnAdd.ActiveForecolor = Color.White;
-            btnAdd.ActiveLineColor = Color.SeaGreen;
-            btnAdd.BackColor = SystemColors.Window;
-            btnAdd.BackgroundImage = (Image)resources.GetObject("btnAdd.BackgroundImage");
-            btnAdd.ButtonText = "Build";
-            btnAdd.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAdd.ForeColor = Color.SeaGreen;
-            btnAdd.IdleBorderThickness = 1;
-            btnAdd.IdleCornerRadius = 20;
-            btnAdd.IdleFillColor = Color.White;
-            btnAdd.IdleForecolor = Color.SeaGreen;
-            btnAdd.IdleLineColor = Color.SeaGreen;
-            btnAdd.Location = new Point(559, 13);
-            btnAdd.Margin = new Padding(5);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(87, 43);
-            btnAdd.TabIndex = 1;
-            btnAdd.TextAlign = ContentAlignment.MiddleCenter;
-            btnAdd.Click += btnAdd_Click;
             // 
             // txtConnectionString
             // 
@@ -472,9 +413,9 @@
             tblpnlMain.Size = new Size(1014, 597);
             tblpnlMain.TabIndex = 2;
             // 
-            // openFileDialogbox
+            // openFileDialog
             // 
-            openFileDialogbox.FileName = "openFileDialog";
+            openFileDialog.FileName = "openFileDialog1";
             // 
             // CreateControl
             // 
@@ -515,10 +456,6 @@
         private Label label8;
         private Label lblValidProjName;
         private Label lblvalidConnStr;
-        private Bunifu.Framework.UI.BunifuFlatButton btnCreate;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnSourcefile;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnProjectLocation;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
         public TextBox txtConnectionString;
         private TextBox txtSourceFilePath;
         private TextBox txtProjectLocationPath;
@@ -530,6 +467,10 @@
         private RichTextBox txtLog;
         private Label lblValidProjSource;
         private Label lblValidProjLoc;
-        private OpenFileDialog openFileDialogbox;
+        private Button btnProjectLocation;
+        private Button btnAdd;
+        private Button btnCreate;
+        private Button btnSourcefile;
+        private OpenFileDialog openFileDialog;
     }
 }
