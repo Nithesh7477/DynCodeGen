@@ -99,7 +99,7 @@
         /// </summary>
         /// <param name="sender">sender.</param>
         /// <param name="e">e.</param>
-        private void btnCreate_Click(object sender, EventArgs e)
+        private async void btnCreate_Click(object sender, EventArgs e)
         {
             if (Validation())
             {
@@ -126,7 +126,7 @@
                         return;
                     }
                     UpdateLabel("creating projects...");
-                    // await Task.Run(() => GenerateWebAPI(apiName, apiPath, connectionString));
+                    await Task.Run(() => GenerateWebAPI(apiName, apiPath, connectionString));
                     UpdateLabel("task completed...");
                     UpdateProgressBar(100);
 
@@ -363,7 +363,6 @@
                 lblProgressStatus.Text = text;
             }
         }
-
         public void AppendLog(string logText)
         {
             // Check if invoking is required and, if so, invoke the method on the UI thread
@@ -377,11 +376,6 @@
             string formattedLog = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {logText}";
             txtLog.AppendText(formattedLog + Environment.NewLine);
             txtLog.ScrollToCaret();
-        }
-
-        private void lblValidProjLoc_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

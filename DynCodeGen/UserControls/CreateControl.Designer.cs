@@ -80,7 +80,6 @@
             // 
             // txtLog
             // 
-            txtLog.BorderStyle = BorderStyle.None;
             txtLog.Dock = DockStyle.Fill;
             txtLog.Location = new Point(0, 0);
             txtLog.Name = "txtLog";
@@ -152,6 +151,7 @@
             // btnCreate
             // 
             btnCreate.BackColor = Color.SeaGreen;
+            btnCreate.Cursor = Cursors.Hand;
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
@@ -165,6 +165,7 @@
             // 
             // btnSourcefile
             // 
+            btnSourcefile.Cursor = Cursors.Hand;
             btnSourcefile.FlatStyle = FlatStyle.Flat;
             btnSourcefile.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnSourcefile.ForeColor = Color.SeaGreen;
@@ -178,6 +179,7 @@
             // 
             // btnProjectLocation
             // 
+            btnProjectLocation.Cursor = Cursors.Hand;
             btnProjectLocation.FlatStyle = FlatStyle.Flat;
             btnProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnProjectLocation.ForeColor = Color.SeaGreen;
@@ -191,6 +193,7 @@
             // 
             // btnAdd
             // 
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnAdd.ForeColor = Color.SeaGreen;
@@ -225,7 +228,6 @@
             lblValidProjLoc.TabIndex = 13;
             lblValidProjLoc.Text = "Project Location is required.";
             lblValidProjLoc.Visible = false;
-            lblValidProjLoc.Click += lblValidProjLoc_Click;
             // 
             // lblValidProjName
             // 
@@ -464,7 +466,6 @@
         private ProgressBar progressBar;
         private Panel pnlProgressStatus;
         private Label lblProgressStatus;
-        private RichTextBox txtLog;
         private Label lblValidProjSource;
         private Label lblValidProjLoc;
         private Button btnProjectLocation;
@@ -472,5 +473,6 @@
         private Button btnCreate;
         private Button btnSourcefile;
         private OpenFileDialog openFileDialog;
+        private RichTextBox txtLog;
     }
 }

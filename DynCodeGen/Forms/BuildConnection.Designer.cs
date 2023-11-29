@@ -92,6 +92,7 @@
             // btnTestConnection
             // 
             btnTestConnection.BackColor = Color.FromArgb(36, 129, 77);
+            btnTestConnection.Cursor = Cursors.Hand;
             btnTestConnection.FlatAppearance.BorderSize = 0;
             btnTestConnection.FlatStyle = FlatStyle.Flat;
             btnTestConnection.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);

@@ -23,9 +23,6 @@ namespace DynCodeGen
             InitializeComponent();
             _parent = parent;
             txtPassword.Leave += txtPassword_TextChanged;
-            lblDatabase.Hide();
-            cmbDatabase.Hide();
-            btnTestConnection.Hide();
 
         }
         private void btnTestConnection_Click(object sender, EventArgs e)
@@ -74,7 +71,6 @@ namespace DynCodeGen
                     {
                         con.Open();
                         cmbDatabase.Enabled = true;
-                        btnTestConnection.Show();
                         using (SqlCommand cmd = new SqlCommand("SELECT name FROM master.dbo.sysdatabases", con))
                         {
                             using (IDataReader dr = cmd.ExecuteReader())
@@ -88,18 +84,19 @@ namespace DynCodeGen
                     }
                     cmbDatabase.DataSource = list;
                     this.Enabled = true;
-                    lblDatabase.Show();
-                    cmbDatabase.Show();
                 }
                 catch (Exception ex)
                 {
+                    this.Enabled = true;
                     MessageBox.Show("Invalid Credentials");
+                    txtPassword.Clear();
                 }
 
 
             }
             else
             {
+                this.Enabled = true;
                 MessageBox.Show("please fill the ablove fields");
             }
 
