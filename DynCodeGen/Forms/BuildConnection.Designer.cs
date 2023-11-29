@@ -73,7 +73,6 @@
             // 
             cmbDatabase.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             cmbDatabase.FormattingEnabled = true;
-            cmbDatabase.Items.AddRange(new object[] { "SQL Server Authentication", "Windows Authentication" });
             cmbDatabase.Location = new Point(157, 251);
             cmbDatabase.Name = "cmbDatabase";
             cmbDatabase.Size = new Size(444, 31);
