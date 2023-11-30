@@ -22,24 +22,25 @@ namespace DynCodeGen
         {
             InitializeComponent();
             _parent = parent;
+            txtPassword.Leave += txtPassword_TextChanged;
+
         }
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
-            DynCodeGen parentForm = new DynCodeGen();
-
-            string ConnectionString = "Server=tcp:" + txtServerName.Text.ToString() + ",1433;Initial Catalog=api_generator;Persist Security Info=False;User ID=" + txtUserName.Text.ToString() + ";Password=" + txtPassword.Text.ToString() + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
+            btnTestConnection.Enabled = false;
+            string ConnectionString = "Server=tcp:" + txtServerName.Text.ToString() + ",1433;Initial Catalog=" + cmbDatabase.Text.ToString() + ";Persist Security Info=False;User ID=" + txtUserName.Text.ToString() + ";Password=" + txtPassword.Text.ToString() + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             try
             {
                 SqlConnection cnn = new SqlConnection(ConnectionString);
                 cnn.Open();
+                btnTestConnection.Enabled = true;
                 DialogResult result = MessageBox.Show("Connection Tested Succesfully !", "Success", MessageBoxButtons.OK);
 
                 if (result == DialogResult.OK)
                 {
 
-                    //_parent.txtConnectionString.Text = ConnectionString;
-                    //_parent.txtConnectionString.ReadOnly = true;
+                    _parent.txtConnectionString.Text = ConnectionString;
+                    _parent.txtConnectionString.ReadOnly = true;
                     this.Close();
                 }
             }
@@ -49,14 +50,56 @@ namespace DynCodeGen
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            if (txtPassword.Text.Length > 0 && txtServerName.Text.Length > 0 && txtUserName.Text.Length > 0 && cmbAuthetication.Text.Length > 0)
+            {
+                try
+                {
+
+
+                    List<string> list = new List<string>();
+
+                    string ConnectionString = "server=" + txtServerName.Text.ToString() + ";User Id=" + txtUserName.Text.ToString() + ";pwd=" + txtPassword.Text.ToString() + ";";
+
+                    using (SqlConnection con = new SqlConnection(ConnectionString))
+                    {
+                        con.Open();
+                        cmbDatabase.Enabled = true;
+                        using (SqlCommand cmd = new SqlCommand("SELECT name FROM master.dbo.sysdatabases", con))
+                        {
+                            using (IDataReader dr = cmd.ExecuteReader())
+                            {
+                                while (dr.Read())
+                                {
+                                    list.Add(dr[0].ToString());
+                                }
+                            }
+                        }
+                    }
+                    cmbDatabase.DataSource = list;
+                    this.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    this.Enabled = true;
+                    MessageBox.Show("Invalid Credentials");
+                    txtPassword.Clear();
+                }
+
+
+            }
+            else
+            {
+                this.Enabled = true;
+                MessageBox.Show("please fill the ablove fields");
+            }
+
         }
     }
 }

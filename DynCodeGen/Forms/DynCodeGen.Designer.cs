@@ -63,7 +63,7 @@
             // 
             // openFileDialogbox
             // 
-            openFileDialogbox.FileName = "openFileDialog1";
+            openFileDialogbox.FileName = "openFileDialog";
             // 
             // flowLayoutPanel1
             // 

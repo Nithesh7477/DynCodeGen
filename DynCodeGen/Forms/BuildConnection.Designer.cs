@@ -30,10 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BuildConnection));
             panel1 = new Panel();
+            cmbDatabase = new ComboBox();
+            lblDatabase = new Label();
+            btnTestConnection = new Button();
             panel2 = new Panel();
             btnClose = new Button();
             lblHead = new Label();
-            btnTestConnection = new Bunifu.Framework.UI.BunifuFlatButton();
             cmbAuthetication = new ComboBox();
             txtUserName = new TextBox();
             txtPassword = new MaskedTextBox();
@@ -48,8 +50,10 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(cmbDatabase);
+            panel1.Controls.Add(lblDatabase);
             panel1.Controls.Add(btnTestConnection);
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(cmbAuthetication);
             panel1.Controls.Add(txtUserName);
             panel1.Controls.Add(txtPassword);
@@ -62,9 +66,44 @@
             panel1.Font = new Font("Verdana", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(619, 300);
+            panel1.Size = new Size(619, 342);
             panel1.TabIndex = 1;
-            panel1.Paint += panel1_Paint;
+            // 
+            // cmbDatabase
+            // 
+            cmbDatabase.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            cmbDatabase.FormattingEnabled = true;
+            cmbDatabase.Location = new Point(157, 251);
+            cmbDatabase.Name = "cmbDatabase";
+            cmbDatabase.Size = new Size(444, 31);
+            cmbDatabase.TabIndex = 17;
+            // 
+            // lblDatabase
+            // 
+            lblDatabase.AutoSize = true;
+            lblDatabase.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDatabase.Location = new Point(26, 256);
+            lblDatabase.Name = "lblDatabase";
+            lblDatabase.Size = new Size(81, 23);
+            lblDatabase.TabIndex = 16;
+            lblDatabase.Text = "Database";
+            // 
+            // btnTestConnection
+            // 
+            btnTestConnection.BackColor = Color.FromArgb(36, 129, 77);
+            btnTestConnection.Cursor = Cursors.Hand;
+            btnTestConnection.FlatAppearance.BorderSize = 0;
+            btnTestConnection.FlatStyle = FlatStyle.Flat;
+            btnTestConnection.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTestConnection.ForeColor = Color.White;
+            btnTestConnection.Location = new Point(436, 293);
+            btnTestConnection.Margin = new Padding(0);
+            btnTestConnection.Name = "btnTestConnection";
+            btnTestConnection.Size = new Size(165, 40);
+            btnTestConnection.TabIndex = 15;
+            btnTestConnection.Text = "Confirm";
+            btnTestConnection.UseVisualStyleBackColor = false;
+            btnTestConnection.Click += btnTestConnection_Click;
             // 
             // panel2
             // 
@@ -100,42 +139,6 @@
             lblHead.Size = new Size(188, 25);
             lblHead.TabIndex = 13;
             lblHead.Text = "Connect to Database";
-            // 
-            // btnTestConnection
-            // 
-            btnTestConnection.Active = false;
-            btnTestConnection.Activecolor = Color.FromArgb(46, 139, 87);
-            btnTestConnection.BackColor = Color.FromArgb(46, 139, 87);
-            btnTestConnection.BackgroundImageLayout = ImageLayout.Stretch;
-            btnTestConnection.BorderRadius = 6;
-            btnTestConnection.ButtonText = "Test Connection";
-            btnTestConnection.DisabledColor = Color.Gray;
-            btnTestConnection.Iconcolor = Color.Transparent;
-            btnTestConnection.Iconimage = (Image)resources.GetObject("btnTestConnection.Iconimage");
-            btnTestConnection.Iconimage_right = null;
-            btnTestConnection.Iconimage_right_Selected = null;
-            btnTestConnection.Iconimage_Selected = null;
-            btnTestConnection.IconMarginLeft = 0;
-            btnTestConnection.IconMarginRight = 0;
-            btnTestConnection.IconRightVisible = true;
-            btnTestConnection.IconRightZoom = 0D;
-            btnTestConnection.IconVisible = true;
-            btnTestConnection.IconZoom = 90D;
-            btnTestConnection.IsTab = false;
-            btnTestConnection.Location = new Point(385, 242);
-            btnTestConnection.Margin = new Padding(7, 4, 7, 4);
-            btnTestConnection.Name = "btnTestConnection";
-            btnTestConnection.Normalcolor = Color.FromArgb(46, 139, 87);
-            btnTestConnection.OnHovercolor = Color.FromArgb(36, 129, 77);
-            btnTestConnection.OnHoverTextColor = Color.White;
-            btnTestConnection.selected = false;
-            btnTestConnection.Size = new Size(216, 53);
-            btnTestConnection.TabIndex = 5;
-            btnTestConnection.Text = "Test Connection";
-            btnTestConnection.TextAlign = ContentAlignment.MiddleLeft;
-            btnTestConnection.Textcolor = Color.White;
-            btnTestConnection.TextFont = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnTestConnection.Click += btnTestConnection_Click;
             // 
             // cmbAuthetication
             // 
@@ -187,7 +190,7 @@
             // 
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUsername.Location = new Point(26, 155);
+            lblUsername.Location = new Point(26, 158);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(87, 23);
             lblUsername.TabIndex = 2;
@@ -197,7 +200,7 @@
             // 
             lblAuthentication.AutoSize = true;
             lblAuthentication.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblAuthentication.Location = new Point(26, 104);
+            lblAuthentication.Location = new Point(26, 109);
             lblAuthentication.Name = "lblAuthentication";
             lblAuthentication.Size = new Size(123, 23);
             lblAuthentication.TabIndex = 1;
@@ -207,7 +210,7 @@
             // 
             lblServerName.AutoSize = true;
             lblServerName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblServerName.Location = new Point(26, 54);
+            lblServerName.Location = new Point(26, 57);
             lblServerName.Name = "lblServerName";
             lblServerName.Size = new Size(108, 23);
             lblServerName.TabIndex = 0;
@@ -217,7 +220,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(619, 300);
+            ClientSize = new Size(619, 342);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
@@ -243,9 +246,11 @@
         private Label lblUsername;
         private Label lblAuthentication;
         private Label lblServerName;
-        private Bunifu.Framework.UI.BunifuFlatButton btnTestConnection;
         private Panel panel2;
         private Label lblHead;
         private Button btnClose;
+        private Button btnTestConnection;
+        private ComboBox cmbDatabase;
+        private Label lblDatabase;
     }
 }
