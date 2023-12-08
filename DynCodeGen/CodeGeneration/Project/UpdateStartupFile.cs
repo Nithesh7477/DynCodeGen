@@ -1,8 +1,11 @@
-﻿using System;
+﻿using DynCodeGen.CodeGeneration.CodeTemplate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DynCodeGen.CodeGeneration.Project
 {
@@ -11,99 +14,9 @@ namespace DynCodeGen.CodeGeneration.Project
         public static void CreateStartupFile(string apiName, string apiPath)
         {
             string startupFilePath = Path.Combine(apiPath, $"{apiName}.WebAPI", "Startup.cs");
-
-            string startupFileContent = @"
-            using " + apiName + @".Application.IRepository;
-            using " + apiName + @".Application.IService;
-            using " + apiName + @".Infrastructure.Data;
-            using " + apiName + @".Infrastructure.Repository;
-            using " + apiName + @".Infrastructure.Service;
-            using Microsoft.AspNetCore.Builder;
-            using Microsoft.AspNetCore.Hosting;
-            using Microsoft.EntityFrameworkCore;
-            using Microsoft.Extensions.Configuration;
-            using Microsoft.Extensions.DependencyInjection;
-            using Microsoft.OpenApi.Models;
-
-            namespace " + apiName + @".WebAPI
-            {
-                public class Startup
-                {
-                    public Startup(IConfiguration configuration)
-                    {
-                        Configuration = configuration;
-                    }
-
-                    public IConfiguration Configuration { get; }
-
-                    public void ConfigureServices(IServiceCollection services)
-                    {
-                        services.AddDbContext<ApplicationDbContext>(options =>
-                            options.UseSqlServer(Configuration.GetConnectionString(""DefaultConnection"")));
-
-                        RegisterDependencies(services);
-                        services.AddControllers();
-                        services.AddSwaggerGen(c =>
-                        {
-                            c.SwaggerDoc(""v1"", new OpenApiInfo { Title = """ + apiName + @""", Version = ""v1"" });
-                        });
-
-                        AddCors(services);
-                    }
-
-                    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-                    {
-                        app.UseSwagger();
-                        app.UseSwaggerUI(c => c.SwaggerEndpoint(""/swagger/v1/swagger.json"", """ + apiName + @" v1""));
-
-                        app.UseHttpsRedirection();
-                        app.UseRouting();
-                        app.UseCors(""AllowAll"");
-                        app.UseAuthorization();
-                        app.UseEndpoints(endpoints =>
-                        {
-                            endpoints.MapControllers();
-                        });
-
-                        ConfigureHealthCheck(app);
-                    }
-
-                    private void RegisterDependencies(IServiceCollection services)
-                    {
-                        // Add dependency injection registrations here.
-                    }
-
-                    private void AddCors(IServiceCollection services)
-                    {
-                        services.AddCors(options =>
-                        {
-                            options.AddPolicy(name: ""AllowAll"",
-                                              builder =>
-                                              {
-                                                  builder.AllowAnyOrigin()
-                                                         .AllowAnyMethod()
-                                                         .AllowAnyHeader();
-                                              });
-                        });
-                    }
-
-                    private void ConfigureHealthCheck(IApplicationBuilder app)
-                    {
-                        // Add health check configurations here.
-                    }
-
-                    private void ConfigureSwagger(IApplicationBuilder app)
-                    {
-                        app.UseSwagger();
-                        app.UseSwaggerUI(c => 
-                        {
-                            c.SwaggerEndpoint(""/swagger/v1/swagger.json"", """ + apiName + @" v1"");
-                        });
-                    }
-                }
-            }";
-
-            File.WriteAllText(startupFilePath, startupFileContent);
+            StringBuilder startupFileContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.StartupUsing)+ Regex.Unescape(TemplateHelper.Instance.StartupNamespaceStart)+ Regex.Unescape(TemplateHelper.Instance.StartupClassStart)+ Regex.Unescape(TemplateHelper.Instance.StartupConstructor)+ Regex.Unescape(TemplateHelper.Instance.StartupConfigureServicesMethod)+ Regex.Unescape(TemplateHelper.Instance.StartupConfigureMethod)+ Regex.Unescape(TemplateHelper.Instance.StartupRegisterDependenciesMethod)+ Regex.Unescape(TemplateHelper.Instance.StartupAddCorsMethod)+ Regex.Unescape(TemplateHelper.Instance.StartupConfigureHealthCheckMethod)+ Regex.Unescape(TemplateHelper.Instance.StartupConfigureSwaggerMethod)+ Regex.Unescape(TemplateHelper.Instance.StartupNamespaceEnd));
+            startupFileContent.Replace("{apiName}", $"{apiName}");
+            File.WriteAllText(startupFilePath, startupFileContent.ToString());
         }
 
         public static void UpdateStartupForRepositoriesAndServices(string apiName, string apiPath, Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData)
@@ -114,17 +27,18 @@ namespace DynCodeGen.CodeGeneration.Project
             foreach (var sheetEntry in sheetsData)
             {
                 string className = sheetEntry.Key;
-                sb.AppendLine($"services.AddScoped<I{className}Repository, {className}Repository>();");
-                sb.AppendLine($"services.AddScoped<I{className}Service, {className}Service>();");
+                sb.AppendLine(Regex.Unescape(TemplateHelper.Instance.StartupForRepositoriesAndServices));
+                sb.Replace("{className}", $"{className}");
+
             }
 
-            // Read existing Startup.cs content and find a place to insert the new lines
             string existingContent = File.ReadAllText(startupPath);
             int insertionIndex = existingContent.IndexOf("// Add dependency injection registrations here.");
 
             if (insertionIndex > -1)
             {
                 existingContent = existingContent.Insert(insertionIndex, sb.ToString());
+                existingContent.Replace("{apiName}", $"{apiName}");
                 File.WriteAllText(startupPath, existingContent);
             }
         }
