@@ -45,5 +45,10 @@ namespace DynCodeGen.UserControls
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void SPTemplate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DownloadTemplate("StoredProcedure.xlsx");
+        }
     }
 }
