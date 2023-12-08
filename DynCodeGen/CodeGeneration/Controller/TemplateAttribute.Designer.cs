@@ -61,6 +61,141 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Application/{apiName}.Application.csproj.
+        /// </summary>
+        public static string AddApplicationProject {
+            get {
+                return ResourceManager.GetString("AddApplicationProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Application/{apiName}.Application.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj.
+        /// </summary>
+        public static string AddApplicationReferringDomain {
+            get {
+                return ResourceManager.GetString("AddApplicationReferringDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Hosting.
+        /// </summary>
+        public static string AddAspNetCoreHostingPackage {
+            get {
+                return ResourceManager.GetString("AddAspNetCoreHostingPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design --version 7.0.11.
+        /// </summary>
+        public static string AddDesignPackage {
+            get {
+                return ResourceManager.GetString("AddDesignPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj.
+        /// </summary>
+        public static string AddDomainProject {
+            get {
+                return ResourceManager.GetString("AddDomainProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tool install --global dotnet-ef.
+        /// </summary>
+        public static string AdddotnetefPackage {
+            get {
+                return ResourceManager.GetString("AdddotnetefPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.Extensions.Hosting.
+        /// </summary>
+        public static string AddExtensionsHostingPackage {
+            get {
+                return ResourceManager.GetString("AddExtensionsHostingPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj.
+        /// </summary>
+        public static string AddInfrastructureProject {
+            get {
+                return ResourceManager.GetString("AddInfrastructureProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Application/{apiName}.Application.csproj.
+        /// </summary>
+        public static string AddInfrastructureReferringApplication {
+            get {
+                return ResourceManager.GetString("AddInfrastructureReferringApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj.
+        /// </summary>
+        public static string AddInfrastructureReferringDomain {
+            get {
+                return ResourceManager.GetString("AddInfrastructureReferringDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.11.
+        /// </summary>
+        public static string AddSqlServerPackage {
+            get {
+                return ResourceManager.GetString("AddSqlServerPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Tools --version 7.0.11.
+        /// </summary>
+        public static string AddToolsPackage {
+            get {
+                return ResourceManager.GetString("AddToolsPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.WebAPI/{apiName}.csproj.
+        /// </summary>
+        public static string AddWebAPIProject {
+            get {
+                return ResourceManager.GetString("AddWebAPIProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Application/{apiName}.Application.csproj.
+        /// </summary>
+        public static string AddWebAPIReferringApplication {
+            get {
+                return ResourceManager.GetString("AddWebAPIReferringApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj.
+        /// </summary>
+        public static string AddWebAPIReferringInfrastructure {
+            get {
+                return ResourceManager.GetString("AddWebAPIReferringInfrastructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \t\t\r\n\r\n\t\t[HttpPost(\&quot;Add\&quot;)]\r\n\t\tpublic IActionResult Add([FromBody] {className} entity)\r\n\t\t{\r\n\t\t\t_service.Add(entity);\r\n\t\t\treturn CreatedAtAction(nameof(GetById), new { {IdName} = entity.{IdName}}, entity);\r\n\t\t}.
         /// </summary>
         public static string ContollerAdd {
@@ -147,6 +282,51 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string ContollerUpdate {
             get {
                 return ResourceManager.GetString("ContollerUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new classlib -n {apiName}.Application -o {apiPath}/{apiName}.Application.
+        /// </summary>
+        public static string CreateApplication {
+            get {
+                return ResourceManager.GetString("CreateApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new classlib -n {apiName}.Domain -o {apiPath}/{apiName}.Domain.
+        /// </summary>
+        public static string CreateDomain {
+            get {
+                return ResourceManager.GetString("CreateDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new classlib -n {apiName}.Infrastructure -o {apiPath}/{apiName}.Infrastructure.
+        /// </summary>
+        public static string CreateInfrastructure {
+            get {
+                return ResourceManager.GetString("CreateInfrastructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new sln -n {apiName} -o {apiPath}.
+        /// </summary>
+        public static string CreateSolution {
+            get {
+                return ResourceManager.GetString("CreateSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new webapi -n {apiName} -o {apiPath}\\{apiName}.WebAPI.
+        /// </summary>
+        public static string CreateWebAPI {
+            get {
+                return ResourceManager.GetString("CreateWebAPI", resourceCulture);
             }
         }
         

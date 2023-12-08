@@ -1,9 +1,11 @@
 ﻿namespace DynCodeGen.UserControls
 {
+    using global::DynCodeGen.CodeGeneration.CodeTemplate;
     using global::DynCodeGen.CodeGeneration.Controller;
     using global::DynCodeGen.CodeGeneration.Entity;
     using global::DynCodeGen.CodeGeneration.Project;
     using OfficeOpenXml;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// CreateControl.
@@ -200,7 +202,7 @@
         private void GenerateWebAPI(string apiName, string apiPath, string connectionString)
         {
             // Create a WebAPI project
-            ExecuteCliCommand.ExecuteCommand($"new webapi -n {apiName} -o {apiPath}\\{apiName}.WebAPI");
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateWebAPI).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             // Set the connection string in appsettings.json
             string appSettingsPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.json");
@@ -211,39 +213,39 @@
             AddConnectionString.SetConnectionString(appSettingsDevPath, connectionString);
 
             // Create a solution
-            ExecuteCliCommand.ExecuteCommand($"new sln -n {apiName} -o {apiPath}");
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             // Create Application, Domain, and Infrastructure projects
-            ExecuteCliCommand.ExecuteCommand($"new classlib -n {apiName}.Application -o {apiPath}/{apiName}.Application");
-            ExecuteCliCommand.ExecuteCommand($"new classlib -n {apiName}.Domain -o {apiPath}/{apiName}.Domain");
-            ExecuteCliCommand.ExecuteCommand($"new classlib -n {apiName}.Infrastructure -o {apiPath}/{apiName}.Infrastructure");
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Domain", "Entities"));
             Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data"));
 
             // Add all projects to the solution
-            ExecuteCliCommand.ExecuteCommand($"sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.WebAPI/{apiName}.csproj");
-            ExecuteCliCommand.ExecuteCommand($"sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Application/{apiName}.Application.csproj");
-            ExecuteCliCommand.ExecuteCommand($"sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj");
-            ExecuteCliCommand.ExecuteCommand($"sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj");
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDomainProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             UpdateProgressBar(25);
             UpdateLabel("adding project dependencies...");
 
             // You can even add project references
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Application/{apiName}.Application.csproj");
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj");
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.Application/{apiName}.Application.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj");
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj");
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Application/{apiName}.Application.csproj");
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             // Add EF Core packages to the Infrastructure and WebAPI projects
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.11");
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design --version 7.0.11");
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Tools --version 7.0.11");
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Hosting");
-            ExecuteCliCommand.ExecuteCommand($"add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.Extensions.Hosting");
-            ExecuteCliCommand.ExecuteCommand("tool install --global dotnet-ef");
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlServerPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDesignPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddToolsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddAspNetCoreHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddExtensionsHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AdddotnetefPackage));
 
             UpdateLabel("generating classes...");
 
