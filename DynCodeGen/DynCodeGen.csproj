@@ -16,6 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CodeGeneration\Controller\TemplateAttribute.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TemplateAttribute.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -24,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="CodeGeneration\Controller\TemplateAttribute.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TemplateAttribute.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -31,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Templates\StoredProcedure.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\Table.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

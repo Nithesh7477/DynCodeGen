@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddApplicationProject" xml:space="preserve">
+    <value>sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Application/{apiName}.Application.csproj</value>
+  </data>
+  <data name="AddApplicationReferringDomain" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.Application/{apiName}.Application.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj</value>
+  </data>
+  <data name="AddAspNetCoreHostingPackage" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Hosting</value>
+  </data>
+  <data name="AddDesignPackage" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design --version 7.0.11</value>
+  </data>
+  <data name="AddDomainProject" xml:space="preserve">
+    <value>sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj</value>
+  </data>
+  <data name="AdddotnetefPackage" xml:space="preserve">
+    <value>tool install --global dotnet-ef</value>
+  </data>
+  <data name="AddExtensionsHostingPackage" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.Extensions.Hosting</value>
+  </data>
+  <data name="AddInfrastructureProject" xml:space="preserve">
+    <value>sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj</value>
+  </data>
+  <data name="AddInfrastructureReferringApplication" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Application/{apiName}.Application.csproj</value>
+  </data>
+  <data name="AddInfrastructureReferringDomain" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj</value>
+  </data>
+  <data name="AddSqlServerPackage" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.11</value>
+  </data>
+  <data name="AddToolsPackage" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Tools --version 7.0.11</value>
+  </data>
+  <data name="AddWebAPIProject" xml:space="preserve">
+    <value>sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.WebAPI/{apiName}.csproj</value>
+  </data>
+  <data name="AddWebAPIReferringApplication" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Application/{apiName}.Application.csproj</value>
+  </data>
+  <data name="AddWebAPIReferringInfrastructure" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj</value>
+  </data>
+  <data name="ContollerAdd" xml:space="preserve">
+    <value>\t\t\r\n\r\n\t\t[HttpPost(\"Add\")]\r\n\t\tpublic IActionResult Add([FromBody] {className} entity)\r\n\t\t{\r\n\t\t\t_service.Add(entity);\r\n\t\t\treturn CreatedAtAction(nameof(GetById), new { {IdName} = entity.{IdName}}, entity);\r\n\t\t}</value>
+  </data>
+  <data name="ContollerClass" xml:space="preserve">
+    <value>\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
+  </data>
+  <data name="ContollerClassEnd" xml:space="preserve">
+    <value>\r\n\t}</value>
+  </data>
+  <data name="ContollerDelete" xml:space="preserve">
+    <value>\t\t\r\n\r\n\t\t[HttpDelete(\"Delete/{{IdName}}\")]\r\n\t\tpublic IActionResult Delete(int {IdName})\r\n\t\t{\r\n\t\t\tvar existingItem = _service.GetById({IdName});\r\n\t\t\tif (existingItem == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\t_service.Delete({IdName});\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
+  </data>
+  <data name="ContollerGet" xml:space="preserve">
+    <value>\t\t\r\n\r\n\t\t[HttpGet(\"GetById/{{IdName}}\")]\r\n\t\tpublic ActionResult&lt;{className}&gt; GetById(int {IdName})\r\n\t\t{\r\n\t\t\tvar item = _service.GetById({IdName});\r\n\t\t\tif (item == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\treturn Ok(item);\r\n\t\t}</value>
+  </data>
+  <data name="ContollerGetAll" xml:space="preserve">
+    <value>\t\t\r\n\r\n\t\t[HttpGet(\"GetAll\")]\r\n\t\tpublic ActionResult&lt;IEnumerable&lt;{className}&gt;&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn Ok(_service.GetAll());\r\n\t\t}</value>
+  </data>
+  <data name="ContollerHeader" xml:space="preserve">
+    <value>using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\n</value>
+  </data>
+  <data name="ContollerNamespace" xml:space="preserve">
+    <value>namespace {apiName}.Api.Controllers\r\n{</value>
+  </data>
+  <data name="ContollerNamespaceEnd" xml:space="preserve">
+    <value>\r\n}</value>
+  </data>
+  <data name="ContollerUpdate" xml:space="preserve">
+    <value>\r\n\r\n\t\t[HttpPut(\"Update/{{IdName}}\")]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
+  </data>
+  <data name="CreateApplication" xml:space="preserve">
+    <value>new classlib -n {apiName}.Application -o {apiPath}/{apiName}.Application</value>
+  </data>
+  <data name="CreateDomain" xml:space="preserve">
+    <value>new classlib -n {apiName}.Domain -o {apiPath}/{apiName}.Domain</value>
+  </data>
+  <data name="CreateInfrastructure" xml:space="preserve">
+    <value>new classlib -n {apiName}.Infrastructure -o {apiPath}/{apiName}.Infrastructure</value>
+  </data>
+  <data name="CreateSolution" xml:space="preserve">
+    <value>new sln -n {apiName} -o {apiPath}</value>
+  </data>
+  <data name="CreateWebAPI" xml:space="preserve">
+    <value>new webapi -n {apiName} -o {apiPath}\\{apiName}.WebAPI</value>
+  </data>
+  <data name="DBcontextClass" xml:space="preserve">
+    <value>\tpublic class ApplicationDbContext : DbContext\r\n\t{\r\n\t\tpublic ApplicationDbContext(DbContextOptions&lt;ApplicationDbContext&gt; options) : base(options)\r\n\t\t{\r\n}\r\n//DBSets go here\r\n\t}\r\n}</value>
+  </data>
+  <data name="DBcontextNamespace" xml:space="preserve">
+    <value>namespace {namespaceName}.Data\r\n{\r\n</value>
+  </data>
+  <data name="DBcontextUsing" xml:space="preserve">
+    <value>using Microsoft.EntityFrameworkCore;\r\n</value>
+  </data>
+  <data name="DBContextWithModels" xml:space="preserve">
+    <value>\t\tpublic DbSet&lt;{className}&gt; {className}Set { get; set; }\r\n</value>
+  </data>
+  <data name="IRepositoryAdd" xml:space="preserve">
+    <value>\t\tvoid Add({className} entity);\r\n</value>
+  </data>
+  <data name="IRepositoryDelete" xml:space="preserve">
+    <value>\t\tvoid Delete(int {IdName});\r\n</value>
+  </data>
+  <data name="IRepositoryGet" xml:space="preserve">
+    <value>\t\t{className} GetById(int {IdName});\r\n</value>
+  </data>
+  <data name="IRepositoryGetAll" xml:space="preserve">
+    <value>\r\n\t\tIEnumerable&lt;{className}&gt; GetAll();\r\n</value>
+  </data>
+  <data name="IRepositoryInterface" xml:space="preserve">
+    <value>\tpublic interface I{className}Repository\r\n\t{</value>
+  </data>
+  <data name="IRepositoryInterfaceEnd" xml:space="preserve">
+    <value>\r\n\t}</value>
+  </data>
+  <data name="IRepositoryNamespace" xml:space="preserve">
+    <value>namespace {apiName}.Application.IRepository\r\n{</value>
+  </data>
+  <data name="IRepositoryNamespaceEnd" xml:space="preserve">
+    <value>\r\n}</value>
+  </data>
+  <data name="IRepositoryUpdate" xml:space="preserve">
+    <value>\t\tvoid Update({className} entity);\r\n</value>
+  </data>
+  <data name="IServiceAdd" xml:space="preserve">
+    <value>\t\tvoid Add({className} entity);\r\n</value>
+  </data>
+  <data name="IServiceClassEnd" xml:space="preserve">
+    <value>\r\n\t}</value>
+  </data>
+  <data name="IServiceDelete" xml:space="preserve">
+    <value>\t\tvoid Update({className} entity);\r\n</value>
+  </data>
+  <data name="IServiceGet" xml:space="preserve">
+    <value>\t\t{className} GetById(int {IdName});\r\n</value>
+  </data>
+  <data name="IServiceGetAll" xml:space="preserve">
+    <value>\t\tIEnumerable&lt;{className}&gt; GetAll();\r\n</value>
+  </data>
+  <data name="IServiceInterface" xml:space="preserve">
+    <value>\tpublic interface I{className}Service\r\n\t{\r\n</value>
+  </data>
+  <data name="IServiceNamespace" xml:space="preserve">
+    <value>namespace {apiName}.Application.IService\r\n{</value>
+  </data>
+  <data name="IServiceNamespaceEnd" xml:space="preserve">
+    <value>\r\n}</value>
+  </data>
+  <data name="IServiceUpdate" xml:space="preserve">
+    <value>\t\tvoid Delete(int {IdName});\r\n</value>
+  </data>
+  <data name="ModelAnnotation" xml:space="preserve">
+    <value>\t[{annotation}]</value>
+  </data>
+  <data name="ModelClassProperty" xml:space="preserve">
+    <value>\tpublic {propertyType} {propertyName} { get; set;}\r\n</value>
+  </data>
+  <data name="ModelClassStart" xml:space="preserve">
+    <value>public class {className} \r\n{\r\n</value>
+  </data>
+  <data name="ModelOnetomany" xml:space="preserve">
+    <value>\tvirtual ICollection&lt;{propertyType}&gt;</value>
+  </data>
+  <data name="ModelUsing" xml:space="preserve">
+    <value>using System.ComponentModel.DataAnnotations;\r\nusing System.ComponentModel.DataAnnotations.Schema;\r\n</value>
+  </data>
+  <data name="ProgramClassEnd" xml:space="preserve">
+    <value>\t}\r\n</value>
+  </data>
+  <data name="ProgramClassStart" xml:space="preserve">
+    <value>\tpublic class Program\r\n\t{\r\n</value>
+  </data>
+  <data name="ProgramCreateHostBuilderMethod" xml:space="preserve">
+    <value>\t\tpublic static IHostBuilder CreateHostBuilder(string[] args) =&gt;\r\n\t\t\tHost.CreateDefaultBuilder(args)\r\n\t\t\t\t.ConfigureWebHostDefaults(webBuilder =&gt;\r\n\t\t\t\t{\r\n\t\t\t\t\twebBuilder.UseStartup&lt;Startup&gt;();\r\n\t\t\t\t});\r\n</value>
+  </data>
+  <data name="ProgramMainMethod" xml:space="preserve">
+    <value>\t\tpublic static void Main(string[] args)\r\n\t\t{\r\n\t\t\tCreateHostBuilder(args).Build().Run();\r\n\t\t}\r\n</value>
+  </data>
+  <data name="ProgramNamespace" xml:space="preserve">
+    <value>namespace {apiName}.WebAPI\r\n{</value>
+  </data>
+  <data name="ProgramNamespaceEnd" xml:space="preserve">
+    <value>}\r\n</value>
+  </data>
+  <data name="ProgramUsing" xml:space="preserve">
+    <value>using Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Hosting;</value>
+  </data>
+  <data name="RepositoryAdd" xml:space="preserve">
+    <value>\t\tpublic void Add({className} entity)\r\n\t\t{\r\n\t\t\t_context.{className}Set.Add(entity);\r\n\t\t\t_context.SaveChanges();\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryClassEnd" xml:space="preserve">
+    <value>\t}\r\n</value>
+  </data>
+  <data name="RepositoryClassStart" xml:space="preserve">
+    <value>\tpublic class {className}Repository : I{className}Repository\r\n\t{\r\n</value>
+  </data>
+  <data name="RepositoryConstructor" xml:space="preserve">
+    <value>\r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic {className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryDelete" xml:space="preserve">
+    <value>\t\tpublic void Delete(int {className}Id)\r\n\t\t{\r\n\t\t\tvar entityToDelete = _context.{className}Set.FirstOrDefault(e =&gt; e.{IdName} == {IdName});\r\n\t\t\tif (entityToDelete != null)\r\n\t\t\t{\r\n\t\t\t\t_context.{className}Set.Remove(entityToDelete);\r\n\t\t\t\t_context.SaveChanges();\r\n\t\t\t}\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryGetAll" xml:space="preserve">
+    <value>\t\tpublic IEnumerable&lt;{className}&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn _context.{className}Set.ToList();\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryGetById" xml:space="preserve">
+    <value>\t\tpublic {className} GetById(int {IdName})\r\n\t\t{\r\n\t\t\treturn _context.{className}Set.FirstOrDefault(e =&gt; e.{IdName} == {IdName});\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryNamespace" xml:space="preserve">
+    <value>namespace {apiName}.Infrastructure.Repository\r\n{</value>
+  </data>
+  <data name="RepositoryNamespaceEnd" xml:space="preserve">
+    <value>}\r\n</value>
+  </data>
+  <data name="RepositoryUpdate" xml:space="preserve">
+    <value>\t\tpublic void Update({className} entity)\r\n\t\t{\r\n\t\t\t_context.{className}Set.Update(entity);\r\n\t\t\t_context.SaveChanges();\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryUsing" xml:space="preserve">
+    <value>using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\n</value>
+  </data>
+  <data name="ServiceAdd" xml:space="preserve">
+    <value>\t\tpublic void Add({className} entity)\r\n\t\t{\r\n\t\t\t_repository.Add(entity);\r\n\t\t}\r\n</value>
+  </data>
+  <data name="ServiceClassEnd" xml:space="preserve">
+    <value>\t}\r\n</value>
+  </data>
+  <data name="ServiceClassStart" xml:space="preserve">
+    <value>\tpublic class {className}Service : I{className}Service\r\n\t{\r\n</value>
+  </data>
+  <data name="ServiceConstructor" xml:space="preserve">
+    <value>\r\n\tprivate readonly I{className}Repository _repository;\r\n\r\n\t\tpublic {className}Service(I{className}Repository repository)\r\n\t\t{\r\n\t\t\t_repository = repository;\r\n\t\t}\r\n</value>
+  </data>
+  <data name="ServiceDelete" xml:space="preserve">
+    <value>\t\tpublic void Delete(int {IdName})\r\n\t\t{\r\n\t\t\t_repository.Delete({IdName});\r\n\t\t}\r\n</value>
+  </data>
+  <data name="ServiceGetAll" xml:space="preserve">
+    <value>\t\tpublic IEnumerable&lt;{className}&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn _repository.GetAll();\r\n\t\t}\r\n</value>
+  </data>
+  <data name="ServiceGetById" xml:space="preserve">
+    <value>\t\tpublic {className} GetById(int {IdName})\r\n\t\t{\r\n\t\t\treturn _repository.GetById({IdName});\r\n\t\t}\r\n</value>
+  </data>
+  <data name="ServiceNamespace" xml:space="preserve">
+    <value>namespace {apiName}.Infrastructure.Service\r\n{</value>
+  </data>
+  <data name="ServiceNamespaceEnd" xml:space="preserve">
+    <value>}\r\n</value>
+  </data>
+  <data name="ServiceUpdate" xml:space="preserve">
+    <value>\t\tpublic void Update({className} entity)\r\n\t\t{\r\n\t\t\t_repository.Update(entity);\r\n\t\t}\r\n</value>
+  </data>
+  <data name="ServiceUsing" xml:space="preserve">
+    <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\n</value>
+  </data>
+  <data name="StartupAddCorsMethod" xml:space="preserve">
+    <value>\t\tprivate void AddCors(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddCors(options =&gt;\r\n\t\t\t{\r\r\t\t\t\toptions.AddPolicy(name: \"AllowAll\", builder =&gt; builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());\r\n\t\t\t});\r\n\t\t}\r\n</value>
+  </data>
+  <data name="StartupClassStart" xml:space="preserve">
+    <value>\tpublic class Startup\r\n\t{\r\n</value>
+  </data>
+  <data name="StartupConfigureHealthCheckMethod" xml:space="preserve">
+    <value>\t\tprivate void ConfigureHealthCheck(IApplicationBuilder app)\r\n\t\t{\r\n\t\t\t// Add health check configurations here.\r\n\t\t}\r\n</value>
+  </data>
+  <data name="StartupConfigureMethod" xml:space="preserve">
+    <value>\t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; c.SwaggerEndpoint(\"/swagger/v1/swagger.json\", $\"{apiName} v1\"));\r\n\t\t\tapp.UseHttpsRedirection().UseRouting().UseCors(\"AllowAll\").UseAuthorization().UseEndpoints(endpoints =&gt; endpoints.MapControllers());\r\n\t\t\tConfigureHealthCheck(app);\r\n\t\t}\r\n</value>
+  </data>
+  <data name="StartupConfigureServicesMethod" xml:space="preserve">
+    <value>\t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;\r\n\t\t\toptions.UseSqlServer(Configuration.GetConnectionString(\"DefaultConnection\")));\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\"v1\", new OpenApiInfo { Title = $\"{apiName}\", Version = \"v1\" }));\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n</value>
+  </data>
+  <data name="StartupConfigureSwaggerMethod" xml:space="preserve">
+    <value>\t\tprivate void ConfigureSwagger(IApplicationBuilder app)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; \r\n\t\t\t{\r\n\t\t\t\tc.SwaggerEndpoint(\"/swagger/v1/swagger.json\", $\"{apiName} v1\");\r\n\t\t\t});\r\n\t\t}\r\n</value>
+  </data>
+  <data name="StartupConstructor" xml:space="preserve">
+    <value>\t\tpublic Startup(IConfiguration configuration) =&gt; Configuration = configuration;\r\n\t\tpublic IConfiguration Configuration { get; }\r\n</value>
+  </data>
+  <data name="StartupForRepositoriesAndServices" xml:space="preserve">
+    <value>\t\t\tservices.AddScoped&lt;I{className}Repository, {className}Repository&gt;();\r\n\t\t\tservices.AddScoped&lt;I{className}Service, {className}Service &gt;();</value>
+  </data>
+  <data name="StartupNamespaceEnd" xml:space="preserve">
+    <value>\t}\r\n}\r\n</value>
+  </data>
+  <data name="StartupNamespaceStart" xml:space="preserve">
+    <value>namespace {apiName}.WebAPI\r\n{\r\n</value>
+  </data>
+  <data name="StartupRegisterDependenciesMethod" xml:space="preserve">
+    <value>\t\tprivate void RegisterDependencies(IServiceCollection services)\r\n\t\t{\r\n// Add dependency injection registrations here.\r\n\t\t}\r\n</value>
+  </data>
+  <data name="StartupUsing" xml:space="preserve">
+    <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Data;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n</value>
+  </data>
+</root>

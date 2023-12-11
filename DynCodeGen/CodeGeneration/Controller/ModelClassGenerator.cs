@@ -1,7 +1,9 @@
-﻿using System;
+﻿using DynCodeGen.CodeGeneration.CodeTemplate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DynCodeGen.CodeGeneration.Controller
@@ -24,11 +26,7 @@ namespace DynCodeGen.CodeGeneration.Controller
 
                 // Start building the class definition
                 StringBuilder classDefinition = new StringBuilder();
-                classDefinition.AppendLine($"using System.ComponentModel.DataAnnotations;");
-                classDefinition.AppendLine($"using System.ComponentModel.DataAnnotations.Schema;");
-                classDefinition.AppendLine();
-                classDefinition.AppendLine($"public class {className}");
-                classDefinition.AppendLine("{");
+                classDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelUsing) + Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"{className}"));
 
                 // Iterate through each property (tuple) in the list
                 foreach (var property in properties)
@@ -41,7 +39,7 @@ namespace DynCodeGen.CodeGeneration.Controller
                     // Modify property type based on relationship
                     if (relationship.Equals("one to many", StringComparison.OrdinalIgnoreCase))
                     {
-                        propertyType = $"virtual ICollection<{propertyType}>"; // Adjusting for one-to-many relationship
+                        propertyType = Regex.Unescape(TemplateHelper.Instance.ModelOnetomany.Replace("{propertyType}", $"{propertyType}")); // Adjusting for one-to-many relationship
                     }
 
                     // Annotations as comments - Alternatively, these can be transformed into data annotations
@@ -55,7 +53,7 @@ namespace DynCodeGen.CodeGeneration.Controller
                     }
 
                     // Append property definition to the class
-                    classDefinition.AppendLine($"    public {propertyType} {propertyName} {{ get; set; }}");
+                    classDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
                     classDefinition.AppendLine();
 
                 }
@@ -66,6 +64,19 @@ namespace DynCodeGen.CodeGeneration.Controller
                 // Write the class definition to a file
                 File.WriteAllText(Path.Combine(modelClassPath, $"{className}.cs"), classDefinition.ToString());
             }
+        }
+        public static void GenerateModelClassesForStoreProcedure(Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData, string modelClassPath)
+        {
+            if (!Directory.Exists(modelClassPath))
+            {
+                Directory.CreateDirectory(modelClassPath);
+            }
+            foreach (var sheetEntry in sheetsData)
+            {
+                string className = sheetEntry.Key;
+                var properties = sheetEntry.Value;
+            }
+
         }
     }
 }

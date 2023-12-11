@@ -78,6 +78,7 @@
             SPTemplate.TabIndex = 5;
             SPTemplate.TabStop = true;
             SPTemplate.Text = "Click Here";
+            SPTemplate.LinkClicked += SPTemplate_LinkClicked;
             // 
             // tableTemplate
             // 
