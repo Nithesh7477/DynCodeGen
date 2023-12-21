@@ -277,11 +277,56 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \r\n\t[ApiController]\r\n\t[Route(\&quot;api/[controller]\&quot;)]\r\n\tpublic class usp{className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly Iusp{className}Service _service;\r\n\r\n\t\tpublic usp{className}Controller(Iusp{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}.
+        /// </summary>
+        public static string ContollerSPClass {
+            get {
+                return ResourceManager.GetString("ContollerSPClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \r\n\r\n\t\t[HttpPut(\&quot;Update/{{IdName}}\&quot;)]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}.
         /// </summary>
         public static string ContollerUpdate {
             get {
                 return ResourceManager.GetString("ContollerUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Get{className}Async\&quot;)]\r\n\t\tpublic IActionResult Get{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Get{className}Async({className});\r\n\t\t\t\treturn Ok(Result);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \&quot;An error occurred while processing your request.\&quot;);\r\n\t\t\t}\r\n\t\t}.
+        /// </summary>
+        public static string ControllerGetMethod {
+            get {
+                return ResourceManager.GetString("ControllerGetMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n.
+        /// </summary>
+        public static string ControllerMethodComments {
+            get {
+                return ResourceManager.GetString("ControllerMethodComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Post{className}Async\&quot;)]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok(&quot;Recode inserted/updated Successfully&quot;);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \&quot;An error occurred while processing your request.\&quot;);\r\n\t\t\t}\r\n\t\t}.
+        /// </summary>
+        public static string ControllerPostMethod {
+            get {
+                return ResourceManager.GetString("ControllerPostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n.
+        /// </summary>
+        public static string ControllerSPMethodComments {
+            get {
+                return ResourceManager.GetString("ControllerSPMethodComments", resourceCulture);
             }
         }
         
@@ -403,6 +448,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tResponse{className} Get{className}Async(Request{className} {className});.
+        /// </summary>
+        public static string IRepositoryGetMethod {
+            get {
+                return ResourceManager.GetString("IRepositoryGetMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \tpublic interface I{className}Repository\r\n\t{.
         /// </summary>
         public static string IRepositoryInterface {
@@ -421,6 +475,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n.
+        /// </summary>
+        public static string IRepositoryMethodComments {
+            get {
+                return ResourceManager.GetString("IRepositoryMethodComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to namespace {apiName}.Application.IRepository\r\n{.
         /// </summary>
         public static string IRepositoryNamespace {
@@ -435,6 +498,33 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string IRepositoryNamespaceEnd {
             get {
                 return ResourceManager.GetString("IRepositoryNamespaceEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tResponse{className} Post{className}Async(Request{className} {className});.
+        /// </summary>
+        public static string IRepositoryPostMethod {
+            get {
+                return ResourceManager.GetString("IRepositoryPostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tpublic interface Iusp{className}Repository\r\n\t{\r\n.
+        /// </summary>
+        public static string IRepositorySPInterface {
+            get {
+                return ResourceManager.GetString("IRepositorySPInterface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n.
+        /// </summary>
+        public static string IRepositorySPMethodComments {
+            get {
+                return ResourceManager.GetString("IRepositorySPMethodComments", resourceCulture);
             }
         }
         
@@ -466,7 +556,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tvoid Update({className} entity);\r\n.
+        ///   Looks up a localized string similar to \t\tvoid Delete(int EmployeeId);\r\n.
         /// </summary>
         public static string IServiceDelete {
             get {
@@ -493,11 +583,29 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tResponse{className} Get{className}Async(Request{className} {className});.
+        /// </summary>
+        public static string IServiceGetMethod {
+            get {
+                return ResourceManager.GetString("IServiceGetMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \tpublic interface I{className}Service\r\n\t{\r\n.
         /// </summary>
         public static string IServiceInterface {
             get {
                 return ResourceManager.GetString("IServiceInterface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n.
+        /// </summary>
+        public static string IServiceMethodComments {
+            get {
+                return ResourceManager.GetString("IServiceMethodComments", resourceCulture);
             }
         }
         
@@ -520,7 +628,34 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tvoid Delete(int {IdName});\r\n.
+        ///   Looks up a localized string similar to \tResponse{className} Post{className}Async(Request{className} {className});.
+        /// </summary>
+        public static string IServicePostMethod {
+            get {
+                return ResourceManager.GetString("IServicePostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tpublic interface Iusp{className}Service\r\n\t{\r\n.
+        /// </summary>
+        public static string IServiceSPInterface {
+            get {
+                return ResourceManager.GetString("IServiceSPInterface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n.
+        /// </summary>
+        public static string IServiceSPMethodComments {
+            get {
+                return ResourceManager.GetString("IServiceSPMethodComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\tvoid Update({className} entity);\r\n.
         /// </summary>
         public static string IServiceUpdate {
             get {
@@ -538,6 +673,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to }.
+        /// </summary>
+        public static string ModelClassEnd {
+            get {
+                return ResourceManager.GetString("ModelClassEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \tpublic {propertyType} {propertyName} { get; set;}\r\n.
         /// </summary>
         public static string ModelClassProperty {
@@ -547,11 +691,29 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public class {className} \r\n{\r\n.
+        ///   Looks up a localized string similar to public class {className} \r\n{\r\n\t.
         /// </summary>
         public static string ModelClassStart {
             get {
                 return ResourceManager.GetString("ModelClassStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t[Key]\r\n.
+        /// </summary>
+        public static string ModelClassStartKey {
+            get {
+                return ResourceManager.GetString("ModelClassStartKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\tpublic string result { get; set; }\r\n.
+        /// </summary>
+        public static string ModelClassStartKeyProperty {
+            get {
+                return ResourceManager.GetString("ModelClassStartKeyProperty", resourceCulture);
             }
         }
         
@@ -700,6 +862,24 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tpublic  Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t// Input\r\n\r\n\t\t\treturn  _context.usp{className}Set.FromSqlRaw(\&quot;{Execute Statement}\&quot;,{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}.
+        /// </summary>
+        public static string RepositoryGetMethod {
+            get {
+                return ResourceManager.GetString("RepositoryGetMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n.
+        /// </summary>
+        public static string RepositoryMethodComments {
+            get {
+                return ResourceManager.GetString("RepositoryMethodComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to namespace {apiName}.Infrastructure.Repository\r\n{.
         /// </summary>
         public static string RepositoryNamespace {
@@ -718,6 +898,42 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t\t// Input\r\n\t\t\t\treturn _context.usp{className}Set.FromSqlRaw(\&quot;{Execute Statement}\&quot;,{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}\r\n.
+        /// </summary>
+        public static string RepositoryPostMethod {
+            get {
+                return ResourceManager.GetString("RepositoryPostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tpublic class usp{className}Repository : Iusp{className}Repository\r\n\t{\r\n.
+        /// </summary>
+        public static string RepositorySPClassStart {
+            get {
+                return ResourceManager.GetString("RepositorySPClassStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic usp{className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n.
+        /// </summary>
+        public static string RepositorySPConstructor {
+            get {
+                return ResourceManager.GetString("RepositorySPConstructor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n.
+        /// </summary>
+        public static string RepositorySPMethodComments {
+            get {
+                return ResourceManager.GetString("RepositorySPMethodComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \t\tpublic void Update({className} entity)\r\n\t\t{\r\n\t\t\t_context.{className}Set.Update(entity);\r\n\t\t\t_context.SaveChanges();\r\n\t\t}\r\n.
         /// </summary>
         public static string RepositoryUpdate {
@@ -727,7 +943,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\n.
+        ///   Looks up a localized string similar to using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\nusing Microsoft.Data.SqlClient;\r\nusing Microsoft.EntityFrameworkCore;.
         /// </summary>
         public static string RepositoryUsing {
             get {
@@ -799,6 +1015,24 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \t\tpublic Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Get{className}Async({className});\r\n\t\t}.
+        /// </summary>
+        public static string ServiceGetMethod {
+            get {
+                return ResourceManager.GetString("ServiceGetMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n.
+        /// </summary>
+        public static string ServiceMethodComments {
+            get {
+                return ResourceManager.GetString("ServiceMethodComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to namespace {apiName}.Infrastructure.Service\r\n{.
         /// </summary>
         public static string ServiceNamespace {
@@ -817,6 +1051,42 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \t\tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Post{className}Async({className});\r\n\t\t}.
+        /// </summary>
+        public static string ServicePostMethod {
+            get {
+                return ResourceManager.GetString("ServicePostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tpublic class usp{className}Service : Iusp{className}Service\r\n\t{\r\n.
+        /// </summary>
+        public static string ServiceSPClassStart {
+            get {
+                return ResourceManager.GetString("ServiceSPClassStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\tprivate readonly Iusp{className}Repository _repository;\r\n\r\n\t\tpublic usp{className}Service(Iusp{className}Repository repository)\r\n\t\t{\r\n\t\t\t_repository = repository;\r\n\t\t}\r\n.
+        /// </summary>
+        public static string ServiceSPConstructor {
+            get {
+                return ResourceManager.GetString("ServiceSPConstructor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n.
+        /// </summary>
+        public static string ServiceSPMethodComments {
+            get {
+                return ResourceManager.GetString("ServiceSPMethodComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \t\tpublic void Update({className} entity)\r\n\t\t{\r\n\t\t\t_repository.Update(entity);\r\n\t\t}\r\n.
         /// </summary>
         public static string ServiceUpdate {
@@ -831,6 +1101,33 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string ServiceUsing {
             get {
                 return ResourceManager.GetString("ServiceUsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\tpublic DbSet&lt;Response{className}&gt; usp{className}Set { get; set; }\r\n.
+        /// </summary>
+        public static string SpDBContext {
+            get {
+                return ResourceManager.GetString("SpDBContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\t\t\t\tvar {IdName} = new SqlParameter(&quot;@{IdName}&quot;, {className}.{IdName});\r\n.
+        /// </summary>
+        public static string SPInput {
+            get {
+                return ResourceManager.GetString("SPInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\t\tservices.AddScoped&lt;Iusp{className}Repository, usp{className}Repository&gt;();\r\n\t\t\tservices.AddScoped&lt;Iusp{className}Service, usp{className}Service &gt;();.
+        /// </summary>
+        public static string SPStartupForRepositoriesAndServices {
+            get {
+                return ResourceManager.GetString("SPStartupForRepositoriesAndServices", resourceCulture);
             }
         }
         

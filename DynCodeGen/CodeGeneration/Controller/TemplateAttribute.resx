@@ -189,8 +189,23 @@
   <data name="ContollerNamespaceEnd" xml:space="preserve">
     <value>\r\n}</value>
   </data>
+  <data name="ContollerSPClass" xml:space="preserve">
+    <value>\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class usp{className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly Iusp{className}Service _service;\r\n\r\n\t\tpublic usp{className}Controller(Iusp{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
+  </data>
   <data name="ContollerUpdate" xml:space="preserve">
     <value>\r\n\r\n\t\t[HttpPut(\"Update/{{IdName}}\")]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
+  </data>
+  <data name="ControllerGetMethod" xml:space="preserve">
+    <value>\t[HttpPost(\"Get{className}Async\")]\r\n\t\tpublic IActionResult Get{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Get{className}Async({className});\r\n\t\t\t\treturn Ok(Result);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \"An error occurred while processing your request.\");\r\n\t\t\t}\r\n\t\t}</value>
+  </data>
+  <data name="ControllerMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
+  </data>
+  <data name="ControllerPostMethod" xml:space="preserve">
+    <value>\t[HttpPost(\"Post{className}Async\")]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok("Recode inserted/updated Successfully");\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \"An error occurred while processing your request.\");\r\n\t\t\t}\r\n\t\t}</value>
+  </data>
+  <data name="ControllerSPMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
   </data>
   <data name="CreateApplication" xml:space="preserve">
     <value>new classlib -n {apiName}.Application -o {apiPath}/{apiName}.Application</value>
@@ -231,17 +246,32 @@
   <data name="IRepositoryGetAll" xml:space="preserve">
     <value>\r\n\t\tIEnumerable&lt;{className}&gt; GetAll();\r\n</value>
   </data>
+  <data name="IRepositoryGetMethod" xml:space="preserve">
+    <value>\tResponse{className} Get{className}Async(Request{className} {className});</value>
+  </data>
   <data name="IRepositoryInterface" xml:space="preserve">
     <value>\tpublic interface I{className}Repository\r\n\t{</value>
   </data>
   <data name="IRepositoryInterfaceEnd" xml:space="preserve">
     <value>\r\n\t}</value>
   </data>
+  <data name="IRepositoryMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
+  </data>
   <data name="IRepositoryNamespace" xml:space="preserve">
     <value>namespace {apiName}.Application.IRepository\r\n{</value>
   </data>
   <data name="IRepositoryNamespaceEnd" xml:space="preserve">
     <value>\r\n}</value>
+  </data>
+  <data name="IRepositoryPostMethod" xml:space="preserve">
+    <value>\tResponse{className} Post{className}Async(Request{className} {className});</value>
+  </data>
+  <data name="IRepositorySPInterface" xml:space="preserve">
+    <value>\tpublic interface Iusp{className}Repository\r\n\t{\r\n</value>
+  </data>
+  <data name="IRepositorySPMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
   </data>
   <data name="IRepositoryUpdate" xml:space="preserve">
     <value>\t\tvoid Update({className} entity);\r\n</value>
@@ -253,7 +283,7 @@
     <value>\r\n\t}</value>
   </data>
   <data name="IServiceDelete" xml:space="preserve">
-    <value>\t\tvoid Update({className} entity);\r\n</value>
+    <value>\t\tvoid Delete(int EmployeeId);\r\n</value>
   </data>
   <data name="IServiceGet" xml:space="preserve">
     <value>\t\t{className} GetById(int {IdName});\r\n</value>
@@ -261,8 +291,14 @@
   <data name="IServiceGetAll" xml:space="preserve">
     <value>\t\tIEnumerable&lt;{className}&gt; GetAll();\r\n</value>
   </data>
+  <data name="IServiceGetMethod" xml:space="preserve">
+    <value>\tResponse{className} Get{className}Async(Request{className} {className});</value>
+  </data>
   <data name="IServiceInterface" xml:space="preserve">
     <value>\tpublic interface I{className}Service\r\n\t{\r\n</value>
+  </data>
+  <data name="IServiceMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
   </data>
   <data name="IServiceNamespace" xml:space="preserve">
     <value>namespace {apiName}.Application.IService\r\n{</value>
@@ -270,17 +306,35 @@
   <data name="IServiceNamespaceEnd" xml:space="preserve">
     <value>\r\n}</value>
   </data>
+  <data name="IServicePostMethod" xml:space="preserve">
+    <value>\tResponse{className} Post{className}Async(Request{className} {className});</value>
+  </data>
+  <data name="IServiceSPInterface" xml:space="preserve">
+    <value>\tpublic interface Iusp{className}Service\r\n\t{\r\n</value>
+  </data>
+  <data name="IServiceSPMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
+  </data>
   <data name="IServiceUpdate" xml:space="preserve">
-    <value>\t\tvoid Delete(int {IdName});\r\n</value>
+    <value>\t\tvoid Update({className} entity);\r\n</value>
   </data>
   <data name="ModelAnnotation" xml:space="preserve">
     <value>\t[{annotation}]</value>
+  </data>
+  <data name="ModelClassEnd" xml:space="preserve">
+    <value>}</value>
   </data>
   <data name="ModelClassProperty" xml:space="preserve">
     <value>\tpublic {propertyType} {propertyName} { get; set;}\r\n</value>
   </data>
   <data name="ModelClassStart" xml:space="preserve">
-    <value>public class {className} \r\n{\r\n</value>
+    <value>public class {className} \r\n{\r\n\t</value>
+  </data>
+  <data name="ModelClassStartKey" xml:space="preserve">
+    <value>\t[Key]\r\n</value>
+  </data>
+  <data name="ModelClassStartKeyProperty" xml:space="preserve">
+    <value>\r\n\tpublic string result { get; set; }\r\n</value>
   </data>
   <data name="ModelOnetomany" xml:space="preserve">
     <value>\tvirtual ICollection&lt;{propertyType}&gt;</value>
@@ -330,17 +384,35 @@
   <data name="RepositoryGetById" xml:space="preserve">
     <value>\t\tpublic {className} GetById(int {IdName})\r\n\t\t{\r\n\t\t\treturn _context.{className}Set.FirstOrDefault(e =&gt; e.{IdName} == {IdName});\r\n\t\t}\r\n</value>
   </data>
+  <data name="RepositoryGetMethod" xml:space="preserve">
+    <value>\tpublic  Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t// Input\r\n\r\n\t\t\treturn  _context.usp{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}</value>
+  </data>
+  <data name="RepositoryMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
+  </data>
   <data name="RepositoryNamespace" xml:space="preserve">
     <value>namespace {apiName}.Infrastructure.Repository\r\n{</value>
   </data>
   <data name="RepositoryNamespaceEnd" xml:space="preserve">
     <value>}\r\n</value>
   </data>
+  <data name="RepositoryPostMethod" xml:space="preserve">
+    <value>\tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t\t// Input\r\n\t\t\t\treturn _context.usp{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositorySPClassStart" xml:space="preserve">
+    <value>\tpublic class usp{className}Repository : Iusp{className}Repository\r\n\t{\r\n</value>
+  </data>
+  <data name="RepositorySPConstructor" xml:space="preserve">
+    <value>\r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic usp{className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositorySPMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
+  </data>
   <data name="RepositoryUpdate" xml:space="preserve">
     <value>\t\tpublic void Update({className} entity)\r\n\t\t{\r\n\t\t\t_context.{className}Set.Update(entity);\r\n\t\t\t_context.SaveChanges();\r\n\t\t}\r\n</value>
   </data>
   <data name="RepositoryUsing" xml:space="preserve">
-    <value>using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\n</value>
+    <value>using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\nusing Microsoft.Data.SqlClient;\r\nusing Microsoft.EntityFrameworkCore;</value>
   </data>
   <data name="ServiceAdd" xml:space="preserve">
     <value>\t\tpublic void Add({className} entity)\r\n\t\t{\r\n\t\t\t_repository.Add(entity);\r\n\t\t}\r\n</value>
@@ -363,17 +435,44 @@
   <data name="ServiceGetById" xml:space="preserve">
     <value>\t\tpublic {className} GetById(int {IdName})\r\n\t\t{\r\n\t\t\treturn _repository.GetById({IdName});\r\n\t\t}\r\n</value>
   </data>
+  <data name="ServiceGetMethod" xml:space="preserve">
+    <value>\t\tpublic Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Get{className}Async({className});\r\n\t\t}</value>
+  </data>
+  <data name="ServiceMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
+  </data>
   <data name="ServiceNamespace" xml:space="preserve">
     <value>namespace {apiName}.Infrastructure.Service\r\n{</value>
   </data>
   <data name="ServiceNamespaceEnd" xml:space="preserve">
     <value>}\r\n</value>
   </data>
+  <data name="ServicePostMethod" xml:space="preserve">
+    <value>\t\tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Post{className}Async({className});\r\n\t\t}</value>
+  </data>
+  <data name="ServiceSPClassStart" xml:space="preserve">
+    <value>\tpublic class usp{className}Service : Iusp{className}Service\r\n\t{\r\n</value>
+  </data>
+  <data name="ServiceSPConstructor" xml:space="preserve">
+    <value>\r\n\tprivate readonly Iusp{className}Repository _repository;\r\n\r\n\t\tpublic usp{className}Service(Iusp{className}Repository repository)\r\n\t\t{\r\n\t\t\t_repository = repository;\r\n\t\t}\r\n</value>
+  </data>
+  <data name="ServiceSPMethodComments" xml:space="preserve">
+    <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
+  </data>
   <data name="ServiceUpdate" xml:space="preserve">
     <value>\t\tpublic void Update({className} entity)\r\n\t\t{\r\n\t\t\t_repository.Update(entity);\r\n\t\t}\r\n</value>
   </data>
   <data name="ServiceUsing" xml:space="preserve">
     <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\n</value>
+  </data>
+  <data name="SpDBContext" xml:space="preserve">
+    <value>\t\tpublic DbSet&lt;Response{className}&gt; usp{className}Set { get; set; }\r\n</value>
+  </data>
+  <data name="SPInput" xml:space="preserve">
+    <value>\t\t\t\t\tvar {IdName} = new SqlParameter("@{IdName}", {className}.{IdName});\r\n</value>
+  </data>
+  <data name="SPStartupForRepositoriesAndServices" xml:space="preserve">
+    <value>\t\t\tservices.AddScoped&lt;Iusp{className}Repository, usp{className}Repository&gt;();\r\n\t\t\tservices.AddScoped&lt;Iusp{className}Service, usp{className}Service &gt;();</value>
   </data>
   <data name="StartupAddCorsMethod" xml:space="preserve">
     <value>\t\tprivate void AddCors(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddCors(options =&gt;\r\n\t\t\t{\r\r\t\t\t\toptions.AddPolicy(name: \"AllowAll\", builder =&gt; builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());\r\n\t\t\t});\r\n\t\t}\r\n</value>
