@@ -42,6 +42,7 @@
             btnExistingProject = new Button();
             btnEPWithEntity = new Button();
             btnEPWithoutEntity = new Button();
+            button2 = new Button();
             btnCreateModal = new Button();
             CreateProjectTranstion = new System.Windows.Forms.Timer(components);
             existingProjectTanstion = new System.Windows.Forms.Timer(components);
@@ -140,7 +141,7 @@
             btnCPWithEntity.Padding = new Padding(34, 0, 0, 0);
             btnCPWithEntity.Size = new Size(306, 50);
             btnCPWithEntity.TabIndex = 0;
-            btnCPWithEntity.Text = "With Entity";
+            btnCPWithEntity.Text = "Entity Framework-Code First";
             btnCPWithEntity.TextAlign = ContentAlignment.MiddleLeft;
             btnCPWithEntity.UseVisualStyleBackColor = false;
             btnCPWithEntity.Click += btnCPWithEntity_Click;
@@ -158,7 +159,7 @@
             btnCPWithoutEntity.Padding = new Padding(34, 0, 0, 0);
             btnCPWithoutEntity.Size = new Size(306, 50);
             btnCPWithoutEntity.TabIndex = 2;
-            btnCPWithoutEntity.Text = "Without Entity";
+            btnCPWithoutEntity.Text = "ADO.Net - SP";
             btnCPWithoutEntity.TextAlign = ContentAlignment.MiddleLeft;
             btnCPWithoutEntity.UseVisualStyleBackColor = false;
             btnCPWithoutEntity.Click += btnCPWithoutEntity_Click;
@@ -169,6 +170,7 @@
             existingProjectContainer.Controls.Add(btnExistingProject);
             existingProjectContainer.Controls.Add(btnEPWithEntity);
             existingProjectContainer.Controls.Add(btnEPWithoutEntity);
+            existingProjectContainer.Controls.Add(button2);
             existingProjectContainer.Location = new Point(0, 120);
             existingProjectContainer.Margin = new Padding(0);
             existingProjectContainer.Name = "existingProjectContainer";
@@ -205,7 +207,7 @@
             btnEPWithEntity.Padding = new Padding(34, 0, 0, 0);
             btnEPWithEntity.Size = new Size(306, 50);
             btnEPWithEntity.TabIndex = 0;
-            btnEPWithEntity.Text = "With Entity";
+            btnEPWithEntity.Text = "Entity Framework-Code First";
             btnEPWithEntity.TextAlign = ContentAlignment.MiddleLeft;
             btnEPWithEntity.UseVisualStyleBackColor = false;
             btnEPWithEntity.Click += btnEPWithEntity_Click;
@@ -223,9 +225,26 @@
             btnEPWithoutEntity.Padding = new Padding(34, 0, 0, 0);
             btnEPWithoutEntity.Size = new Size(306, 50);
             btnEPWithoutEntity.TabIndex = 2;
-            btnEPWithoutEntity.Text = "Without Entity";
+            btnEPWithoutEntity.Text = "Entity Framework- SP";
             btnEPWithoutEntity.TextAlign = ContentAlignment.MiddleLeft;
             btnEPWithoutEntity.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(29, 51, 92);
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.ForeColor = Color.LightGray;
+            button2.Location = new Point(0, 150);
+            button2.Margin = new Padding(0);
+            button2.Name = "button2";
+            button2.Padding = new Padding(34, 0, 0, 0);
+            button2.Size = new Size(306, 50);
+            button2.TabIndex = 3;
+            button2.Text = "ADO.Net - SP";
+            button2.TextAlign = ContentAlignment.MiddleLeft;
+            button2.UseVisualStyleBackColor = false;
             // 
             // btnCreateModal
             // 
@@ -409,5 +428,6 @@
         private Panel contentPanel;
         private PictureBox dexianLogo;
         private PictureBox pictureBox1;
+        private Button button2;
     }
 }

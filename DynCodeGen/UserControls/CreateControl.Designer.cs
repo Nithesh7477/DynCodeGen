@@ -31,8 +31,8 @@ namespace DynCodeGen.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlLog = new Panel();
             dgTable = new DataGridView();
             txtLog = new RichTextBox();
@@ -97,25 +97,25 @@ namespace DynCodeGen.UserControls
             dgTable.AllowUserToAddRows = false;
             dgTable.AllowUserToDeleteRows = false;
             dgTable.BackgroundColor = SystemColors.Window;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(197, 227, 205);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(197, 227, 205);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgTable.ColumnHeadersHeight = 29;
             dgTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgTable.Cursor = Cursors.Hand;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(197, 227, 205);
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgTable.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgTable.DefaultCellStyle = dataGridViewCellStyle2;
             dgTable.Dock = DockStyle.Fill;
             dgTable.EnableHeadersVisualStyles = false;
             dgTable.GridColor = Color.FromArgb(45, 137, 86);
@@ -141,12 +141,12 @@ namespace DynCodeGen.UserControls
             // 
             dgSP.AllowUserToDeleteRows = false;
             dgSP.BackgroundColor = SystemColors.Window;
-            dgSP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgSP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgSP.ColumnHeadersHeight = 29;
             dgSP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgSP.Columns.AddRange(new DataGridViewColumn[] { SPColName, spGet, spPost });
             dgSP.Cursor = Cursors.Hand;
-            dgSP.DefaultCellStyle = dataGridViewCellStyle4;
+            dgSP.DefaultCellStyle = dataGridViewCellStyle2;
             dgSP.EnableHeadersVisualStyles = false;
             dgSP.GridColor = Color.FromArgb(45, 137, 86);
             dgSP.Location = new Point(-1, 0);
@@ -246,7 +246,7 @@ namespace DynCodeGen.UserControls
             btnValidate.Cursor = Cursors.Hand;
             btnValidate.FlatStyle = FlatStyle.Flat;
             btnValidate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnValidate.ForeColor = Color.LightGray;
+            btnValidate.ForeColor = Color.White;
             btnValidate.Location = new Point(260, 228);
             btnValidate.Name = "btnValidate";
             btnValidate.Size = new Size(127, 46);
@@ -261,7 +261,7 @@ namespace DynCodeGen.UserControls
             btnCreate.Cursor = Cursors.Hand;
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCreate.ForeColor = Color.LightGray;
+            btnCreate.ForeColor = Color.White;
             btnCreate.Location = new Point(412, 228);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(127, 46);

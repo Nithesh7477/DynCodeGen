@@ -73,34 +73,41 @@
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string filePath = openFileDialog.FileName;
-
-                using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
+                if (openFileDialog.FileName.Contains("Table"))
                 {
-                    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                    string filePath = openFileDialog.FileName;
 
-                    // Iterate through all worksheets in the Excel package
-                    foreach (ExcelWorksheet worksheet in package.Workbook.Worksheets)
+                    using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
                     {
-                        List<Tuple<string, string, string, string>> sheetData = new List<Tuple<string, string, string, string>>();
+                        ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-                        int rowCount = worksheet.Dimension.End.Row;
-
-                        for (int row = 2; row <= rowCount; row++)
+                        // Iterate through all worksheets in the Excel package
+                        foreach (ExcelWorksheet worksheet in package.Workbook.Worksheets)
                         {
-                            string valueA = worksheet.Cells[row, 1].Text; // Column A
-                            string valueB = worksheet.Cells[row, 2].Text; // Column B
-                            string valueC = worksheet.Cells[row, 3].Text; // Column C (Annotations)
-                            string valueD = worksheet.Cells[row, 4].Text; // Column D (Relationship)
+                            List<Tuple<string, string, string, string>> sheetData = new List<Tuple<string, string, string, string>>();
 
-                            sheetData.Add(new Tuple<string, string, string, string>(valueA, valueB, valueC, valueD));
+                            int rowCount = worksheet.Dimension.End.Row;
+
+                            for (int row = 2; row <= rowCount; row++)
+                            {
+                                string valueA = worksheet.Cells[row, 1].Text; // Column A
+                                string valueB = worksheet.Cells[row, 2].Text; // Column B
+                                string valueC = worksheet.Cells[row, 3].Text; // Column C (Annotations)
+                                string valueD = worksheet.Cells[row, 4].Text; // Column D (Relationship)
+
+                                sheetData.Add(new Tuple<string, string, string, string>(valueA, valueB, valueC, valueD));
+                            }
+
+                            sheetsData.Add(worksheet.Name, sheetData);
                         }
-
-                        sheetsData.Add(worksheet.Name, sheetData);
                     }
-                }
 
-                txtSourceFilePath.Text = filePath;
+                    txtSourceFilePath.Text = filePath;
+                }
+                else
+                {
+                    MessageBox.Show("Please Use the Table template.\r\n\r\nIf dont have one download it from the home, update the table template and then try uploading it here ");
+                }
             }
         }
 
@@ -468,8 +475,9 @@
             dgTable.DataSource = dt;
             dgTable.Columns[0].Width = 377;
 
-
             btnValidate.Enabled = false;
+            btnValidate.ForeColor = SystemColors.GrayText; ;
+
             btnCreate.Enabled = true;
             //}
         }

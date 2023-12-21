@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tblpnlMain = new TableLayoutPanel();
             pnlTextLable = new Panel();
             label5 = new Label();
@@ -189,7 +189,7 @@
             // 
             // btnValidate
             // 
-            btnValidate.BackColor = Color.SeaGreen;
+            btnValidate.BackColor = Color.FromArgb(29, 51, 92);
             btnValidate.Cursor = Cursors.Hand;
             btnValidate.FlatStyle = FlatStyle.Flat;
             btnValidate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -204,7 +204,7 @@
             // 
             // btnCreate
             // 
-            btnCreate.BackColor = Color.SeaGreen;
+            btnCreate.BackColor = Color.FromArgb(29, 51, 92);
             btnCreate.Cursor = Cursors.Hand;
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -222,7 +222,7 @@
             btnSourcefile.Cursor = Cursors.Hand;
             btnSourcefile.FlatStyle = FlatStyle.Flat;
             btnSourcefile.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSourcefile.ForeColor = Color.SeaGreen;
+            btnSourcefile.ForeColor = Color.FromArgb(29, 51, 92);
             btnSourcefile.Location = new Point(555, 173);
             btnSourcefile.Name = "btnSourcefile";
             btnSourcefile.Size = new Size(92, 36);
@@ -236,7 +236,7 @@
             btnProjectLocation.Cursor = Cursors.Hand;
             btnProjectLocation.FlatStyle = FlatStyle.Flat;
             btnProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnProjectLocation.ForeColor = Color.SeaGreen;
+            btnProjectLocation.ForeColor = Color.FromArgb(29, 51, 92);
             btnProjectLocation.Location = new Point(555, 100);
             btnProjectLocation.Name = "btnProjectLocation";
             btnProjectLocation.Size = new Size(92, 36);
@@ -250,7 +250,7 @@
             btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAdd.ForeColor = Color.SeaGreen;
+            btnAdd.ForeColor = Color.FromArgb(29, 51, 92);
             btnAdd.Location = new Point(555, 19);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(92, 36);
@@ -383,25 +383,25 @@
             dgSP.AllowUserToAddRows = false;
             dgSP.AllowUserToDeleteRows = false;
             dgSP.BackgroundColor = SystemColors.Window;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(197, 227, 205);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(197, 227, 205);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgSP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgSP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgSP.ColumnHeadersHeight = 29;
             dgSP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgSP.Cursor = Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(197, 227, 205);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgSP.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgSP.DefaultCellStyle = dataGridViewCellStyle4;
             dgSP.Dock = DockStyle.Fill;
             dgSP.EnableHeadersVisualStyles = false;
             dgSP.GridColor = Color.FromArgb(45, 137, 86);
