@@ -51,7 +51,7 @@ namespace DynCodeGen
         private void btnHome_Click(object sender, EventArgs e)
         {
             FillHome();
-            btnHome.BackColor = Color.FromArgb(159, 183, 165);
+            btnHome.BackColor = Color.FromArgb(107, 125, 157);
         }
 
         private void btnCreateProject_Click(object sender, EventArgs e)
@@ -70,22 +70,22 @@ namespace DynCodeGen
         }
         public void ButtonSelectionBGChanged()
         {
-            btnHome.BackColor = Color.FromArgb(197, 227, 205);
-            btnCPWithEntity.BackColor = Color.FromArgb(197, 227, 205);
-            btnCPWithoutEntity.BackColor = Color.FromArgb(197, 227, 205);
+            btnHome.BackColor = Color.FromArgb(29, 51, 92);
+            btnCPWithEntity.BackColor = Color.FromArgb(29, 51, 92);
+            btnCPWithoutEntity.BackColor = Color.FromArgb(29, 51, 92);
         }
         private void btnCPWithoutEntity_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
             CreatePanelUpdate(btnCPWithoutEntity.Text.ToString());
-            btnCPWithoutEntity.BackColor = Color.FromArgb(159, 183, 165);
+            btnCPWithoutEntity.BackColor = Color.FromArgb(107, 125, 157);
         }
 
         private void btnCPWithEntity_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
             CreatePanelUpdate(btnCPWithEntity.Text.ToString());
-            btnCPWithEntity.BackColor = Color.FromArgb(159, 183, 165);
+            btnCPWithEntity.BackColor = Color.FromArgb(107, 125, 157);
         }
 
         public void CreatePanelUpdate(string header)
@@ -148,7 +148,7 @@ namespace DynCodeGen
         {
             ButtonSelectionBGChanged();
             ExistingPanelUpdate(btnEPWithEntity.Text.ToString());
-            btnEPWithEntity.BackColor = Color.FromArgb(159, 183, 165);
+            btnEPWithEntity.BackColor = Color.FromArgb(107, 125, 157);
         }
     }
 }

@@ -48,10 +48,10 @@
             btnClose = new Button();
             panel3 = new Panel();
             pnlHeader = new Panel();
-            pictureBox1 = new PictureBox();
-            button1 = new Button();
             panel1 = new Panel();
             dexianLogo = new PictureBox();
+            pictureBox1 = new PictureBox();
+            button1 = new Button();
             lblHead = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             contentPanel = new Panel();
@@ -59,9 +59,9 @@
             CreateProjectContainer.SuspendLayout();
             existingProjectContainer.SuspendLayout();
             pnlHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dexianLogo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // openFileDialogbox
@@ -88,7 +88,6 @@
             btnHome.FlatStyle = FlatStyle.Flat;
             btnHome.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             btnHome.ForeColor = Color.LightGray;
-            btnHome.ImageAlign = ContentAlignment.MiddleLeft;
             btnHome.Location = new Point(0, 20);
             btnHome.Margin = new Padding(0, 20, 0, 0);
             btnHome.Name = "btnHome";
@@ -287,27 +286,6 @@
             pnlHeader.Size = new Size(1332, 55);
             pnlHeader.TabIndex = 1;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.Group_16975;
-            pictureBox1.Location = new Point(312, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(198, 49);
-            pictureBox1.TabIndex = 8;
-            pictureBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(1247, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(35, 31);
-            button1.TabIndex = 7;
-            button1.UseVisualStyleBackColor = false;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(29, 51, 92);
@@ -328,6 +306,27 @@
             dexianLogo.Size = new Size(151, 55);
             dexianLogo.TabIndex = 0;
             dexianLogo.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.Group_16975;
+            pictureBox1.Location = new Point(312, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(198, 49);
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.Location = new Point(1247, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(35, 31);
+            button1.TabIndex = 7;
+            button1.UseVisualStyleBackColor = false;
             // 
             // lblHead
             // 
@@ -375,9 +374,9 @@
             CreateProjectContainer.ResumeLayout(false);
             existingProjectContainer.ResumeLayout(false);
             pnlHeader.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dexianLogo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
