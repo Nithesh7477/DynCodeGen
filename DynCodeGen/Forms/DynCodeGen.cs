@@ -100,7 +100,7 @@ namespace DynCodeGen
             contentPanel.Controls.Clear();
             var activeControl = new UserControls.SpControl();
             contentPanel.Controls.Add(activeControl);
-            lblHead.Text = $"{btnCreateProject.Text} > {header}";
+            lblHead.Text = $"{btnExistingProject.Text} > {header}";
         }
 
         private void DynCodeGen_Load(object sender, EventArgs e)
@@ -114,7 +114,7 @@ namespace DynCodeGen
             if (ExistingProjectExpand == false)
             {
                 existingProjectContainer.Height += 10;
-                if (existingProjectContainer.Height >= 150)
+                if (existingProjectContainer.Height >= 200)
                 {
                     CreateProjectExpand = false;
                     CreateProjectContainer.Height = 50;

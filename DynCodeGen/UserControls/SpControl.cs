@@ -99,7 +99,7 @@ namespace DynCodeGen.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("Please Use the Table template.\r\n\r\nIf dont have one download it from the home, update the table template and then try uploading it here ");
+                    MessageBox.Show("Please Use the Storeprocedure template.\r\n\r\nIf don't have one download it from the home, update the Storeprocedure template and then try uploading it here ");
                 }
             }
         }
@@ -137,7 +137,7 @@ namespace DynCodeGen.UserControls
                     UpdateLabel("task completed...");
                     UpdateProgressBar(100);
 
-                    DialogResult result = MessageBox.Show($"API generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show($"SP execution code has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
                     if (result == DialogResult.OK)
                     {
@@ -195,7 +195,7 @@ namespace DynCodeGen.UserControls
                 // Generate repositories
                 string className = sheetEntry.Key;
                 InterfaceGenerator.GenerateSPRepositoryInterface(apiName, apiPath, className, IdName, dt);
-                RepositoryGenerator.GenerateSPRepositoryImplementation(sheetsData ,apiName, apiPath, className, IdName, dt);
+                RepositoryGenerator.GenerateSPRepositoryImplementation(sheetsData, apiName, apiPath, className, IdName, dt);
 
                 // Generate services
                 InterfaceGenerator.GenerateSPServiceInterface(apiName, apiPath, className, IdName, dt);
@@ -203,7 +203,7 @@ namespace DynCodeGen.UserControls
 
                 // Generate controllers
                 ControllerGenerator.GenerateSPController(apiName, apiPath, className, IdName, dt);
-                
+
             }
             UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "SP");
 
