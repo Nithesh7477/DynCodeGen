@@ -100,7 +100,7 @@ namespace DynCodeGen.CodeGeneration.Controller
                     }
                     if (properties.Count() == counter)
                     {
-                        responseclassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassStartKeyProperty).Replace("{className}", $"Response{className}") + Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+                        responseclassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassStartKeyProperty).Replace("{className}", $"Response{className}"));
                     }
                 }
                 counter = 0;
