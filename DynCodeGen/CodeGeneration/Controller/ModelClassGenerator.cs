@@ -1,6 +1,7 @@
 ﻿using DynCodeGen.CodeGeneration.CodeTemplate;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -54,8 +55,6 @@ namespace DynCodeGen.CodeGeneration.Controller
 
                     // Append property definition to the class
                     classDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
-                    classDefinition.AppendLine();
-
                 }
 
                 // Close the class definition
@@ -65,18 +64,53 @@ namespace DynCodeGen.CodeGeneration.Controller
                 File.WriteAllText(Path.Combine(modelClassPath, $"{className}.cs"), classDefinition.ToString());
             }
         }
-        public static void GenerateModelClassesForStoreProcedure(Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData, string modelClassPath)
+        public static void GenerateModelClassesFromDataForSp(Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData, string requestPath, string responsePath)
         {
-            if (!Directory.Exists(modelClassPath))
+            int counter = 0;
+
+            if (!Directory.Exists(requestPath))
             {
-                Directory.CreateDirectory(modelClassPath);
+                Directory.CreateDirectory(requestPath);
+            }
+            if (!Directory.Exists(responsePath))
+            {
+                Directory.CreateDirectory(responsePath);
             }
             foreach (var sheetEntry in sheetsData)
             {
-                string className = sheetEntry.Key;
-                var properties = sheetEntry.Value;
-            }
+                string className = $"{sheetEntry.Key}"; // Class name from the sheet name
+                var properties = sheetEntry.Value; // List of tuples containing property details
+                StringBuilder requestclassDefinition = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ModelUsing) + Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"Request{className}"));
+                StringBuilder responseclassDefinition = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ModelUsing) +Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"Response{className}")+ Regex.Unescape(TemplateHelper.Instance.ModelClassStartKey));
+                //List<string> propertyMode = new List<string>();
+                // Iterate through each property (tuple) in the list
+                foreach (var property in properties)
+                {
+                    string propertyName = property.Item1; // Property name
+                    string propertyType = property.Item2; // Property Data type
+                    if (property.Item3 == "INPUT")
+                    {
+                        requestclassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+                        counter++;
+                    }
+                    
+                    else if (property.Item3 == "OUTPUT")
+                    {
+                        responseclassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+                    }
+                    if (properties.Count() == counter)
+                    {
+                        responseclassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassStartKeyProperty).Replace("{className}", $"Response{className}") + Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+                    }
+                }
+                counter = 0;
+                requestclassDefinition.AppendLine("}");
+                responseclassDefinition.AppendLine("}");
+                File.WriteAllText(Path.Combine(requestPath, $"Request{className}.cs"), requestclassDefinition.ToString());
+                File.WriteAllText(Path.Combine(responsePath, $"Response{className}.cs"), responseclassDefinition.ToString());
 
+            }
         }
+
     }
 }

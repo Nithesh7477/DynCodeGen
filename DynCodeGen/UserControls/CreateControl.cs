@@ -5,15 +5,21 @@
     using global::DynCodeGen.CodeGeneration.Entity;
     using global::DynCodeGen.CodeGeneration.Project;
     using OfficeOpenXml;
+    using System.Data;
+    using System.Diagnostics.Metrics;
     using System.Text.RegularExpressions;
+    using System.Windows.Forms;
+    using System.Xml.Linq;
 
     /// <summary>
     /// CreateControl.
     /// </summary>
     public partial class CreateControl : UserControl
     {
+        private SpControl spControlInstance;
         private Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string, string>>>();
         private string folderPath = string.Empty;
+        DataTable dt = new DataTable();
 
         /// <summary>
         /// CreateControl.
@@ -21,6 +27,7 @@
         public CreateControl()
         {
             InitializeComponent();
+
         }
 
         /// <summary>
@@ -30,7 +37,8 @@
         /// <param name="e">e.</param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            BuildConnection frm = new BuildConnection(this);
+            spControlInstance = new SpControl();
+            BuildConnection frm = new BuildConnection(this, spControlInstance);
             frm.Show();
         }
 
@@ -103,8 +111,11 @@
         /// <param name="e">e.</param>
         private async void btnCreate_Click(object sender, EventArgs e)
         {
-            if (Validation())
+            if (DtValidation())
             {
+                txtLog.Visible = true;
+                dgTable.Visible = false;
+
                 try
                 {
                     ShowOrHideProgressBar("show");
@@ -161,6 +172,10 @@
                     btnCreate.Enabled = true;  // Re-enable the button
                 }
             }
+            else
+            {
+                MessageBox.Show("Please select any one value");
+            }
         }
 
         /// <summary>
@@ -197,6 +212,37 @@
             {
                 return true;
             }
+        }
+        /// <summary>
+        /// Validation.
+        /// </summary>
+        /// <returns>bool.</returns>
+        public bool DtValidation()
+        {
+            int count = 0;
+            foreach (DataColumn column in dt.Columns)
+            {
+                if (column.DataType == typeof(bool))
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        bool columnValue = Convert.ToBoolean(row[column]);
+                        if (columnValue)
+                        {
+                            count++;
+                        }
+                    }
+                }
+            }
+            if (count >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         private void GenerateWebAPI(string apiName, string apiPath, string connectionString)
@@ -278,18 +324,18 @@
 
                 // Generate repositories
                 string className = sheetEntry.Key;
-                InterfaceGenerator.GenerateRepositoryInterface(apiName, apiPath, className, IdName);
-                RepositoryGenerator.GenerateRepositoryImplementation(apiName, apiPath, className, IdName);
+                InterfaceGenerator.GenerateRepositoryInterface(apiName, apiPath, className, IdName, dt);
+                RepositoryGenerator.GenerateRepositoryImplementation(apiName, apiPath, className, IdName, dt);
 
                 // Generate services
-                InterfaceGenerator.GenerateServiceInterface(apiName, apiPath, className, IdName);
-                ServiceGenerator.GenerateServiceImplementation(apiName, apiPath, className, IdName);
+                InterfaceGenerator.GenerateServiceInterface(apiName, apiPath, className, IdName, dt);
+                ServiceGenerator.GenerateServiceImplementation(apiName, apiPath, className, IdName, dt);
 
                 // Generate controllers
-                ControllerGenerator.GenerateController(apiName, apiPath, className, IdName);
+                ControllerGenerator.GenerateController(apiName, apiPath, className, IdName, dt);
             }
 
-            UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData);
+            UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "Table");
 
             UpdateProgressBar(75);
             UpdateLabel("running migrations...");
@@ -378,6 +424,118 @@
             string formattedLog = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {logText}";
             txtLog.AppendText(formattedLog + Environment.NewLine);
             txtLog.ScrollToCaret();
+        }
+
+        private void CreateControl_Load(object sender, EventArgs e)
+        {
+            txtLog.Visible = true;
+            dgTable.Visible = false;
+            btnCreate.Enabled = false;
+        }
+
+        private void btnValidate_Click(object sender, EventArgs e)
+        {
+
+            //if (Validation())
+            //{
+            txtLog.Visible = false;
+            dgTable.Visible = true;
+
+
+
+            dt.Columns.Add("Table", typeof(string));
+            dt.Columns.Add("Get", typeof(bool));
+            dt.Columns.Add("GetAll", typeof(bool));
+            dt.Columns.Add("Insert", typeof(bool));
+            dt.Columns.Add("Update", typeof(bool));
+            dt.Columns.Add("Delete", typeof(bool));
+
+
+            foreach (var sheetEntry in sheetsData)
+            {
+                string tablenName = sheetEntry.Key.ToString();
+
+                DataRow dataRow = dt.NewRow();
+                dataRow["Table"] = tablenName;
+                dataRow["Get"] = true;
+                dataRow["GetAll"] = true;
+                dataRow["Insert"] = true;
+                dataRow["Update"] = true;
+                dataRow["Delete"] = true;
+                dt.Rows.Add(dataRow);
+            }
+
+            dgTable.DataSource = dt;
+            dgTable.Columns[0].Width = 377;
+
+
+            btnValidate.Enabled = false;
+            btnCreate.Enabled = true;
+            //}
+        }
+        private void dgTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if ((bool)dt.Rows[e.RowIndex]["Insert"] && (bool)dt.Rows[e.RowIndex]["Delete"])
+            //{
+            //    dgTable.Columns[1].ReadOnly = true;
+            //}
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgTable.Columns["Get"].Index)
+            {
+                bool currentStatus = (bool)dt.Rows[e.RowIndex]["Get"];
+
+
+
+                bool newStatus = (currentStatus == true) ? false : true;
+
+                dt.Rows[e.RowIndex]["Get"] = newStatus;
+
+                dgTable[e.ColumnIndex, e.RowIndex].Value = (newStatus == true) ? true : false;
+
+
+            }
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgTable.Columns["GetAll"].Index)
+            {
+                bool currentStatus = (bool)dt.Rows[e.RowIndex]["GetAll"];
+
+                bool newStatus = (currentStatus == true) ? false : true;
+
+                dt.Rows[e.RowIndex]["GetAll"] = newStatus;
+
+                dgTable[e.ColumnIndex, e.RowIndex].Value = (newStatus == true) ? true : false;
+            }
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgTable.Columns["Insert"].Index)
+            {
+                bool currentStatus = (bool)dt.Rows[e.RowIndex]["Insert"];
+
+                bool newStatus = (currentStatus == true) ? false : true;
+                dt.Rows[e.RowIndex]["Insert"] = newStatus;
+                dt.Rows[e.RowIndex]["Get"] = ((bool)dt.Rows[e.RowIndex]["Insert"] == true) ? true : dt.Rows[e.RowIndex]["Get"];
+
+                dgTable[e.ColumnIndex, e.RowIndex].Value = (newStatus == true) ? true : false;
+            }
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgTable.Columns["Update"].Index)
+            {
+                bool currentStatus = (bool)dt.Rows[e.RowIndex]["Update"];
+
+                bool newStatus = (currentStatus == true) ? false : true;
+
+                dt.Rows[e.RowIndex]["Update"] = newStatus;
+
+                dgTable[e.ColumnIndex, e.RowIndex].Value = (newStatus == true) ? true : false;
+            }
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgTable.Columns["Delete"].Index)
+            {
+                bool currentStatus = (bool)dt.Rows[e.RowIndex]["Delete"];
+
+                bool newStatus = (currentStatus == true) ? false : true;
+
+                dt.Rows[e.RowIndex]["Delete"] = newStatus;
+                dt.Rows[e.RowIndex]["Get"] = ((bool)dt.Rows[e.RowIndex]["Delete"] == true) ? true : dt.Rows[e.RowIndex]["Get"];
+
+                dgTable[e.ColumnIndex, e.RowIndex].Value = (newStatus == true) ? true : false;
+            }
+            dgTable.Refresh();
         }
     }
 }

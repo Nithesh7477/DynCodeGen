@@ -17,11 +17,13 @@ namespace DynCodeGen
 {
     public partial class BuildConnection : Form
     {
-        private readonly CreateControl _parent;
-        public BuildConnection(CreateControl parent)
+        private readonly CreateControl _createControlParent;
+        private readonly SpControl _spControlParent;
+        public BuildConnection(CreateControl createControlParent, SpControl spControlParent)
         {
             InitializeComponent();
-            _parent = parent;
+            _createControlParent = createControlParent;
+            _spControlParent = spControlParent;
             txtPassword.Leave += txtPassword_TextChanged;
 
         }
@@ -38,9 +40,11 @@ namespace DynCodeGen
 
                 if (result == DialogResult.OK)
                 {
+                    _createControlParent.txtConnectionString.Text = ConnectionString;
+                    _createControlParent.txtConnectionString.ReadOnly = true;
+                    _spControlParent.txtConnectionString.Text = ConnectionString;
+                    _spControlParent.txtConnectionString.ReadOnly = true;
 
-                    _parent.txtConnectionString.Text = ConnectionString;
-                    _parent.txtConnectionString.ReadOnly = true;
                     this.Close();
                 }
             }

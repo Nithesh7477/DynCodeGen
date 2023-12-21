@@ -1,4 +1,7 @@
-﻿namespace DynCodeGen.UserControls
+﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Windows.Forms;
+
+namespace DynCodeGen.UserControls
 {
     partial class CreateControl
     {
@@ -28,13 +31,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlLog = new Panel();
+            dgTable = new DataGridView();
             txtLog = new RichTextBox();
+            dgSP = new DataGridView();
+            SPColName = new DataGridViewTextBoxColumn();
+            spGet = new DataGridViewCheckBoxColumn();
+            spPost = new DataGridViewCheckBoxColumn();
             pnlProgressStatus = new Panel();
             lblProgressStatus = new Label();
             pnlProgressBar = new Panel();
             progressBar = new ProgressBar();
             pnlInputFields = new Panel();
+            btnValidate = new Button();
             btnCreate = new Button();
             btnSourcefile = new Button();
             btnProjectLocation = new Button();
@@ -59,6 +70,8 @@
             tblpnlMain = new TableLayoutPanel();
             openFileDialog = new OpenFileDialog();
             pnlLog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgTable).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgSP).BeginInit();
             pnlProgressStatus.SuspendLayout();
             pnlProgressBar.SuspendLayout();
             pnlInputFields.SuspendLayout();
@@ -71,12 +84,49 @@
             pnlLog.AutoSize = true;
             pnlLog.BorderStyle = BorderStyle.FixedSingle;
             tblpnlMain.SetColumnSpan(pnlLog, 2);
+            pnlLog.Controls.Add(dgTable);
             pnlLog.Controls.Add(txtLog);
             pnlLog.Dock = DockStyle.Fill;
             pnlLog.Location = new Point(3, 286);
             pnlLog.Name = "pnlLog";
             pnlLog.Size = new Size(1008, 213);
             pnlLog.TabIndex = 5;
+            // 
+            // dgTable
+            // 
+            dgTable.AllowUserToAddRows = false;
+            dgTable.AllowUserToDeleteRows = false;
+            dgTable.BackgroundColor = SystemColors.Window;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(197, 227, 205);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(197, 227, 205);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgTable.ColumnHeadersHeight = 29;
+            dgTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgTable.Cursor = Cursors.Hand;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(197, 227, 205);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgTable.DefaultCellStyle = dataGridViewCellStyle4;
+            dgTable.Dock = DockStyle.Fill;
+            dgTable.EnableHeadersVisualStyles = false;
+            dgTable.GridColor = Color.FromArgb(45, 137, 86);
+            dgTable.Location = new Point(0, 0);
+            dgTable.Name = "dgTable";
+            dgTable.RowHeadersVisible = false;
+            dgTable.RowHeadersWidth = 51;
+            dgTable.RowTemplate.Height = 29;
+            dgTable.Size = new Size(1006, 211);
+            dgTable.TabIndex = 1;
+            dgTable.CellContentClick += dgTable_CellContentClick;
             // 
             // txtLog
             // 
@@ -86,6 +136,47 @@
             txtLog.Size = new Size(1006, 211);
             txtLog.TabIndex = 0;
             txtLog.Text = "";
+            // 
+            // dgSP
+            // 
+            dgSP.AllowUserToDeleteRows = false;
+            dgSP.BackgroundColor = SystemColors.Window;
+            dgSP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgSP.ColumnHeadersHeight = 29;
+            dgSP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgSP.Columns.AddRange(new DataGridViewColumn[] { SPColName, spGet, spPost });
+            dgSP.Cursor = Cursors.Hand;
+            dgSP.DefaultCellStyle = dataGridViewCellStyle4;
+            dgSP.EnableHeadersVisualStyles = false;
+            dgSP.GridColor = Color.FromArgb(45, 137, 86);
+            dgSP.Location = new Point(-1, 0);
+            dgSP.Name = "dgSP";
+            dgSP.RowHeadersVisible = false;
+            dgSP.RowHeadersWidth = 51;
+            dgSP.RowTemplate.Height = 29;
+            dgSP.Size = new Size(1006, 211);
+            dgSP.TabIndex = 1;
+            // 
+            // SPColName
+            // 
+            SPColName.HeaderText = "Stored Procedure";
+            SPColName.MinimumWidth = 6;
+            SPColName.Name = "SPColName";
+            SPColName.Width = 125;
+            // 
+            // spGet
+            // 
+            spGet.HeaderText = "Get/Get All";
+            spGet.MinimumWidth = 6;
+            spGet.Name = "spGet";
+            spGet.Width = 125;
+            // 
+            // spPost
+            // 
+            spPost.HeaderText = "Insert/Update/Delete";
+            spPost.MinimumWidth = 6;
+            spPost.Name = "spPost";
+            spPost.Width = 125;
             // 
             // pnlProgressStatus
             // 
@@ -130,6 +221,7 @@
             // 
             pnlInputFields.AutoSize = true;
             pnlInputFields.BackColor = SystemColors.Window;
+            pnlInputFields.Controls.Add(btnValidate);
             pnlInputFields.Controls.Add(btnCreate);
             pnlInputFields.Controls.Add(btnSourcefile);
             pnlInputFields.Controls.Add(btnProjectLocation);
@@ -148,14 +240,29 @@
             pnlInputFields.Size = new Size(703, 277);
             pnlInputFields.TabIndex = 1;
             // 
+            // btnValidate
+            // 
+            btnValidate.BackColor = Color.FromArgb(29, 51, 92);
+            btnValidate.Cursor = Cursors.Hand;
+            btnValidate.FlatStyle = FlatStyle.Flat;
+            btnValidate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnValidate.ForeColor = Color.LightGray;
+            btnValidate.Location = new Point(260, 228);
+            btnValidate.Name = "btnValidate";
+            btnValidate.Size = new Size(127, 46);
+            btnValidate.TabIndex = 19;
+            btnValidate.Text = "Validate";
+            btnValidate.UseVisualStyleBackColor = false;
+            btnValidate.Click += btnValidate_Click;
+            // 
             // btnCreate
             // 
-            btnCreate.BackColor = Color.SeaGreen;
+            btnCreate.BackColor = Color.FromArgb(29, 51, 92);
             btnCreate.Cursor = Cursors.Hand;
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(280, 223);
+            btnCreate.ForeColor = Color.LightGray;
+            btnCreate.Location = new Point(412, 228);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(127, 46);
             btnCreate.TabIndex = 18;
@@ -168,7 +275,7 @@
             btnSourcefile.Cursor = Cursors.Hand;
             btnSourcefile.FlatStyle = FlatStyle.Flat;
             btnSourcefile.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSourcefile.ForeColor = Color.SeaGreen;
+            btnSourcefile.ForeColor = Color.FromArgb(29, 51, 92);
             btnSourcefile.Location = new Point(555, 181);
             btnSourcefile.Name = "btnSourcefile";
             btnSourcefile.Size = new Size(92, 36);
@@ -182,7 +289,7 @@
             btnProjectLocation.Cursor = Cursors.Hand;
             btnProjectLocation.FlatStyle = FlatStyle.Flat;
             btnProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnProjectLocation.ForeColor = Color.SeaGreen;
+            btnProjectLocation.ForeColor = Color.FromArgb(29, 51, 92);
             btnProjectLocation.Location = new Point(555, 123);
             btnProjectLocation.Name = "btnProjectLocation";
             btnProjectLocation.Size = new Size(92, 36);
@@ -196,7 +303,7 @@
             btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAdd.ForeColor = Color.SeaGreen;
+            btnAdd.ForeColor = Color.FromArgb(29, 51, 92);
             btnAdd.Location = new Point(555, 19);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(92, 36);
@@ -428,6 +535,8 @@
             Name = "CreateControl";
             Size = new Size(1015, 604);
             pnlLog.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgTable).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgSP).EndInit();
             pnlProgressStatus.ResumeLayout(false);
             pnlProgressStatus.PerformLayout();
             pnlProgressBar.ResumeLayout(false);
@@ -474,5 +583,17 @@
         private Button btnSourcefile;
         private OpenFileDialog openFileDialog;
         private RichTextBox txtLog;
+        private DataGridView dgTable;
+        private DataGridView dgSP;
+        private Button btnValidate;
+        private DataGridViewTextBoxColumn SPColName;
+        private DataGridViewCheckBoxColumn spGet;
+        private DataGridViewCheckBoxColumn spPost;
+        private DataGridViewTextBoxColumn ColName;
+        private DataGridViewCheckBoxColumn Get;
+        private DataGridViewCheckBoxColumn GetAll;
+        private DataGridViewCheckBoxColumn Insert;
+        private DataGridViewCheckBoxColumn Update;
+        private DataGridViewCheckBoxColumn Delete;
     }
 }

@@ -90,7 +90,7 @@
             // 
             // btnTestConnection
             // 
-            btnTestConnection.BackColor = Color.FromArgb(36, 129, 77);
+            btnTestConnection.BackColor = Color.FromArgb(29, 51, 92);
             btnTestConnection.Cursor = Cursors.Hand;
             btnTestConnection.FlatAppearance.BorderSize = 0;
             btnTestConnection.FlatStyle = FlatStyle.Flat;
@@ -107,7 +107,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(197, 227, 205);
+            panel2.BackColor = Color.FromArgb(29, 51, 92);
             panel2.Controls.Add(btnClose);
             panel2.Controls.Add(lblHead);
             panel2.Dock = DockStyle.Top;
@@ -122,9 +122,9 @@
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(586, 3);
+            btnClose.Location = new Point(588, 7);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(30, 30);
+            btnClose.Size = new Size(25, 25);
             btnClose.TabIndex = 6;
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
@@ -133,7 +133,7 @@
             // 
             lblHead.AutoSize = true;
             lblHead.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lblHead.ForeColor = Color.SeaGreen;
+            lblHead.ForeColor = Color.LightGray;
             lblHead.Location = new Point(8, 7);
             lblHead.Name = "lblHead";
             lblHead.Size = new Size(188, 25);
@@ -144,7 +144,7 @@
             // 
             cmbAuthetication.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             cmbAuthetication.FormattingEnabled = true;
-            cmbAuthetication.Items.AddRange(new object[] { "SQL Server Authentication", "Windows Authentication" });
+            cmbAuthetication.Items.AddRange(new object[] { "SQL Server Authentication" });
             cmbAuthetication.Location = new Point(157, 104);
             cmbAuthetication.Name = "cmbAuthetication";
             cmbAuthetication.Size = new Size(444, 31);

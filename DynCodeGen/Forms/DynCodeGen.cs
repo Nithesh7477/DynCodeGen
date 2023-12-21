@@ -95,6 +95,13 @@ namespace DynCodeGen
             contentPanel.Controls.Add(activeControl);
             lblHead.Text = $"{btnCreateProject.Text} > {header}";
         }
+        public void ExistingPanelUpdate(string header)
+        {
+            contentPanel.Controls.Clear();
+            var activeControl = new UserControls.SpControl();
+            contentPanel.Controls.Add(activeControl);
+            lblHead.Text = $"{btnCreateProject.Text} > {header}";
+        }
 
         private void DynCodeGen_Load(object sender, EventArgs e)
         {
@@ -135,6 +142,13 @@ namespace DynCodeGen
         private void contentPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnEPWithEntity_Click(object sender, EventArgs e)
+        {
+            ButtonSelectionBGChanged();
+            ExistingPanelUpdate(btnEPWithEntity.Text.ToString());
+            btnEPWithEntity.BackColor = Color.FromArgb(159, 183, 165);
         }
     }
 }
