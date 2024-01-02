@@ -159,7 +159,7 @@
             btnCPWithoutEntity.Padding = new Padding(34, 0, 0, 0);
             btnCPWithoutEntity.Size = new Size(306, 50);
             btnCPWithoutEntity.TabIndex = 2;
-            btnCPWithoutEntity.Text = "ADO.Net - SP";
+            btnCPWithoutEntity.Text = "ADO.Net";
             btnCPWithoutEntity.TextAlign = ContentAlignment.MiddleLeft;
             btnCPWithoutEntity.UseVisualStyleBackColor = false;
             btnCPWithoutEntity.Click += btnCPWithoutEntity_Click;
