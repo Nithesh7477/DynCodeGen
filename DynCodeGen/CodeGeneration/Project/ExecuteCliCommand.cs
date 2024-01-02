@@ -13,6 +13,7 @@ namespace DynCodeGen.CodeGeneration.Project
         public static void ExecuteCommand(string command, string? workingDirectory = null)
         {
             CreateControl createControl = new CreateControl();
+            AdoCreateControl adoCreateControl = new AdoCreateControl();
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -40,6 +41,7 @@ namespace DynCodeGen.CodeGeneration.Project
             }
             Debug.WriteLine(output);
             createControl.AppendLog(output);
+            adoCreateControl.ExternalAppendLog(output);
         }
     }
 }

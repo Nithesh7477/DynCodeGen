@@ -77,7 +77,7 @@ namespace DynCodeGen
         private void btnCPWithoutEntity_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
-            CreatePanelUpdate(btnCPWithoutEntity.Text.ToString());
+            AdoCreatePanelUpdate(btnCPWithoutEntity.Text.ToString());
             btnCPWithoutEntity.BackColor = Color.FromArgb(107, 125, 157);
         }
 
@@ -99,6 +99,21 @@ namespace DynCodeGen
         {
             contentPanel.Controls.Clear();
             var activeControl = new UserControls.SpControl();
+            contentPanel.Controls.Add(activeControl);
+            lblHead.Text = $"{btnExistingProject.Text} > {header}";
+        }
+
+        public void AdoCreatePanelUpdate(string header)
+        {
+            contentPanel.Controls.Clear();
+            var activeControl = new UserControls.AdoCreateControl();
+            contentPanel.Controls.Add(activeControl);
+            lblHead.Text = $"{btnCreateProject.Text} > {header}";
+        }
+        public void AdoEnhancePanelUpdate(string header)
+        {
+            contentPanel.Controls.Clear();
+            var activeControl = new UserControls.AdoEnhanceControl();
             contentPanel.Controls.Add(activeControl);
             lblHead.Text = $"{btnExistingProject.Text} > {header}";
         }
