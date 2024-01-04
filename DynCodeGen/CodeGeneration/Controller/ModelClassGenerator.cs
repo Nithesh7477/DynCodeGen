@@ -14,6 +14,7 @@ namespace DynCodeGen.CodeGeneration.Controller
     {
         public static void GenerateModelClassesFromData(Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData, string modelClassPath)
         {
+            
             // Check if the directory exists, create if not
             if (!Directory.Exists(modelClassPath))
             {
@@ -23,9 +24,16 @@ namespace DynCodeGen.CodeGeneration.Controller
             // Iterate through each entry in the dictionary
             foreach (var sheetEntry in sheetsData)
             {
+                
                 string className = sheetEntry.Key; // Class name from the sheet name
                 var properties = sheetEntry.Value; // List of tuples containing property details
 
+                string filePath = Path.Combine(modelClassPath, $"{className}.cs");
+
+                if (File.Exists(filePath))
+                {
+                    throw new ApplicationException("Code Duplication");
+                }
                 // Start building the class definition
                 StringBuilder classDefinition = new StringBuilder();
                 classDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelUsing) + Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"{className}"));
@@ -33,6 +41,7 @@ namespace DynCodeGen.CodeGeneration.Controller
                 // Iterate through each property (tuple) in the list
                 foreach (var property in properties)
                 {
+                    
                     string propertyName = property.Item1; // Property name
                     string propertyType = property.Item2; // Property type
                     string annotations = property.Item3; // Annotations

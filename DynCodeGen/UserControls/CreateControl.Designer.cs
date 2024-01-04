@@ -97,8 +97,9 @@ namespace DynCodeGen.UserControls
             dgTable.AllowUserToAddRows = false;
             dgTable.AllowUserToDeleteRows = false;
             dgTable.BackgroundColor = SystemColors.Window;
+            dgTable.ForeColor = Color.Black;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(29, 51, 92);
             dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(107, 125, 157);
@@ -111,7 +112,7 @@ namespace DynCodeGen.UserControls
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.ForeColor = Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(107, 125, 157);
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -121,6 +122,7 @@ namespace DynCodeGen.UserControls
             dgTable.GridColor = Color.FromArgb(45, 137, 86);
             dgTable.Location = new Point(0, 0);
             dgTable.Name = "dgTable";
+            dgTable.ReadOnly = true;
             dgTable.RowHeadersVisible = false;
             dgTable.RowHeadersWidth = 51;
             dgTable.RowTemplate.Height = 29;
@@ -131,6 +133,7 @@ namespace DynCodeGen.UserControls
             // txtLog
             // 
             txtLog.Dock = DockStyle.Fill;
+            txtLog.HideSelection = false;
             txtLog.Location = new Point(0, 0);
             txtLog.Name = "txtLog";
             txtLog.Size = new Size(1006, 211);

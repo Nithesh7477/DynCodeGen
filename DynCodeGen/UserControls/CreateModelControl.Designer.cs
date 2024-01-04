@@ -2,7 +2,7 @@
 
 namespace DynCodeGen.UserControls
 {
-    partial class SpControl
+    partial class CreateModelControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -100,10 +100,9 @@ namespace DynCodeGen.UserControls
             dgTable.DefaultCellStyle = dataGridViewCellStyle2;
             dgTable.Dock = DockStyle.Fill;
             dgTable.EnableHeadersVisualStyles = false;
-            dgTable.GridColor = Color.FromArgb(45, 137, 86);
+            dgTable.GridColor = Color.Black;
             dgTable.Location = new Point(0, 0);
             dgTable.Name = "dgTable";
-            dgTable.ReadOnly = true;
             dgTable.RowHeadersVisible = false;
             dgTable.RowHeadersWidth = 51;
             dgTable.RowTemplate.Height = 29;
@@ -244,7 +243,7 @@ namespace DynCodeGen.UserControls
             btnValidate.TabIndex = 19;
             btnValidate.Text = "Validate";
             btnValidate.UseVisualStyleBackColor = false;
-            btnValidate.Click += btnValidate_Click;
+            //btnValidate.Click += btnValidate_Click;
             // 
             // btnCreate
             // 
@@ -450,7 +449,7 @@ namespace DynCodeGen.UserControls
             dgSP.DefaultCellStyle = dataGridViewCellStyle4;
             dgSP.Dock = DockStyle.Fill;
             dgSP.EnableHeadersVisualStyles = false;
-            dgSP.GridColor = Color.FromArgb(45, 137, 86);
+            dgSP.GridColor = Color.Black;
             dgSP.Location = new Point(0, 0);
             dgSP.Name = "dgSP";
             dgSP.RowHeadersVisible = false;

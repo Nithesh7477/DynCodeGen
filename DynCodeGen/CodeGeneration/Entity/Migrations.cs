@@ -15,8 +15,19 @@ namespace DynCodeGen.CodeGeneration.Entity
             // Add a new migration
             ExecuteCliCommand.ExecuteCommand($"ef migrations add {migrationName} --context {dbContextName} --startup-project {apiProjectPath} --project {infrastructureProjectPath}", apiProjectPath);
 
+
             // Update the database with the new migration
             ExecuteCliCommand.ExecuteCommand($"ef database update --context {dbContextName} --startup-project {apiProjectPath} --project {infrastructureProjectPath}", apiProjectPath);
+        }
+        public static void RunMigrationsAndUpdatesForNewTable(string apiProjectPath, string infrastructureProjectPath, string migrationName, string dbContextName)
+        {
+
+            // Add a new migration
+            ExecuteCliCommand.ExecuteCommand($"ef migrations add {migrationName} --context {dbContextName} --startup-project {apiProjectPath} --project {infrastructureProjectPath}", apiProjectPath);
+
+
+            // Update the database with the new migration
+            ExecuteCliCommand.ExecuteCommand($"ef database update {migrationName} ", apiProjectPath);
         }
     }
 }

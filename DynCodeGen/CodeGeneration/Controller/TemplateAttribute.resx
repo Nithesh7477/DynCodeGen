@@ -202,7 +202,7 @@
     <value>\r\n}</value>
   </data>
   <data name="ContollerSPClass" xml:space="preserve">
-    <value>\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class usp{className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly Iusp{className}Service _service;\r\n\r\n\t\tpublic usp{className}Controller(Iusp{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
+    <value>\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
   </data>
   <data name="ContollerUpdate" xml:space="preserve">
     <value>\r\n\r\n\t\t[HttpPut(\"Update/{{IdName}}\")]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
@@ -262,7 +262,7 @@
     <value>\r\n\t\tIEnumerable&lt;{className}&gt; GetAll();\r\n</value>
   </data>
   <data name="IRepositoryGetMethod" xml:space="preserve">
-    <value>\tResponse{className} Get{className}Async(Request{className} {className});</value>
+    <value>\tList&lt;Response{className}&gt; Get{className}Async(Request{className} {className});</value>
   </data>
   <data name="IRepositoryInterface" xml:space="preserve">
     <value>\tpublic interface I{className}Repository\r\n\t{</value>
@@ -286,7 +286,7 @@
     <value>\tint Post{className}Async(Request{className} request);\r\n</value>
   </data>
   <data name="IRepositorySPInterface" xml:space="preserve">
-    <value>\tpublic interface Iusp{className}Repository\r\n\t{\r\n</value>
+    <value>\tpublic interface I{className}Repository\r\n\t{\r\n</value>
   </data>
   <data name="IRepositorySPMethodComments" xml:space="preserve">
     <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
@@ -310,7 +310,7 @@
     <value>\t\tIEnumerable&lt;{className}&gt; GetAll();\r\n</value>
   </data>
   <data name="IServiceGetMethod" xml:space="preserve">
-    <value>\tResponse{className} Get{className}Async(Request{className} {className});</value>
+    <value>\tList&lt;Response{className}&gt; Get{className}Async(Request{className} {className});</value>
   </data>
   <data name="IServiceInterface" xml:space="preserve">
     <value>\tpublic interface I{className}Service\r\n\t{\r\n</value>
@@ -331,7 +331,7 @@
     <value>\tint Post{className}Async(Request{className} {className});</value>
   </data>
   <data name="IServiceSPInterface" xml:space="preserve">
-    <value>\tpublic interface Iusp{className}Service\r\n\t{\r\n</value>
+    <value>\tpublic interface I{className}Service\r\n\t{\r\n</value>
   </data>
   <data name="IServiceSPMethodComments" xml:space="preserve">
     <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
@@ -412,7 +412,7 @@
     <value>\t\tpublic {className} GetById(int {IdName})\r\n\t\t{\r\n\t\t\treturn _context.{className}Set.FirstOrDefault(e =&gt; e.{IdName} == {IdName});\r\n\t\t}\r\n</value>
   </data>
   <data name="RepositoryGetMethod" xml:space="preserve">
-    <value>\tpublic  Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t// Input\r\n\r\n\t\t\treturn  _context.usp{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}</value>
+    <value>\tpublic  List&lt;Response{className}&gt; Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t// Input\r\n\r\n\t\t\treturn  _context.{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().ToList();\r\n\t\t}</value>
   </data>
   <data name="RepositoryGetMethodEndAdo" xml:space="preserve">
     <value>\tDataTable dt = SqlHelper.ExecuteSelect&lt;SqlConnection&gt;("{className}", parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tif (dt != null &amp;&amp; dt.Rows.Count &gt; 0)\r\n\t\t{\r\n\t\t\t\t{className}Param = SqlHelper.ConvertDataTableToList&lt;Response{className}&gt;(dt)[0];\r\n\t\t}\r\n\t\treturn {className}Param;\r\n\t\t}\r\n</value>
@@ -433,7 +433,7 @@
     <value>}\r\n</value>
   </data>
   <data name="RepositoryPostMethod" xml:space="preserve">
-    <value>\tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t\t// Input\r\n\t\t\t\treturn _context.usp{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}\r\n</value>
+    <value>\tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t\t// Input\r\n\t\t\t\treturn _context.{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}\r\n</value>
   </data>
   <data name="RepositoryPostMethodAdo" xml:space="preserve">
     <value>public int Post{methodName}(List&lt;{parameterType}&gt; {parameterName})\r\n\t{\r\n\t\tint insertRowsCount = 0;\r\n\t\t//... Further implementation for POST ...\r\n\t\treturn insertRowsCount;\r\n\t}\r\n</value>
@@ -448,10 +448,10 @@
     <value>\t\tpublic int Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\tint insertRowsCount = 0;\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t</value>
   </data>
   <data name="RepositorySPClassStart" xml:space="preserve">
-    <value>\tpublic class usp{className}Repository : Iusp{className}Repository\r\n\t{\r\n</value>
+    <value>\tpublic class {className}Repository : I{className}Repository\r\n\t{\r\n</value>
   </data>
   <data name="RepositorySPConstructor" xml:space="preserve">
-    <value>\r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic usp{className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n</value>
+    <value>\r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic {className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n</value>
   </data>
   <data name="RepositorySPMethodComments" xml:space="preserve">
     <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
@@ -487,7 +487,7 @@
     <value>\t\tpublic {className} GetById(int {IdName})\r\n\t\t{\r\n\t\t\treturn _repository.GetById({IdName});\r\n\t\t}\r\n</value>
   </data>
   <data name="ServiceGetMethod" xml:space="preserve">
-    <value>\t\tpublic Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Get{className}Async({className});\r\n\t\t}</value>
+    <value>\t\tpublic List&lt;Response{className}&gt; Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Get{className}Async({className});\r\n\t\t}</value>
   </data>
   <data name="ServiceGetMethodAdo" xml:space="preserve">
     <value>\tpublic Response{className} Get{className}Async(Request{className} request)\r\n\t{\r\n\t\t// Method implementation\r\n\t}\r\n</value>
@@ -508,10 +508,10 @@
     <value>\t\tpublic int Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Post{className}Async({className});\r\n\t\t}</value>
   </data>
   <data name="ServiceSPClassStart" xml:space="preserve">
-    <value>\tpublic class usp{className}Service : Iusp{className}Service\r\n\t{\r\n</value>
+    <value>\tpublic class {className}Service : I{className}Service\r\n\t{\r\n</value>
   </data>
   <data name="ServiceSPConstructor" xml:space="preserve">
-    <value>\r\n\tprivate readonly Iusp{className}Repository _repository;\r\n\r\n\t\tpublic usp{className}Service(Iusp{className}Repository repository)\r\n\t\t{\r\n\t\t\t_repository = repository;\r\n\t\t}\r\n</value>
+    <value>\r\n\tprivate readonly I{className}Repository _repository;\r\n\r\n\t\tpublic {className}Service(I{className}Repository repository)\r\n\t\t{\r\n\t\t\t_repository = repository;\r\n\t\t}\r\n</value>
   </data>
   <data name="ServiceSPMethodComments" xml:space="preserve">
     <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
@@ -523,13 +523,13 @@
     <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\n</value>
   </data>
   <data name="SpDBContext" xml:space="preserve">
-    <value>\t\tpublic DbSet&lt;Response{className}&gt; usp{className}Set { get; set; }\r\n</value>
+    <value>\t\tpublic DbSet&lt;Response{className}&gt; {className}Set { get; set; }\r\n</value>
   </data>
   <data name="SPInput" xml:space="preserve">
     <value>\t\t\t\t\tvar {IdName} = new SqlParameter("@{IdName}", {className}.{IdName});\r\n</value>
   </data>
   <data name="SPStartupForRepositoriesAndServices" xml:space="preserve">
-    <value>\t\t\tservices.AddScoped&lt;Iusp{className}Repository, usp{className}Repository&gt;();\r\n\t\t\tservices.AddScoped&lt;Iusp{className}Service, usp{className}Service &gt;();</value>
+    <value>\t\t\tservices.AddScoped&lt;I{className}Repository, {className}Repository&gt;();\r\n\t\t\tservices.AddScoped&lt;I{className}Service, {className}Service &gt;();</value>
   </data>
   <data name="SqlHelperClassEnd" xml:space="preserve">
     <value>}\r\n}\r\n</value>

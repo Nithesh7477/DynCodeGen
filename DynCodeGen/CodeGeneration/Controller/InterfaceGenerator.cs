@@ -66,7 +66,7 @@ namespace DynCodeGen.CodeGeneration.Controller
         {
             StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.IServiceNamespace) + Regex.Unescape(TemplateHelper.Instance.IServiceSPInterface) + Regex.Unescape(TemplateHelper.Instance.IServiceSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.IServiceClassEnd) + Regex.Unescape(TemplateHelper.Instance.IServiceNamespaceEnd));
             string interfaceDirectory = Path.Combine(apiPath, $"{apiName}.Application", "IService");
-            string interfacePath = Path.Combine(interfaceDirectory, $"Iusp{className}Service.cs");
+            string interfacePath = Path.Combine(interfaceDirectory, $"I{className}Service.cs");
             var temp = dt.Rows.Cast<DataRow>()
                   .FirstOrDefault(x => x.Field<string>("SP_Name") == className);
             if (temp[0] == className)
@@ -139,7 +139,7 @@ namespace DynCodeGen.CodeGeneration.Controller
         {
             StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespace) + Regex.Unescape(TemplateHelper.Instance.IRepositorySPInterface) + Regex.Unescape(TemplateHelper.Instance.IRepositorySPMethodComments) + Regex.Unescape(TemplateHelper.Instance.IRepositoryInterfaceEnd) + Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespaceEnd));
             string interfaceDirectory = Path.Combine(apiPath, $"{apiName}.Application", "IRepository");
-            string interfacePath = Path.Combine(interfaceDirectory, $"Iusp{className}Repository.cs");
+            string interfacePath = Path.Combine(interfaceDirectory, $"I{className}Repository.cs");
             string classLower = className.ToLower();
             var temp = dt.Rows.Cast<DataRow>()
                     .FirstOrDefault(x => x.Field<string>("SP_Name") == className);

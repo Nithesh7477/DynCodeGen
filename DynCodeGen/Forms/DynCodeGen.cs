@@ -71,15 +71,23 @@ namespace DynCodeGen
         public void ButtonSelectionBGChanged()
         {
             btnHome.BackColor = Color.FromArgb(29, 51, 92);
+            btnCPEntityFrameworkCF.BackColor = Color.FromArgb(29, 51, 92);
+            btnCP_ADO_SP.BackColor = Color.FromArgb(29, 51, 92);
+            btnEP_EntityFramework_CF.BackColor = Color.FromArgb(29, 51, 92);
+            btnEP_EntityFramework_SP.BackColor = Color.FromArgb(29, 51, 92);
+            btn_EP_ADO_sp.BackColor = Color.FromArgb(29, 51, 92);
+            btnCreateModel.BackColor = Color.FromArgb(29, 51, 92);
             btnCPWithEntity.BackColor = Color.FromArgb(29, 51, 92);
             btnCPWithoutEntity.BackColor = Color.FromArgb(29, 51, 92);
             button2.BackColor = Color.FromArgb(29, 51, 92);
         }
-        private void btnCPWithoutEntity_Click(object sender, EventArgs e)
+        private void btnCP_ADO_SP_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
             AdoCreatePanelUpdate(btnCPWithoutEntity.Text.ToString());
             btnCPWithoutEntity.BackColor = Color.FromArgb(107, 125, 157);
+            CreatePanelUpdate(btnCP_ADO_SP.Text.ToString());
+            btnCP_ADO_SP.BackColor = Color.FromArgb(107, 125, 157);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -92,8 +100,8 @@ namespace DynCodeGen
         private void btnCPWithEntity_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
-            CreatePanelUpdate(btnCPWithEntity.Text.ToString());
-            btnCPWithEntity.BackColor = Color.FromArgb(107, 125, 157);
+            CreatePanelUpdate(btnCPEntityFrameworkCF.Text.ToString());
+            btnCPEntityFrameworkCF.BackColor = Color.FromArgb(107, 125, 157);
         }
 
         public void CreatePanelUpdate(string header)
@@ -106,9 +114,16 @@ namespace DynCodeGen
         public void ExistingPanelUpdate(string header)
         {
             contentPanel.Controls.Clear();
-            var activeControl = new UserControls.SpControl();
+            var activeControl = new UserControls.SpControl(this);
             contentPanel.Controls.Add(activeControl);
             lblHead.Text = $"{btnExistingProject.Text} > {header}";
+        }
+        public void CreateModelPanelUpdate(string header)
+        {
+            contentPanel.Controls.Clear();
+            var activeControl = new UserControls.CreateModelControl(this);
+            contentPanel.Controls.Add(activeControl);
+            lblHead.Text = $"{btnCreateModel.Text} ";
         }
 
         public void AdoCreatePanelUpdate(string header)
@@ -162,16 +177,33 @@ namespace DynCodeGen
             FillHome();
         }
 
-        private void contentPanel_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void btnEPWithEntity_Click(object sender, EventArgs e)
+        private void btnEP_EntityFramework_CF_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
-            ExistingPanelUpdate(btnEPWithEntity.Text.ToString());
-            btnEPWithEntity.BackColor = Color.FromArgb(107, 125, 157);
+            ExistingPanelUpdate(btnEP_EntityFramework_CF.Text.ToString());
+            btnEP_EntityFramework_CF.BackColor = Color.FromArgb(107, 125, 157);
+        }
+
+        private void btnEP_EntityFramework_SP_Click(object sender, EventArgs e)
+        {
+            ButtonSelectionBGChanged();
+            ExistingPanelUpdate(btnEP_EntityFramework_SP.Text.ToString());
+            btnEP_EntityFramework_SP.BackColor = Color.FromArgb(107, 125, 157);
+        }
+
+        private void btn_EP_ADO_sp_Click(object sender, EventArgs e)
+        {
+            ButtonSelectionBGChanged();
+            ExistingPanelUpdate(btn_EP_ADO_sp.Text.ToString());
+            btn_EP_ADO_sp.BackColor = Color.FromArgb(107, 125, 157);
+        }
+
+        private void btnCreateModel_Click(object sender, EventArgs e)
+        {
+            ButtonSelectionBGChanged();
+            CreateModelPanelUpdate(btnCreateModel.Text.ToString());
+            btnCreateModel.BackColor = Color.FromArgb(107, 125, 157);
         }
     }
 }

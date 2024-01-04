@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace DynCodeGen.CodeGeneration.Project
 {
     public class ExecuteCliCommand
-    {     
-        public static void ExecuteCommand(string command, string? workingDirectory = null)
+    {
+            public static void ExecuteCommand(string command,string? workingDirectory = null)
         {
             CreateControl createControl = new CreateControl();
             var process = new Process

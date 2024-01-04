@@ -72,7 +72,7 @@
             SPTemplate.AutoSize = true;
             SPTemplate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             SPTemplate.LinkColor = Color.Navy;
-            SPTemplate.Location = new Point(412, 450);
+            SPTemplate.Location = new Point(334, 246);
             SPTemplate.Name = "SPTemplate";
             SPTemplate.Size = new Size(78, 20);
             SPTemplate.TabIndex = 5;
@@ -85,7 +85,7 @@
             tableTemplate.AutoSize = true;
             tableTemplate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             tableTemplate.LinkColor = Color.Navy;
-            tableTemplate.Location = new Point(412, 408);
+            tableTemplate.Location = new Point(334, 204);
             tableTemplate.Name = "tableTemplate";
             tableTemplate.Size = new Size(78, 20);
             tableTemplate.TabIndex = 4;
@@ -98,7 +98,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(29, 51, 92);
-            label4.Location = new Point(251, 450);
+            label4.Location = new Point(173, 246);
             label4.Name = "label4";
             label4.Size = new Size(127, 20);
             label4.TabIndex = 3;
@@ -109,7 +109,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(29, 51, 92);
-            label3.Location = new Point(251, 408);
+            label3.Location = new Point(173, 204);
             label3.Name = "label3";
             label3.Size = new Size(100, 20);
             label3.TabIndex = 2;
@@ -120,7 +120,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(29, 51, 92);
-            label2.Location = new Point(167, 365);
+            label2.Location = new Point(164, 161);
             label2.Name = "label2";
             label2.Size = new Size(91, 23);
             label2.TabIndex = 1;
@@ -131,7 +131,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(29, 51, 92);
-            label1.Location = new Point(166, 88);
+            label1.Location = new Point(166, 42);
             label1.Name = "label1";
             label1.Size = new Size(630, 25);
             label1.TabIndex = 0;
