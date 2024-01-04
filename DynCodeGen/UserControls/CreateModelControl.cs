@@ -17,12 +17,11 @@ using System.Xml.Linq;
 
 namespace DynCodeGen.UserControls
 {
-    public partial class SpControl : UserControl
+    public partial class CreateModelControl : UserControl
     {
-        private CreateControl _createControlInstance;
-        public DynCodeGen _dynCodeGenParent;
-        private CreateModelControl _CreateModelControlInstance;
-
+        private CreateControl createControlInstance;
+        public DynCodeGen _dynCodeGenInstance;
+        public SpControl spControlInstance;
         private Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string, string>>>();
         private string folderPath = string.Empty;
         DataTable dt = new DataTable();
@@ -30,16 +29,17 @@ namespace DynCodeGen.UserControls
         /// <summary>
         /// SpControl.
         /// </summary>
-        public SpControl(DynCodeGen dynCodeGenParent)
+        public CreateModelControl(DynCodeGen dynCodeGenParent)
         {
             InitializeComponent();
-            _dynCodeGenParent = dynCodeGenParent;
+            _dynCodeGenInstance = dynCodeGenParent;
+            btnValidate.Hide();  
 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            BuildConnection frm = new BuildConnection(_createControlInstance, this, _CreateModelControlInstance);
+            BuildConnection frm = new BuildConnection(createControlInstance, spControlInstance, this);
             frm.Show();
         }
 
@@ -112,12 +112,12 @@ namespace DynCodeGen.UserControls
 
         private async void btnCreate_Click(object sender, EventArgs e)
         {
-            if (DtValidation())
-            {
-                txtLog.Visible = true;
-                dgSP.Visible = false;
+            //if (DtValidation())
+            //{
+            txtLog.Visible = true;
+            //    dgSP.Visible = false;
 
-                try
+            try
                 {
                     ShowOrHideProgressBar("show");
                     //ShowOrHideLabel("show");
@@ -142,11 +142,11 @@ namespace DynCodeGen.UserControls
                     }
                     UpdateLabel("creating project files...");
                     UpdateProgressBar(70);
-                    await Task.Run(() => GenerateSpExistingProject(apiName, apiPath, connectionString));
+                    await Task.Run(() => GenerateCreateModelInExistingProject(apiName, apiPath, connectionString));
                     UpdateLabel("task completed...");
                     UpdateProgressBar(100);
 
-                    DialogResult result = MessageBox.Show($"{(_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First" ? "API" : "")} has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show($"Model Class has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
                     if (result == DialogResult.OK)
                     {
@@ -175,179 +175,124 @@ namespace DynCodeGen.UserControls
                     btnCreate.Enabled = true;  // Re-enable the button
                 }
             }
-            else
-            {
-                MessageBox.Show("Please select any one value");
-            }
-        }
-        private void GenerateSpExistingProject(string apiName, string apiPath, string connectionString)
+            //else
+            //{
+            //    MessageBox.Show("Please select any one value");
+            //}
+        //}
+        private void GenerateCreateModelInExistingProject(string apiName, string apiPath, string connectionString)
         {
             try
             {
 
                 string dbContextPath = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data", "ApplicationDbContext.cs");
 
-                if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First")
+
+                string modelClassPath = Path.Combine(apiPath, $"{apiName}.Domain", "Entities");
+
+
+                foreach (var sheetEntry in sheetsData)
                 {
-                    string modelClassPath = Path.Combine(apiPath, $"{apiName}.Domain", "Entities");
-
-
-                    foreach (var sheetEntry in sheetsData)
+                    string IdName = "";
+                    foreach (var Value in sheetEntry.Value)
                     {
-                        string IdName = "";
-                        foreach (var Value in sheetEntry.Value)
+                        if (Value.Item1.Contains("Id") && !Value.Item3.Contains("ForeignKey"))
                         {
-                            if (Value.Item1.Contains("Id") && !Value.Item3.Contains("ForeignKey"))
-                            {
-                                IdName = Value.Item1;
-                            }
+                            IdName = Value.Item1;
                         }
-
-                        // Generate repositories
-                        string className = sheetEntry.Key;
-
-                        // Generate controllers
-                        ControllerGenerator.GenerateController(apiName, apiPath, className, IdName, dt);
-
-                        // Generate Repository
-                        InterfaceGenerator.GenerateRepositoryInterface(apiName, apiPath, className, IdName, dt);
-                        RepositoryGenerator.GenerateRepositoryImplementation(apiName, apiPath, className, IdName, dt);
-
-                        // Generate services
-                        InterfaceGenerator.GenerateServiceInterface(apiName, apiPath, className, IdName, dt);
-                        ServiceGenerator.GenerateServiceImplementation(apiName, apiPath, className, IdName, dt);
-
-
                     }
-                    ModelClassGenerator.GenerateModelClassesFromData(sheetsData, modelClassPath);
-                    DBContext.UpdateApplicationDbContextWithModels(sheetsData, dbContextPath);
-                    UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "Table");
-                    UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
 
-                    string migrationPath = Path.Combine(apiPath, $"{apiName}.WebAPI");
-                    string infrastructurePath = Path.Combine(apiPath, $"{apiName}.Infrastructure");
-                    Migrations.RunMigrationsAndUpdates(migrationPath, infrastructurePath, "AddNewTable", "ApplicationDbContext");
-
+                    // Generate repositories
+                    string className = sheetEntry.Key;
                 }
-                else if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework- SP")
-                {
-                    string requestModelClassPath = Path.Combine(apiPath + $"\\{apiName}.Domain", "Entities", "Request");
-                    string responseModelClassPath = Path.Combine(apiPath + $"\\{apiName}.Domain", "Entities", "Response");
-
-                    foreach (var sheetEntry in sheetsData)
-                    {
-                        string IdName = "";
-                        foreach (var Value in sheetEntry.Value)
-                        {
-                            if (/*Value.Item1.Contains("Id") && */Value.Item3.Contains("INPUT"))
-                            {
-                                IdName = Value.Item1;
-                            }
-                        }
-
-                        // Generate repositories
-                        string className = sheetEntry.Key;
-                        ControllerGenerator.GenerateSPController(apiName, apiPath, className, IdName, dt);
-                        InterfaceGenerator.GenerateSPRepositoryInterface(apiName, apiPath, className, IdName, dt);
-                        RepositoryGenerator.GenerateSPRepositoryImplementation(sheetsData, apiName, apiPath, className, IdName, dt);
-
-                        // Generate services
-                        InterfaceGenerator.GenerateSPServiceInterface(apiName, apiPath, className, IdName, dt);
-                        ServiceGenerator.GenerateSPServiceImplementation(apiName, apiPath, className, IdName, dt);
-
-                        // Generate controllers
-
-                    }
-                    ModelClassGenerator.GenerateModelClassesFromDataForSp(sheetsData, requestModelClassPath, responseModelClassPath);
-                    DBContext.UpdateApplicationDbContextWithSPModels(sheetsData, dbContextPath);
-                    UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "SP");
-                    UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
-                }
-                else if (_dynCodeGenParent.lblHead.Text == "Enhance Project > ADO.Net - SP")
-                {
-
-                }
+                ModelClassGenerator.GenerateModelClassesFromData(sheetsData, modelClassPath);
+                DBContext.UpdateApplicationDbContextWithModels(sheetsData, dbContextPath);
+                //UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "Table");
+                UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
+                string migrationPath = Path.Combine(apiPath, $"{apiName}.WebAPI");
+                string infrastructurePath = Path.Combine(apiPath, $"{apiName}.Infrastructure");
             }
+
             catch (Exception ex)
             {
                 if (ex.ToString().Contains("Code Duplication"))
                 {
-                    MessageBox.Show($"The SP execution code has alredy created in the given file path");
+                    MessageBox.Show($"The Model Class code has alredy created in the given file path");
                 }
             }
         }
 
-        private void btnValidate_Click(object sender, EventArgs e)
-        {
+        //private void btnValidate_Click(object sender, EventArgs e)
+        //{
 
-            dt.Rows.Clear();
-            if (sheetsData.Count != 0)
-            {
-                if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework- SP" || _dynCodeGenParent.lblHead.Text == "Enhance Project > ADO.Net - SP")
-                {
-                    txtLog.Visible = false;
-                    dgSP.Visible = true;
-                    dt.Columns.Add("SP_Name", typeof(string));
-                    dt.Columns.Add("GET/GETALL", typeof(bool));
-                    dt.Columns.Add("INSERT/UPDATE", typeof(bool));
+        //    dt.Rows.Clear();
+        //    if (sheetsData.Count != 0)
+        //    {
+        //        if (_dynCodeGenInstance.lblHead.Text == "Enhance Project > Entity Framework- SP" || _dynCodeGenInstance.lblHead.Text == "Enhance Project > ADO.Net - SP")
+        //        {
+        //            txtLog.Visible = false;
+        //            dgSP.Visible = true;
+        //            dt.Columns.Add("SP_Name", typeof(string));
+        //            dt.Columns.Add("GET/GETALL", typeof(bool));
+        //            dt.Columns.Add("INSERT/UPDATE", typeof(bool));
 
-                    foreach (var sheetEntry in sheetsData)
-                    {
-
-
-                        DataRow dataRow = dt.NewRow();
-                        dataRow["SP_Name"] = sheetEntry.Key.ToString();
-                        dataRow["GET/GETALL"] = false;
-                        dataRow["INSERT/UPDATE"] = false;
-
-                        dt.Rows.Add(dataRow);
-                    }
-
-                    dgSP.DataSource = dt;
-                    dgSP.Columns["SP_Name"].Width = 751;
-                    dgTable.Hide();
-                    dgSP.Show();
-                    btnValidate.ForeColor = Color.FromArgb(227, 227, 227);
-                    btnValidate.Enabled = false;
-                    btnCreate.Enabled = true;
-                }
-                else if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First")
-                {
-                    dt.Rows.Clear();
-                    txtLog.Visible = false;
-                    dgTable.Visible = true;
-                    dt.Columns.Add("Table", typeof(string));
-                    dt.Columns.Add("Get", typeof(bool));
-                    dt.Columns.Add("GetAll", typeof(bool));
-                    dt.Columns.Add("Insert", typeof(bool));
-                    dt.Columns.Add("Update", typeof(bool));
-                    dt.Columns.Add("Delete", typeof(bool));
+        //            foreach (var sheetEntry in sheetsData)
+        //            {
 
 
-                    foreach (var sheetEntry in sheetsData)
-                    {
-                        string tablenName = sheetEntry.Key.ToString();
+        //                DataRow dataRow = dt.NewRow();
+        //                dataRow["SP_Name"] = sheetEntry.Key.ToString();
+        //                dataRow["GET/GETALL"] = false;
+        //                dataRow["INSERT/UPDATE"] = false;
 
-                        DataRow dataRow = dt.NewRow();
-                        dataRow["Table"] = tablenName;
-                        dataRow["Get"] = true;
-                        dataRow["GetAll"] = true;
-                        dataRow["Insert"] = true;
-                        dataRow["Update"] = true;
-                        dataRow["Delete"] = true;
-                        dt.Rows.Add(dataRow);
-                    }
+        //                dt.Rows.Add(dataRow);
+        //            }
 
-                    dgTable.DataSource = dt;
-                    dgTable.Columns[0].Width = 377;
-                    btnValidate.ForeColor = Color.FromArgb(227, 227, 227);
-                    btnValidate.Enabled = false;
-                    dgSP.Hide();
-                    dgTable.Show();
-                    btnCreate.Enabled = true;
-                }
-            }
-        }
+        //            dgSP.DataSource = dt;
+        //            dgSP.Columns["SP_Name"].Width = 751;
+        //            dgTable.Hide();
+        //            dgSP.Show();
+        //            btnValidate.ForeColor = Color.FromArgb(227, 227, 227);
+        //            btnValidate.Enabled = false;
+        //            btnCreate.Enabled = true;
+        //        }
+        //        else if (_dynCodeGenInstance.lblHead.Text == "Enhance Project > Entity Framework-Code First")
+        //        {
+        //            dt.Rows.Clear();
+        //            txtLog.Visible = false;
+        //            dgTable.Visible = true;
+        //            dt.Columns.Add("Table", typeof(string));
+        //            dt.Columns.Add("Get", typeof(bool));
+        //            dt.Columns.Add("GetAll", typeof(bool));
+        //            dt.Columns.Add("Insert", typeof(bool));
+        //            dt.Columns.Add("Update", typeof(bool));
+        //            dt.Columns.Add("Delete", typeof(bool));
+
+
+        //            foreach (var sheetEntry in sheetsData)
+        //            {
+        //                string tablenName = sheetEntry.Key.ToString();
+
+        //                DataRow dataRow = dt.NewRow();
+        //                dataRow["Table"] = tablenName;
+        //                dataRow["Get"] = true;
+        //                dataRow["GetAll"] = true;
+        //                dataRow["Insert"] = true;
+        //                dataRow["Update"] = true;
+        //                dataRow["Delete"] = true;
+        //                dt.Rows.Add(dataRow);
+        //            }
+
+        //            dgTable.DataSource = dt;
+        //            dgTable.Columns[0].Width = 377;
+        //            btnValidate.ForeColor = Color.FromArgb(227, 227, 227);
+        //            btnValidate.Enabled = false;
+        //            dgSP.Hide();
+        //            dgTable.Show();
+        //            btnCreate.Enabled = true;
+        //        }
+        //    }
+        //}
         private void ShowOrHideProgressBar(string text)
         {
             if (progressBar.InvokeRequired)

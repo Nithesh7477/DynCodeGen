@@ -66,7 +66,7 @@
             panel1.Font = new Font("Verdana", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(619, 342);
+            panel1.Size = new Size(607, 342);
             panel1.TabIndex = 1;
             // 
             // cmbDatabase
@@ -113,7 +113,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(619, 39);
+            panel2.Size = new Size(607, 39);
             panel2.TabIndex = 14;
             // 
             // btnClose
@@ -122,7 +122,7 @@
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(588, 7);
+            btnClose.Location = new Point(577, 7);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(25, 25);
             btnClose.TabIndex = 6;
@@ -220,7 +220,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(619, 342);
+            ClientSize = new Size(607, 342);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;

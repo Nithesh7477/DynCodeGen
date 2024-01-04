@@ -313,7 +313,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \r\n\t[ApiController]\r\n\t[Route(\&quot;api/[controller]\&quot;)]\r\n\tpublic class usp{className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly Iusp{className}Service _service;\r\n\r\n\t\tpublic usp{className}Controller(Iusp{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}.
+        ///   Looks up a localized string similar to \r\n\t[ApiController]\r\n\t[Route(\&quot;api/[controller]\&quot;)]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}.
         /// </summary>
         public static string ContollerSPClass {
             get {
@@ -349,7 +349,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Post{className}Async\&quot;)]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok(&quot;Record inserted/updated Successfully&quot;);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \&quot;An error occurred while processing your request.\&quot;);\r\n\t\t\t}\r\n\t\t}.
+        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Post{className}Async\&quot;)]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok(&quot;Recorde inserted/updated Successfully&quot;);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \&quot;An error occurred while processing your request.\&quot;);\r\n\t\t\t}\r\n\t\t}.
         /// </summary>
         public static string ControllerPostMethod {
             get {
@@ -493,7 +493,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tResponse{className} Get{className}Async(Request{className} {className});.
+        ///   Looks up a localized string similar to \tList&lt;Response{className}&gt; Get{className}Async(Request{className} {className});.
         /// </summary>
         public static string IRepositoryGetMethod {
             get {
@@ -556,6 +556,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tpublic interface I{className}Repository\r\n\t{\r\n.
         ///   Looks up a localized string similar to \tint Post{className}Async(Request{className} request);\r\n.
         /// </summary>
         public static string IRepositoryPostMethodAdo {
@@ -637,7 +638,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tResponse{className} Get{className}Async(Request{className} {className});.
+        ///   Looks up a localized string similar to \tList&lt;Response{className}&gt; Get{className}Async(Request{className} {className});.
         /// </summary>
         public static string IServiceGetMethod {
             get {
@@ -701,6 +702,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         
         /// <summary>
         ///   Looks up a localized string similar to \tpublic interface Iusp{className}Service\r\n\t{\r\n.
+        ///   Looks up a localized string similar to \tpublic interface I{className}Service\r\n\t{\r\n.
         /// </summary>
         public static string IServiceSPInterface {
             get {
@@ -943,7 +945,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic  Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t// Input\r\n\r\n\t\t\treturn  _context.usp{className}Set.FromSqlRaw(\&quot;{Execute Statement}\&quot;,{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}.
+        ///   Looks up a localized string similar to \tpublic  List&lt;Response{className}&gt; Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t// Input\r\n\r\n\t\t\treturn  _context.{className}Set.FromSqlRaw(\&quot;{Execute Statement}\&quot;,{Parameters}).AsEnumerable().ToList();\r\n\t\t}.
         /// </summary>
         public static string RepositoryGetMethod {
             get {
@@ -1006,7 +1008,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t\t// Input\r\n\t\t\t\treturn _context.usp{className}Set.FromSqlRaw(\&quot;{Execute Statement}\&quot;,{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t\t// Input\r\n\t\t\t\treturn _context.{className}Set.FromSqlRaw(\&quot;{Execute Statement}\&quot;,{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}\r\n.
         /// </summary>
         public static string RepositoryPostMethod {
             get {
@@ -1052,6 +1054,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         
         /// <summary>
         ///   Looks up a localized string similar to \tpublic class usp{className}Repository : Iusp{className}Repository\r\n\t{\r\n.
+        ///   Looks up a localized string similar to \tpublic class {className}Repository : I{className}Repository\r\n\t{\r\n.
         /// </summary>
         public static string RepositorySPClassStart {
             get {
@@ -1060,7 +1063,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic usp{className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic {className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n.
         /// </summary>
         public static string RepositorySPConstructor {
             get {
@@ -1168,7 +1171,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Get{className}Async({className});\r\n\t\t}.
+        ///   Looks up a localized string similar to \t\tpublic List&lt;Response{className}&gt; Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Get{className}Async({className});\r\n\t\t}.
         /// </summary>
         public static string ServiceGetMethod {
             get {
@@ -1232,6 +1235,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         
         /// <summary>
         ///   Looks up a localized string similar to \tpublic class usp{className}Service : Iusp{className}Service\r\n\t{\r\n.
+        ///   Looks up a localized string similar to \tpublic class {className}Service : I{className}Service\r\n\t{\r\n.
         /// </summary>
         public static string ServiceSPClassStart {
             get {
@@ -1240,7 +1244,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \r\n\tprivate readonly Iusp{className}Repository _repository;\r\n\r\n\t\tpublic usp{className}Service(Iusp{className}Repository repository)\r\n\t\t{\r\n\t\t\t_repository = repository;\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \r\n\tprivate readonly I{className}Repository _repository;\r\n\r\n\t\tpublic {className}Service(I{className}Repository repository)\r\n\t\t{\r\n\t\t\t_repository = repository;\r\n\t\t}\r\n.
         /// </summary>
         public static string ServiceSPConstructor {
             get {
@@ -1276,7 +1280,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic DbSet&lt;Response{className}&gt; usp{className}Set { get; set; }\r\n.
+        ///   Looks up a localized string similar to \t\tpublic DbSet&lt;Response{className}&gt; {className}Set { get; set; }\r\n.
         /// </summary>
         public static string SpDBContext {
             get {
@@ -1294,7 +1298,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\t\tservices.AddScoped&lt;Iusp{className}Repository, usp{className}Repository&gt;();\r\n\t\t\tservices.AddScoped&lt;Iusp{className}Service, usp{className}Service &gt;();.
+        ///   Looks up a localized string similar to \t\t\tservices.AddScoped&lt;I{className}Repository, {className}Repository&gt;();\r\n\t\t\tservices.AddScoped&lt;I{className}Service, {className}Service &gt;();.
         /// </summary>
         public static string SPStartupForRepositoriesAndServices {
             get {

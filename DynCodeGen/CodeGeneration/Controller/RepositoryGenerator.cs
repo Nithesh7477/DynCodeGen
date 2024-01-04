@@ -71,7 +71,7 @@ namespace DynCodeGen.CodeGeneration.Controller
             StringBuilder sqlStringBuilder = new StringBuilder("EXEC {className} ").Replace("{className}", $"{className}");
             StringBuilder paramStringBuilder = new StringBuilder();
             string classDirectory = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Repository");
-            string classPath = Path.Combine(classDirectory, $"usp{className}Repository.cs");
+            string classPath = Path.Combine(classDirectory, $"{className}Repository.cs");
             var temp = dt.Rows.Cast<DataRow>()
                   .FirstOrDefault(x => x.Field<string>("SP_Name") == className);
             if (temp[0] == className)

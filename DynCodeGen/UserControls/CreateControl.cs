@@ -17,6 +17,8 @@
     public partial class CreateControl : UserControl
     {
         private SpControl spControlInstance;
+        private DynCodeGen dynCodeGenInstance;
+        public CreateModelControl createModelControlInstance;
         private Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string, string>>>();
         private string folderPath = string.Empty;
         DataTable dt = new DataTable();
@@ -37,8 +39,9 @@
         /// <param name="e">e.</param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            spControlInstance = new SpControl();
-            BuildConnection frm = new BuildConnection(this, spControlInstance);
+            dynCodeGenInstance = new DynCodeGen();
+            spControlInstance = new SpControl(dynCodeGenInstance);
+            BuildConnection frm = new BuildConnection(this, spControlInstance, createModelControlInstance);
             frm.Show();
         }
 
@@ -427,10 +430,19 @@
                 return;
             }
 
-            // Continue with the UI update on the UI thread
-            string formattedLog = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {logText}";
-            txtLog.AppendText(formattedLog + Environment.NewLine);
-            txtLog.ScrollToCaret();
+            //Continue with the UI update on the UI thread
+
+            try
+            {
+                string formattedLog = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {logText}";
+                txtLog.AppendText(formattedLog + Environment.NewLine);
+                txtLog.ScrollToCaret();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
         private void CreateControl_Load(object sender, EventArgs e)
@@ -447,9 +459,6 @@
             //{
             txtLog.Visible = false;
             dgTable.Visible = true;
-
-
-
             dt.Columns.Add("Table", typeof(string));
             dt.Columns.Add("Get", typeof(bool));
             dt.Columns.Add("GetAll", typeof(bool));
@@ -483,10 +492,6 @@
         }
         private void dgTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if ((bool)dt.Rows[e.RowIndex]["Insert"] && (bool)dt.Rows[e.RowIndex]["Delete"])
-            //{
-            //    dgTable.Columns[1].ReadOnly = true;
-            //}
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dgTable.Columns["Get"].Index)
             {

@@ -36,14 +36,14 @@
             btnHome = new Button();
             CreateProjectContainer = new FlowLayoutPanel();
             btnCreateProject = new Button();
-            btnCPWithEntity = new Button();
-            btnCPWithoutEntity = new Button();
+            btnCPEntityFrameworkCF = new Button();
+            btnCP_ADO_SP = new Button();
             existingProjectContainer = new FlowLayoutPanel();
             btnExistingProject = new Button();
-            btnEPWithEntity = new Button();
-            btnEPWithoutEntity = new Button();
-            button2 = new Button();
-            btnCreateModal = new Button();
+            btnEP_EntityFramework_CF = new Button();
+            btnEP_EntityFramework_SP = new Button();
+            btn_EP_ADO_sp = new Button();
+            btnCreateModel = new Button();
             CreateProjectTranstion = new System.Windows.Forms.Timer(components);
             existingProjectTanstion = new System.Windows.Forms.Timer(components);
             btnClose = new Button();
@@ -75,7 +75,7 @@
             flowLayoutPanel1.Controls.Add(btnHome);
             flowLayoutPanel1.Controls.Add(CreateProjectContainer);
             flowLayoutPanel1.Controls.Add(existingProjectContainer);
-            flowLayoutPanel1.Controls.Add(btnCreateModal);
+            flowLayoutPanel1.Controls.Add(btnCreateModel);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 55);
             flowLayoutPanel1.Margin = new Padding(15, 10, 3, 3);
@@ -103,8 +103,8 @@
             // 
             CreateProjectContainer.BackColor = Color.FromArgb(29, 51, 92);
             CreateProjectContainer.Controls.Add(btnCreateProject);
-            CreateProjectContainer.Controls.Add(btnCPWithEntity);
-            CreateProjectContainer.Controls.Add(btnCPWithoutEntity);
+            CreateProjectContainer.Controls.Add(btnCPEntityFrameworkCF);
+            CreateProjectContainer.Controls.Add(btnCP_ADO_SP);
             CreateProjectContainer.Location = new Point(0, 70);
             CreateProjectContainer.Margin = new Padding(0);
             CreateProjectContainer.Name = "CreateProjectContainer";
@@ -128,25 +128,25 @@
             btnCreateProject.UseVisualStyleBackColor = false;
             btnCreateProject.Click += btnCreateProject_Click;
             // 
-            // btnCPWithEntity
+            // btnCPEntityFrameworkCF
             // 
-            btnCPWithEntity.BackColor = Color.FromArgb(29, 51, 92);
-            btnCPWithEntity.FlatAppearance.BorderSize = 0;
-            btnCPWithEntity.FlatStyle = FlatStyle.Flat;
-            btnCPWithEntity.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCPWithEntity.ForeColor = Color.LightGray;
-            btnCPWithEntity.Location = new Point(0, 50);
-            btnCPWithEntity.Margin = new Padding(0);
-            btnCPWithEntity.Name = "btnCPWithEntity";
-            btnCPWithEntity.Padding = new Padding(34, 0, 0, 0);
-            btnCPWithEntity.Size = new Size(306, 50);
-            btnCPWithEntity.TabIndex = 0;
-            btnCPWithEntity.Text = "Entity Framework-Code First";
-            btnCPWithEntity.TextAlign = ContentAlignment.MiddleLeft;
-            btnCPWithEntity.UseVisualStyleBackColor = false;
-            btnCPWithEntity.Click += btnCPWithEntity_Click;
+            btnCPEntityFrameworkCF.BackColor = Color.FromArgb(29, 51, 92);
+            btnCPEntityFrameworkCF.FlatAppearance.BorderSize = 0;
+            btnCPEntityFrameworkCF.FlatStyle = FlatStyle.Flat;
+            btnCPEntityFrameworkCF.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCPEntityFrameworkCF.ForeColor = Color.LightGray;
+            btnCPEntityFrameworkCF.Location = new Point(0, 50);
+            btnCPEntityFrameworkCF.Margin = new Padding(0);
+            btnCPEntityFrameworkCF.Name = "btnCPEntityFrameworkCF";
+            btnCPEntityFrameworkCF.Padding = new Padding(34, 0, 0, 0);
+            btnCPEntityFrameworkCF.Size = new Size(306, 50);
+            btnCPEntityFrameworkCF.TabIndex = 0;
+            btnCPEntityFrameworkCF.Text = "Entity Framework-Code First";
+            btnCPEntityFrameworkCF.TextAlign = ContentAlignment.MiddleLeft;
+            btnCPEntityFrameworkCF.UseVisualStyleBackColor = false;
+            btnCPEntityFrameworkCF.Click += btnCPEntityFrameworkCF_Click;
             // 
-            // btnCPWithoutEntity
+            // btnCP_ADO_SP
             // 
             btnCPWithoutEntity.BackColor = Color.FromArgb(29, 51, 92);
             btnCPWithoutEntity.FlatAppearance.BorderSize = 0;
@@ -163,14 +163,29 @@
             btnCPWithoutEntity.TextAlign = ContentAlignment.MiddleLeft;
             btnCPWithoutEntity.UseVisualStyleBackColor = false;
             btnCPWithoutEntity.Click += btnCPWithoutEntity_Click;
+            btnCP_ADO_SP.BackColor = Color.FromArgb(29, 51, 92);
+            btnCP_ADO_SP.FlatAppearance.BorderSize = 0;
+            btnCP_ADO_SP.FlatStyle = FlatStyle.Flat;
+            btnCP_ADO_SP.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCP_ADO_SP.ForeColor = Color.LightGray;
+            btnCP_ADO_SP.Location = new Point(0, 100);
+            btnCP_ADO_SP.Margin = new Padding(0);
+            btnCP_ADO_SP.Name = "btnCP_ADO_SP";
+            btnCP_ADO_SP.Padding = new Padding(34, 0, 0, 0);
+            btnCP_ADO_SP.Size = new Size(306, 50);
+            btnCP_ADO_SP.TabIndex = 2;
+            btnCP_ADO_SP.Text = "ADO.Net - SP";
+            btnCP_ADO_SP.TextAlign = ContentAlignment.MiddleLeft;
+            btnCP_ADO_SP.UseVisualStyleBackColor = false;
+            btnCP_ADO_SP.Click += btnCP_ADO_SP_Click;
             // 
             // existingProjectContainer
             // 
             existingProjectContainer.BackColor = Color.FromArgb(29, 51, 92);
             existingProjectContainer.Controls.Add(btnExistingProject);
-            existingProjectContainer.Controls.Add(btnEPWithEntity);
-            existingProjectContainer.Controls.Add(btnEPWithoutEntity);
-            existingProjectContainer.Controls.Add(button2);
+            existingProjectContainer.Controls.Add(btnEP_EntityFramework_CF);
+            existingProjectContainer.Controls.Add(btnEP_EntityFramework_SP);
+            existingProjectContainer.Controls.Add(btn_EP_ADO_sp);
             existingProjectContainer.Location = new Point(0, 120);
             existingProjectContainer.Margin = new Padding(0);
             existingProjectContainer.Name = "existingProjectContainer";
@@ -194,42 +209,43 @@
             btnExistingProject.UseVisualStyleBackColor = false;
             btnExistingProject.Click += btnExistingProject_Click;
             // 
-            // btnEPWithEntity
+            // btnEP_EntityFramework_CF
             // 
-            btnEPWithEntity.BackColor = Color.FromArgb(29, 51, 92);
-            btnEPWithEntity.FlatAppearance.BorderSize = 0;
-            btnEPWithEntity.FlatStyle = FlatStyle.Flat;
-            btnEPWithEntity.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEPWithEntity.ForeColor = Color.LightGray;
-            btnEPWithEntity.Location = new Point(0, 50);
-            btnEPWithEntity.Margin = new Padding(0);
-            btnEPWithEntity.Name = "btnEPWithEntity";
-            btnEPWithEntity.Padding = new Padding(34, 0, 0, 0);
-            btnEPWithEntity.Size = new Size(306, 50);
-            btnEPWithEntity.TabIndex = 0;
-            btnEPWithEntity.Text = "Entity Framework-Code First";
-            btnEPWithEntity.TextAlign = ContentAlignment.MiddleLeft;
-            btnEPWithEntity.UseVisualStyleBackColor = false;
-            btnEPWithEntity.Click += btnEPWithEntity_Click;
+            btnEP_EntityFramework_CF.BackColor = Color.FromArgb(29, 51, 92);
+            btnEP_EntityFramework_CF.FlatAppearance.BorderSize = 0;
+            btnEP_EntityFramework_CF.FlatStyle = FlatStyle.Flat;
+            btnEP_EntityFramework_CF.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEP_EntityFramework_CF.ForeColor = Color.LightGray;
+            btnEP_EntityFramework_CF.Location = new Point(0, 50);
+            btnEP_EntityFramework_CF.Margin = new Padding(0);
+            btnEP_EntityFramework_CF.Name = "btnEP_EntityFramework_CF";
+            btnEP_EntityFramework_CF.Padding = new Padding(34, 0, 0, 0);
+            btnEP_EntityFramework_CF.Size = new Size(306, 50);
+            btnEP_EntityFramework_CF.TabIndex = 0;
+            btnEP_EntityFramework_CF.Text = "Entity Framework-Code First";
+            btnEP_EntityFramework_CF.TextAlign = ContentAlignment.MiddleLeft;
+            btnEP_EntityFramework_CF.UseVisualStyleBackColor = false;
+            btnEP_EntityFramework_CF.Click += btnEP_EntityFramework_CF_Click;
             // 
-            // btnEPWithoutEntity
+            // btnEP_EntityFramework_SP
             // 
-            btnEPWithoutEntity.BackColor = Color.FromArgb(29, 51, 92);
-            btnEPWithoutEntity.FlatAppearance.BorderSize = 0;
-            btnEPWithoutEntity.FlatStyle = FlatStyle.Flat;
-            btnEPWithoutEntity.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEPWithoutEntity.ForeColor = Color.LightGray;
-            btnEPWithoutEntity.Location = new Point(0, 100);
-            btnEPWithoutEntity.Margin = new Padding(0);
-            btnEPWithoutEntity.Name = "btnEPWithoutEntity";
-            btnEPWithoutEntity.Padding = new Padding(34, 0, 0, 0);
-            btnEPWithoutEntity.Size = new Size(306, 50);
-            btnEPWithoutEntity.TabIndex = 2;
-            btnEPWithoutEntity.Text = "Entity Framework- SP";
-            btnEPWithoutEntity.TextAlign = ContentAlignment.MiddleLeft;
-            btnEPWithoutEntity.UseVisualStyleBackColor = false;
+            btnEP_EntityFramework_SP.BackColor = Color.FromArgb(29, 51, 92);
+            btnEP_EntityFramework_SP.FlatAppearance.BorderSize = 0;
+            btnEP_EntityFramework_SP.FlatStyle = FlatStyle.Flat;
+            btnEP_EntityFramework_SP.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEP_EntityFramework_SP.ForeColor = Color.LightGray;
+            btnEP_EntityFramework_SP.Location = new Point(0, 100);
+            btnEP_EntityFramework_SP.Margin = new Padding(0);
+            btnEP_EntityFramework_SP.Name = "btnEP_EntityFramework_SP";
+            btnEP_EntityFramework_SP.Padding = new Padding(34, 0, 0, 0);
+            btnEP_EntityFramework_SP.Size = new Size(306, 50);
+            btnEP_EntityFramework_SP.TabIndex = 2;
+            btnEP_EntityFramework_SP.Text = "Entity Framework- SP";
+            btnEP_EntityFramework_SP.TextAlign = ContentAlignment.MiddleLeft;
+            btnEP_EntityFramework_SP.UseVisualStyleBackColor = false;
+            btnEP_EntityFramework_SP.Click += btnEP_EntityFramework_SP_Click;
             // 
-            // button2
+            // btn_EP_ADO_sp
             // 
             button2.BackColor = Color.FromArgb(29, 51, 92);
             button2.FlatAppearance.BorderSize = 0;
@@ -246,21 +262,37 @@
             button2.TextAlign = ContentAlignment.MiddleLeft;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
+            btn_EP_ADO_sp.BackColor = Color.FromArgb(29, 51, 92);
+            btn_EP_ADO_sp.FlatAppearance.BorderSize = 0;
+            btn_EP_ADO_sp.FlatStyle = FlatStyle.Flat;
+            btn_EP_ADO_sp.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_EP_ADO_sp.ForeColor = Color.LightGray;
+            btn_EP_ADO_sp.Location = new Point(0, 150);
+            btn_EP_ADO_sp.Margin = new Padding(0);
+            btn_EP_ADO_sp.Name = "btn_EP_ADO_sp";
+            btn_EP_ADO_sp.Padding = new Padding(34, 0, 0, 0);
+            btn_EP_ADO_sp.Size = new Size(306, 50);
+            btn_EP_ADO_sp.TabIndex = 3;
+            btn_EP_ADO_sp.Text = "ADO.Net - SP";
+            btn_EP_ADO_sp.TextAlign = ContentAlignment.MiddleLeft;
+            btn_EP_ADO_sp.UseVisualStyleBackColor = false;
+            btn_EP_ADO_sp.Click += btn_EP_ADO_sp_Click;
             // 
             // btnCreateModal
             // 
-            btnCreateModal.FlatAppearance.BorderSize = 0;
-            btnCreateModal.FlatStyle = FlatStyle.Flat;
-            btnCreateModal.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCreateModal.ForeColor = Color.LightGray;
-            btnCreateModal.Location = new Point(0, 170);
-            btnCreateModal.Margin = new Padding(0);
-            btnCreateModal.Name = "btnCreateModal";
-            btnCreateModal.Size = new Size(306, 50);
-            btnCreateModal.TabIndex = 8;
-            btnCreateModal.Text = "Create Model";
-            btnCreateModal.TextAlign = ContentAlignment.MiddleLeft;
-            btnCreateModal.UseVisualStyleBackColor = true;
+            btnCreateModel.FlatAppearance.BorderSize = 0;
+            btnCreateModel.FlatStyle = FlatStyle.Flat;
+            btnCreateModel.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreateModel.ForeColor = Color.LightGray;
+            btnCreateModel.Location = new Point(0, 170);
+            btnCreateModel.Margin = new Padding(0);
+            btnCreateModel.Name = "btnCreateModal";
+            btnCreateModel.Size = new Size(306, 50);
+            btnCreateModel.TabIndex = 8;
+            btnCreateModel.Text = "Create Model";
+            btnCreateModel.TextAlign = ContentAlignment.MiddleLeft;
+            btnCreateModel.UseVisualStyleBackColor = true;
+            btnCreateModel.Click += btnCreateModel_Click;
             // 
             // CreateProjectTranstion
             // 
@@ -310,9 +342,9 @@
             panel1.BackColor = Color.FromArgb(29, 51, 92);
             panel1.Controls.Add(dexianLogo);
             panel1.Location = new Point(-1, 3);
-            panel1.Margin = new Padding(0, 4, 3, 4);
+            panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(311, 55);
+            panel1.Size = new Size(309, 55);
             panel1.TabIndex = 5;
             // 
             // dexianLogo
@@ -322,16 +354,16 @@
             dexianLogo.Location = new Point(81, 0);
             dexianLogo.Margin = new Padding(0);
             dexianLogo.Name = "dexianLogo";
-            dexianLogo.Size = new Size(151, 55);
+            dexianLogo.Size = new Size(149, 55);
             dexianLogo.TabIndex = 0;
             dexianLogo.TabStop = false;
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Group_16975;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(312, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(198, 49);
+            pictureBox1.Size = new Size(262, 49);
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
@@ -371,7 +403,6 @@
             contentPanel.Name = "contentPanel";
             contentPanel.Size = new Size(1015, 607);
             contentPanel.TabIndex = 3;
-            contentPanel.Paint += contentPanel_Paint;
             // 
             // DynCodeGen
             // 
@@ -410,25 +441,25 @@
         private Button btnHome;
         private FlowLayoutPanel CreateProjectContainer;
         private Button btnCreateProject;
-        private Button btnCPWithEntity;
-        private Button btnCPWithoutEntity;
+        private Button btnCPEntityFrameworkCF;
+        private Button btnCP_ADO_SP;
         private System.Windows.Forms.Timer CreateProjectTranstion;
         private FlowLayoutPanel existingProjectContainer;
         private Button btnExistingProject;
-        private Button btnEPWithoutEntity;
-        private Button btnEPWithEntity;
+        private Button btnEP_EntityFramework_SP;
+        private Button btnEP_EntityFramework_CF;
         private System.Windows.Forms.Timer existingProjectTanstion;
-        private Button btnCreateModal;
+        private Button btnCreateModel;
         private Button btnClose;
         private Panel panel3;
         private Panel pnlHeader;
         private Panel panel1;
-        private Label lblHead;
+        public Label lblHead;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Button button1;
         private Panel contentPanel;
         private PictureBox dexianLogo;
         private PictureBox pictureBox1;
-        private Button button2;
+        private Button btn_EP_ADO_sp;
     }
 }

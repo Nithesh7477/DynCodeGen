@@ -65,7 +65,7 @@ namespace DynCodeGen.CodeGeneration.Controller
         {
             StringBuilder classContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ServiceUsing) + Regex.Unescape(TemplateHelper.Instance.ServiceNamespace) + Regex.Unescape(TemplateHelper.Instance.ServiceSPClassStart) + Regex.Unescape(TemplateHelper.Instance.ServiceSPConstructor) + Regex.Unescape(TemplateHelper.Instance.ServiceSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.ServiceClassEnd) + Regex.Unescape(TemplateHelper.Instance.ServiceNamespaceEnd));
             string classDirectory = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Service");
-            string classPath = Path.Combine(classDirectory, $"usp{className}Service.cs");
+            string classPath = Path.Combine(classDirectory, $"{className}Service.cs");
             var temp = dt.Rows.Cast<DataRow>()
                   .FirstOrDefault(x => x.Field<string>("SP_Name") == className);
             if (temp[0] == className)

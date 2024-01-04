@@ -19,11 +19,13 @@ namespace DynCodeGen
     {
         private readonly CreateControl _createControlParent;
         private readonly SpControl _spControlParent;
-        public BuildConnection(CreateControl createControlParent, SpControl spControlParent)
+        private readonly CreateModelControl _createModelControlParent;
+        public BuildConnection(CreateControl createControlParent, SpControl spControlParent, CreateModelControl createModelControlParent)
         {
             InitializeComponent();
             _createControlParent = createControlParent;
             _spControlParent = spControlParent;
+            _createModelControlParent = createModelControlParent;
             txtPassword.Leave += txtPassword_TextChanged;
 
         }
