@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -93,7 +94,7 @@ namespace DynCodeGen.CodeGeneration.Controller
                         requestclassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
                         counter++;
                     }
-                    
+
                     else if (property.Item3 == "OUTPUT")
                     {
                         responseclassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
@@ -112,5 +113,81 @@ namespace DynCodeGen.CodeGeneration.Controller
             }
         }
 
+        public static void GenerateModelClassesFromDataAdo(Dictionary<string, List<Tuple<string, string, string>>> sheetsData, string requestPath, string responsePath)
+        {
+            if (!Directory.Exists(requestPath))
+            {
+                Directory.CreateDirectory(requestPath);
+            }
+            if (!Directory.Exists(responsePath))
+            {
+                Directory.CreateDirectory(responsePath);
+            }
+
+            foreach (var sheetEntry in sheetsData)
+            {
+                string className = sheetEntry.Key; // Class name from the sheet name
+                var properties = sheetEntry.Value; // List of tuples containing property details
+
+                StringBuilder requestClassDefinition = new StringBuilder();
+                StringBuilder responseClassDefinition = new StringBuilder();
+
+                bool hasInput = false;
+                bool hasOutput = false;
+
+                foreach (var property in properties)
+                {
+                    string propertyName = property.Item1; // Property name
+                    string propertyType = property.Item2; // Property type
+                    string parameterType = property.Item3; // ParameterType
+
+                    if (parameterType.Equals("INPUT", StringComparison.OrdinalIgnoreCase))
+                    {
+                        hasInput = true;
+                        requestClassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+                    }
+                    else if (parameterType.Equals("OUTPUT", StringComparison.OrdinalIgnoreCase))
+                    {
+                        hasOutput = true;
+                        responseClassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+                    }
+                }
+
+                if (hasInput)
+                {
+                    requestClassDefinition.Insert(0, Regex.Unescape(TemplateHelper.Instance.ModelUsing) + Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"Request{className}"));
+                    requestClassDefinition.AppendLine("}");
+                    File.WriteAllText(Path.Combine(requestPath, $"Request{className}.cs"), requestClassDefinition.ToString());
+                }
+
+                if (hasOutput)
+                {
+                    responseClassDefinition.Insert(0, Regex.Unescape(TemplateHelper.Instance.ModelUsing) + Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"Response{className}"));
+                    responseClassDefinition.AppendLine("}");
+                    File.WriteAllText(Path.Combine(responsePath, $"Response{className}.cs"), responseClassDefinition.ToString());
+                }
+            }
+        }
+
+        public static void GenerateDBSettingsModelClass(string modelPath)
+        {
+            if (!Directory.Exists(modelPath))
+            {
+                Directory.CreateDirectory(modelPath);
+            }
+
+            string className = "ConnectionStrings";
+
+            StringBuilder ClassDefinition = new StringBuilder();
+
+            string propertyName = "DefaultConnection";
+            string propertyType = "string";
+
+            ClassDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+
+            ClassDefinition.Insert(0, Regex.Unescape(TemplateHelper.Instance.ModelUsing) + Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"{className}"));
+            ClassDefinition.AppendLine("}");
+            File.WriteAllText(Path.Combine(modelPath, $"{className}.cs"), ClassDefinition.ToString());
+        }
     }
 }

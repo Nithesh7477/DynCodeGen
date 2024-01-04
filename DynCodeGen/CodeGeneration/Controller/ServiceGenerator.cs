@@ -83,5 +83,28 @@ namespace DynCodeGen.CodeGeneration.Controller
             classContent.Replace("{apiName}", $"{apiName}").Replace("{className}", $"{className}").Replace("{IdName}", $"{IdName}");
             File.WriteAllText(classPath, classContent.ToString());
         }
+
+        public static void GenerateServiceImplementationAdo(string apiName, string apiPath, string className, DataTable dt)
+        {
+            StringBuilder classContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ServiceUsing) + Regex.Unescape(TemplateHelper.Instance.ServiceNamespace) + Regex.Unescape(TemplateHelper.Instance.ServiceSPClassStart) + Regex.Unescape(TemplateHelper.Instance.ServiceSPConstructor) + Regex.Unescape(TemplateHelper.Instance.ServiceSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.ServiceClassEnd) + Regex.Unescape(TemplateHelper.Instance.ServiceNamespaceEnd));
+            string classDirectory = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Service");
+            string classPath = Path.Combine(classDirectory, $"usp{className}Service.cs");
+            var temp = dt.Rows.Cast<DataRow>()
+                  .FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
+            if (temp[0] == className)
+            {
+                if ((bool)temp[1] == true)
+                {
+                    TemplateHelper.InsertCodeBeforeComments(classContent, Regex.Unescape(TemplateHelper.Instance.ServiceGetMethod), "// GET/GETALL");
+                }
+                if ((bool)temp[2] == true)
+                {
+                    TemplateHelper.InsertCodeBeforeComments(classContent, Regex.Unescape(TemplateHelper.Instance.ServicePostMethodAdo), "// INSERT/UPDATE");
+                }
+            }
+            Directory.CreateDirectory(classDirectory);
+            classContent.Replace("{apiName}", $"{apiName}").Replace("{className}", $"{className}");
+            File.WriteAllText(classPath, classContent.ToString());
+        }
     }
 }

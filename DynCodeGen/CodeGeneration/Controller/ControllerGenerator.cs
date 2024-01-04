@@ -88,5 +88,29 @@
             Directory.CreateDirectory(controllerDirectory);
             File.WriteAllText(controllerPath, controllerContent.ToString());
         }
+
+        public static void GenerateControllerAdo(string apiName, string apiPath, string className, DataTable dt)
+        {
+            StringBuilder controllerContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ContollerHeader) + Regex.Unescape(TemplateHelper.Instance.ContollerNamespace) + Regex.Unescape(TemplateHelper.Instance.ContollerSPClass) + Regex.Unescape(TemplateHelper.Instance.ControllerSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.ContollerClassEnd) + Regex.Unescape(TemplateHelper.Instance.ContollerNamespaceEnd));
+            string controllerDirectory = Path.Combine(apiPath, $"{apiName}.WebAPI", "Controllers");
+            string controllerPath = Path.Combine(controllerDirectory, $"usp{className}Controller.cs");
+            var temp = dt.Rows.Cast<DataRow>()
+                  .FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
+            if (temp[0] == className)
+            {
+                if ((bool)temp[1] == true)
+                {
+                    TemplateHelper.InsertCodeBeforeComments(controllerContent, Regex.Unescape(TemplateHelper.Instance.ControllerGetMethod), "// GET/GETALL");
+                }
+                if ((bool)temp[2] == true)
+                {
+                    TemplateHelper.InsertCodeBeforeComments(controllerContent, Regex.Unescape(TemplateHelper.Instance.ControllerPostMethodAdo), "// INSERT/UPDATE");
+                }
+
+            }
+            controllerContent.Replace("{apiName}", $"{apiName}").Replace("{className}", $"{className}");
+            Directory.CreateDirectory(controllerDirectory);
+            File.WriteAllText(controllerPath, controllerContent.ToString());
+        }
     }
 }

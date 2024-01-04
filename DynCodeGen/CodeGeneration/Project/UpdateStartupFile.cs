@@ -19,6 +19,14 @@ namespace DynCodeGen.CodeGeneration.Project
             File.WriteAllText(startupFilePath, startupFileContent.ToString());
         }
 
+        public static void CreateStartupFileAdo(string apiName, string apiPath)
+        {
+            string startupFilePath = Path.Combine(apiPath, $"{apiName}.WebAPI", "Startup.cs");
+            StringBuilder startupFileContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.StartupUsingAdo) + Regex.Unescape(TemplateHelper.Instance.StartupNamespaceStart) + Regex.Unescape(TemplateHelper.Instance.StartupClassStart) + Regex.Unescape(TemplateHelper.Instance.StartupConstructor) + Regex.Unescape(TemplateHelper.Instance.StartupConfigureServicesMethodAdo) + Regex.Unescape(TemplateHelper.Instance.StartupConfigureMethod) + Regex.Unescape(TemplateHelper.Instance.StartupRegisterDependenciesMethod) + Regex.Unescape(TemplateHelper.Instance.StartupAddCorsMethod) + Regex.Unescape(TemplateHelper.Instance.StartupConfigureHealthCheckMethod) + Regex.Unescape(TemplateHelper.Instance.StartupConfigureSwaggerMethod) + Regex.Unescape(TemplateHelper.Instance.StartupNamespaceEnd));
+            startupFileContent.Replace("{apiName}", $"{apiName}");
+            File.WriteAllText(startupFilePath, startupFileContent.ToString());
+        }
+
         public static void UpdateStartupForRepositoriesAndServices(string apiName, string apiPath, Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData, string UpdationType)
         {
             string startupPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "Startup.cs");
@@ -40,6 +48,26 @@ namespace DynCodeGen.CodeGeneration.Project
                 }
 
             }
+
+            string existingContent = File.ReadAllText(startupPath);
+            int insertionIndex = existingContent.IndexOf("// Add dependency injection registrations here.");
+
+            if (insertionIndex > -1)
+            {
+                existingContent = existingContent.Insert(insertionIndex, sb.ToString());
+                existingContent.Replace("{apiName}", $"{apiName}");
+                File.WriteAllText(startupPath, existingContent);
+            }
+        }
+
+        public static void UpdateStartupForRepositoriesAndServicesAdo(string apiName, string apiPath, string className)
+        {
+            string startupPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "Startup.cs");
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(Regex.Unescape(TemplateHelper.Instance.SPStartupForRepositoriesAndServices));
+            sb.Replace("{className}", $"{className}");
+
 
             string existingContent = File.ReadAllText(startupPath);
             int insertionIndex = existingContent.IndexOf("// Add dependency injection registrations here.");

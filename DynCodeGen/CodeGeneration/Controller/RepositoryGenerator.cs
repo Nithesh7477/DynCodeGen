@@ -1,7 +1,9 @@
 ﻿using DynCodeGen.CodeGeneration.CodeTemplate;
 using Microsoft.Extensions.Primitives;
+using OfficeOpenXml.Drawing.Chart.ChartEx;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -138,5 +140,99 @@ namespace DynCodeGen.CodeGeneration.Controller
             classContent.Replace("{apiName}", $"{apiName}").Replace("{className}", $"{className}").Replace("{Execute Statement}", sqlStringBuilder.ToString()).Replace("{Parameters}", paramStringBuilder.ToString());
             File.WriteAllText(classPath, classContent.ToString());
         }
+
+        public static void GenerateRepositoryImplementationAdo(string apiName, string apiPath, string className, DataTable dt, Dictionary<string, string> inputParameters)
+        {
+            StringBuilder classContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.RepositoryUsingAdo).Replace("{apiName}", apiName)
+                + Regex.Unescape(TemplateHelper.Instance.RepositoryNamespace).Replace("{apiName}", apiName)
+                + Regex.Unescape(TemplateHelper.Instance.RepositoryClassStartAdo).Replace("{className}", className));
+
+            // Add constructor
+            string constructor = Regex.Unescape(TemplateHelper.Instance.RepositoryConstructorAdo).Replace("{className}", className);
+            classContent.AppendLine(constructor);
+
+            var temp = dt.Rows.Cast<DataRow>()
+                  .FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
+            if (temp[0] == className)
+            {
+                if ((bool)temp[1] == true)
+                {
+                    if (inputParameters.Count == 0)
+                    {
+                        string getMethodStart = Regex.Unescape(TemplateHelper.Instance.RepositoryGetMethodStartAdo).Replace("{className}", className).Replace("{Request}", "").Replace("{classNameInput}", "");
+                        classContent.AppendLine(getMethodStart);
+                    }
+                    else
+                    {
+                        string getMethodStart = Regex.Unescape(TemplateHelper.Instance.RepositoryGetMethodStartAdo).Replace("{className}", className).Replace("{Request}", "Request").Replace("{classNameInput}", className);
+                        classContent.AppendLine(getMethodStart);
+                    }
+
+                    foreach (KeyValuePair<string, string> parameter in inputParameters)
+                    {
+                        string type = parameter.Value;
+                        if (type == "string")
+                        {
+                            type = "VarChar";
+                        }
+                        else if (type == "int")
+                        {
+                            type = "Int";
+                        }
+                        string getMethodMiddle = Regex.Unescape(TemplateHelper.Instance.RepositoryGetMethodMiddleAdo).Replace("{parameterName}", parameter.Key).Replace("{parameterType}", type).Replace("{className}", className);
+                        classContent.AppendLine(getMethodMiddle);
+                    }
+
+                    string getMethodEnd = Regex.Unescape(TemplateHelper.Instance.RepositoryGetMethodEndAdo).Replace("{className}", className);
+                    classContent.AppendLine(getMethodEnd);
+                }
+                if ((bool)temp[2] == true)
+                {
+                    string postMethodStart = Regex.Unescape(TemplateHelper.Instance.RepositoryPostMethodStartAdo).Replace("{className}", className);
+                    classContent.AppendLine(postMethodStart);
+
+                    foreach (KeyValuePair<string, string> parameter in inputParameters)
+                    {
+                        string type = parameter.Value;
+                        if (type == "string")
+                        {
+                            type = "VarChar";
+                        }
+                        else if (type == "int")
+                        {
+                            type = "Int";
+                        }
+                        string PostMethodMiddle = Regex.Unescape(TemplateHelper.Instance.RepositoryPostMethodMiddleAdo).Replace("{parameterName}", parameter.Key).Replace("{parameterType}", type).Replace("{className}", className);
+                        classContent.AppendLine(PostMethodMiddle);
+                    }
+
+                    string postMethodEnd = Regex.Unescape(TemplateHelper.Instance.RepositoryPostMethodEndAdo).Replace("{className}", className);
+                    classContent.AppendLine(postMethodEnd);
+                }
+
+            }
+
+            classContent.Append(Regex.Unescape(TemplateHelper.Instance.RepositoryClassEnd)
+                + Regex.Unescape(TemplateHelper.Instance.RepositoryNamespaceEnd));
+
+            string classDirectory = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Repository");
+            string classPath = Path.Combine(classDirectory, $"usp{className}Repository.cs");
+
+            Directory.CreateDirectory(classDirectory);
+            File.WriteAllText(classPath, classContent.ToString());
+        }
+
+        public static void GenerateBaseRepositoryClass(string apiName, string apiPath)
+        {
+            StringBuilder baseRepositoryClassContent = new StringBuilder();
+            baseRepositoryClassContent.AppendLine(Regex.Unescape(TemplateHelper.Instance.BaseRepository).Replace("{apiName}", apiName));
+
+            string classDirectory = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Repository");
+            string classPath = Path.Combine(classDirectory, "BaseRepository.cs");
+
+            Directory.CreateDirectory(classDirectory);
+            File.WriteAllText(classPath, baseRepositoryClassContent.ToString());
+        }
+
     }
 }

@@ -242,9 +242,10 @@
             button2.Padding = new Padding(34, 0, 0, 0);
             button2.Size = new Size(306, 50);
             button2.TabIndex = 3;
-            button2.Text = "ADO.Net - SP";
+            button2.Text = "ADO.Net";
             button2.TextAlign = ContentAlignment.MiddleLeft;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // btnCreateModal
             // 

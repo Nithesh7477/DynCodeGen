@@ -28,19 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            pnlLog = new Panel();
-            dgTable = new DataGridView();
-            txtLog = new RichTextBox();
-            dgSP = new DataGridView();
-            SPColName = new DataGridViewTextBoxColumn();
-            spGet = new DataGridViewCheckBoxColumn();
-            spPost = new DataGridViewCheckBoxColumn();
-            pnlProgressStatus = new Panel();
-            lblProgressStatus = new Label();
-            pnlProgressBar = new Panel();
-            progressBar = new ProgressBar();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            tblpnlMain = new TableLayoutPanel();
+            pnlTextLable = new Panel();
+            label5 = new Label();
+            label4 = new Label();
+            lblConnectionSting = new Label();
+            lblSourceFile = new Label();
+            lblProjectLocation = new Label();
+            label2 = new Label();
             pnlInputFields = new Panel();
             btnValidate = new Button();
             btnCreate = new Button();
@@ -49,170 +46,125 @@
             btnAdd = new Button();
             lblValidProjSource = new Label();
             lblValidProjLoc = new Label();
-            lblValidProjName = new Label();
             lblvalidConnStr = new Label();
             txtConnectionString = new TextBox();
             txtSourceFilePath = new TextBox();
             txtProjectLocationPath = new TextBox();
-            txtProjectName = new TextBox();
-            pnlTextLable = new Panel();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            lblConnectionSting = new Label();
-            lblSourceFile = new Label();
-            lblProjectLocation = new Label();
-            lblProjectName = new Label();
-            label2 = new Label();
-            tblpnlMain = new TableLayoutPanel();
+            pnlProgressBar = new Panel();
+            progressBar = new ProgressBar();
+            pnlProgressStatus = new Panel();
+            lblProgressStatus = new Label();
+            pnlLog = new Panel();
+            dgTable = new DataGridView();
+            txtLog = new RichTextBox();
             openFileDialog = new OpenFileDialog();
+            tblpnlMain.SuspendLayout();
+            pnlTextLable.SuspendLayout();
+            pnlInputFields.SuspendLayout();
+            pnlProgressBar.SuspendLayout();
+            pnlProgressStatus.SuspendLayout();
             pnlLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgTable).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgSP).BeginInit();
-            pnlProgressStatus.SuspendLayout();
-            pnlProgressBar.SuspendLayout();
-            pnlInputFields.SuspendLayout();
-            pnlTextLable.SuspendLayout();
-            tblpnlMain.SuspendLayout();
             SuspendLayout();
             // 
-            // pnlLog
+            // tblpnlMain
             // 
-            pnlLog.AutoSize = true;
-            pnlLog.BorderStyle = BorderStyle.FixedSingle;
-            tblpnlMain.SetColumnSpan(pnlLog, 2);
-            pnlLog.Controls.Add(dgTable);
-            pnlLog.Controls.Add(txtLog);
-            pnlLog.Dock = DockStyle.Fill;
-            pnlLog.Location = new Point(3, 286);
-            pnlLog.Name = "pnlLog";
-            pnlLog.Size = new Size(1008, 213);
-            pnlLog.TabIndex = 5;
+            tblpnlMain.BackColor = SystemColors.Window;
+            tblpnlMain.ColumnCount = 2;
+            tblpnlMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tblpnlMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 709F));
+            tblpnlMain.Controls.Add(pnlTextLable, 0, 0);
+            tblpnlMain.Controls.Add(pnlInputFields, 1, 0);
+            tblpnlMain.Controls.Add(pnlProgressBar, 0, 3);
+            tblpnlMain.Controls.Add(pnlProgressStatus, 0, 2);
+            tblpnlMain.Controls.Add(pnlLog, 0, 1);
+            tblpnlMain.Location = new Point(0, 4);
+            tblpnlMain.Name = "tblpnlMain";
+            tblpnlMain.RowCount = 4;
+            tblpnlMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblpnlMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 219F));
+            tblpnlMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
+            tblpnlMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
+            tblpnlMain.Size = new Size(1014, 597);
+            tblpnlMain.TabIndex = 3;
             // 
-            // dgTable
+            // pnlTextLable
             // 
-            dgTable.AllowUserToAddRows = false;
-            dgTable.AllowUserToDeleteRows = false;
-            dgTable.BackgroundColor = SystemColors.Window;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(107, 125, 157);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(107, 125, 157);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgTable.ColumnHeadersHeight = 29;
-            dgTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgTable.Cursor = Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(107, 125, 157);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgTable.DefaultCellStyle = dataGridViewCellStyle2;
-            dgTable.Dock = DockStyle.Fill;
-            dgTable.EnableHeadersVisualStyles = false;
-            dgTable.GridColor = Color.FromArgb(45, 137, 86);
-            dgTable.Location = new Point(0, 0);
-            dgTable.Name = "dgTable";
-            dgTable.RowHeadersVisible = false;
-            dgTable.RowHeadersWidth = 51;
-            dgTable.RowTemplate.Height = 29;
-            dgTable.Size = new Size(1006, 211);
-            dgTable.TabIndex = 1;
-            dgTable.CellContentClick += dgTable_CellContentClick;
+            pnlTextLable.BackColor = SystemColors.Window;
+            pnlTextLable.Controls.Add(label5);
+            pnlTextLable.Controls.Add(label4);
+            pnlTextLable.Controls.Add(lblConnectionSting);
+            pnlTextLable.Controls.Add(lblSourceFile);
+            pnlTextLable.Controls.Add(lblProjectLocation);
+            pnlTextLable.Controls.Add(label2);
+            pnlTextLable.Dock = DockStyle.Fill;
+            pnlTextLable.Location = new Point(3, 3);
+            pnlTextLable.Name = "pnlTextLable";
+            pnlTextLable.Size = new Size(299, 277);
+            pnlTextLable.TabIndex = 0;
             // 
-            // txtLog
+            // label5
             // 
-            txtLog.Dock = DockStyle.Fill;
-            txtLog.Location = new Point(0, 0);
-            txtLog.Name = "txtLog";
-            txtLog.Size = new Size(1006, 211);
-            txtLog.TabIndex = 0;
-            txtLog.Text = "";
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.Red;
+            label5.Location = new Point(160, 183);
+            label5.Name = "label5";
+            label5.Size = new Size(16, 20);
+            label5.TabIndex = 7;
+            label5.Text = "*";
             // 
-            // dgSP
+            // label4
             // 
-            dgSP.AllowUserToDeleteRows = false;
-            dgSP.BackgroundColor = SystemColors.Window;
-            dgSP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgSP.ColumnHeadersHeight = 29;
-            dgSP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgSP.Columns.AddRange(new DataGridViewColumn[] { SPColName, spGet, spPost });
-            dgSP.Cursor = Cursors.Hand;
-            dgSP.DefaultCellStyle = dataGridViewCellStyle2;
-            dgSP.EnableHeadersVisualStyles = false;
-            dgSP.GridColor = Color.FromArgb(45, 137, 86);
-            dgSP.Location = new Point(-1, 0);
-            dgSP.Name = "dgSP";
-            dgSP.RowHeadersVisible = false;
-            dgSP.RowHeadersWidth = 51;
-            dgSP.RowTemplate.Height = 29;
-            dgSP.Size = new Size(1006, 211);
-            dgSP.TabIndex = 1;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.Red;
+            label4.Location = new Point(160, 104);
+            label4.Name = "label4";
+            label4.Size = new Size(16, 20);
+            label4.TabIndex = 6;
+            label4.Text = "*";
             // 
-            // SPColName
+            // lblConnectionSting
             // 
-            SPColName.HeaderText = "Stored Procedure";
-            SPColName.MinimumWidth = 6;
-            SPColName.Name = "SPColName";
-            SPColName.Width = 125;
+            lblConnectionSting.AutoSize = true;
+            lblConnectionSting.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblConnectionSting.Location = new Point(34, 29);
+            lblConnectionSting.Name = "lblConnectionSting";
+            lblConnectionSting.Size = new Size(147, 23);
+            lblConnectionSting.TabIndex = 3;
+            lblConnectionSting.Text = "Connection String";
             // 
-            // spGet
+            // lblSourceFile
             // 
-            spGet.HeaderText = "Get/Get All";
-            spGet.MinimumWidth = 6;
-            spGet.Name = "spGet";
-            spGet.Width = 125;
+            lblSourceFile.AutoSize = true;
+            lblSourceFile.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSourceFile.Location = new Point(34, 183);
+            lblSourceFile.Name = "lblSourceFile";
+            lblSourceFile.Size = new Size(133, 23);
+            lblSourceFile.TabIndex = 2;
+            lblSourceFile.Text = "Source File(.xlsx)";
             // 
-            // spPost
+            // lblProjectLocation
             // 
-            spPost.HeaderText = "Insert/Update/Delete";
-            spPost.MinimumWidth = 6;
-            spPost.Name = "spPost";
-            spPost.Width = 125;
+            lblProjectLocation.AutoSize = true;
+            lblProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblProjectLocation.Location = new Point(34, 107);
+            lblProjectLocation.Name = "lblProjectLocation";
+            lblProjectLocation.Size = new Size(133, 23);
+            lblProjectLocation.TabIndex = 1;
+            lblProjectLocation.Text = "Project Location";
             // 
-            // pnlProgressStatus
+            // label2
             // 
-            pnlProgressStatus.BackColor = SystemColors.Window;
-            tblpnlMain.SetColumnSpan(pnlProgressStatus, 2);
-            pnlProgressStatus.Controls.Add(lblProgressStatus);
-            pnlProgressStatus.Dock = DockStyle.Fill;
-            pnlProgressStatus.Location = new Point(3, 505);
-            pnlProgressStatus.Name = "pnlProgressStatus";
-            pnlProgressStatus.Size = new Size(1008, 38);
-            pnlProgressStatus.TabIndex = 3;
-            // 
-            // lblProgressStatus
-            // 
-            lblProgressStatus.AutoSize = true;
-            lblProgressStatus.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblProgressStatus.Location = new Point(3, 8);
-            lblProgressStatus.Name = "lblProgressStatus";
-            lblProgressStatus.Size = new Size(0, 23);
-            lblProgressStatus.TabIndex = 0;
-            // 
-            // pnlProgressBar
-            // 
-            tblpnlMain.SetColumnSpan(pnlProgressBar, 2);
-            pnlProgressBar.Controls.Add(progressBar);
-            pnlProgressBar.Dock = DockStyle.Fill;
-            pnlProgressBar.Location = new Point(3, 549);
-            pnlProgressBar.Name = "pnlProgressBar";
-            pnlProgressBar.Size = new Size(1008, 45);
-            pnlProgressBar.TabIndex = 2;
-            // 
-            // progressBar
-            // 
-            progressBar.BackColor = Color.White;
-            progressBar.Dock = DockStyle.Fill;
-            progressBar.Location = new Point(0, 0);
-            progressBar.Name = "progressBar";
-            progressBar.Size = new Size(1008, 45);
-            progressBar.TabIndex = 1;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.Red;
+            label2.Location = new Point(176, 31);
+            label2.Name = "label2";
+            label2.Size = new Size(16, 20);
+            label2.TabIndex = 4;
+            label2.Text = "*";
             // 
             // pnlInputFields
             // 
@@ -225,12 +177,10 @@
             pnlInputFields.Controls.Add(btnAdd);
             pnlInputFields.Controls.Add(lblValidProjSource);
             pnlInputFields.Controls.Add(lblValidProjLoc);
-            pnlInputFields.Controls.Add(lblValidProjName);
             pnlInputFields.Controls.Add(lblvalidConnStr);
             pnlInputFields.Controls.Add(txtConnectionString);
             pnlInputFields.Controls.Add(txtSourceFilePath);
             pnlInputFields.Controls.Add(txtProjectLocationPath);
-            pnlInputFields.Controls.Add(txtProjectName);
             pnlInputFields.Dock = DockStyle.Fill;
             pnlInputFields.Location = new Point(308, 3);
             pnlInputFields.Name = "pnlInputFields";
@@ -244,7 +194,7 @@
             btnValidate.FlatStyle = FlatStyle.Flat;
             btnValidate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnValidate.ForeColor = Color.White;
-            btnValidate.Location = new Point(260, 228);
+            btnValidate.Location = new Point(260, 226);
             btnValidate.Name = "btnValidate";
             btnValidate.Size = new Size(127, 46);
             btnValidate.TabIndex = 19;
@@ -259,7 +209,7 @@
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(412, 228);
+            btnCreate.Location = new Point(412, 226);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(127, 46);
             btnCreate.TabIndex = 18;
@@ -273,7 +223,7 @@
             btnSourcefile.FlatStyle = FlatStyle.Flat;
             btnSourcefile.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnSourcefile.ForeColor = Color.FromArgb(29, 51, 92);
-            btnSourcefile.Location = new Point(555, 181);
+            btnSourcefile.Location = new Point(555, 173);
             btnSourcefile.Name = "btnSourcefile";
             btnSourcefile.Size = new Size(92, 36);
             btnSourcefile.TabIndex = 17;
@@ -287,7 +237,7 @@
             btnProjectLocation.FlatStyle = FlatStyle.Flat;
             btnProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnProjectLocation.ForeColor = Color.FromArgb(29, 51, 92);
-            btnProjectLocation.Location = new Point(555, 123);
+            btnProjectLocation.Location = new Point(555, 100);
             btnProjectLocation.Name = "btnProjectLocation";
             btnProjectLocation.Size = new Size(92, 36);
             btnProjectLocation.TabIndex = 16;
@@ -314,7 +264,7 @@
             lblValidProjSource.AutoSize = true;
             lblValidProjSource.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             lblValidProjSource.ForeColor = Color.Red;
-            lblValidProjSource.Location = new Point(45, 214);
+            lblValidProjSource.Location = new Point(45, 209);
             lblValidProjSource.Name = "lblValidProjSource";
             lblValidProjSource.Size = new Size(141, 17);
             lblValidProjSource.TabIndex = 14;
@@ -326,24 +276,12 @@
             lblValidProjLoc.AutoSize = true;
             lblValidProjLoc.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             lblValidProjLoc.ForeColor = Color.Red;
-            lblValidProjLoc.Location = new Point(45, 158);
+            lblValidProjLoc.Location = new Point(45, 133);
             lblValidProjLoc.Name = "lblValidProjLoc";
             lblValidProjLoc.Size = new Size(171, 17);
             lblValidProjLoc.TabIndex = 13;
             lblValidProjLoc.Text = "Project Location is required.";
             lblValidProjLoc.Visible = false;
-            // 
-            // lblValidProjName
-            // 
-            lblValidProjName.AutoSize = true;
-            lblValidProjName.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblValidProjName.ForeColor = Color.Red;
-            lblValidProjName.Location = new Point(45, 104);
-            lblValidProjName.Name = "lblValidProjName";
-            lblValidProjName.Size = new Size(157, 17);
-            lblValidProjName.TabIndex = 12;
-            lblValidProjName.Text = "Project Name is required.";
-            lblValidProjName.Visible = false;
             // 
             // lblvalidConnStr
             // 
@@ -372,7 +310,7 @@
             // 
             txtSourceFilePath.Cursor = Cursors.IBeam;
             txtSourceFilePath.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSourceFilePath.Location = new Point(45, 181);
+            txtSourceFilePath.Location = new Point(44, 178);
             txtSourceFilePath.Name = "txtSourceFilePath";
             txtSourceFilePath.ReadOnly = true;
             txtSourceFilePath.Size = new Size(494, 31);
@@ -382,215 +320,164 @@
             // 
             txtProjectLocationPath.Cursor = Cursors.IBeam;
             txtProjectLocationPath.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtProjectLocationPath.Location = new Point(45, 125);
+            txtProjectLocationPath.Location = new Point(45, 101);
             txtProjectLocationPath.Name = "txtProjectLocationPath";
             txtProjectLocationPath.ReadOnly = true;
             txtProjectLocationPath.Size = new Size(494, 31);
             txtProjectLocationPath.TabIndex = 3;
             // 
-            // txtProjectName
+            // pnlProgressBar
             // 
-            txtProjectName.Cursor = Cursors.IBeam;
-            txtProjectName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtProjectName.Location = new Point(45, 73);
-            txtProjectName.Name = "txtProjectName";
-            txtProjectName.Size = new Size(494, 31);
-            txtProjectName.TabIndex = 2;
+            tblpnlMain.SetColumnSpan(pnlProgressBar, 2);
+            pnlProgressBar.Controls.Add(progressBar);
+            pnlProgressBar.Dock = DockStyle.Fill;
+            pnlProgressBar.Location = new Point(3, 549);
+            pnlProgressBar.Name = "pnlProgressBar";
+            pnlProgressBar.Size = new Size(1008, 45);
+            pnlProgressBar.TabIndex = 2;
             // 
-            // pnlTextLable
+            // progressBar
             // 
-            pnlTextLable.BackColor = SystemColors.Window;
-            pnlTextLable.Controls.Add(label5);
-            pnlTextLable.Controls.Add(label4);
-            pnlTextLable.Controls.Add(label3);
-            pnlTextLable.Controls.Add(lblConnectionSting);
-            pnlTextLable.Controls.Add(lblSourceFile);
-            pnlTextLable.Controls.Add(lblProjectLocation);
-            pnlTextLable.Controls.Add(lblProjectName);
-            pnlTextLable.Controls.Add(label2);
-            pnlTextLable.Dock = DockStyle.Fill;
-            pnlTextLable.Location = new Point(3, 3);
-            pnlTextLable.Name = "pnlTextLable";
-            pnlTextLable.Size = new Size(299, 277);
-            pnlTextLable.TabIndex = 0;
+            progressBar.BackColor = Color.White;
+            progressBar.Dock = DockStyle.Fill;
+            progressBar.Location = new Point(0, 0);
+            progressBar.Name = "progressBar";
+            progressBar.Size = new Size(1008, 45);
+            progressBar.TabIndex = 1;
             // 
-            // label5
+            // pnlProgressStatus
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.Red;
-            label5.Location = new Point(160, 183);
-            label5.Name = "label5";
-            label5.Size = new Size(16, 20);
-            label5.TabIndex = 7;
-            label5.Text = "*";
+            pnlProgressStatus.BackColor = SystemColors.Window;
+            tblpnlMain.SetColumnSpan(pnlProgressStatus, 2);
+            pnlProgressStatus.Controls.Add(lblProgressStatus);
+            pnlProgressStatus.Dock = DockStyle.Fill;
+            pnlProgressStatus.Location = new Point(3, 505);
+            pnlProgressStatus.Name = "pnlProgressStatus";
+            pnlProgressStatus.Size = new Size(1008, 38);
+            pnlProgressStatus.TabIndex = 3;
             // 
-            // label4
+            // lblProgressStatus
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.Red;
-            label4.Location = new Point(160, 130);
-            label4.Name = "label4";
-            label4.Size = new Size(16, 20);
-            label4.TabIndex = 6;
-            label4.Text = "*";
+            lblProgressStatus.AutoSize = true;
+            lblProgressStatus.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblProgressStatus.Location = new Point(3, 8);
+            lblProgressStatus.Name = "lblProgressStatus";
+            lblProgressStatus.Size = new Size(0, 23);
+            lblProgressStatus.TabIndex = 0;
             // 
-            // label3
+            // pnlLog
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.Red;
-            label3.Location = new Point(142, 80);
-            label3.Name = "label3";
-            label3.Size = new Size(16, 20);
-            label3.TabIndex = 5;
-            label3.Text = "*";
+            pnlLog.AutoSize = true;
+            pnlLog.BorderStyle = BorderStyle.FixedSingle;
+            tblpnlMain.SetColumnSpan(pnlLog, 2);
+            pnlLog.Controls.Add(dgTable);
+            pnlLog.Controls.Add(txtLog);
+            pnlLog.Dock = DockStyle.Fill;
+            pnlLog.Location = new Point(3, 286);
+            pnlLog.Name = "pnlLog";
+            pnlLog.Size = new Size(1008, 213);
+            pnlLog.TabIndex = 5;
             // 
-            // lblConnectionSting
+            // dgTable
             // 
-            lblConnectionSting.AutoSize = true;
-            lblConnectionSting.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblConnectionSting.Location = new Point(34, 29);
-            lblConnectionSting.Name = "lblConnectionSting";
-            lblConnectionSting.Size = new Size(147, 23);
-            lblConnectionSting.TabIndex = 3;
-            lblConnectionSting.Text = "Connection String";
+            dgTable.AllowUserToAddRows = false;
+            dgTable.AllowUserToDeleteRows = false;
+            dgTable.BackgroundColor = SystemColors.Window;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgTable.ColumnHeadersHeight = 29;
+            dgTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgTable.Cursor = Cursors.Hand;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgTable.DefaultCellStyle = dataGridViewCellStyle4;
+            dgTable.Dock = DockStyle.Fill;
+            dgTable.EnableHeadersVisualStyles = false;
+            dgTable.GridColor = Color.FromArgb(45, 137, 86);
+            dgTable.Location = new Point(0, 0);
+            dgTable.Name = "dgTable";
+            dgTable.RowHeadersVisible = false;
+            dgTable.RowHeadersWidth = 51;
+            dgTable.RowTemplate.Height = 29;
+            dgTable.Size = new Size(1006, 211);
+            dgTable.TabIndex = 1;
+            dgTable.CellContentClick += dgTable_CellContentClick;
+            dgTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(dgTable_CellFormatting);
             // 
-            // lblSourceFile
+            // txtLog
             // 
-            lblSourceFile.AutoSize = true;
-            lblSourceFile.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSourceFile.Location = new Point(34, 183);
-            lblSourceFile.Name = "lblSourceFile";
-            lblSourceFile.Size = new Size(133, 23);
-            lblSourceFile.TabIndex = 2;
-            lblSourceFile.Text = "Source File(.xlsx)";
-            // 
-            // lblProjectLocation
-            // 
-            lblProjectLocation.AutoSize = true;
-            lblProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProjectLocation.Location = new Point(34, 130);
-            lblProjectLocation.Name = "lblProjectLocation";
-            lblProjectLocation.Size = new Size(133, 23);
-            lblProjectLocation.TabIndex = 1;
-            lblProjectLocation.Text = "Project Location";
-            // 
-            // lblProjectName
-            // 
-            lblProjectName.AutoSize = true;
-            lblProjectName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProjectName.Location = new Point(34, 79);
-            lblProjectName.Name = "lblProjectName";
-            lblProjectName.Size = new Size(114, 23);
-            lblProjectName.TabIndex = 0;
-            lblProjectName.Text = "Project Name";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Red;
-            label2.Location = new Point(176, 31);
-            label2.Name = "label2";
-            label2.Size = new Size(16, 20);
-            label2.TabIndex = 4;
-            label2.Text = "*";
-            // 
-            // tblpnlMain
-            // 
-            tblpnlMain.BackColor = SystemColors.Window;
-            tblpnlMain.ColumnCount = 2;
-            tblpnlMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tblpnlMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 709F));
-            tblpnlMain.Controls.Add(pnlTextLable, 0, 0);
-            tblpnlMain.Controls.Add(pnlInputFields, 1, 0);
-            tblpnlMain.Controls.Add(pnlProgressBar, 0, 3);
-            tblpnlMain.Controls.Add(pnlProgressStatus, 0, 2);
-            tblpnlMain.Controls.Add(pnlLog, 0, 1);
-            tblpnlMain.Location = new Point(3, 4);
-            tblpnlMain.Name = "tblpnlMain";
-            tblpnlMain.RowCount = 4;
-            tblpnlMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tblpnlMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 219F));
-            tblpnlMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
-            tblpnlMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
-            tblpnlMain.Size = new Size(1014, 597);
-            tblpnlMain.TabIndex = 2;
+            txtLog.Dock = DockStyle.Fill;
+            txtLog.Location = new Point(0, 0);
+            txtLog.Name = "txtLog";
+            txtLog.Size = new Size(1006, 211);
+            txtLog.TabIndex = 0;
+            txtLog.Text = "";
             // 
             // openFileDialog
             // 
             openFileDialog.FileName = "openFileDialog1";
             // 
-            // CreateControl
+            // AdoEnhanceControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLight;
             Controls.Add(tblpnlMain);
-            Name = "CreateControl";
+            Name = "AdoEnhanceControl";
             Size = new Size(1015, 604);
-            pnlLog.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgTable).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgSP).EndInit();
-            pnlProgressStatus.ResumeLayout(false);
-            pnlProgressStatus.PerformLayout();
-            pnlProgressBar.ResumeLayout(false);
-            pnlInputFields.ResumeLayout(false);
-            pnlInputFields.PerformLayout();
-            pnlTextLable.ResumeLayout(false);
-            pnlTextLable.PerformLayout();
             tblpnlMain.ResumeLayout(false);
             tblpnlMain.PerformLayout();
+            pnlTextLable.ResumeLayout(false);
+            pnlTextLable.PerformLayout();
+            pnlInputFields.ResumeLayout(false);
+            pnlInputFields.PerformLayout();
+            pnlProgressBar.ResumeLayout(false);
+            pnlProgressStatus.ResumeLayout(false);
+            pnlProgressStatus.PerformLayout();
+            pnlLog.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgTable).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnlLog;
         private TableLayoutPanel tblpnlMain;
         private Panel pnlTextLable;
         private Label label5;
         private Label label4;
-        private Label label3;
         private Label lblConnectionSting;
         private Label lblSourceFile;
         private Label lblProjectLocation;
-        private Label lblProjectName;
         private Label label2;
         private Panel pnlInputFields;
-        private Label label9;
-        private Label label8;
-        private Label lblValidProjName;
+        private Button btnValidate;
+        private Button btnCreate;
+        private Button btnSourcefile;
+        private Button btnProjectLocation;
+        private Button btnAdd;
+        private Label lblValidProjSource;
+        private Label lblValidProjLoc;
         private Label lblvalidConnStr;
         public TextBox txtConnectionString;
         private TextBox txtSourceFilePath;
         private TextBox txtProjectLocationPath;
-        private TextBox txtProjectName;
         private Panel pnlProgressBar;
         private ProgressBar progressBar;
         private Panel pnlProgressStatus;
         private Label lblProgressStatus;
-        private Label lblValidProjSource;
-        private Label lblValidProjLoc;
-        private Button btnProjectLocation;
-        private Button btnAdd;
-        private Button btnCreate;
-        private Button btnSourcefile;
-        private OpenFileDialog openFileDialog;
-        private RichTextBox txtLog;
+        private Panel pnlLog;
         private DataGridView dgTable;
-        private DataGridView dgSP;
-        private Button btnValidate;
-        private DataGridViewTextBoxColumn SPColName;
-        private DataGridViewCheckBoxColumn spGet;
-        private DataGridViewCheckBoxColumn spPost;
-        private DataGridViewTextBoxColumn ColName;
-        private DataGridViewCheckBoxColumn Get;
-        private DataGridViewCheckBoxColumn GetAll;
-        private DataGridViewCheckBoxColumn Insert;
-        private DataGridViewCheckBoxColumn Update;
-        private DataGridViewCheckBoxColumn Delete;
+        private RichTextBox txtLog;
+        private OpenFileDialog openFileDialog;
     }
 }
