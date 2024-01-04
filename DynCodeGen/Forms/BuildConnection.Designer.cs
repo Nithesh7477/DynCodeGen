@@ -34,7 +34,6 @@
             lblDatabase = new Label();
             btnTestConnection = new Button();
             panel2 = new Panel();
-            btnClose = new Button();
             lblHead = new Label();
             cmbAuthetication = new ComboBox();
             txtUserName = new TextBox();
@@ -44,6 +43,7 @@
             lblUsername = new Label();
             lblAuthentication = new Label();
             lblServerName = new Label();
+            btnClose = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -216,6 +216,18 @@
             lblServerName.TabIndex = 0;
             lblServerName.Text = "Server Name";
             // 
+            // btnClose
+            // 
+            btnClose.Cursor = Cursors.Hand;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
+            btnClose.Location = new Point(571, 3);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(30, 30);
+            btnClose.TabIndex = 14;
+            btnClose.UseVisualStyleBackColor = false;
+            // 
             // BuildConnection
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -248,9 +260,9 @@
         private Label lblServerName;
         private Panel panel2;
         private Label lblHead;
-        private Button btnClose;
         private Button btnTestConnection;
         private ComboBox cmbDatabase;
         private Label lblDatabase;
+        private Button btnClose;
     }
 }
