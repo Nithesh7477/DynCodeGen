@@ -220,10 +220,11 @@ namespace DynCodeGen.UserControls
 
         private void GenerateWebAPI(string apiName, string apiPath, string connectionString)
         {
+            ExecuteCliCommand execmd = new ExecuteCliCommand();
             UpdateProgressBar(25);
 
             // Create a WebAPI project
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateWebAPI).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateWebAPI).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
             // Set the connection string in appsettings.json
             string appSettingsPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.json");
@@ -234,40 +235,40 @@ namespace DynCodeGen.UserControls
             AddConnectionString.SetConnectionString(appSettingsDevPath, connectionString);
 
             // Create a solution
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
             // Create Application, Domain, and Infrastructure projects
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
             Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Domain", "Entities"));
             Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data"));
 
             // Add all projects to the solution
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddWebAPIProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddApplicationProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddDomainProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDomainProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
             UpdateProgressBar(50);
             UpdateLabel("adding project dependencies...");
 
             // Add project references
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddApplicationReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
             // Add packages to the Infrastructure and WebAPI projects
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlServerPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDesignPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddAspNetCoreHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddExtensionsHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddOptionsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddConfigPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlClientPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlServerPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDesignPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddAspNetCoreHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddExtensionsHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddOptionsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddConfigPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlClientPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
             UpdateLabel("generating classes...");
 
@@ -458,37 +459,6 @@ namespace DynCodeGen.UserControls
                 dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 dgv.EndEdit();
             }
-        }
-
-        private void ExecuteCommandAdo(string command, string? workingDirectory = null)
-        {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "dotnet",
-                    Arguments = command,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                    WorkingDirectory = workingDirectory != null ? workingDirectory : Directory.GetCurrentDirectory() // use the provided directory or the current one
-                }
-            };
-
-            process.Start();
-
-            string output = process.StandardOutput.ReadToEnd();
-            string error = process.StandardError.ReadToEnd(); // Capture error output
-
-            process.WaitForExit();
-
-            if (!string.IsNullOrWhiteSpace(error))
-            {
-                Debug.WriteLine("Error: " + error);
-            }
-            Debug.WriteLine(output);
-            AppendLog(output);
-        }     
+        }  
     }
 }

@@ -10,9 +10,8 @@ namespace DynCodeGen.CodeGeneration.Project
 {
     public class ExecuteCliCommand
     {
-            public static void ExecuteCommand(string command,string? workingDirectory = null)
+            public string  ExecuteCommand(string command,string? workingDirectory = null)
         {
-            CreateControl createControl = new CreateControl();
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -39,7 +38,8 @@ namespace DynCodeGen.CodeGeneration.Project
                 Debug.WriteLine("Error: " + error);
             }
             Debug.WriteLine(output);
-            createControl.AppendLog(output);
+            return output;
         }
+
     }
 }

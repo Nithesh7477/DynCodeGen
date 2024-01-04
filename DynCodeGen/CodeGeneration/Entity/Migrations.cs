@@ -9,25 +9,20 @@ namespace DynCodeGen.CodeGeneration.Entity
 {
     public class Migrations
     {
-        public static void RunMigrationsAndUpdates(string apiProjectPath, string infrastructureProjectPath, string migrationName, string dbContextName)
+        public string RunMigrationsAndUpdates(string apiProjectPath, string infrastructureProjectPath, string migrationName, string dbContextName)
         {
 
+
+            StringBuilder execmdStingBuilder = new StringBuilder();
+            ExecuteCliCommand execmd = new ExecuteCliCommand();
             // Add a new migration
-            ExecuteCliCommand.ExecuteCommand($"ef migrations add {migrationName} --context {dbContextName} --startup-project {apiProjectPath} --project {infrastructureProjectPath}", apiProjectPath);
+            execmdStingBuilder.AppendLine(execmd.ExecuteCommand($"ef migrations add {migrationName} --context {dbContextName} --startup-project {apiProjectPath} --project {infrastructureProjectPath}", apiProjectPath.ToString()));
 
 
             // Update the database with the new migration
-            ExecuteCliCommand.ExecuteCommand($"ef database update --context {dbContextName} --startup-project {apiProjectPath} --project {infrastructureProjectPath}", apiProjectPath);
-        }
-        public static void RunMigrationsAndUpdatesForNewTable(string apiProjectPath, string infrastructureProjectPath, string migrationName, string dbContextName)
-        {
+            execmdStingBuilder.AppendLine(execmd.ExecuteCommand($"ef database update --context {dbContextName} --startup-project {apiProjectPath} --project {infrastructureProjectPath}", apiProjectPath));
+            return execmdStingBuilder.ToString();
 
-            // Add a new migration
-            ExecuteCliCommand.ExecuteCommand($"ef migrations add {migrationName} --context {dbContextName} --startup-project {apiProjectPath} --project {infrastructureProjectPath}", apiProjectPath);
-
-
-            // Update the database with the new migration
-            ExecuteCliCommand.ExecuteCommand($"ef database update {migrationName} ", apiProjectPath);
         }
     }
 }

@@ -186,7 +186,7 @@ namespace DynCodeGen.UserControls
             {
 
                 string dbContextPath = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data", "ApplicationDbContext.cs");
-
+                Migrations migrations = new Migrations();
                 if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First")
                 {
                     string modelClassPath = Path.Combine(apiPath, $"{apiName}.Domain", "Entities");
@@ -226,7 +226,7 @@ namespace DynCodeGen.UserControls
 
                     string migrationPath = Path.Combine(apiPath, $"{apiName}.WebAPI");
                     string infrastructurePath = Path.Combine(apiPath, $"{apiName}.Infrastructure");
-                    Migrations.RunMigrationsAndUpdates(migrationPath, infrastructurePath, "AddNewTable", "ApplicationDbContext");
+                    AppendLog(migrations.RunMigrationsAndUpdates(migrationPath, infrastructurePath, "AddNewTable", "ApplicationDbContext").ToString());
 
                 }
                 else if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework- SP")
@@ -275,6 +275,29 @@ namespace DynCodeGen.UserControls
                     MessageBox.Show($"The SP execution code has alredy created in the given file path");
                 }
             }
+        }
+        public void AppendLog(string logText)
+        {
+            // Check if invoking is required and, if so, invoke the method on the UI thread
+            if (txtLog.InvokeRequired)
+            {
+                txtLog.Invoke(new Action<string>(AppendLog), logText);
+                return;
+            }
+
+            //Continue with the UI update on the UI thread
+
+            try
+            {
+                string formattedLog = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {logText}";
+                txtLog.AppendText(formattedLog + Environment.NewLine);
+                txtLog.ScrollToCaret();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
         private void btnValidate_Click(object sender, EventArgs e)

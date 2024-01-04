@@ -1,6 +1,7 @@
 ﻿using DynCodeGen.UserControls;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,11 +43,21 @@ namespace DynCodeGen
 
                 if (result == DialogResult.OK)
                 {
-                    //_createControlParent.txtConnectionString.Text = ConnectionString;
-                    //_createControlParent.txtConnectionString.ReadOnly = true;
-                    _spControlParent.txtConnectionString.Text = ConnectionString;
-                    _spControlParent.txtConnectionString.ReadOnly = true;
-
+                    if (_createControlParent != null)
+                    {
+                        _createControlParent.txtConnectionString.Text = ConnectionString;
+                        _createControlParent.txtConnectionString.ReadOnly = true;
+                    }
+                    else if (_spControlParent != null)
+                    {
+                        ;
+                        _spControlParent.txtConnectionString.ReadOnly = true;
+                    }
+                    else if (_createModelControlParent != null)
+                    {
+                        _createModelControlParent.txtConnectionString.Text = ConnectionString;
+                        _createModelControlParent.txtConnectionString.ReadOnly = true;
+                    }
                     this.Close();
                 }
             }

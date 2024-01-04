@@ -84,6 +84,12 @@ namespace DynCodeGen
             AdoCreatePanelUpdate(btnCP_ADO_SP.Text.ToString());
             btnCP_ADO_SP.BackColor = Color.FromArgb(107, 125, 157);
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ButtonSelectionBGChanged();
+            AdoCreatePanelUpdate(button2.Text.ToString());
+            button2.BackColor = Color.FromArgb(107, 125, 157);
+        }
 
         private void btn_EP_ADO_sp_Click(object sender, EventArgs e)
         {
@@ -98,7 +104,12 @@ namespace DynCodeGen
             CreatePanelUpdate(btnCPEntityFrameworkCF.Text.ToString());
             btnCPEntityFrameworkCF.BackColor = Color.FromArgb(107, 125, 157);
         }
-
+        private void btnCPWithoutEntity_Click(object sender, EventArgs e)
+        {
+            ButtonSelectionBGChanged();
+            CreatePanelUpdate(btnCPWithoutEntity.Text.ToString());
+            btnCPWithoutEntity.BackColor = Color.FromArgb(107, 125, 157);
+        }
         public void CreatePanelUpdate(string header)
         {
             contentPanel.Controls.Clear();
