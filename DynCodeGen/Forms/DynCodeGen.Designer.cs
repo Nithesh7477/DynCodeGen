@@ -278,7 +278,7 @@
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(1294, 12);
+            btnClose.Location = new Point(1283, 12);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(30, 30);
             btnClose.TabIndex = 3;
@@ -297,7 +297,6 @@
             pnlHeader.BackColor = Color.FromArgb(249, 249, 249);
             pnlHeader.Controls.Add(panel1);
             pnlHeader.Controls.Add(pictureBox1);
-            pnlHeader.Controls.Add(button1);
             pnlHeader.Controls.Add(panel3);
             pnlHeader.Controls.Add(btnClose);
             pnlHeader.Dock = DockStyle.Top;
@@ -342,7 +341,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(1247, 12);
+            button1.Location = new Point(1280, 66);
             button1.Name = "button1";
             button1.Size = new Size(35, 31);
             button1.TabIndex = 7;
@@ -382,6 +381,7 @@
             ClientSize = new Size(1332, 717);
             Controls.Add(contentPanel);
             Controls.Add(lblHead);
+            Controls.Add(button1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(pnlHeader);
             FormBorderStyle = FormBorderStyle.None;
