@@ -72,6 +72,8 @@ namespace DynCodeGen.UserControls
         /// <param name="e">e.</param>
         private void btnSourcefile_Click(object sender, EventArgs e)
         {
+            btnValidate.Enabled = true;
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 if (openFileDialog.FileName.Contains("StoredProcedure"))
@@ -429,18 +431,9 @@ namespace DynCodeGen.UserControls
             dgTable.Columns[1].Width = 313;
             dgTable.Columns[2].Width = 313;
 
+            btnValidate.ForeColor = Color.FromArgb(227, 227, 227);
             btnValidate.Enabled = false;
-            btnValidate.ForeColor = SystemColors.GrayText;
-
             btnCreate.Enabled = true;
-        }
-
-        private void dgTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                e.CellStyle.BackColor = Color.FromArgb(107, 125, 157);
-            }
         }
 
         private void dgTable_CellContentClick(object sender, DataGridViewCellEventArgs e)

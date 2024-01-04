@@ -42,8 +42,8 @@ namespace DynCodeGen
 
                 if (result == DialogResult.OK)
                 {
-                    _createControlParent.txtConnectionString.Text = ConnectionString;
-                    _createControlParent.txtConnectionString.ReadOnly = true;
+                    //_createControlParent.txtConnectionString.Text = ConnectionString;
+                    //_createControlParent.txtConnectionString.ReadOnly = true;
                     _spControlParent.txtConnectionString.Text = ConnectionString;
                     _spControlParent.txtConnectionString.ReadOnly = true;
 

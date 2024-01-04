@@ -71,6 +71,8 @@ namespace DynCodeGen.UserControls
         /// <param name="e">e.</param>
         private void btnSourcefile_Click(object sender, EventArgs e)
         {
+            btnValidate.Enabled = true;
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 if (openFileDialog.FileName.Contains("StoredProcedure"))
@@ -193,7 +195,7 @@ namespace DynCodeGen.UserControls
             foreach (var sheetEntry in sheetsData)
             {
                 string className = sheetEntry.Key;
-                string controllerPath = Path.Combine(apiPath + $"\\{apiName}.WebAPI", "Controllers", "usp" + className + "Controller.cs");
+                string controllerPath = Path.Combine(apiPath + $"\\{apiName}.WebAPI", "Controllers", className + "Controller.cs");
                 var temp = dt.Rows.Cast<DataRow>().FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
                 Dictionary<string, string> inputParameters = new Dictionary<string, string>();
 
@@ -257,8 +259,8 @@ namespace DynCodeGen.UserControls
             dgTable.Columns[1].Width = 313;
             dgTable.Columns[2].Width = 313;
 
+            btnValidate.ForeColor = Color.FromArgb(227, 227, 227);
             btnValidate.Enabled = false;
-            btnValidate.ForeColor = SystemColors.GrayText; ;
 
             btnCreate.Enabled = true;
         }
@@ -354,13 +356,6 @@ namespace DynCodeGen.UserControls
                 return false;
             }
 
-        }
-        private void dgTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                e.CellStyle.BackColor = Color.FromArgb(107, 125, 157);
-            }
         }
 
         private void dgTable_CellContentClick(object sender, DataGridViewCellEventArgs e)

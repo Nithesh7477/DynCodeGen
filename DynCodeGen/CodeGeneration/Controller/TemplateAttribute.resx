@@ -394,13 +394,13 @@
     <value>\tpublic class {className}Repository : I{className}Repository\r\n\t{\r\n</value>
   </data>
   <data name="RepositoryClassStartAdo" xml:space="preserve">
-    <value>\tpublic class usp{className}Repository : BaseRepository, Iusp{className}Repository\r\n\t{\r\n</value>
+    <value>\tpublic class {className}Repository : BaseRepository, I{className}Repository\r\n\t{\r\n</value>
   </data>
   <data name="RepositoryConstructor" xml:space="preserve">
     <value>\r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic {className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n</value>
   </data>
   <data name="RepositoryConstructorAdo" xml:space="preserve">
-    <value>private readonly IOptions&lt;ConnectionStrings&gt; options;\r\n\t\r\n\tpublic usp{className}Repository(IConfiguration config, IOptions&lt;ConnectionStrings&gt; options)\r\n\t: base(config)\r\n\t{\r\n\t\tthis.options = options;\r\n\t\tSqlHelper.SetConnectionString(this.options.Value.DefaultConnection);\r\n\t}\r\n</value>
+    <value>private readonly IOptions&lt;ConnectionStrings&gt; options;\r\n\t\r\n\tpublic {className}Repository(IConfiguration config, IOptions&lt;ConnectionStrings&gt; options)\r\n\t: base(config)\r\n\t{\r\n\t\tthis.options = options;\r\n\t\tSqlHelper.SetConnectionString(this.options.Value.DefaultConnection);\r\n\t}\r\n</value>
   </data>
   <data name="RepositoryDelete" xml:space="preserve">
     <value>\t\tpublic void Delete(int {className}Id)\r\n\t\t{\r\n\t\t\tvar entityToDelete = _context.{className}Set.FirstOrDefault(e =&gt; e.{IdName} == {IdName});\r\n\t\t\tif (entityToDelete != null)\r\n\t\t\t{\r\n\t\t\t\t_context.{className}Set.Remove(entityToDelete);\r\n\t\t\t\t_context.SaveChanges();\r\n\t\t\t}\r\n\t\t}\r\n</value>
@@ -415,13 +415,13 @@
     <value>\tpublic  List&lt;Response{className}&gt; Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t// Input\r\n\r\n\t\t\treturn  _context.{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().ToList();\r\n\t\t}</value>
   </data>
   <data name="RepositoryGetMethodEndAdo" xml:space="preserve">
-    <value>\tDataTable dt = SqlHelper.ExecuteSelect&lt;SqlConnection&gt;("{className}", parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tif (dt != null &amp;&amp; dt.Rows.Count &gt; 0)\r\n\t\t{\r\n\t\t\t\t{className}Param = SqlHelper.ConvertDataTableToList&lt;Response{className}&gt;(dt)[0];\r\n\t\t}\r\n\t\treturn {className}Param;\r\n\t\t}\r\n</value>
+    <value>\tDataTable dt = SqlHelper.ExecuteSelect&lt;SqlConnection&gt;("{className}", parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tif (dt != null &amp;&amp; dt.Rows.Count &gt; 0)\r\n\t\t{\r\n\t\t\t\t{className}Param = SqlHelper.ConvertDataTableToList&lt;Response{className}&gt;(dt);\r\n\t\t}\r\n\t\treturn {className}Param;\r\n\t\t}\r\n</value>
   </data>
   <data name="RepositoryGetMethodMiddleAdo" xml:space="preserve">
     <value>\tparameters.Add(new SqlParameter { ParameterName = "@{parameterName}", Value = {className}.{parameterName}, SqlDbType = SqlDbType.{parameterType}, Direction = ParameterDirection.Input });\r\n\t</value>
   </data>
   <data name="RepositoryGetMethodStartAdo" xml:space="preserve">
-    <value>\t\tpublic Response{className} Get{className}Async({Request}{classNameInput} {classNameInput})\r\n\t\t{\r\n\t\t\tResponse{className} {className}Param = new Response{className}();\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t</value>
+    <value>\t\tpublic List&lt;Response{className}&gt; Get{className}Async({Request}{classNameInput} {classNameInput})\r\n\t\t{\r\n\t\t\tList&lt;Response{className}&gt;  {className}Param = new List&lt;Response{className}&gt;();\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t</value>
   </data>
   <data name="RepositoryMethodComments" xml:space="preserve">
     <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>

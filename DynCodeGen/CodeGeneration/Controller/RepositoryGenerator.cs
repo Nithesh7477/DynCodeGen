@@ -216,7 +216,7 @@ namespace DynCodeGen.CodeGeneration.Controller
                 + Regex.Unescape(TemplateHelper.Instance.RepositoryNamespaceEnd));
 
             string classDirectory = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Repository");
-            string classPath = Path.Combine(classDirectory, $"usp{className}Repository.cs");
+            string classPath = Path.Combine(classDirectory, $"{className}Repository.cs");
 
             Directory.CreateDirectory(classDirectory);
             File.WriteAllText(classPath, classContent.ToString());

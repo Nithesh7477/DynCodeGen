@@ -77,27 +77,22 @@ namespace DynCodeGen
             btnEP_EntityFramework_SP.BackColor = Color.FromArgb(29, 51, 92);
             btn_EP_ADO_sp.BackColor = Color.FromArgb(29, 51, 92);
             btnCreateModel.BackColor = Color.FromArgb(29, 51, 92);
-            btnCPWithEntity.BackColor = Color.FromArgb(29, 51, 92);
-            btnCPWithoutEntity.BackColor = Color.FromArgb(29, 51, 92);
-            button2.BackColor = Color.FromArgb(29, 51, 92);
         }
         private void btnCP_ADO_SP_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
-            AdoCreatePanelUpdate(btnCPWithoutEntity.Text.ToString());
-            btnCPWithoutEntity.BackColor = Color.FromArgb(107, 125, 157);
-            CreatePanelUpdate(btnCP_ADO_SP.Text.ToString());
+            AdoCreatePanelUpdate(btnCP_ADO_SP.Text.ToString());
             btnCP_ADO_SP.BackColor = Color.FromArgb(107, 125, 157);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_EP_ADO_sp_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
-            AdoEnhancePanelUpdate(button2.Text.ToString());
-            button2.BackColor = Color.FromArgb(107, 125, 157);
+            AdoEnhancePanelUpdate(btn_EP_ADO_sp.Text.ToString());
+            btn_EP_ADO_sp.BackColor = Color.FromArgb(107, 125, 157);
         }
 
-        private void btnCPWithEntity_Click(object sender, EventArgs e)
+        private void btnCPEntityFrameworkCF_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
             CreatePanelUpdate(btnCPEntityFrameworkCF.Text.ToString());
@@ -190,13 +185,6 @@ namespace DynCodeGen
             ButtonSelectionBGChanged();
             ExistingPanelUpdate(btnEP_EntityFramework_SP.Text.ToString());
             btnEP_EntityFramework_SP.BackColor = Color.FromArgb(107, 125, 157);
-        }
-
-        private void btn_EP_ADO_sp_Click(object sender, EventArgs e)
-        {
-            ButtonSelectionBGChanged();
-            ExistingPanelUpdate(btn_EP_ADO_sp.Text.ToString());
-            btn_EP_ADO_sp.BackColor = Color.FromArgb(107, 125, 157);
         }
 
         private void btnCreateModel_Click(object sender, EventArgs e)
