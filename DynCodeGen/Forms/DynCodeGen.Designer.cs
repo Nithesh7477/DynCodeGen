@@ -148,21 +148,6 @@
             // 
             // btnCP_ADO_SP
             // 
-            btnCPWithoutEntity.BackColor = Color.FromArgb(29, 51, 92);
-            btnCPWithoutEntity.FlatAppearance.BorderSize = 0;
-            btnCPWithoutEntity.FlatStyle = FlatStyle.Flat;
-            btnCPWithoutEntity.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCPWithoutEntity.ForeColor = Color.LightGray;
-            btnCPWithoutEntity.Location = new Point(0, 100);
-            btnCPWithoutEntity.Margin = new Padding(0);
-            btnCPWithoutEntity.Name = "btnCPWithoutEntity";
-            btnCPWithoutEntity.Padding = new Padding(34, 0, 0, 0);
-            btnCPWithoutEntity.Size = new Size(306, 50);
-            btnCPWithoutEntity.TabIndex = 2;
-            btnCPWithoutEntity.Text = "ADO.Net";
-            btnCPWithoutEntity.TextAlign = ContentAlignment.MiddleLeft;
-            btnCPWithoutEntity.UseVisualStyleBackColor = false;
-            btnCPWithoutEntity.Click += btnCPWithoutEntity_Click;
             btnCP_ADO_SP.BackColor = Color.FromArgb(29, 51, 92);
             btnCP_ADO_SP.FlatAppearance.BorderSize = 0;
             btnCP_ADO_SP.FlatStyle = FlatStyle.Flat;
@@ -246,22 +231,7 @@
             btnEP_EntityFramework_SP.Click += btnEP_EntityFramework_SP_Click;
             // 
             // btn_EP_ADO_sp
-            // 
-            button2.BackColor = Color.FromArgb(29, 51, 92);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.LightGray;
-            button2.Location = new Point(0, 150);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Padding = new Padding(34, 0, 0, 0);
-            button2.Size = new Size(306, 50);
-            button2.TabIndex = 3;
-            button2.Text = "ADO.Net";
-            button2.TextAlign = ContentAlignment.MiddleLeft;
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            //           
             btn_EP_ADO_sp.BackColor = Color.FromArgb(29, 51, 92);
             btn_EP_ADO_sp.FlatAppearance.BorderSize = 0;
             btn_EP_ADO_sp.FlatStyle = FlatStyle.Flat;

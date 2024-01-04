@@ -112,7 +112,7 @@
         {
             StringBuilder controllerContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ContollerHeader) + Regex.Unescape(TemplateHelper.Instance.ContollerNamespace) + Regex.Unescape(TemplateHelper.Instance.ContollerSPClass) + Regex.Unescape(TemplateHelper.Instance.ControllerSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.ContollerClassEnd) + Regex.Unescape(TemplateHelper.Instance.ContollerNamespaceEnd));
             string controllerDirectory = Path.Combine(apiPath, $"{apiName}.WebAPI", "Controllers");
-            string controllerPath = Path.Combine(controllerDirectory, $"usp{className}Controller.cs");
+            string controllerPath = Path.Combine(controllerDirectory, $"{className}Controller.cs");
             var temp = dt.Rows.Cast<DataRow>()
                   .FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
             if (temp[0] == className)

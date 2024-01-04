@@ -122,7 +122,7 @@
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(577, 7);
+            btnClose.Location = new Point(576, 7);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(25, 25);
             btnClose.TabIndex = 6;

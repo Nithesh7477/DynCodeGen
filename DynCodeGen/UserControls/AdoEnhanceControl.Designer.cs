@@ -384,7 +384,7 @@
             dgTable.AllowUserToDeleteRows = false;
             dgTable.BackgroundColor = SystemColors.Window;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(29, 51, 92);
             dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = Color.White;
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(107, 125, 157);
@@ -397,7 +397,7 @@
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = SystemColors.Window;
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.ForeColor = Color.Black;
             dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(107, 125, 157);
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
@@ -413,7 +413,6 @@
             dgTable.Size = new Size(1006, 211);
             dgTable.TabIndex = 1;
             dgTable.CellContentClick += dgTable_CellContentClick;
-            dgTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(dgTable_CellFormatting);
             // 
             // txtLog
             // 

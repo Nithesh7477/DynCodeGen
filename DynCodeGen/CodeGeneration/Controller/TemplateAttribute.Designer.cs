@@ -349,7 +349,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Post{className}Async\&quot;)]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok(&quot;Recorde inserted/updated Successfully&quot;);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \&quot;An error occurred while processing your request.\&quot;);\r\n\t\t\t}\r\n\t\t}.
+        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Post{className}Async\&quot;)]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok(&quot;Record inserted/updated Successfully&quot;);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \&quot;An error occurred while processing your request.\&quot;);\r\n\t\t\t}\r\n\t\t}.
         /// </summary>
         public static string ControllerPostMethod {
             get {
@@ -556,7 +556,6 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic interface I{className}Repository\r\n\t{\r\n.
         ///   Looks up a localized string similar to \tint Post{className}Async(Request{className} request);\r\n.
         /// </summary>
         public static string IRepositoryPostMethodAdo {
@@ -566,7 +565,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic interface Iusp{className}Repository\r\n\t{\r\n.
+        ///   Looks up a localized string similar to \tpublic interface I{className}Repository\r\n\t{\r\n.
         /// </summary>
         public static string IRepositorySPInterface {
             get {
@@ -701,7 +700,6 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic interface Iusp{className}Service\r\n\t{\r\n.
         ///   Looks up a localized string similar to \tpublic interface I{className}Service\r\n\t{\r\n.
         /// </summary>
         public static string IServiceSPInterface {
@@ -891,7 +889,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic class usp{className}Repository : BaseRepository, Iusp{className}Repository\r\n\t{\r\n.
+        ///   Looks up a localized string similar to \tpublic class {className}Repository : BaseRepository, I{className}Repository\r\n\t{\r\n.
         /// </summary>
         public static string RepositoryClassStartAdo {
             get {
@@ -909,7 +907,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to private readonly IOptions&lt;ConnectionStrings&gt; options;\r\n\t\r\n\tpublic usp{className}Repository(IConfiguration config, IOptions&lt;ConnectionStrings&gt; options)\r\n\t: base(config)\r\n\t{\r\n\t\tthis.options = options;\r\n\t\tSqlHelper.SetConnectionString(this.options.Value.DefaultConnection);\r\n\t}\r\n.
+        ///   Looks up a localized string similar to private readonly IOptions&lt;ConnectionStrings&gt; options;\r\n\t\r\n\tpublic {className}Repository(IConfiguration config, IOptions&lt;ConnectionStrings&gt; options)\r\n\t: base(config)\r\n\t{\r\n\t\tthis.options = options;\r\n\t\tSqlHelper.SetConnectionString(this.options.Value.DefaultConnection);\r\n\t}\r\n.
         /// </summary>
         public static string RepositoryConstructorAdo {
             get {
@@ -954,7 +952,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tDataTable dt = SqlHelper.ExecuteSelect&lt;SqlConnection&gt;(&quot;{className}&quot;, parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tif (dt != null &amp;&amp; dt.Rows.Count &gt; 0)\r\n\t\t{\r\n\t\t\t\t{className}Param = SqlHelper.ConvertDataTableToList&lt;Response{className}&gt;(dt)[0];\r\n\t\t}\r\n\t\treturn {className}Param;\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \tDataTable dt = SqlHelper.ExecuteSelect&lt;SqlConnection&gt;(&quot;{className}&quot;, parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tif (dt != null &amp;&amp; dt.Rows.Count &gt; 0)\r\n\t\t{\r\n\t\t\t\t{className}Param = SqlHelper.ConvertDataTableToList&lt;Response{className}&gt;(dt);\r\n\t\t}\r\n\t\treturn {className}Param;\r\n\t\t}\r\n.
         /// </summary>
         public static string RepositoryGetMethodEndAdo {
             get {
@@ -972,7 +970,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic Response{className} Get{className}Async({Request}{classNameInput} {classNameInput})\r\n\t\t{\r\n\t\t\tResponse{className} {className}Param = new Response{className}();\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t.
+        ///   Looks up a localized string similar to \t\tpublic List&lt;Response{className}&gt; Get{className}Async({Request}{classNameInput} {classNameInput})\r\n\t\t{\r\n\t\t\tList&lt;Response{className}&gt;  {className}Param = new List&lt;Response{className}&gt;();\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t.
         /// </summary>
         public static string RepositoryGetMethodStartAdo {
             get {
@@ -1053,7 +1051,6 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic class usp{className}Repository : Iusp{className}Repository\r\n\t{\r\n.
         ///   Looks up a localized string similar to \tpublic class {className}Repository : I{className}Repository\r\n\t{\r\n.
         /// </summary>
         public static string RepositorySPClassStart {
@@ -1234,7 +1231,6 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic class usp{className}Service : Iusp{className}Service\r\n\t{\r\n.
         ///   Looks up a localized string similar to \tpublic class {className}Service : I{className}Service\r\n\t{\r\n.
         /// </summary>
         public static string ServiceSPClassStart {
