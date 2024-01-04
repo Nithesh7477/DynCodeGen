@@ -126,6 +126,9 @@
   <data name="AddAspNetCoreHostingPackage" xml:space="preserve">
     <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Hosting</value>
   </data>
+  <data name="AddConfigPackage" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Extensions.Configuration.Abstractions --version 8.0.0</value>
+  </data>
   <data name="AddDesignPackage" xml:space="preserve">
     <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design --version 7.0.11</value>
   </data>
@@ -147,6 +150,12 @@
   <data name="AddInfrastructureReferringDomain" xml:space="preserve">
     <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj reference {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj</value>
   </data>
+  <data name="AddOptionsPackage" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Extensions.Options --version 8.0.0</value>
+  </data>
+  <data name="AddSqlClientPackage" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Data.SqlClient --version 5.1.2</value>
+  </data>
   <data name="AddSqlServerPackage" xml:space="preserve">
     <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.11</value>
   </data>
@@ -161,6 +170,9 @@
   </data>
   <data name="AddWebAPIReferringInfrastructure" xml:space="preserve">
     <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj reference {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj</value>
+  </data>
+  <data name="BaseRepository" xml:space="preserve">
+    <value>namespace {apiName}.Infrastructure.Repository\r\n{\r\n    using Microsoft.Extensions.Configuration;\r\n\r\n    /// &lt;summary&gt;\r\n    /// BaseRepository.\r\n    /// &lt;/summary&gt;\r\n    public class BaseRepository\r\n    {\r\n        private readonly IConfiguration config;\r\n\r\n        /// &lt;summary&gt;\r\n        /// Initializes a new instance of the &lt;see cref=\"BaseRepository\"/&gt; class.\r\n        /// BaseRepository.\r\n        /// &lt;/summary&gt;\r\n        /// &lt;param name=\"config\"&gt;config.&lt;/param&gt;\r\n        public BaseRepository(IConfiguration config)\r\n        {\r\n            this.config = config;\r\n        }\r\n\r\n        /// &lt;summary&gt;\r\n        /// This method is used to retrieve connection string from the configuration.\r\n        /// &lt;/summary&gt;\r\n        /// &lt;returns&gt;Connection String.&lt;/returns&gt;\r\n        public string GetConnectionString()\r\n        {\r\n            string cs = this.config[\"DBSettings:ConnectionString\"];\r\n            return cs;\r\n        }\r\n    }\r\n}\r\n</value>
   </data>
   <data name="ContollerAdd" xml:space="preserve">
     <value>\t\t\r\n\r\n\t\t[HttpPost(\"Add\")]\r\n\t\tpublic IActionResult Add([FromBody] {className} entity)\r\n\t\t{\r\n\t\t\t_service.Add(entity);\r\n\t\t\treturn CreatedAtAction(nameof(GetById), new { {IdName} = entity.{IdName}}, entity);\r\n\t\t}</value>
@@ -202,7 +214,10 @@
     <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
   </data>
   <data name="ControllerPostMethod" xml:space="preserve">
-    <value>\t[HttpPost(\"Post{className}Async\")]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok("Recode inserted/updated Successfully");\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \"An error occurred while processing your request.\");\r\n\t\t\t}\r\n\t\t}</value>
+    <value>\t[HttpPost(\"Post{className}Async\")]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok("Record inserted/updated Successfully");\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \"An error occurred while processing your request.\");\r\n\t\t\t}\r\n\t\t}</value>
+  </data>
+  <data name="ControllerPostMethodAdo" xml:space="preserve">
+    <value>\t[HttpPost(\"Post{className}Async\")]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\tif(Result &gt; 0)\r\n\t\t\t\t{\r\n\t\t\t\treturn Ok("Record inserted/updated Successfully");\r\n\t\t\t}\r\n\t\t\telse\r\n\t\t\t\t{\r\n\t\t\t\treturn NotFound("Insertion Failed");\r\n\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \"An error occurred while processing your request.\");\r\n\t\t\t}\r\n\t\t}</value>
   </data>
   <data name="ControllerSPMethodComments" xml:space="preserve">
     <value>\r\n\t\t// GET/GETALL\r\n\t\t// INSERT/UPDATE\r\n</value>
@@ -267,6 +282,9 @@
   <data name="IRepositoryPostMethod" xml:space="preserve">
     <value>\tResponse{className} Post{className}Async(Request{className} {className});</value>
   </data>
+  <data name="IRepositoryPostMethodAdo" xml:space="preserve">
+    <value>\tint Post{className}Async(Request{className} request);\r\n</value>
+  </data>
   <data name="IRepositorySPInterface" xml:space="preserve">
     <value>\tpublic interface Iusp{className}Repository\r\n\t{\r\n</value>
   </data>
@@ -308,6 +326,9 @@
   </data>
   <data name="IServicePostMethod" xml:space="preserve">
     <value>\tResponse{className} Post{className}Async(Request{className} {className});</value>
+  </data>
+  <data name="IServicePostMethodAdo" xml:space="preserve">
+    <value>\tint Post{className}Async(Request{className} {className});</value>
   </data>
   <data name="IServiceSPInterface" xml:space="preserve">
     <value>\tpublic interface Iusp{className}Service\r\n\t{\r\n</value>
@@ -372,8 +393,14 @@
   <data name="RepositoryClassStart" xml:space="preserve">
     <value>\tpublic class {className}Repository : I{className}Repository\r\n\t{\r\n</value>
   </data>
+  <data name="RepositoryClassStartAdo" xml:space="preserve">
+    <value>\tpublic class usp{className}Repository : BaseRepository, Iusp{className}Repository\r\n\t{\r\n</value>
+  </data>
   <data name="RepositoryConstructor" xml:space="preserve">
     <value>\r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic {className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryConstructorAdo" xml:space="preserve">
+    <value>private readonly IOptions&lt;ConnectionStrings&gt; options;\r\n\t\r\n\tpublic usp{className}Repository(IConfiguration config, IOptions&lt;ConnectionStrings&gt; options)\r\n\t: base(config)\r\n\t{\r\n\t\tthis.options = options;\r\n\t\tSqlHelper.SetConnectionString(this.options.Value.DefaultConnection);\r\n\t}\r\n</value>
   </data>
   <data name="RepositoryDelete" xml:space="preserve">
     <value>\t\tpublic void Delete(int {className}Id)\r\n\t\t{\r\n\t\t\tvar entityToDelete = _context.{className}Set.FirstOrDefault(e =&gt; e.{IdName} == {IdName});\r\n\t\t\tif (entityToDelete != null)\r\n\t\t\t{\r\n\t\t\t\t_context.{className}Set.Remove(entityToDelete);\r\n\t\t\t\t_context.SaveChanges();\r\n\t\t\t}\r\n\t\t}\r\n</value>
@@ -387,6 +414,15 @@
   <data name="RepositoryGetMethod" xml:space="preserve">
     <value>\tpublic  Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t// Input\r\n\r\n\t\t\treturn  _context.usp{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}</value>
   </data>
+  <data name="RepositoryGetMethodEndAdo" xml:space="preserve">
+    <value>\tDataTable dt = SqlHelper.ExecuteSelect&lt;SqlConnection&gt;("{className}", parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tif (dt != null &amp;&amp; dt.Rows.Count &gt; 0)\r\n\t\t{\r\n\t\t\t\t{className}Param = SqlHelper.ConvertDataTableToList&lt;Response{className}&gt;(dt)[0];\r\n\t\t}\r\n\t\treturn {className}Param;\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryGetMethodMiddleAdo" xml:space="preserve">
+    <value>\tparameters.Add(new SqlParameter { ParameterName = "@{parameterName}", Value = {className}.{parameterName}, SqlDbType = SqlDbType.{parameterType}, Direction = ParameterDirection.Input });\r\n\t</value>
+  </data>
+  <data name="RepositoryGetMethodStartAdo" xml:space="preserve">
+    <value>\t\tpublic Response{className} Get{className}Async({Request}{classNameInput} {classNameInput})\r\n\t\t{\r\n\t\t\tResponse{className} {className}Param = new Response{className}();\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t</value>
+  </data>
   <data name="RepositoryMethodComments" xml:space="preserve">
     <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
   </data>
@@ -398,6 +434,18 @@
   </data>
   <data name="RepositoryPostMethod" xml:space="preserve">
     <value>\tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\t\t// Input\r\n\t\t\t\treturn _context.usp{className}Set.FromSqlRaw(\"{Execute Statement}\",{Parameters}).AsEnumerable().FirstOrDefault();\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryPostMethodAdo" xml:space="preserve">
+    <value>public int Post{methodName}(List&lt;{parameterType}&gt; {parameterName})\r\n\t{\r\n\t\tint insertRowsCount = 0;\r\n\t\t//... Further implementation for POST ...\r\n\t\treturn insertRowsCount;\r\n\t}\r\n</value>
+  </data>
+  <data name="RepositoryPostMethodEndAdo" xml:space="preserve">
+    <value>\tDictionary&lt;string, dynamic&gt; result = SqlHelper.ExecuteNonQuery&lt;SqlConnection&gt;("{className}", parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tinsertRowsCount = insertRowsCount + result["RowsAffected"];\r\n\t\treturn insertRowsCount;\r\n\t\t}\r\n</value>
+  </data>
+  <data name="RepositoryPostMethodMiddleAdo" xml:space="preserve">
+    <value>\tparameters.Add(new SqlParameter { ParameterName = "@{parameterName}", Value = {className}.{parameterName}, SqlDbType = SqlDbType.{parameterType}, Direction = ParameterDirection.Input });\r\n\t</value>
+  </data>
+  <data name="RepositoryPostMethodStartAdo" xml:space="preserve">
+    <value>\t\tpublic int Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\tint insertRowsCount = 0;\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t</value>
   </data>
   <data name="RepositorySPClassStart" xml:space="preserve">
     <value>\tpublic class usp{className}Repository : Iusp{className}Repository\r\n\t{\r\n</value>
@@ -413,6 +461,9 @@
   </data>
   <data name="RepositoryUsing" xml:space="preserve">
     <value>using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\nusing Microsoft.Data.SqlClient;\r\nusing Microsoft.EntityFrameworkCore;</value>
+  </data>
+  <data name="RepositoryUsingAdo" xml:space="preserve">
+    <value>using {apiName}.Infrastructure.DataAccess;\r\nusing {apiName}.Application.IRepository;\r\nusing System.Data;\r\nusing System.Data.Common;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.Options;\r\nusing Microsoft.Data.SqlClient;\r\n</value>
   </data>
   <data name="ServiceAdd" xml:space="preserve">
     <value>\t\tpublic void Add({className} entity)\r\n\t\t{\r\n\t\t\t_repository.Add(entity);\r\n\t\t}\r\n</value>
@@ -438,6 +489,9 @@
   <data name="ServiceGetMethod" xml:space="preserve">
     <value>\t\tpublic Response{className} Get{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Get{className}Async({className});\r\n\t\t}</value>
   </data>
+  <data name="ServiceGetMethodAdo" xml:space="preserve">
+    <value>\tpublic Response{className} Get{className}Async(Request{className} request)\r\n\t{\r\n\t\t// Method implementation\r\n\t}\r\n</value>
+  </data>
   <data name="ServiceMethodComments" xml:space="preserve">
     <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
   </data>
@@ -449,6 +503,9 @@
   </data>
   <data name="ServicePostMethod" xml:space="preserve">
     <value>\t\tpublic Response{className} Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Post{className}Async({className});\r\n\t\t}</value>
+  </data>
+  <data name="ServicePostMethodAdo" xml:space="preserve">
+    <value>\t\tpublic int Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Post{className}Async({className});\r\n\t\t}</value>
   </data>
   <data name="ServiceSPClassStart" xml:space="preserve">
     <value>\tpublic class usp{className}Service : Iusp{className}Service\r\n\t{\r\n</value>
@@ -474,6 +531,36 @@
   <data name="SPStartupForRepositoriesAndServices" xml:space="preserve">
     <value>\t\t\tservices.AddScoped&lt;Iusp{className}Repository, usp{className}Repository&gt;();\r\n\t\t\tservices.AddScoped&lt;Iusp{className}Service, usp{className}Service &gt;();</value>
   </data>
+  <data name="SqlHelperClassEnd" xml:space="preserve">
+    <value>}\r\n}\r\n</value>
+  </data>
+  <data name="SqlHelperClassStart" xml:space="preserve">
+    <value>public static class SqlHelper\r\n{\r\n    private static string connectionString = string.Empty;\r\n</value>
+  </data>
+  <data name="SqlHelperConvertDataTableToList" xml:space="preserve">
+    <value>public static List&lt;T&gt; ConvertDataTableToList&lt;T&gt;(DataTable dt)\r\n{\r\n\tList&lt;T&gt; data = new List&lt;T&gt;();\r\n\tType temp = typeof(T);\r\n\tPropertyInfo[] props = temp.GetProperties();\r\n\tstring[] propsName = new string[props.Length];\r\n\tint i = 0;\r\n\tforeach (PropertyInfo pro in props)\r\n\t{\r\n\t\tvar pInfo = typeof(T).GetProperty(pro.Name).GetCustomAttribute&lt;ColumnAttribute&gt;();\r\n\t\tpropsName[i] = (pInfo != null &amp;&amp; !string.IsNullOrEmpty(pInfo.Name)) ? pInfo.Name : pro.Name;\r\n\t\ti++;\r\n\t}\r\n\tforeach (DataRow row in dt.Rows)\r\n\t{\r\n\t\tT item = GetItem&lt;T&gt;(row, props, propsName);\r\n\t\tdata.Add(item);\r\n\t}\r\n\treturn data;\r\n}\r\n</value>
+  </data>
+  <data name="SqlHelperExecuteNonQuery" xml:space="preserve">
+    <value>public static Dictionary&lt;string, dynamic&gt; ExecuteNonQuery&lt;T&gt;(string query, List&lt;DbParameter&gt; dbParams, ExecutionType executionType, int timeOut = 0)\r\nwhere T : IDbConnection, new()\r\n{\r\n\tDictionary&lt;string, dynamic&gt; result = new Dictionary&lt;string, dynamic&gt;();\r\n\tusing (var sqlConnection = new T())\r\n\t{\r\n\t\tsqlConnection.ConnectionString = connectionString;\r\n\t\tusing (var sqlCommand = sqlConnection.CreateCommand())\r\n\t\t{\r\n\t\t\tsqlCommand.CommandText = query;\r\n\t\t\t// Set command type and timeout\r\n\t\t\tsqlCommand.CommandType = executionType == ExecutionType.Procedure ? CommandType.StoredProcedure : CommandType.Text;\r\n\t\t\tsqlCommand.CommandTimeout = timeOut;\r\n\t\t\tforeach (var param in dbParams)\r\n\t\t\t{\r\n\t\t\t\tsqlCommand.Parameters.Add(param);\r\n\t\t\t}\r\n\t\t\tsqlConnection.Open();\r\n\t\t\tresult[\"RowsAffected\"] = sqlCommand.ExecuteNonQuery();\r\n\t\t\t// Handle output parameters\r\n\t\t\tforeach (DbParameter param in dbParams)\r\n\t\t\t{\r\n\t\t\t\tif (param.Direction == ParameterDirection.Output || param.Direction == ParameterDirection.InputOutput)\r\n\t\t\t\t{\r\n\t\t\t\t\tresult[param.ParameterName] = param.Value;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\treturn result;\r\n\t\t}\r\n\t}\r\n}\r\n</value>
+  </data>
+  <data name="SqlHelperExecuteSelect" xml:space="preserve">
+    <value>public static DataTable ExecuteSelect&lt;T&gt;(string query, List&lt;DbParameter&gt; sqlParams, ExecutionType executionType)\r\nwhere T : IDbConnection, new()\r\n{\r\n\tusing (var sqlConnection = new T())\r\n\t{\r\n\t\tsqlConnection.ConnectionString = connectionString;\r\n\t\tusing (var sqlCommand = sqlConnection.CreateCommand())\r\n\t\t{\r\n\t\t\tsqlCommand.CommandText = query;\r\n\t\t\t// Set command type based on executionType\r\n\t\t\tsqlCommand.CommandType = executionType == ExecutionType.Procedure ? CommandType.StoredProcedure : CommandType.Text;\r\n\t\t\tforeach (var param in sqlParams)\r\n\t\t\t{\r\n\t\t\t\tsqlCommand.Parameters.Add(param);\r\n\t\t\t}\r\n\t\t\tsqlConnection.Open();\r\n\t\t\tvar dataTable = new DataTable();\r\n\t\t\tdataTable.Load(sqlCommand.ExecuteReader());\r\n\t\t\treturn dataTable;\r\n\t\t}\r\n\t}\r\n}\r\n</value>
+  </data>
+  <data name="SqlHelperExecutionType" xml:space="preserve">
+    <value>public enum ExecutionType\r\n{\r\n\t/// &lt;summary&gt;Query&lt;/summary&gt;\r\n\tQuery,\r\n\r\n\t/// &lt;summary&gt;Procedure&lt;/summary&gt;\r\n\tProcedure,\r\n}\r\n</value>
+  </data>
+  <data name="SqlHelperGetItem" xml:space="preserve">
+    <value>public static T GetItem&lt;T&gt;(DataRow dr, PropertyInfo[] props, string[] propsName)\r\n{\r\n\tT obj = Activator.CreateInstance&lt;T&gt;();\r\n\tforeach (DataColumn column in dr.Table.Columns)\r\n\t{\r\n\t\tint i = 0;\r\n\t\tforeach (PropertyInfo pro in props)\r\n\t\t{\r\n\t\t\tif (string.Compare(propsName[i], column.ColumnName, true, CultureInfo.CurrentCulture) == 0)\r\n\t\t\t{\r\n\t\t\t\tif (dr[column.ColumnName] != DBNull.Value)\r\n\t\t\t\t{\r\n\t\t\t\t\tpro.SetValue(obj, dr[column.ColumnName], null);\r\n\t\t\t\t}\r\n\t\t\t\telse\r\n\t\t\t\t{\r\n\t\t\t\t\tpro.SetValue(obj, null, null);\r\n\t\t\t\t}\r\n\t\t\t\tbreak;\r\n\t\t\t}\r\n\t\t\ti++;\r\n\t\t}\r\n\t}\r\n\treturn obj;\r\n}\r\n</value>
+  </data>
+  <data name="SqlHelperNamespace" xml:space="preserve">
+    <value>namespace {apiName}.Infrastructure.DataAccess\r\n{</value>
+  </data>
+  <data name="SqlHelperSetConnectionString" xml:space="preserve">
+    <value>public static void SetConnectionString(string value)\r\n{\r\n\tconnectionString = value;\r\n}\r\n</value>
+  </data>
+  <data name="SqlHelperUsings" xml:space="preserve">
+    <value>using System;\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel.DataAnnotations.Schema;\r\nusing System.Data;\r\nusing System.Data.Common;\r\nusing System.Globalization;\r\nusing System.Reflection;</value>
+  </data>
   <data name="StartupAddCorsMethod" xml:space="preserve">
     <value>\t\tprivate void AddCors(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddCors(options =&gt;\r\n\t\t\t{\r\r\t\t\t\toptions.AddPolicy(name: \"AllowAll\", builder =&gt; builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());\r\n\t\t\t});\r\n\t\t}\r\n</value>
   </data>
@@ -488,6 +575,9 @@
   </data>
   <data name="StartupConfigureServicesMethod" xml:space="preserve">
     <value>\t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;\r\n\t\t\toptions.UseSqlServer(Configuration.GetConnectionString(\"DefaultConnection\")));\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\"v1\", new OpenApiInfo { Title = $\"{apiName}\", Version = \"v1\" }));\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n</value>
+  </data>
+  <data name="StartupConfigureServicesMethodAdo" xml:space="preserve">
+    <value>\t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\"v1\", new OpenApiInfo { Title = $\"{apiName}\", Version = \"v1\" }));\r\n\t\t\tservices.Configure&lt;ConnectionStrings&gt;(Configuration.GetSection("ConnectionStrings"));\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n</value>
   </data>
   <data name="StartupConfigureSwaggerMethod" xml:space="preserve">
     <value>\t\tprivate void ConfigureSwagger(IApplicationBuilder app)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; \r\n\t\t\t{\r\n\t\t\t\tc.SwaggerEndpoint(\"/swagger/v1/swagger.json\", $\"{apiName} v1\");\r\n\t\t\t});\r\n\t\t}\r\n</value>
@@ -509,5 +599,8 @@
   </data>
   <data name="StartupUsing" xml:space="preserve">
     <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Data;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n</value>
+  </data>
+  <data name="StartupUsingAdo" xml:space="preserve">
+    <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n</value>
   </data>
 </root>

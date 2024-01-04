@@ -73,12 +73,20 @@ namespace DynCodeGen
             btnHome.BackColor = Color.FromArgb(29, 51, 92);
             btnCPWithEntity.BackColor = Color.FromArgb(29, 51, 92);
             btnCPWithoutEntity.BackColor = Color.FromArgb(29, 51, 92);
+            button2.BackColor = Color.FromArgb(29, 51, 92);
         }
         private void btnCPWithoutEntity_Click(object sender, EventArgs e)
         {
             ButtonSelectionBGChanged();
             AdoCreatePanelUpdate(btnCPWithoutEntity.Text.ToString());
             btnCPWithoutEntity.BackColor = Color.FromArgb(107, 125, 157);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ButtonSelectionBGChanged();
+            AdoEnhancePanelUpdate(button2.Text.ToString());
+            button2.BackColor = Color.FromArgb(107, 125, 157);
         }
 
         private void btnCPWithEntity_Click(object sender, EventArgs e)

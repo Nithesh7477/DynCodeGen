@@ -7,29 +7,31 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace DynCodeGen.UserControls
 {
     public partial class AdoCreateControl : UserControl
     {
         private AdoEnhanceControl adoEnhanceControlInstance;
-        private Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string, string>>>();
+        private Dictionary<string, List<Tuple<string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string>>>();
         private string folderPath = string.Empty;
-        DataTable dt = new DataTable();
+        DataTable dt = new DataTable();       
 
         /// <summary>
         /// AdoCreateControl.
         /// </summary>
         public AdoCreateControl()
         {
-            InitializeComponent();
-
+            InitializeComponent();       
         }
 
         /// <summary>
@@ -82,18 +84,17 @@ namespace DynCodeGen.UserControls
 
                         foreach (ExcelWorksheet worksheet in package.Workbook.Worksheets)
                         {
-                            List<Tuple<string, string, string, string>> sheetData = new List<Tuple<string, string, string, string>>();
+                            List<Tuple<string, string, string>> sheetData = new List<Tuple<string, string, string>>();
 
                             int rowCount = worksheet.Dimension.End.Row;
 
                             for (int row = 2; row <= rowCount; row++)
                             {
-                                string valueA = worksheet.Cells[row, 1].Text;
-                                string valueB = worksheet.Cells[row, 2].Text;
-                                string valueC = worksheet.Cells[row, 3].Text;
-                                string valueD = worksheet.Cells[row, 4].Text;
+                                string valueA = worksheet.Cells[row, 1].Text; // VariableName
+                                string valueB = worksheet.Cells[row, 2].Text; // DataType
+                                string valueC = worksheet.Cells[row, 3].Text; // ParameterType
 
-                                sheetData.Add(new Tuple<string, string, string, string>(valueA, valueB, valueC, valueD));
+                                sheetData.Add(new Tuple<string, string, string>(valueA, valueB, valueC));
                             }
 
                             sheetsData.Add(worksheet.Name, sheetData);
@@ -104,7 +105,7 @@ namespace DynCodeGen.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("Please Use the StoredProcedure template.\r\n\r\nIf dont have one download it from the home, update the StoredProcedure template and then try uploading it here ");
+                    MessageBox.Show("Please Use the StoredProcedure template.\r\n\r\nIf you don't have one download it from the home, update the StoredProcedure template and then try uploading it here ");
                 }
             }
         }
@@ -217,8 +218,10 @@ namespace DynCodeGen.UserControls
 
         private void GenerateWebAPI(string apiName, string apiPath, string connectionString)
         {
+            UpdateProgressBar(25);
+
             // Create a WebAPI project
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateWebAPI).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateWebAPI).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             // Set the connection string in appsettings.json
             string appSettingsPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.json");
@@ -229,77 +232,90 @@ namespace DynCodeGen.UserControls
             AddConnectionString.SetConnectionString(appSettingsDevPath, connectionString);
 
             // Create a solution
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             // Create Application, Domain, and Infrastructure projects
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.CreateInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Domain", "Entities"));
             Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data"));
 
             // Add all projects to the solution
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDomainProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddWebAPIProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddApplicationProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddDomainProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
-            UpdateProgressBar(25);
+            UpdateProgressBar(50);
             UpdateLabel("adding project dependencies...");
 
             // Add project references
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
-            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddApplicationReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCommandAdo(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+
+            // Add packages to the Infrastructure and WebAPI projects
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlServerPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDesignPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddAspNetCoreHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddExtensionsHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddOptionsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddConfigPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
+            ExecuteCliCommand.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlClientPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}"));
 
             UpdateLabel("generating classes...");
 
             string requestModelClassPath = Path.Combine(apiPath + $"\\{apiName}.Domain", "Entities", "Request");
             string responseModelClassPath = Path.Combine(apiPath + $"\\{apiName}.Domain", "Entities", "Response");
-            ModelClassGenerator.GenerateModelClassesFromDataForSp(sheetsData, requestModelClassPath, responseModelClassPath);
+            ModelClassGenerator.GenerateModelClassesFromDataAdo(sheetsData, requestModelClassPath, responseModelClassPath);
 
-            UpdateStartupFile.CreateStartupFile(apiName, apiPath);
+            string DBSettingsModelClassPath = Path.Combine(apiPath + $"\\{apiName}.Domain", "Entities");
+            ModelClassGenerator.GenerateDBSettingsModelClass(DBSettingsModelClassPath);
+
+            UpdateStartupFile.CreateStartupFileAdo(apiName, apiPath);
             UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
 
-            UpdateProgressBar(50);
+            UpdateProgressBar(75);
             UpdateLabel("creating repositories...");
 
+            SqlHelperGenerator.GenerateSqlHelperClass(apiName, apiPath);
+
+            RepositoryGenerator.GenerateBaseRepositoryClass(apiName, apiPath);
 
             foreach (var sheetEntry in sheetsData)
             {
-                string IdName = "";
+                string className = sheetEntry.Key;
+                var temp = dt.Rows.Cast<DataRow>().FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
+                Dictionary<string, string> inputParameters = new Dictionary<string, string>();
+
                 foreach (var Value in sheetEntry.Value)
                 {
-                    if (Value.Item1.Contains("Id") && !Value.Item3.Contains("ForeignKey"))
+                    if (Value.Item3.Contains("INPUT"))
                     {
-                        IdName = Value.Item1;
+                        inputParameters.Add(Value.Item1, Value.Item2);
                     }
                 }
 
-                // Generate repositories
-                string className = sheetEntry.Key;
-                InterfaceGenerator.GenerateRepositoryInterface(apiName, apiPath, className, IdName, dt);
-                RepositoryGenerator.GenerateRepositoryImplementation(apiName, apiPath, className, IdName, dt);
+                if (((bool)temp[1] == true) || ((bool)temp[2] == true))
+                {
+                    // Generate controllers
+                    ControllerGenerator.GenerateControllerAdo(apiName, apiPath, className, dt);
 
-                // Generate services
-                InterfaceGenerator.GenerateServiceInterface(apiName, apiPath, className, IdName, dt);
-                ServiceGenerator.GenerateServiceImplementation(apiName, apiPath, className, IdName, dt);
+                    // Generate services
+                    InterfaceGenerator.GenerateServiceInterfaceAdo(apiName, apiPath, className, dt);
+                    ServiceGenerator.GenerateServiceImplementationAdo(apiName, apiPath, className, dt);
 
-                // Generate controllers
-                ControllerGenerator.GenerateController(apiName, apiPath, className, IdName, dt);
+                    // Generate repositories
+                    InterfaceGenerator.GenerateRepositoryInterfaceAdo(apiName, apiPath, className, dt);
+                    RepositoryGenerator.GenerateRepositoryImplementationAdo(apiName, apiPath, className, dt, inputParameters);
+
+                    UpdateStartupFile.UpdateStartupForRepositoriesAndServicesAdo(apiName, apiPath, className);
+                }
             }
-
-            UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "Table");
-
-            UpdateProgressBar(75);
-            UpdateLabel("running migrations...");
-
-            string migrationPath = Path.Combine(apiPath, $"{apiName}.WebAPI");
-            string infrastructurePath = Path.Combine(apiPath, $"{apiName}.Infrastructure");
-            Migrations.RunMigrationsAndUpdates(migrationPath, infrastructurePath, "InitialCreate", "ApplicationDbContext");
         }
 
         private void ShowOrHideProgressBar(string text)
@@ -369,12 +385,6 @@ namespace DynCodeGen.UserControls
             }
         }
 
-        public void ExternalAppendLog(string logText)
-        {
-            // Call AppendLog from here
-            AppendLog(logText);
-        }
-
         public void AppendLog(string logText)
         {
             // Check if invoking is required and, if so, invoke the method on the UI thread
@@ -420,7 +430,7 @@ namespace DynCodeGen.UserControls
             dgTable.Columns[2].Width = 313;
 
             btnValidate.Enabled = false;
-            btnValidate.ForeColor = SystemColors.GrayText; ;
+            btnValidate.ForeColor = SystemColors.GrayText;
 
             btnCreate.Enabled = true;
         }
@@ -438,32 +448,54 @@ namespace DynCodeGen.UserControls
             var dgv = sender as DataGridView;
             if (dgv == null || e.RowIndex < 0) return; // Early exit if casting failed or if the header row is clicked
 
-            // Assuming "Get / GetAll" is at column index 1 and "Insert / Update" is at column index 2
             int getColumnIndex = dgv.Columns["Get / GetAll"].Index;
             int insertColumnIndex = dgv.Columns["Insert / Update"].Index;
 
-            // Only proceed if the clicked cell is in one of the checkbox columns
             if (e.ColumnIndex == getColumnIndex || e.ColumnIndex == insertColumnIndex)
             {
-                // Invert the value for the clicked checkbox
                 bool currentStatus = (bool)dgv[e.ColumnIndex, e.RowIndex].Value;
                 dgv[e.ColumnIndex, e.RowIndex].Value = !currentStatus;
 
-                // Determine the index of the other checkbox in the same row and set it to false
                 int otherColumnIndex = (e.ColumnIndex == getColumnIndex) ? insertColumnIndex : getColumnIndex;
                 dgv[otherColumnIndex, e.RowIndex].Value = false; // Uncheck the other checkbox
 
-                // Update the underlying DataTable
                 dt.Rows[e.RowIndex]["Get / GetAll"] = dgv[getColumnIndex, e.RowIndex].Value;
                 dt.Rows[e.RowIndex]["Insert / Update"] = dgv[insertColumnIndex, e.RowIndex].Value;
 
-                // Commit the changes to the DataGridView to refresh the UI
                 dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 dgv.EndEdit();
-
-                // Optionally, you can refresh the entire DataGridView, but it should not be necessary
-                // dgv.Refresh();
             }
         }
+
+        private void ExecuteCommandAdo(string command, string? workingDirectory = null)
+        {
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "dotnet",
+                    Arguments = command,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    WorkingDirectory = workingDirectory != null ? workingDirectory : Directory.GetCurrentDirectory() // use the provided directory or the current one
+                }
+            };
+
+            process.Start();
+
+            string output = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd(); // Capture error output
+
+            process.WaitForExit();
+
+            if (!string.IsNullOrWhiteSpace(error))
+            {
+                Debug.WriteLine("Error: " + error);
+            }
+            Debug.WriteLine(output);
+            AppendLog(output);
+        }     
     }
 }

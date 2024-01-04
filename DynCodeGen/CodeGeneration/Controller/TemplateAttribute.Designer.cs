@@ -88,6 +88,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Extensions.Configuration.Abstractions --version 8.0.0.
+        /// </summary>
+        public static string AddConfigPackage {
+            get {
+                return ResourceManager.GetString("AddConfigPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design --version 7.0.11.
         /// </summary>
         public static string AddDesignPackage {
@@ -151,6 +160,24 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Extensions.Options --version 8.0.0.
+        /// </summary>
+        public static string AddOptionsPackage {
+            get {
+                return ResourceManager.GetString("AddOptionsPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Data.SqlClient --version 5.1.2.
+        /// </summary>
+        public static string AddSqlClientPackage {
+            get {
+                return ResourceManager.GetString("AddSqlClientPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.11.
         /// </summary>
         public static string AddSqlServerPackage {
@@ -192,6 +219,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string AddWebAPIReferringInfrastructure {
             get {
                 return ResourceManager.GetString("AddWebAPIReferringInfrastructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace {apiName}.Infrastructure.Repository\r\n{\r\n    using Microsoft.Extensions.Configuration;\r\n\r\n    /// &lt;summary&gt;\r\n    /// BaseRepository.\r\n    /// &lt;/summary&gt;\r\n    public class BaseRepository\r\n    {\r\n        private readonly IConfiguration config;\r\n\r\n        /// &lt;summary&gt;\r\n        /// Initializes a new instance of the &lt;see cref=\&quot;BaseRepository\&quot;/&gt; class.\r\n        /// BaseRepository.\r\n        /// &lt;/summary&gt;\r\n        /// &lt;param name=\&quot;config\&quot;&gt;config.&lt;/param&gt;\r\n        publi [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string BaseRepository {
+            get {
+                return ResourceManager.GetString("BaseRepository", resourceCulture);
             }
         }
         
@@ -313,11 +349,20 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Post{className}Async\&quot;)]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok(&quot;Recode inserted/updated Successfully&quot;);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \&quot;An error occurred while processing your request.\&quot;);\r\n\t\t\t}\r\n\t\t}.
+        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Post{className}Async\&quot;)]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok(&quot;Record inserted/updated Successfully&quot;);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \&quot;An error occurred while processing your request.\&quot;);\r\n\t\t\t}\r\n\t\t}.
         /// </summary>
         public static string ControllerPostMethod {
             get {
                 return ResourceManager.GetString("ControllerPostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t[HttpPost(\&quot;Post{className}Async\&quot;)]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\tif(Result &gt; 0)\r\n\t\t\t\t{\r\n\t\t\t\treturn Ok(&quot;Record inserted/updated Successfully&quot;);\r\n\t\t\t}\r\n\t\t\telse\r\n\t\t\t\t{\r\n\t\t\t\treturn NotFound(&quot;Insertion Failed&quot;);\r\n\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the ex [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ControllerPostMethodAdo {
+            get {
+                return ResourceManager.GetString("ControllerPostMethodAdo", resourceCulture);
             }
         }
         
@@ -511,6 +556,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tint Post{className}Async(Request{className} request);\r\n.
+        /// </summary>
+        public static string IRepositoryPostMethodAdo {
+            get {
+                return ResourceManager.GetString("IRepositoryPostMethodAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \tpublic interface Iusp{className}Repository\r\n\t{\r\n.
         /// </summary>
         public static string IRepositorySPInterface {
@@ -633,6 +687,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string IServicePostMethod {
             get {
                 return ResourceManager.GetString("IServicePostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tint Post{className}Async(Request{className} {className});.
+        /// </summary>
+        public static string IServicePostMethodAdo {
+            get {
+                return ResourceManager.GetString("IServicePostMethodAdo", resourceCulture);
             }
         }
         
@@ -826,11 +889,29 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tpublic class usp{className}Repository : BaseRepository, Iusp{className}Repository\r\n\t{\r\n.
+        /// </summary>
+        public static string RepositoryClassStartAdo {
+            get {
+                return ResourceManager.GetString("RepositoryClassStartAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \r\n\t\tprivate readonly ApplicationDbContext _context;\r\n\r\n\t\tpublic {className}Repository(ApplicationDbContext context)\r\n\t\t{\r\n\t\t\t_context = context;\r\n\t\t}\r\n.
         /// </summary>
         public static string RepositoryConstructor {
             get {
                 return ResourceManager.GetString("RepositoryConstructor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to private readonly IOptions&lt;ConnectionStrings&gt; options;\r\n\t\r\n\tpublic usp{className}Repository(IConfiguration config, IOptions&lt;ConnectionStrings&gt; options)\r\n\t: base(config)\r\n\t{\r\n\t\tthis.options = options;\r\n\t\tSqlHelper.SetConnectionString(this.options.Value.DefaultConnection);\r\n\t}\r\n.
+        /// </summary>
+        public static string RepositoryConstructorAdo {
+            get {
+                return ResourceManager.GetString("RepositoryConstructorAdo", resourceCulture);
             }
         }
         
@@ -871,6 +952,33 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tDataTable dt = SqlHelper.ExecuteSelect&lt;SqlConnection&gt;(&quot;{className}&quot;, parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tif (dt != null &amp;&amp; dt.Rows.Count &gt; 0)\r\n\t\t{\r\n\t\t\t\t{className}Param = SqlHelper.ConvertDataTableToList&lt;Response{className}&gt;(dt)[0];\r\n\t\t}\r\n\t\treturn {className}Param;\r\n\t\t}\r\n.
+        /// </summary>
+        public static string RepositoryGetMethodEndAdo {
+            get {
+                return ResourceManager.GetString("RepositoryGetMethodEndAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tparameters.Add(new SqlParameter { ParameterName = &quot;@{parameterName}&quot;, Value = {className}.{parameterName}, SqlDbType = SqlDbType.{parameterType}, Direction = ParameterDirection.Input });\r\n\t.
+        /// </summary>
+        public static string RepositoryGetMethodMiddleAdo {
+            get {
+                return ResourceManager.GetString("RepositoryGetMethodMiddleAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\tpublic Response{className} Get{className}Async({Request}{classNameInput} {classNameInput})\r\n\t\t{\r\n\t\t\tResponse{className} {className}Param = new Response{className}();\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t.
+        /// </summary>
+        public static string RepositoryGetMethodStartAdo {
+            get {
+                return ResourceManager.GetString("RepositoryGetMethodStartAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n.
         /// </summary>
         public static string RepositoryMethodComments {
@@ -903,6 +1011,42 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string RepositoryPostMethod {
             get {
                 return ResourceManager.GetString("RepositoryPostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public int Post{methodName}(List&lt;{parameterType}&gt; {parameterName})\r\n\t{\r\n\t\tint insertRowsCount = 0;\r\n\t\t//... Further implementation for POST ...\r\n\t\treturn insertRowsCount;\r\n\t}\r\n.
+        /// </summary>
+        public static string RepositoryPostMethodAdo {
+            get {
+                return ResourceManager.GetString("RepositoryPostMethodAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tDictionary&lt;string, dynamic&gt; result = SqlHelper.ExecuteNonQuery&lt;SqlConnection&gt;(&quot;{className}&quot;, parameters, SqlHelper.ExecutionType.Procedure);\r\n\t\tinsertRowsCount = insertRowsCount + result[&quot;RowsAffected&quot;];\r\n\t\treturn insertRowsCount;\r\n\t\t}\r\n.
+        /// </summary>
+        public static string RepositoryPostMethodEndAdo {
+            get {
+                return ResourceManager.GetString("RepositoryPostMethodEndAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tparameters.Add(new SqlParameter { ParameterName = &quot;@{parameterName}&quot;, Value = {className}.{parameterName}, SqlDbType = SqlDbType.{parameterType}, Direction = ParameterDirection.Input });\r\n\t.
+        /// </summary>
+        public static string RepositoryPostMethodMiddleAdo {
+            get {
+                return ResourceManager.GetString("RepositoryPostMethodMiddleAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\tpublic int Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\tint insertRowsCount = 0;\r\n\t\t\tList&lt;DbParameter&gt; parameters = new List&lt;DbParameter&gt;();\r\n\t\t.
+        /// </summary>
+        public static string RepositoryPostMethodStartAdo {
+            get {
+                return ResourceManager.GetString("RepositoryPostMethodStartAdo", resourceCulture);
             }
         }
         
@@ -948,6 +1092,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string RepositoryUsing {
             get {
                 return ResourceManager.GetString("RepositoryUsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using {apiName}.Infrastructure.DataAccess;\r\nusing {apiName}.Application.IRepository;\r\nusing System.Data;\r\nusing System.Data.Common;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.Options;\r\nusing Microsoft.Data.SqlClient;\r\n.
+        /// </summary>
+        public static string RepositoryUsingAdo {
+            get {
+                return ResourceManager.GetString("RepositoryUsingAdo", resourceCulture);
             }
         }
         
@@ -1024,6 +1177,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \tpublic Response{className} Get{className}Async(Request{className} request)\r\n\t{\r\n\t\t// Method implementation\r\n\t}\r\n.
+        /// </summary>
+        public static string ServiceGetMethodAdo {
+            get {
+                return ResourceManager.GetString("ServiceGetMethodAdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n.
         /// </summary>
         public static string ServiceMethodComments {
@@ -1056,6 +1218,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string ServicePostMethod {
             get {
                 return ResourceManager.GetString("ServicePostMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\tpublic int Post{className}Async(Request{className} {className})\r\n\t\t{\r\n\t\t\treturn _repository.Post{className}Async({className});\r\n\t\t}.
+        /// </summary>
+        public static string ServicePostMethodAdo {
+            get {
+                return ResourceManager.GetString("ServicePostMethodAdo", resourceCulture);
             }
         }
         
@@ -1132,6 +1303,96 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to }\r\n}\r\n.
+        /// </summary>
+        public static string SqlHelperClassEnd {
+            get {
+                return ResourceManager.GetString("SqlHelperClassEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public static class SqlHelper\r\n{\r\n    private static string connectionString = string.Empty;\r\n.
+        /// </summary>
+        public static string SqlHelperClassStart {
+            get {
+                return ResourceManager.GetString("SqlHelperClassStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public static List&lt;T&gt; ConvertDataTableToList&lt;T&gt;(DataTable dt)\r\n{\r\n\tList&lt;T&gt; data = new List&lt;T&gt;();\r\n\tType temp = typeof(T);\r\n\tPropertyInfo[] props = temp.GetProperties();\r\n\tstring[] propsName = new string[props.Length];\r\n\tint i = 0;\r\n\tforeach (PropertyInfo pro in props)\r\n\t{\r\n\t\tvar pInfo = typeof(T).GetProperty(pro.Name).GetCustomAttribute&lt;ColumnAttribute&gt;();\r\n\t\tpropsName[i] = (pInfo != null &amp;&amp; !string.IsNullOrEmpty(pInfo.Name)) ? pInfo.Name : pro.Name;\r\n\t\ti++;\r\n\t}\r\n\tfo [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SqlHelperConvertDataTableToList {
+            get {
+                return ResourceManager.GetString("SqlHelperConvertDataTableToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public static Dictionary&lt;string, dynamic&gt; ExecuteNonQuery&lt;T&gt;(string query, List&lt;DbParameter&gt; dbParams, ExecutionType executionType, int timeOut = 0)\r\nwhere T : IDbConnection, new()\r\n{\r\n\tDictionary&lt;string, dynamic&gt; result = new Dictionary&lt;string, dynamic&gt;();\r\n\tusing (var sqlConnection = new T())\r\n\t{\r\n\t\tsqlConnection.ConnectionString = connectionString;\r\n\t\tusing (var sqlCommand = sqlConnection.CreateCommand())\r\n\t\t{\r\n\t\t\tsqlCommand.CommandText = query;\r\n\t\t\t// Set command type  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SqlHelperExecuteNonQuery {
+            get {
+                return ResourceManager.GetString("SqlHelperExecuteNonQuery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public static DataTable ExecuteSelect&lt;T&gt;(string query, List&lt;DbParameter&gt; sqlParams, ExecutionType executionType)\r\nwhere T : IDbConnection, new()\r\n{\r\n\tusing (var sqlConnection = new T())\r\n\t{\r\n\t\tsqlConnection.ConnectionString = connectionString;\r\n\t\tusing (var sqlCommand = sqlConnection.CreateCommand())\r\n\t\t{\r\n\t\t\tsqlCommand.CommandText = query;\r\n\t\t\t// Set command type based on executionType\r\n\t\t\tsqlCommand.CommandType = executionType == ExecutionType.Procedure ? CommandType.S [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SqlHelperExecuteSelect {
+            get {
+                return ResourceManager.GetString("SqlHelperExecuteSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public enum ExecutionType\r\n{\r\n\t/// &lt;summary&gt;Query&lt;/summary&gt;\r\n\tQuery,\r\n\r\n\t/// &lt;summary&gt;Procedure&lt;/summary&gt;\r\n\tProcedure,\r\n}\r\n.
+        /// </summary>
+        public static string SqlHelperExecutionType {
+            get {
+                return ResourceManager.GetString("SqlHelperExecutionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public static T GetItem&lt;T&gt;(DataRow dr, PropertyInfo[] props, string[] propsName)\r\n{\r\n\tT obj = Activator.CreateInstance&lt;T&gt;();\r\n\tforeach (DataColumn column in dr.Table.Columns)\r\n\t{\r\n\t\tint i = 0;\r\n\t\tforeach (PropertyInfo pro in props)\r\n\t\t{\r\n\t\t\tif (string.Compare(propsName[i], column.ColumnName, true, CultureInfo.CurrentCulture) == 0)\r\n\t\t\t{\r\n\t\t\t\tif (dr[column.ColumnName] != DBNull.Value)\r\n\t\t\t\t{\r\n\t\t\t\t\tpro.SetValue(obj, dr[column.ColumnName], null);\r\n\t\t\t\t} [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SqlHelperGetItem {
+            get {
+                return ResourceManager.GetString("SqlHelperGetItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace {apiName}.Infrastructure.DataAccess\r\n{.
+        /// </summary>
+        public static string SqlHelperNamespace {
+            get {
+                return ResourceManager.GetString("SqlHelperNamespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public static void SetConnectionString(string value)\r\n{\r\n\tconnectionString = value;\r\n}\r\n.
+        /// </summary>
+        public static string SqlHelperSetConnectionString {
+            get {
+                return ResourceManager.GetString("SqlHelperSetConnectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System;\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel.DataAnnotations.Schema;\r\nusing System.Data;\r\nusing System.Data.Common;\r\nusing System.Globalization;\r\nusing System.Reflection;.
+        /// </summary>
+        public static string SqlHelperUsings {
+            get {
+                return ResourceManager.GetString("SqlHelperUsings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \t\tprivate void AddCors(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddCors(options =&gt;\r\n\t\t\t{\r\r\t\t\t\toptions.AddPolicy(name: \&quot;AllowAll\&quot;, builder =&gt; builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());\r\n\t\t\t});\r\n\t\t}\r\n.
         /// </summary>
         public static string StartupAddCorsMethod {
@@ -1173,6 +1434,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string StartupConfigureServicesMethod {
             get {
                 return ResourceManager.GetString("StartupConfigureServicesMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\&quot;v1\&quot;, new OpenApiInfo { Title = $\&quot;{apiName}\&quot;, Version = \&quot;v1\&quot; }));\r\n\t\t\tservices.Configure&lt;ConnectionStrings&gt;(Configuration.GetSection(&quot;ConnectionStrings&quot;));\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n.
+        /// </summary>
+        public static string StartupConfigureServicesMethodAdo {
+            get {
+                return ResourceManager.GetString("StartupConfigureServicesMethodAdo", resourceCulture);
             }
         }
         
@@ -1236,6 +1506,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string StartupUsing {
             get {
                 return ResourceManager.GetString("StartupUsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n.
+        /// </summary>
+        public static string StartupUsingAdo {
+            get {
+                return ResourceManager.GetString("StartupUsingAdo", resourceCulture);
             }
         }
     }

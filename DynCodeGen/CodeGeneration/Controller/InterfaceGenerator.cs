@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DynCodeGen.CodeGeneration.Controller
 {
@@ -155,6 +156,54 @@ namespace DynCodeGen.CodeGeneration.Controller
             }
             Directory.CreateDirectory(interfaceDirectory); // Create the directory if it doesn't exist
             interfaceContent.Replace("{apiName}", $"{apiName}").Replace("{className}", $"{className}").Replace("{IdName}", $"{IdName}");
+            File.WriteAllText(interfacePath, interfaceContent.ToString());
+        }
+
+        public static void GenerateServiceInterfaceAdo(string apiName, string apiPath, string className, DataTable dt)
+        {
+            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.IServiceNamespace) + Regex.Unescape(TemplateHelper.Instance.IServiceSPInterface) + Regex.Unescape(TemplateHelper.Instance.IServiceSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.IServiceClassEnd) + Regex.Unescape(TemplateHelper.Instance.IServiceNamespaceEnd));
+            string interfaceDirectory = Path.Combine(apiPath, $"{apiName}.Application", "IService");
+            string interfacePath = Path.Combine(interfaceDirectory, $"Iusp{className}Service.cs");
+            var temp = dt.Rows.Cast<DataRow>()
+                  .FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
+            if (temp[0] == className)
+            {
+                if ((bool)temp[1] == true)
+                {
+                    TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IServiceGetMethod), "// GET/GETALL");
+                }
+                if ((bool)temp[2] == true)
+                {
+                    TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IServicePostMethodAdo), "// INSERT/UPDATE");
+                }
+            }
+            Directory.CreateDirectory(interfaceDirectory);
+            interfaceContent.Replace("{apiName}", $"{apiName}").Replace("{className}", $"{className}");
+            File.WriteAllText(interfacePath, interfaceContent.ToString());
+        }
+
+
+        public static void GenerateRepositoryInterfaceAdo(string apiName, string apiPath, string className, DataTable dt)
+        {
+            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespace) + Regex.Unescape(TemplateHelper.Instance.IRepositorySPInterface) + Regex.Unescape(TemplateHelper.Instance.IRepositorySPMethodComments) + Regex.Unescape(TemplateHelper.Instance.IRepositoryInterfaceEnd) + Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespaceEnd));
+            string interfaceDirectory = Path.Combine(apiPath, $"{apiName}.Application", "IRepository");
+            string interfacePath = Path.Combine(interfaceDirectory, $"Iusp{className}Repository.cs");
+            string classLower = className.ToLower();
+            var temp = dt.Rows.Cast<DataRow>()
+                    .FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
+            if (temp[0] == className)
+            {
+                if ((bool)temp[1] == true)
+                {
+                    TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IRepositoryGetMethod), "// GET/GETALL");
+                }
+                if ((bool)temp[2] == true)
+                {
+                    TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IRepositoryPostMethodAdo), "// INSERT/UPDATE");
+                }
+            }
+            Directory.CreateDirectory(interfaceDirectory); // Create the directory if it doesn't exist
+            interfaceContent.Replace("{apiName}", $"{apiName}").Replace("{className}", $"{className}");
             File.WriteAllText(interfacePath, interfaceContent.ToString());
         }
     }
