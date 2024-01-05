@@ -30,10 +30,10 @@ namespace DynCodeGen.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             dgTable = new DataGridView();
             tblpnlMain = new TableLayoutPanel();
             pnlTextLable = new Panel();
@@ -78,26 +78,25 @@ namespace DynCodeGen.UserControls
             dgTable.AllowUserToAddRows = false;
             dgTable.AllowUserToDeleteRows = false;
             dgTable.BackgroundColor = SystemColors.Window;
-            dgTable.ForeColor = Color.Black;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(29, 51, 92);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(107, 125, 157);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = Color.FromArgb(29, 51, 92);
+            dataGridViewCellStyle13.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dgTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             dgTable.ColumnHeadersHeight = 29;
             dgTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgTable.Cursor = Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(107, 125, 157);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Window;
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            dgTable.DefaultCellStyle = dataGridViewCellStyle14;
             dgTable.Dock = DockStyle.Fill;
             dgTable.EnableHeadersVisualStyles = false;
             dgTable.GridColor = Color.FromArgb(45, 137, 86);
@@ -152,7 +151,7 @@ namespace DynCodeGen.UserControls
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.Red;
-            label5.Location = new Point(160, 183);
+            label5.Location = new Point(154, 174);
             label5.Name = "label5";
             label5.Size = new Size(16, 20);
             label5.TabIndex = 7;
@@ -163,7 +162,7 @@ namespace DynCodeGen.UserControls
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.Red;
-            label4.Location = new Point(160, 104);
+            label4.Location = new Point(153, 97);
             label4.Name = "label4";
             label4.Size = new Size(16, 20);
             label4.TabIndex = 6;
@@ -173,7 +172,7 @@ namespace DynCodeGen.UserControls
             // 
             lblConnectionSting.AutoSize = true;
             lblConnectionSting.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblConnectionSting.Location = new Point(34, 29);
+            lblConnectionSting.Location = new Point(25, 28);
             lblConnectionSting.Name = "lblConnectionSting";
             lblConnectionSting.Size = new Size(147, 23);
             lblConnectionSting.TabIndex = 3;
@@ -183,7 +182,7 @@ namespace DynCodeGen.UserControls
             // 
             lblSourceFile.AutoSize = true;
             lblSourceFile.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSourceFile.Location = new Point(34, 183);
+            lblSourceFile.Location = new Point(25, 177);
             lblSourceFile.Name = "lblSourceFile";
             lblSourceFile.Size = new Size(133, 23);
             lblSourceFile.TabIndex = 2;
@@ -193,7 +192,7 @@ namespace DynCodeGen.UserControls
             // 
             lblProjectLocation.AutoSize = true;
             lblProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProjectLocation.Location = new Point(34, 107);
+            lblProjectLocation.Location = new Point(25, 98);
             lblProjectLocation.Name = "lblProjectLocation";
             lblProjectLocation.Size = new Size(133, 23);
             lblProjectLocation.TabIndex = 1;
@@ -204,7 +203,7 @@ namespace DynCodeGen.UserControls
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(176, 31);
+            label2.Location = new Point(169, 23);
             label2.Name = "label2";
             label2.Size = new Size(16, 20);
             label2.TabIndex = 4;
@@ -236,9 +235,9 @@ namespace DynCodeGen.UserControls
             btnValidate.BackColor = Color.FromArgb(29, 51, 92);
             btnValidate.Cursor = Cursors.Hand;
             btnValidate.FlatStyle = FlatStyle.Flat;
-            btnValidate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnValidate.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnValidate.ForeColor = Color.White;
-            btnValidate.Location = new Point(260, 226);
+            btnValidate.Location = new Point(13, 231);
             btnValidate.Name = "btnValidate";
             btnValidate.Size = new Size(127, 46);
             btnValidate.TabIndex = 19;
@@ -251,9 +250,9 @@ namespace DynCodeGen.UserControls
             btnCreate.BackColor = Color.FromArgb(29, 51, 92);
             btnCreate.Cursor = Cursors.Hand;
             btnCreate.FlatStyle = FlatStyle.Flat;
-            btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreate.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(412, 226);
+            btnCreate.Location = new Point(143, 231);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(127, 46);
             btnCreate.TabIndex = 18;
@@ -265,11 +264,11 @@ namespace DynCodeGen.UserControls
             // 
             btnSourcefile.Cursor = Cursors.Hand;
             btnSourcefile.FlatStyle = FlatStyle.Flat;
-            btnSourcefile.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSourcefile.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnSourcefile.ForeColor = Color.FromArgb(29, 51, 92);
-            btnSourcefile.Location = new Point(555, 173);
+            btnSourcefile.Location = new Point(580, 172);
             btnSourcefile.Name = "btnSourcefile";
-            btnSourcefile.Size = new Size(92, 36);
+            btnSourcefile.Size = new Size(92, 31);
             btnSourcefile.TabIndex = 17;
             btnSourcefile.Text = "Browse";
             btnSourcefile.UseVisualStyleBackColor = true;
@@ -279,11 +278,11 @@ namespace DynCodeGen.UserControls
             // 
             btnProjectLocation.Cursor = Cursors.Hand;
             btnProjectLocation.FlatStyle = FlatStyle.Flat;
-            btnProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnProjectLocation.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnProjectLocation.ForeColor = Color.FromArgb(29, 51, 92);
-            btnProjectLocation.Location = new Point(555, 100);
+            btnProjectLocation.Location = new Point(580, 94);
             btnProjectLocation.Name = "btnProjectLocation";
-            btnProjectLocation.Size = new Size(92, 36);
+            btnProjectLocation.Size = new Size(92, 31);
             btnProjectLocation.TabIndex = 16;
             btnProjectLocation.Text = "Select";
             btnProjectLocation.UseVisualStyleBackColor = true;
@@ -293,11 +292,11 @@ namespace DynCodeGen.UserControls
             // 
             btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatStyle = FlatStyle.Flat;
-            btnAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdd.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnAdd.ForeColor = Color.FromArgb(29, 51, 92);
-            btnAdd.Location = new Point(555, 19);
+            btnAdd.Location = new Point(580, 24);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(92, 36);
+            btnAdd.Size = new Size(92, 31);
             btnAdd.TabIndex = 15;
             btnAdd.Text = "Build";
             btnAdd.UseVisualStyleBackColor = true;
@@ -308,7 +307,7 @@ namespace DynCodeGen.UserControls
             lblValidProjSource.AutoSize = true;
             lblValidProjSource.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             lblValidProjSource.ForeColor = Color.Red;
-            lblValidProjSource.Location = new Point(45, 209);
+            lblValidProjSource.Location = new Point(13, 210);
             lblValidProjSource.Name = "lblValidProjSource";
             lblValidProjSource.Size = new Size(141, 17);
             lblValidProjSource.TabIndex = 14;
@@ -320,7 +319,7 @@ namespace DynCodeGen.UserControls
             lblValidProjLoc.AutoSize = true;
             lblValidProjLoc.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             lblValidProjLoc.ForeColor = Color.Red;
-            lblValidProjLoc.Location = new Point(45, 133);
+            lblValidProjLoc.Location = new Point(13, 135);
             lblValidProjLoc.Name = "lblValidProjLoc";
             lblValidProjLoc.Size = new Size(171, 17);
             lblValidProjLoc.TabIndex = 13;
@@ -332,7 +331,7 @@ namespace DynCodeGen.UserControls
             lblvalidConnStr.AutoSize = true;
             lblvalidConnStr.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             lblvalidConnStr.ForeColor = Color.Red;
-            lblvalidConnStr.Location = new Point(45, 51);
+            lblvalidConnStr.Location = new Point(13, 54);
             lblvalidConnStr.Name = "lblvalidConnStr";
             lblvalidConnStr.Size = new Size(181, 17);
             lblvalidConnStr.TabIndex = 8;
@@ -343,31 +342,31 @@ namespace DynCodeGen.UserControls
             // 
             txtConnectionString.Cursor = Cursors.IBeam;
             txtConnectionString.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtConnectionString.Location = new Point(45, 20);
+            txtConnectionString.Location = new Point(13, 23);
             txtConnectionString.Margin = new Padding(0);
             txtConnectionString.Name = "txtConnectionString";
             txtConnectionString.ReadOnly = true;
-            txtConnectionString.Size = new Size(494, 31);
+            txtConnectionString.Size = new Size(551, 31);
             txtConnectionString.TabIndex = 0;
             // 
             // txtSourceFilePath
             // 
             txtSourceFilePath.Cursor = Cursors.IBeam;
             txtSourceFilePath.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSourceFilePath.Location = new Point(44, 178);
+            txtSourceFilePath.Location = new Point(12, 172);
             txtSourceFilePath.Name = "txtSourceFilePath";
             txtSourceFilePath.ReadOnly = true;
-            txtSourceFilePath.Size = new Size(494, 31);
+            txtSourceFilePath.Size = new Size(551, 31);
             txtSourceFilePath.TabIndex = 4;
             // 
             // txtProjectLocationPath
             // 
             txtProjectLocationPath.Cursor = Cursors.IBeam;
             txtProjectLocationPath.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtProjectLocationPath.Location = new Point(45, 101);
+            txtProjectLocationPath.Location = new Point(12, 93);
             txtProjectLocationPath.Name = "txtProjectLocationPath";
             txtProjectLocationPath.ReadOnly = true;
-            txtProjectLocationPath.Size = new Size(494, 31);
+            txtProjectLocationPath.Size = new Size(551, 31);
             txtProjectLocationPath.TabIndex = 3;
             // 
             // pnlProgressBar
@@ -428,26 +427,25 @@ namespace DynCodeGen.UserControls
             dgSP.AllowUserToAddRows = false;
             dgSP.AllowUserToDeleteRows = false;
             dgSP.BackgroundColor = SystemColors.Window;
-            dgSP.ForeColor = Color.Black;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(29, 51, 92);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(107, 125, 157);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgSP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = Color.FromArgb(29, 51, 92);
+            dataGridViewCellStyle15.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dgSP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             dgSP.ColumnHeadersHeight = 29;
             dgSP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgSP.Cursor = Cursors.Hand;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(107, 125, 157);
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgSP.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Window;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(107, 125, 157);
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
+            dgSP.DefaultCellStyle = dataGridViewCellStyle16;
             dgSP.Dock = DockStyle.Fill;
             dgSP.EnableHeadersVisualStyles = false;
             dgSP.GridColor = Color.FromArgb(45, 137, 86);
@@ -459,7 +457,6 @@ namespace DynCodeGen.UserControls
             dgSP.Size = new Size(1006, 211);
             dgSP.TabIndex = 1;
             dgSP.CellContentClick += dgSP_CellContentClick;
-            // 
             // 
             // txtLog
             // 

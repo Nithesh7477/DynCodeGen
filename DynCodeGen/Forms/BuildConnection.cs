@@ -45,35 +45,54 @@ namespace DynCodeGen
                 btnTestConnection.Enabled = true;
                 DialogResult result = MessageBox.Show("Connection Tested Succesfully !", "Success", MessageBoxButtons.OK);
 
-                if (result == DialogResult.OK)
-                {
-                    if (_createControlParent != null)
-                    {
-                        _createControlParent.txtConnectionString.Text = ConnectionString;
-                        _createControlParent.txtConnectionString.ReadOnly = true;
-                    }
-                    else if (_spControlParent != null)
-                    {
-                        _spControlParent.txtConnectionString.Text = ConnectionString;
-                        _spControlParent.txtConnectionString.ReadOnly = true;
-                    }
-                    else if (_createModelControlParent != null)
-                    {
-                        _createModelControlParent.txtConnectionString.Text = ConnectionString;
-                        _createModelControlParent.txtConnectionString.ReadOnly = true;
-                    }
-                    else if (_adoCreateControlParent != null)
-                    {
-                        _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
-                        _adoCreateControlParent.txtConnectionString.ReadOnly = true;
-                    }
-                    else if (_adoEnhanceControlParent != null)
-                    {
-                        _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
-                        _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;
-                    }
+                _createControlParent.txtConnectionString.Text = ConnectionString;
+                _createControlParent.txtConnectionString.ReadOnly = true;
+                _spControlParent.txtConnectionString.Text = ConnectionString;
+                _spControlParent.txtConnectionString.ReadOnly = true;
+                _createModelControlParent.txtConnectionString.Text = ConnectionString;
+                _createModelControlParent.txtConnectionString.ReadOnly = true;
+                _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
+                _adoCreateControlParent.txtConnectionString.ReadOnly = true;
+                _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
+                _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;
+
+                //if (result == DialogResult.OK)
+                //{
+                //    if (_createControlParent != null)
+                //    {
+                //        _createControlParent.txtConnectionString.Text = ConnectionString;
+                //        _createControlParent.txtConnectionString.ReadOnly = true;
+                //        _spControlParent.txtConnectionString.Text = ConnectionString;
+                //        _spControlParent.txtConnectionString.ReadOnly = true;
+                //        _createModelControlParent.txtConnectionString.Text = ConnectionString;
+                //        _createModelControlParent.txtConnectionString.ReadOnly = true;
+                //        _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
+                //        _adoCreateControlParent.txtConnectionString.ReadOnly = true;
+                //        _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
+                //        _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;
+                //    }
+                //    else if (_spControlParent != null)
+                //    {
+                //        _spControlParent.txtConnectionString.Text = ConnectionString;
+                //        _spControlParent.txtConnectionString.ReadOnly = true;
+                //    }
+                //    else if (_createModelControlParent != null)
+                //    {
+                //        _createModelControlParent.txtConnectionString.Text = ConnectionString;
+                //        _createModelControlParent.txtConnectionString.ReadOnly = true;
+                //    }
+                //    else if (_adoCreateControlParent != null)
+                //    {
+                //        _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
+                //        _adoCreateControlParent.txtConnectionString.ReadOnly = true;
+                //    }
+                //    else if (_adoEnhanceControlParent != null)
+                //    {
+                //        _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
+                //        _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;
+                //    }
                     this.Close();
-                }
+                
             }
             catch (Exception ex)
             {
