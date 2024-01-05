@@ -191,7 +191,14 @@ namespace DynCodeGen.UserControls
                 MessageBox.Show("Please select any one value");
             }
         }
-
+        private void btnValidate_EnabledChanged(object sender, System.EventArgs e)
+        {
+            btnValidate.BackColor = Color.FromArgb(179, 187, 200); ;
+        }
+        private void btnCreate_EnabledChanged(object sender, System.EventArgs e)
+        {
+            btnCreate.BackColor = Color.FromArgb(179, 187, 200); ;
+        }
         /// <summary>
         /// DtValidation.
         /// </summary>

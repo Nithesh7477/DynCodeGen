@@ -254,8 +254,9 @@ namespace DynCodeGen.UserControls
             btnValidate.Size = new Size(127, 43);
             btnValidate.TabIndex = 19;
             btnValidate.Text = "Validate";
-            btnValidate.UseVisualStyleBackColor = false;
+            btnValidate.UseVisualStyleBackColor = true;
             btnValidate.Click += btnValidate_Click;
+            btnValidate.EnabledChanged += btnValidate_EnabledChanged;
             // 
             // btnCreate
             // 
@@ -271,6 +272,8 @@ namespace DynCodeGen.UserControls
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
+            btnCreate.EnabledChanged += btnCreate_EnabledChanged;
+
             // 
             // btnSourcefile
             // 
