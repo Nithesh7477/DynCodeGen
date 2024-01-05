@@ -16,9 +16,11 @@
     /// </summary>
     public partial class CreateControl : UserControl
     {
-        private SpControl spControlInstance;
-        private DynCodeGen dynCodeGenInstance;
-        public CreateModelControl createModelControlInstance;
+        //private SpControl spControlInstance;
+        //private DynCodeGen dynCodeGenInstance;
+        //public CreateModelControl createModelControlInstance;
+        //public AdoCreateControl adoCreateControlInstance;
+        //public AdoEnhanceControl adoEnhanceControlInstance;
         private Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string, string>>>();
         private string folderPath = string.Empty;
         DataTable dt = new DataTable();
@@ -39,9 +41,12 @@
         /// <param name="e">e.</param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            dynCodeGenInstance = new DynCodeGen();
-            spControlInstance = new SpControl(dynCodeGenInstance);
-            BuildConnection frm = new BuildConnection(this, spControlInstance, createModelControlInstance);
+            DynCodeGen dynCodeGenInstance = new DynCodeGen();
+            SpControl spControlInstance = new SpControl(dynCodeGenInstance);
+            CreateModelControl createModelControlInstance = new CreateModelControl(dynCodeGenInstance);
+            AdoCreateControl adoCreateControlInstance = new AdoCreateControl();
+            AdoEnhanceControl adoEnhanceControlInstance = new AdoEnhanceControl();
+            BuildConnection frm = new BuildConnection(this, spControlInstance, createModelControlInstance, adoCreateControlInstance, adoEnhanceControlInstance);
             frm.Show();
         }
 
@@ -441,7 +446,7 @@
                 txtLog.AppendText(formattedLog + Environment.NewLine);
                 txtLog.ScrollToCaret();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }

@@ -87,9 +87,10 @@
             // 
             // btnHome
             // 
+            btnHome.Cursor = Cursors.Hand;
             btnHome.FlatAppearance.BorderSize = 0;
             btnHome.FlatStyle = FlatStyle.Flat;
-            btnHome.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnHome.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnHome.ForeColor = Color.LightGray;
             btnHome.Location = new Point(0, 20);
             btnHome.Margin = new Padding(0, 20, 0, 0);
@@ -116,16 +117,17 @@
             // btnCreateProject
             // 
             btnCreateProject.BackColor = Color.FromArgb(29, 51, 92);
+            btnCreateProject.Cursor = Cursors.Hand;
             btnCreateProject.FlatAppearance.BorderSize = 0;
             btnCreateProject.FlatStyle = FlatStyle.Flat;
-            btnCreateProject.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreateProject.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreateProject.ForeColor = Color.LightGray;
             btnCreateProject.Location = new Point(0, 0);
             btnCreateProject.Margin = new Padding(0);
             btnCreateProject.Name = "btnCreateProject";
             btnCreateProject.Size = new Size(306, 50);
             btnCreateProject.TabIndex = 1;
-            btnCreateProject.Text = "Create Project";
+            btnCreateProject.Text = "Project Creation";
             btnCreateProject.TextAlign = ContentAlignment.MiddleLeft;
             btnCreateProject.UseVisualStyleBackColor = false;
             btnCreateProject.Click += btnCreateProject_Click;
@@ -133,9 +135,10 @@
             // btnCPEntityFrameworkCF
             // 
             btnCPEntityFrameworkCF.BackColor = Color.FromArgb(29, 51, 92);
+            btnCPEntityFrameworkCF.Cursor = Cursors.Hand;
             btnCPEntityFrameworkCF.FlatAppearance.BorderSize = 0;
             btnCPEntityFrameworkCF.FlatStyle = FlatStyle.Flat;
-            btnCPEntityFrameworkCF.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCPEntityFrameworkCF.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnCPEntityFrameworkCF.ForeColor = Color.LightGray;
             btnCPEntityFrameworkCF.Location = new Point(0, 50);
             btnCPEntityFrameworkCF.Margin = new Padding(0);
@@ -151,9 +154,10 @@
             // btnCP_ADO_SP
             // 
             btnCP_ADO_SP.BackColor = Color.FromArgb(29, 51, 92);
+            btnCP_ADO_SP.Cursor = Cursors.Hand;
             btnCP_ADO_SP.FlatAppearance.BorderSize = 0;
             btnCP_ADO_SP.FlatStyle = FlatStyle.Flat;
-            btnCP_ADO_SP.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCP_ADO_SP.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnCP_ADO_SP.ForeColor = Color.LightGray;
             btnCP_ADO_SP.Location = new Point(0, 100);
             btnCP_ADO_SP.Margin = new Padding(0);
@@ -182,16 +186,17 @@
             // btnExistingProject
             // 
             btnExistingProject.BackColor = Color.FromArgb(29, 51, 92);
+            btnExistingProject.Cursor = Cursors.Hand;
             btnExistingProject.FlatAppearance.BorderSize = 0;
             btnExistingProject.FlatStyle = FlatStyle.Flat;
-            btnExistingProject.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExistingProject.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnExistingProject.ForeColor = Color.LightGray;
             btnExistingProject.Location = new Point(0, 0);
             btnExistingProject.Margin = new Padding(0);
             btnExistingProject.Name = "btnExistingProject";
             btnExistingProject.Size = new Size(306, 50);
             btnExistingProject.TabIndex = 1;
-            btnExistingProject.Text = "Enhance Project";
+            btnExistingProject.Text = "Project Enhancement";
             btnExistingProject.TextAlign = ContentAlignment.MiddleLeft;
             btnExistingProject.UseVisualStyleBackColor = false;
             btnExistingProject.Click += btnExistingProject_Click;
@@ -199,9 +204,10 @@
             // btnEP_EntityFramework_CF
             // 
             btnEP_EntityFramework_CF.BackColor = Color.FromArgb(29, 51, 92);
+            btnEP_EntityFramework_CF.Cursor = Cursors.Hand;
             btnEP_EntityFramework_CF.FlatAppearance.BorderSize = 0;
             btnEP_EntityFramework_CF.FlatStyle = FlatStyle.Flat;
-            btnEP_EntityFramework_CF.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEP_EntityFramework_CF.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnEP_EntityFramework_CF.ForeColor = Color.LightGray;
             btnEP_EntityFramework_CF.Location = new Point(0, 50);
             btnEP_EntityFramework_CF.Margin = new Padding(0);
@@ -217,9 +223,10 @@
             // btnEP_EntityFramework_SP
             // 
             btnEP_EntityFramework_SP.BackColor = Color.FromArgb(29, 51, 92);
+            btnEP_EntityFramework_SP.Cursor = Cursors.Hand;
             btnEP_EntityFramework_SP.FlatAppearance.BorderSize = 0;
             btnEP_EntityFramework_SP.FlatStyle = FlatStyle.Flat;
-            btnEP_EntityFramework_SP.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEP_EntityFramework_SP.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnEP_EntityFramework_SP.ForeColor = Color.LightGray;
             btnEP_EntityFramework_SP.Location = new Point(0, 100);
             btnEP_EntityFramework_SP.Margin = new Padding(0);
@@ -235,9 +242,10 @@
             // btn_EP_ADO_sp
             // 
             btn_EP_ADO_sp.BackColor = Color.FromArgb(29, 51, 92);
+            btn_EP_ADO_sp.Cursor = Cursors.Hand;
             btn_EP_ADO_sp.FlatAppearance.BorderSize = 0;
             btn_EP_ADO_sp.FlatStyle = FlatStyle.Flat;
-            btn_EP_ADO_sp.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_EP_ADO_sp.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btn_EP_ADO_sp.ForeColor = Color.LightGray;
             btn_EP_ADO_sp.Location = new Point(0, 150);
             btn_EP_ADO_sp.Margin = new Padding(0);
@@ -252,19 +260,28 @@
             // 
             // btnCreateModel
             // 
+            btnCreateModel.Cursor = Cursors.Hand;
             btnCreateModel.FlatAppearance.BorderSize = 0;
             btnCreateModel.FlatStyle = FlatStyle.Flat;
-            btnCreateModel.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreateModel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreateModel.ForeColor = Color.LightGray;
             btnCreateModel.Location = new Point(0, 170);
             btnCreateModel.Margin = new Padding(0);
             btnCreateModel.Name = "btnCreateModel";
             btnCreateModel.Size = new Size(306, 50);
             btnCreateModel.TabIndex = 8;
-            btnCreateModel.Text = "Create Model";
+            btnCreateModel.Text = "Model Creation";
             btnCreateModel.TextAlign = ContentAlignment.MiddleLeft;
             btnCreateModel.UseVisualStyleBackColor = true;
             btnCreateModel.Click += btnCreateModel_Click;
+            // 
+            // btnCPWithoutEntity
+            // 
+            btnCPWithoutEntity.Cursor = Cursors.Hand;
+            btnCPWithoutEntity.Location = new Point(0, 0);
+            btnCPWithoutEntity.Name = "btnCPWithoutEntity";
+            btnCPWithoutEntity.Size = new Size(75, 23);
+            btnCPWithoutEntity.TabIndex = 0;
             // 
             // CreateProjectTranstion
             // 
@@ -282,12 +299,19 @@
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(1283, 12);
+            btnClose.Location = new Point(1280, 8);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(30, 30);
+            btnClose.Size = new Size(37, 40);
             btnClose.TabIndex = 3;
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(0, 0);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 0;
             // 
             // panel3
             // 
@@ -313,7 +337,7 @@
             // 
             panel1.BackColor = Color.FromArgb(29, 51, 92);
             panel1.Controls.Add(dexianLogo);
-            panel1.Location = new Point(-1, 3);
+            panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
             panel1.Size = new Size(309, 55);
@@ -345,9 +369,9 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(1280, 66);
+            button1.Location = new Point(1280, 61);
             button1.Name = "button1";
-            button1.Size = new Size(35, 31);
+            button1.Size = new Size(35, 44);
             button1.TabIndex = 7;
             button1.UseVisualStyleBackColor = false;
             // 
@@ -355,7 +379,7 @@
             // 
             lblHead.AutoSize = true;
             lblHead.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lblHead.ForeColor = Color.Black;
+            lblHead.ForeColor = Color.FromArgb(29, 51, 92);
             lblHead.Location = new Point(317, 73);
             lblHead.Name = "lblHead";
             lblHead.Size = new Size(59, 23);

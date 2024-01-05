@@ -98,7 +98,7 @@ namespace DynCodeGen
             CreatePanelUpdate(btnCPEntityFrameworkCF.Text.ToString());
             btnCPEntityFrameworkCF.BackColor = Color.FromArgb(107, 125, 157);
         }
-        
+
         public void CreatePanelUpdate(string header)
         {
             contentPanel.Controls.Clear();
