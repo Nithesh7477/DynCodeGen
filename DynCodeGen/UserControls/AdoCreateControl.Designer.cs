@@ -252,6 +252,7 @@
             btnValidate.Text = "Validate";
             btnValidate.UseVisualStyleBackColor = false;
             btnValidate.Click += btnValidate_Click;
+            btnValidate.EnabledChanged += btnValidate_EnabledChanged;
             // 
             // btnCreate
             // 
@@ -267,6 +268,7 @@
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
+            btnCreate.EnabledChanged += btnCreate_EnabledChanged;
             // 
             // btnSourcefile
             // 
