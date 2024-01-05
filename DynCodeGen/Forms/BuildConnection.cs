@@ -21,12 +21,16 @@ namespace DynCodeGen
         private readonly CreateControl _createControlParent;
         private readonly SpControl _spControlParent;
         private readonly CreateModelControl _createModelControlParent;
-        public BuildConnection(CreateControl createControlParent, SpControl spControlParent, CreateModelControl createModelControlParent)
+        private readonly AdoCreateControl _adoCreateControlParent;
+        private readonly AdoEnhanceControl _adoEnhanceControlParent;
+        public BuildConnection(CreateControl createControlParent, SpControl spControlParent, CreateModelControl createModelControlParent ,AdoCreateControl adoCreateControlParent ,AdoEnhanceControl adoEnhanceControlParent )
         {
             InitializeComponent();
             _createControlParent = createControlParent;
             _spControlParent = spControlParent;
             _createModelControlParent = createModelControlParent;
+            _adoCreateControlParent = adoCreateControlParent;
+            _adoEnhanceControlParent = adoEnhanceControlParent;
             txtPassword.Leave += txtPassword_TextChanged;
 
         }
@@ -50,13 +54,23 @@ namespace DynCodeGen
                     }
                     else if (_spControlParent != null)
                     {
-                        ;
+                        _spControlParent.txtConnectionString.Text = ConnectionString;
                         _spControlParent.txtConnectionString.ReadOnly = true;
                     }
                     else if (_createModelControlParent != null)
                     {
                         _createModelControlParent.txtConnectionString.Text = ConnectionString;
                         _createModelControlParent.txtConnectionString.ReadOnly = true;
+                    }
+                    else if (_adoCreateControlParent != null)
+                    {
+                        _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
+                        _adoCreateControlParent.txtConnectionString.ReadOnly = true;
+                    }
+                    else if (_adoEnhanceControlParent != null)
+                    {
+                        _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
+                        _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;
                     }
                     this.Close();
                 }

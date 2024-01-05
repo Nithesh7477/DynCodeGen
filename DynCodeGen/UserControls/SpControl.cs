@@ -39,7 +39,12 @@ namespace DynCodeGen.UserControls
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            BuildConnection frm = new BuildConnection(_createControlInstance, this, _CreateModelControlInstance);
+            DynCodeGen dynCodeGenInstance = new DynCodeGen();
+            CreateControl CreateControlInstance = new CreateControl();
+            CreateModelControl createModelControlInstance = new CreateModelControl(dynCodeGenInstance);
+            AdoCreateControl adoCreateControlInstance = new AdoCreateControl();
+            AdoEnhanceControl adoEnhanceControlInstance = new AdoEnhanceControl();
+            BuildConnection frm = new BuildConnection(CreateControlInstance, this, createModelControlInstance, adoCreateControlInstance, adoEnhanceControlInstance);
             frm.Show();
         }
 

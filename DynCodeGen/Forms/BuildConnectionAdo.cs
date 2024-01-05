@@ -95,8 +95,6 @@ namespace DynCodeGen
                     MessageBox.Show("Invalid Credentials");
                     txtPassword.Clear();
                 }
-
-
             }
             else
             {
@@ -104,6 +102,11 @@ namespace DynCodeGen
                 MessageBox.Show("please fill the ablove fields");
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

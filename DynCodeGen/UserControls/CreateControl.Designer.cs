@@ -97,7 +97,6 @@ namespace DynCodeGen.UserControls
             dgTable.AllowUserToAddRows = false;
             dgTable.AllowUserToDeleteRows = false;
             dgTable.BackgroundColor = SystemColors.Window;
-            dgTable.ForeColor = Color.Black;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(29, 51, 92);
             dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
@@ -248,11 +247,11 @@ namespace DynCodeGen.UserControls
             btnValidate.BackColor = Color.FromArgb(29, 51, 92);
             btnValidate.Cursor = Cursors.Hand;
             btnValidate.FlatStyle = FlatStyle.Flat;
-            btnValidate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnValidate.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnValidate.ForeColor = Color.White;
-            btnValidate.Location = new Point(260, 228);
+            btnValidate.Location = new Point(22, 233);
             btnValidate.Name = "btnValidate";
-            btnValidate.Size = new Size(127, 46);
+            btnValidate.Size = new Size(127, 43);
             btnValidate.TabIndex = 19;
             btnValidate.Text = "Validate";
             btnValidate.UseVisualStyleBackColor = false;
@@ -263,11 +262,11 @@ namespace DynCodeGen.UserControls
             btnCreate.BackColor = Color.FromArgb(29, 51, 92);
             btnCreate.Cursor = Cursors.Hand;
             btnCreate.FlatStyle = FlatStyle.Flat;
-            btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreate.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(412, 228);
+            btnCreate.Location = new Point(155, 233);
             btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(127, 46);
+            btnCreate.Size = new Size(127, 43);
             btnCreate.TabIndex = 18;
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = false;
@@ -277,11 +276,11 @@ namespace DynCodeGen.UserControls
             // 
             btnSourcefile.Cursor = Cursors.Hand;
             btnSourcefile.FlatStyle = FlatStyle.Flat;
-            btnSourcefile.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSourcefile.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnSourcefile.ForeColor = Color.FromArgb(29, 51, 92);
-            btnSourcefile.Location = new Point(555, 181);
+            btnSourcefile.Location = new Point(582, 181);
             btnSourcefile.Name = "btnSourcefile";
-            btnSourcefile.Size = new Size(92, 36);
+            btnSourcefile.Size = new Size(92, 31);
             btnSourcefile.TabIndex = 17;
             btnSourcefile.Text = "Browse";
             btnSourcefile.UseVisualStyleBackColor = true;
@@ -291,11 +290,11 @@ namespace DynCodeGen.UserControls
             // 
             btnProjectLocation.Cursor = Cursors.Hand;
             btnProjectLocation.FlatStyle = FlatStyle.Flat;
-            btnProjectLocation.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnProjectLocation.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnProjectLocation.ForeColor = Color.FromArgb(29, 51, 92);
-            btnProjectLocation.Location = new Point(555, 123);
+            btnProjectLocation.Location = new Point(582, 123);
             btnProjectLocation.Name = "btnProjectLocation";
-            btnProjectLocation.Size = new Size(92, 36);
+            btnProjectLocation.Size = new Size(92, 33);
             btnProjectLocation.TabIndex = 16;
             btnProjectLocation.Text = "Select";
             btnProjectLocation.UseVisualStyleBackColor = true;
@@ -305,11 +304,11 @@ namespace DynCodeGen.UserControls
             // 
             btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatStyle = FlatStyle.Flat;
-            btnAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdd.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnAdd.ForeColor = Color.FromArgb(29, 51, 92);
-            btnAdd.Location = new Point(555, 19);
+            btnAdd.Location = new Point(582, 19);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(92, 36);
+            btnAdd.Size = new Size(92, 33);
             btnAdd.TabIndex = 15;
             btnAdd.Text = "Build";
             btnAdd.UseVisualStyleBackColor = true;
@@ -367,40 +366,40 @@ namespace DynCodeGen.UserControls
             // 
             txtConnectionString.Cursor = Cursors.IBeam;
             txtConnectionString.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtConnectionString.Location = new Point(45, 20);
+            txtConnectionString.Location = new Point(22, 20);
             txtConnectionString.Margin = new Padding(0);
             txtConnectionString.Name = "txtConnectionString";
             txtConnectionString.ReadOnly = true;
-            txtConnectionString.Size = new Size(494, 31);
+            txtConnectionString.Size = new Size(540, 31);
             txtConnectionString.TabIndex = 0;
             // 
             // txtSourceFilePath
             // 
             txtSourceFilePath.Cursor = Cursors.IBeam;
             txtSourceFilePath.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSourceFilePath.Location = new Point(45, 181);
+            txtSourceFilePath.Location = new Point(22, 181);
             txtSourceFilePath.Name = "txtSourceFilePath";
             txtSourceFilePath.ReadOnly = true;
-            txtSourceFilePath.Size = new Size(494, 31);
+            txtSourceFilePath.Size = new Size(540, 31);
             txtSourceFilePath.TabIndex = 4;
             // 
             // txtProjectLocationPath
             // 
             txtProjectLocationPath.Cursor = Cursors.IBeam;
             txtProjectLocationPath.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtProjectLocationPath.Location = new Point(45, 125);
+            txtProjectLocationPath.Location = new Point(22, 125);
             txtProjectLocationPath.Name = "txtProjectLocationPath";
             txtProjectLocationPath.ReadOnly = true;
-            txtProjectLocationPath.Size = new Size(494, 31);
+            txtProjectLocationPath.Size = new Size(540, 31);
             txtProjectLocationPath.TabIndex = 3;
             // 
             // txtProjectName
             // 
             txtProjectName.Cursor = Cursors.IBeam;
             txtProjectName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtProjectName.Location = new Point(45, 73);
+            txtProjectName.Location = new Point(22, 73);
             txtProjectName.Name = "txtProjectName";
-            txtProjectName.Size = new Size(494, 31);
+            txtProjectName.Size = new Size(540, 31);
             txtProjectName.TabIndex = 2;
             // 
             // pnlTextLable

@@ -24,14 +24,14 @@ namespace DynCodeGen.UserControls
         private AdoEnhanceControl adoEnhanceControlInstance;
         private Dictionary<string, List<Tuple<string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string>>>();
         private string folderPath = string.Empty;
-        DataTable dt = new DataTable();       
+        DataTable dt = new DataTable();
 
         /// <summary>
         /// AdoCreateControl.
         /// </summary>
         public AdoCreateControl()
         {
-            InitializeComponent();       
+            InitializeComponent();
         }
 
         /// <summary>
@@ -41,8 +41,14 @@ namespace DynCodeGen.UserControls
         /// <param name="e">e.</param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            adoEnhanceControlInstance = new AdoEnhanceControl();
-            BuildConnectionAdo frm = new BuildConnectionAdo(this, adoEnhanceControlInstance);
+
+
+            DynCodeGen dynCodeGenInstance = new DynCodeGen();
+            SpControl spControlInstance = new SpControl(dynCodeGenInstance);
+            CreateModelControl createModelControlInstance = new CreateModelControl(dynCodeGenInstance);
+            CreateControl CreateControlInstance = new CreateControl();
+            AdoEnhanceControl adoEnhanceControlInstance = new AdoEnhanceControl();
+            BuildConnection frm = new BuildConnection(CreateControlInstance, spControlInstance, createModelControlInstance, this, adoEnhanceControlInstance);
             frm.Show();
         }
 
@@ -403,7 +409,7 @@ namespace DynCodeGen.UserControls
             txtLog.ScrollToCaret();
         }
 
-        
+
         private void btnValidate_Click(object sender, EventArgs e)
         {
             txtLog.Visible = false;
@@ -459,6 +465,6 @@ namespace DynCodeGen.UserControls
                 dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 dgv.EndEdit();
             }
-        }  
+        }
     }
 }

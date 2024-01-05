@@ -34,6 +34,7 @@
             lblDatabase = new Label();
             btnTestConnection = new Button();
             panel2 = new Panel();
+            btnClose = new Button();
             lblHead = new Label();
             cmbAuthetication = new ComboBox();
             txtUserName = new TextBox();
@@ -43,7 +44,6 @@
             lblUsername = new Label();
             lblAuthentication = new Label();
             lblServerName = new Label();
-            btnClose = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -66,14 +66,14 @@
             panel1.Font = new Font("Verdana", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(607, 342);
+            panel1.Size = new Size(582, 342);
             panel1.TabIndex = 1;
             // 
             // cmbDatabase
             // 
             cmbDatabase.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             cmbDatabase.FormattingEnabled = true;
-            cmbDatabase.Location = new Point(157, 251);
+            cmbDatabase.Location = new Point(133, 251);
             cmbDatabase.Name = "cmbDatabase";
             cmbDatabase.Size = new Size(444, 31);
             cmbDatabase.TabIndex = 17;
@@ -82,7 +82,7 @@
             // 
             lblDatabase.AutoSize = true;
             lblDatabase.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDatabase.Location = new Point(26, 256);
+            lblDatabase.Location = new Point(2, 256);
             lblDatabase.Name = "lblDatabase";
             lblDatabase.Size = new Size(81, 23);
             lblDatabase.TabIndex = 16;
@@ -94,12 +94,12 @@
             btnTestConnection.Cursor = Cursors.Hand;
             btnTestConnection.FlatAppearance.BorderSize = 0;
             btnTestConnection.FlatStyle = FlatStyle.Flat;
-            btnTestConnection.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTestConnection.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnTestConnection.ForeColor = Color.White;
-            btnTestConnection.Location = new Point(436, 293);
+            btnTestConnection.Location = new Point(478, 293);
             btnTestConnection.Margin = new Padding(0);
             btnTestConnection.Name = "btnTestConnection";
-            btnTestConnection.Size = new Size(165, 40);
+            btnTestConnection.Size = new Size(99, 40);
             btnTestConnection.TabIndex = 15;
             btnTestConnection.Text = "Confirm";
             btnTestConnection.UseVisualStyleBackColor = false;
@@ -113,7 +113,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(607, 39);
+            panel2.Size = new Size(582, 39);
             panel2.TabIndex = 14;
             // 
             // btnClose
@@ -122,10 +122,10 @@
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(576, 7);
+            btnClose.Location = new Point(547, 3);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(25, 25);
-            btnClose.TabIndex = 6;
+            btnClose.Size = new Size(30, 30);
+            btnClose.TabIndex = 14;
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
@@ -145,7 +145,7 @@
             cmbAuthetication.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             cmbAuthetication.FormattingEnabled = true;
             cmbAuthetication.Items.AddRange(new object[] { "SQL Server Authentication" });
-            cmbAuthetication.Location = new Point(157, 104);
+            cmbAuthetication.Location = new Point(133, 104);
             cmbAuthetication.Name = "cmbAuthetication";
             cmbAuthetication.Size = new Size(444, 31);
             cmbAuthetication.TabIndex = 2;
@@ -153,7 +153,7 @@
             // txtUserName
             // 
             txtUserName.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUserName.Location = new Point(157, 155);
+            txtUserName.Location = new Point(133, 155);
             txtUserName.Name = "txtUserName";
             txtUserName.Size = new Size(444, 30);
             txtUserName.TabIndex = 3;
@@ -161,7 +161,7 @@
             // txtPassword
             // 
             txtPassword.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            txtPassword.Location = new Point(157, 203);
+            txtPassword.Location = new Point(133, 203);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(444, 30);
             txtPassword.TabIndex = 4;
@@ -171,7 +171,7 @@
             // txtServerName
             // 
             txtServerName.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtServerName.Location = new Point(157, 55);
+            txtServerName.Location = new Point(133, 55);
             txtServerName.Name = "txtServerName";
             txtServerName.Size = new Size(444, 30);
             txtServerName.TabIndex = 1;
@@ -180,7 +180,7 @@
             // 
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPassword.Location = new Point(26, 206);
+            lblPassword.Location = new Point(2, 206);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(80, 23);
             lblPassword.TabIndex = 3;
@@ -190,7 +190,7 @@
             // 
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUsername.Location = new Point(26, 158);
+            lblUsername.Location = new Point(2, 158);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(87, 23);
             lblUsername.TabIndex = 2;
@@ -200,7 +200,7 @@
             // 
             lblAuthentication.AutoSize = true;
             lblAuthentication.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblAuthentication.Location = new Point(26, 109);
+            lblAuthentication.Location = new Point(2, 109);
             lblAuthentication.Name = "lblAuthentication";
             lblAuthentication.Size = new Size(123, 23);
             lblAuthentication.TabIndex = 1;
@@ -210,29 +210,17 @@
             // 
             lblServerName.AutoSize = true;
             lblServerName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lblServerName.Location = new Point(26, 57);
+            lblServerName.Location = new Point(2, 57);
             lblServerName.Name = "lblServerName";
             lblServerName.Size = new Size(108, 23);
             lblServerName.TabIndex = 0;
             lblServerName.Text = "Server Name";
             // 
-            // btnClose
-            // 
-            btnClose.Cursor = Cursors.Hand;
-            btnClose.FlatAppearance.BorderSize = 0;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(571, 3);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(30, 30);
-            btnClose.TabIndex = 14;
-            btnClose.UseVisualStyleBackColor = false;
-            // 
             // BuildConnection
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(607, 342);
+            ClientSize = new Size(582, 342);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;

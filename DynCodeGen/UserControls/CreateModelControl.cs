@@ -33,16 +33,21 @@ namespace DynCodeGen.UserControls
         {
             InitializeComponent();
             _dynCodeGenInstance = dynCodeGenParent;
-            btnValidate.Hide();  
+            btnValidate.Hide();
 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            BuildConnection frm = new BuildConnection(createControlInstance, spControlInstance, this);
+            DynCodeGen dynCodeGenInstance = new DynCodeGen();
+            SpControl spControlInstance = new SpControl(dynCodeGenInstance);
+            CreateControl createControlInstance = new CreateControl();
+            AdoCreateControl adoCreateControlInstance = new AdoCreateControl();
+            AdoEnhanceControl adoEnhanceControlInstance = new AdoEnhanceControl();
+            BuildConnection frm = new BuildConnection(createControlInstance, spControlInstance, this, adoCreateControlInstance, adoEnhanceControlInstance);
             frm.Show();
         }
-
+    
         /// <summary>
         /// btnProjectLocation_Click.
         /// </summary>
@@ -118,67 +123,67 @@ namespace DynCodeGen.UserControls
             //    dgSP.Visible = false;
 
             try
+            {
+                ShowOrHideProgressBar("show");
+                //ShowOrHideLabel("show");
+                btnCreate.Enabled = false;  // Disable the button
+                UpdateLabel("validating input...");
+                UpdateProgressBar(25);
+
+                string apiName = Path.GetFileName(folderPath);
+                string apiPath = folderPath;
+                string connectionString = txtConnectionString.Text;
+
+                // Check if the directory exists, create if not
+                //if (!Directory.Exists(apiPath))
+                //{
+                //    Directory.CreateDirectory(apiPath);
+                //}
+
+                if (string.IsNullOrEmpty(apiPath))
                 {
-                    ShowOrHideProgressBar("show");
-                    //ShowOrHideLabel("show");
-                    btnCreate.Enabled = false;  // Disable the button
-                    UpdateLabel("validating input...");
-                    UpdateProgressBar(25);
-
-                    string apiName = Path.GetFileName(folderPath);
-                    string apiPath = folderPath;
-                    string connectionString = txtConnectionString.Text;
-
-                    // Check if the directory exists, create if not
-                    //if (!Directory.Exists(apiPath))
-                    //{
-                    //    Directory.CreateDirectory(apiPath);
-                    //}
-
-                    if (string.IsNullOrEmpty(apiPath))
-                    {
-                        MessageBox.Show("Existing project Path must not be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    UpdateLabel("creating project files...");
-                    UpdateProgressBar(70);
-                    await Task.Run(() => GenerateCreateModelInExistingProject(apiName, apiPath, connectionString));
-                    UpdateLabel("task completed...");
-                    UpdateProgressBar(100);
-
-                    DialogResult result = MessageBox.Show($"Model Class has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-
-                    if (result == DialogResult.OK)
-                    {
-                        try
-                        {
-                            // Open the file
-                            string visualStudioPath = @"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe";
-                            string solnPath = folderPath + "\\" + apiName + ".sln";
-                            System.Diagnostics.Process.Start(visualStudioPath, solnPath);
-                        }
-                        catch (Exception ex)
-                        {
-                            // Handle exceptions, for example, file not found
-                            MessageBox.Show("Error opening file: " + ex.Message);
-                        }
-                    }
+                    MessageBox.Show("Existing project Path must not be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                catch (Exception ex)
+                UpdateLabel("creating project files...");
+                UpdateProgressBar(70);
+                await Task.Run(() => GenerateCreateModelInExistingProject(apiName, apiPath, connectionString));
+                UpdateLabel("task completed...");
+                UpdateProgressBar(100);
+
+                DialogResult result = MessageBox.Show($"Model Class has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+                if (result == DialogResult.OK)
                 {
-                    MessageBox.Show($"Error while API generation! Details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    ShowOrHideProgressBar("hide");
-                    // ShowOrHideLabel("hide");
-                    btnCreate.Enabled = true;  // Re-enable the button
+                    try
+                    {
+                        // Open the file
+                        string visualStudioPath = @"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe";
+                        string solnPath = folderPath + "\\" + apiName + ".sln";
+                        System.Diagnostics.Process.Start(visualStudioPath, solnPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exceptions, for example, file not found
+                        MessageBox.Show("Error opening file: " + ex.Message);
+                    }
                 }
             }
-            //else
-            //{
-            //    MessageBox.Show("Please select any one value");
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while API generation! Details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                ShowOrHideProgressBar("hide");
+                // ShowOrHideLabel("hide");
+                btnCreate.Enabled = true;  // Re-enable the button
+            }
+        }
+        //else
+        //{
+        //    MessageBox.Show("Please select any one value");
+        //}
         //}
         private void GenerateCreateModelInExistingProject(string apiName, string apiPath, string connectionString)
         {

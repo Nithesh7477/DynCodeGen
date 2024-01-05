@@ -19,7 +19,6 @@ namespace DynCodeGen.UserControls
 {
     public partial class AdoEnhanceControl : UserControl
     {
-        private AdoCreateControl adoCreateControlInstance;
         private Dictionary<string, List<Tuple<string, string, string>>> sheetsData = new Dictionary<string, List<Tuple<string, string, string>>>();
         private string folderPath = string.Empty;
         DataTable dt = new DataTable();
@@ -41,10 +40,15 @@ namespace DynCodeGen.UserControls
         /// <param name="e">e.</param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            adoCreateControlInstance = new AdoCreateControl();
-            BuildConnectionAdo frm = new BuildConnectionAdo(adoCreateControlInstance, this);
+            DynCodeGen dynCodeGenInstance = new DynCodeGen();
+            SpControl spControlInstance = new SpControl(dynCodeGenInstance);
+            CreateModelControl createModelControlInstance = new CreateModelControl(dynCodeGenInstance);
+            AdoCreateControl adoCreateControlInstance = new AdoCreateControl();
+            CreateControl CreateControlInstance = new CreateControl();
+            BuildConnection frm = new BuildConnection(CreateControlInstance, spControlInstance, createModelControlInstance, adoCreateControlInstance, this);
             frm.Show();
         }
+
 
         /// <summary>
         /// btnProjectLocation_Click.
