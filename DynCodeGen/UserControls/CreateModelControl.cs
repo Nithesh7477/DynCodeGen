@@ -47,7 +47,7 @@ namespace DynCodeGen.UserControls
             BuildConnection frm = new BuildConnection(createControlInstance, spControlInstance, this, adoCreateControlInstance, adoEnhanceControlInstance);
             frm.Show();
         }
-    
+
         /// <summary>
         /// btnProjectLocation_Click.
         /// </summary>

@@ -264,9 +264,9 @@ namespace DynCodeGen.UserControls
             btnSourcefile.FlatStyle = FlatStyle.Flat;
             btnSourcefile.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnSourcefile.ForeColor = Color.FromArgb(29, 51, 92);
-            btnSourcefile.Location = new Point(592, 173);
+            btnSourcefile.Location = new Point(592, 178);
             btnSourcefile.Name = "btnSourcefile";
-            btnSourcefile.Size = new Size(92, 32);
+            btnSourcefile.Size = new Size(92, 31);
             btnSourcefile.TabIndex = 17;
             btnSourcefile.Text = "Browse";
             btnSourcefile.UseVisualStyleBackColor = true;
@@ -292,7 +292,7 @@ namespace DynCodeGen.UserControls
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnAdd.ForeColor = Color.FromArgb(29, 51, 92);
-            btnAdd.Location = new Point(592, 20);
+            btnAdd.Location = new Point(592, 21);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(92, 31);
             btnAdd.TabIndex = 15;

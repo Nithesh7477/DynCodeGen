@@ -30,12 +30,17 @@
         {
             tblpnlMain = new TableLayoutPanel();
             panel1 = new Panel();
+            linkLabel2 = new LinkLabel();
+            label6 = new Label();
+            label5 = new Label();
+            linkLabel1 = new LinkLabel();
             SPTemplate = new LinkLabel();
             tableTemplate = new LinkLabel();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            label7 = new Label();
             tblpnlMain.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -55,6 +60,11 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(linkLabel2);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(SPTemplate);
             panel1.Controls.Add(tableTemplate);
             panel1.Controls.Add(label4);
@@ -67,12 +77,58 @@
             panel1.Size = new Size(1008, 591);
             panel1.TabIndex = 0;
             // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            linkLabel2.LinkColor = Color.Navy;
+            linkLabel2.Location = new Point(615, 291);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(88, 20);
+            linkLabel2.TabIndex = 9;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Instructions";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(29, 51, 92);
+            label6.Location = new Point(699, 291);
+            label6.Name = "label6";
+            label6.Size = new Size(138, 20);
+            label6.TabIndex = 8;
+            label6.Text = "to fill the template.";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(29, 51, 92);
+            label5.Location = new Point(193, 291);
+            label5.Name = "label5";
+            label5.Size = new Size(424, 20);
+            label5.TabIndex = 7;
+            label5.Text = "to download the Stored Proc Format template, ang follow the";
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            linkLabel1.LinkColor = Color.Navy;
+            linkLabel1.Location = new Point(573, 247);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(88, 20);
+            linkLabel1.TabIndex = 6;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Instructions";
+            // 
             // SPTemplate
             // 
             SPTemplate.AutoSize = true;
             SPTemplate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             SPTemplate.LinkColor = Color.Navy;
-            SPTemplate.Location = new Point(334, 246);
+            SPTemplate.Location = new Point(116, 291);
             SPTemplate.Name = "SPTemplate";
             SPTemplate.Size = new Size(78, 20);
             SPTemplate.TabIndex = 5;
@@ -85,7 +141,7 @@
             tableTemplate.AutoSize = true;
             tableTemplate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             tableTemplate.LinkColor = Color.Navy;
-            tableTemplate.Location = new Point(334, 204);
+            tableTemplate.Location = new Point(116, 247);
             tableTemplate.Name = "tableTemplate";
             tableTemplate.Size = new Size(78, 20);
             tableTemplate.TabIndex = 4;
@@ -98,29 +154,29 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(29, 51, 92);
-            label4.Location = new Point(173, 246);
+            label4.Location = new Point(657, 247);
             label4.Name = "label4";
-            label4.Size = new Size(127, 20);
+            label4.Size = new Size(138, 20);
             label4.TabIndex = 3;
-            label4.Text = "Stored Procedure";
+            label4.Text = "to fill the template.";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(29, 51, 92);
-            label3.Location = new Point(173, 204);
+            label3.Location = new Point(193, 247);
             label3.Name = "label3";
-            label3.Size = new Size(100, 20);
+            label3.Size = new Size(384, 20);
             label3.TabIndex = 2;
-            label3.Text = "Table Format";
+            label3.Text = "to download the Table Format template, ang follow the";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(29, 51, 92);
-            label2.Location = new Point(164, 161);
+            label2.Location = new Point(107, 200);
             label2.Name = "label2";
             label2.Size = new Size(91, 23);
             label2.TabIndex = 1;
@@ -131,11 +187,23 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(29, 51, 92);
-            label1.Location = new Point(166, 42);
+            label1.Location = new Point(107, 79);
             label1.Name = "label1";
             label1.Size = new Size(630, 25);
             label1.TabIndex = 0;
             label1.Text = "DynCodeGen automates the traditionally manual process of API creation";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label7.ForeColor = Color.FromArgb(29, 51, 92);
+            label7.Location = new Point(105, 125);
+            label7.Name = "label7";
+            label7.Size = new Size(815, 20);
+            label7.TabIndex = 10;
+            label7.Text = "Develop APIs with Property tables, execute SPs, and integrate seamlessly in a single project for enhanced functionality";
+            label7.TextAlign = ContentAlignment.TopCenter;
             // 
             // HomeControl
             // 
@@ -162,5 +230,10 @@
         private Label label3;
         private Label label2;
         private LinkLabel SPTemplate;
+        private LinkLabel linkLabel2;
+        private Label label6;
+        private Label label5;
+        private LinkLabel linkLabel1;
+        private Label label7;
     }
 }

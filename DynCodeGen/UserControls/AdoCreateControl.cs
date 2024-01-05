@@ -466,5 +466,10 @@ namespace DynCodeGen.UserControls
                 dgv.EndEdit();
             }
         }
+
+        private void pnlInputFields_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
