@@ -143,16 +143,13 @@ namespace DynCodeGen.CodeGeneration.Controller
 
         public static void GenerateRepositoryImplementationAdo(string apiName, string apiPath, string className, DataTable dt, Dictionary<string, string> inputParameters)
         {
-            StringBuilder classContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.RepositoryUsingAdo).Replace("{apiName}", apiName)
-                + Regex.Unescape(TemplateHelper.Instance.RepositoryNamespace).Replace("{apiName}", apiName)
-                + Regex.Unescape(TemplateHelper.Instance.RepositoryClassStartAdo).Replace("{className}", className));
+            StringBuilder classContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.RepositoryUsingAdo).Replace("{apiName}", apiName) + Regex.Unescape(TemplateHelper.Instance.RepositoryNamespace).Replace("{apiName}", apiName)+ Regex.Unescape(TemplateHelper.Instance.RepositoryClassStartAdo).Replace("{className}", className));
 
             // Add constructor
             string constructor = Regex.Unescape(TemplateHelper.Instance.RepositoryConstructorAdo).Replace("{className}", className);
             classContent.AppendLine(constructor);
 
-            var temp = dt.Rows.Cast<DataRow>()
-                  .FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
+            var temp = dt.Rows.Cast<DataRow>().FirstOrDefault(x => x.Field<string>("Stored Procedure") == className);
             if (temp[0] == className)
             {
                 if ((bool)temp[1] == true)
@@ -212,8 +209,7 @@ namespace DynCodeGen.CodeGeneration.Controller
 
             }
 
-            classContent.Append(Regex.Unescape(TemplateHelper.Instance.RepositoryClassEnd)
-                + Regex.Unescape(TemplateHelper.Instance.RepositoryNamespaceEnd));
+            classContent.Append(Regex.Unescape(TemplateHelper.Instance.RepositoryClassEnd)+ Regex.Unescape(TemplateHelper.Instance.RepositoryNamespaceEnd));
 
             string classDirectory = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Repository");
             string classPath = Path.Combine(classDirectory, $"{className}Repository.cs");
@@ -233,6 +229,5 @@ namespace DynCodeGen.CodeGeneration.Controller
             Directory.CreateDirectory(classDirectory);
             File.WriteAllText(classPath, baseRepositoryClassContent.ToString());
         }
-
     }
 }

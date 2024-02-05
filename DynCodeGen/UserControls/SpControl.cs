@@ -146,12 +146,13 @@ namespace DynCodeGen.UserControls
                         return;
                     }
                     UpdateLabel("creating project files...");
-                    UpdateProgressBar(70);
+                    UpdateProgressBar(50);
                     await Task.Run(() => GenerateSpExistingProject(apiName, apiPath, connectionString));
+                    UpdateProgressBar(80);
                     UpdateLabel("task completed...");
                     UpdateProgressBar(100);
 
-                    DialogResult result = MessageBox.Show($"{(_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First" ? "API" : "")} has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show($"{(_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First" ? "API" : "StoreProcedure Execution code")} has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
                     if (result == DialogResult.OK)
                     {
@@ -500,10 +501,6 @@ namespace DynCodeGen.UserControls
         }
         private void dgTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if ((bool)dt.Rows[e.RowIndex]["Insert"] && (bool)dt.Rows[e.RowIndex]["Delete"])
-            //{
-            //    dgTable.Columns[1].ReadOnly = true;
-            //}
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dgTable.Columns["Get"].Index)
             {
@@ -562,7 +559,5 @@ namespace DynCodeGen.UserControls
             }
             dgTable.Refresh();
         }
-
-
     }
 }

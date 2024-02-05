@@ -40,6 +40,5 @@ namespace DynCodeGen.CodeGeneration.Project
             Debug.WriteLine(output);
             return output;
         }
-
     }
 }

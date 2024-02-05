@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DynCodeGen.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,6 +50,18 @@ namespace DynCodeGen.UserControls
         private void SPTemplate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             DownloadTemplate("StoredProcedure.xlsx");
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TableInstructions tableInstructions = new TableInstructions();
+            tableInstructions.Show();
+        }
+
+        private void lblSPInstructions_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SPInstructions spInstructions = new SPInstructions();   
+            spInstructions.Show();
         }
     }
 }
