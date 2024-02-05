@@ -23,7 +23,7 @@ namespace DynCodeGen
         private readonly CreateModelControl _createModelControlParent;
         private readonly AdoCreateControl _adoCreateControlParent;
         private readonly AdoEnhanceControl _adoEnhanceControlParent;
-        public BuildConnection(CreateControl createControlParent, SpControl spControlParent, CreateModelControl createModelControlParent ,AdoCreateControl adoCreateControlParent ,AdoEnhanceControl adoEnhanceControlParent )
+        public BuildConnection(CreateControl createControlParent, SpControl spControlParent, CreateModelControl createModelControlParent, AdoCreateControl adoCreateControlParent, AdoEnhanceControl adoEnhanceControlParent)
         {
             InitializeComponent();
             _createControlParent = createControlParent;
@@ -37,66 +37,39 @@ namespace DynCodeGen
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
             btnTestConnection.Enabled = false;
-            string ConnectionString = "Server=tcp:" + txtServerName.Text.ToString() + ",1433;Initial Catalog=" + cmbDatabase.Text.ToString() + ";Persist Security Info=False;User ID=" + txtUserName.Text.ToString() + ";Password=" + txtPassword.Text.ToString() + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string ConnectionString = "Server=" + txtServerName.Text.ToString() + ";Initial Catalog=" + cmbDatabase.Text.ToString() + ";Persist Security Info=False;User ID=" + txtUserName.Text.ToString() + ";Password=" + txtPassword.Text.ToString() + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
             try
             {
-                SqlConnection cnn = new SqlConnection(ConnectionString);
-                cnn.Open();
-                btnTestConnection.Enabled = true;
-                DialogResult result = MessageBox.Show("Connection Tested Succesfully !", "Success", MessageBoxButtons.OK);
+                if (txtPassword.Text.Length > 0 && txtServerName.Text.Length > 0 && txtUserName.Text.Length > 0 && cmbAuthetication.Text.Length > 0)
+                {
+                    SqlConnection cnn = new SqlConnection(ConnectionString);
+                    cnn.Open();
+                    btnTestConnection.Enabled = true;
+                    DialogResult result = MessageBox.Show("Connection Tested Succesfully !", "Success", MessageBoxButtons.OK);
 
-                _createControlParent.txtConnectionString.Text = ConnectionString;
-                _createControlParent.txtConnectionString.ReadOnly = true;
-                _spControlParent.txtConnectionString.Text = ConnectionString;
-                _spControlParent.txtConnectionString.ReadOnly = true;
-                _createModelControlParent.txtConnectionString.Text = ConnectionString;
-                _createModelControlParent.txtConnectionString.ReadOnly = true;
-                _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
-                _adoCreateControlParent.txtConnectionString.ReadOnly = true;
-                _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
-                _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;
-
-                //if (result == DialogResult.OK)
-                //{
-                //    if (_createControlParent != null)
-                //    {
-                //        _createControlParent.txtConnectionString.Text = ConnectionString;
-                //        _createControlParent.txtConnectionString.ReadOnly = true;
-                //        _spControlParent.txtConnectionString.Text = ConnectionString;
-                //        _spControlParent.txtConnectionString.ReadOnly = true;
-                //        _createModelControlParent.txtConnectionString.Text = ConnectionString;
-                //        _createModelControlParent.txtConnectionString.ReadOnly = true;
-                //        _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
-                //        _adoCreateControlParent.txtConnectionString.ReadOnly = true;
-                //        _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
-                //        _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;
-                //    }
-                //    else if (_spControlParent != null)
-                //    {
-                //        _spControlParent.txtConnectionString.Text = ConnectionString;
-                //        _spControlParent.txtConnectionString.ReadOnly = true;
-                //    }
-                //    else if (_createModelControlParent != null)
-                //    {
-                //        _createModelControlParent.txtConnectionString.Text = ConnectionString;
-                //        _createModelControlParent.txtConnectionString.ReadOnly = true;
-                //    }
-                //    else if (_adoCreateControlParent != null)
-                //    {
-                //        _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
-                //        _adoCreateControlParent.txtConnectionString.ReadOnly = true;
-                //    }
-                //    else if (_adoEnhanceControlParent != null)
-                //    {
-                //        _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
-                //        _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;
-                //    }
+                    _createControlParent.txtConnectionString.Text = ConnectionString;
+                    _createControlParent.txtConnectionString.ReadOnly = true;
+                    _spControlParent.txtConnectionString.Text = ConnectionString;
+                    _spControlParent.txtConnectionString.ReadOnly = true;
+                    _createModelControlParent.txtConnectionString.Text = ConnectionString;
+                    _createModelControlParent.txtConnectionString.ReadOnly = true;
+                    _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
+                    _adoCreateControlParent.txtConnectionString.ReadOnly = true;
+                    _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
+                    _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;                 
                     this.Close();
-                
+
+                }
+
+                else
+                {
+                    MessageBox.Show("Please fill all the details", "Failed", MessageBoxButtons.OK);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Connection failed! Please try with Valid credentials", "Failed", MessageBoxButtons.OK);
+                this.Enabled = true;
             }
         }
 
@@ -114,8 +87,9 @@ namespace DynCodeGen
 
 
                     List<string> list = new List<string>();
+                    //string ConnectionString = "Server=tcp:" + txtServerName.Text.ToString() + ",1433;Initial Catalog=" + cmbDatabase.Text.ToString() + ";Persist Security Info=False;User ID=" + txtUserName.Text.ToString() + ";Password=" + txtPassword.Text.ToString() + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
 
-                    string ConnectionString = "server=" + txtServerName.Text.ToString() + ";User Id=" + txtUserName.Text.ToString() + ";pwd=" + txtPassword.Text.ToString() + ";";
+                    string ConnectionString = "server=" + txtServerName.Text.ToString() + ";User Id=" + txtUserName.Text.ToString() + ";pwd=" + txtPassword.Text.ToString() + ";Encrypt=True;TrustServerCertificate=True;";
 
                     using (SqlConnection con = new SqlConnection(ConnectionString))
                     {

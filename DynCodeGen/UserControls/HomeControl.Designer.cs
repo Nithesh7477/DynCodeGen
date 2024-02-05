@@ -30,17 +30,17 @@
         {
             tblpnlMain = new TableLayoutPanel();
             panel1 = new Panel();
-            linkLabel2 = new LinkLabel();
+            label7 = new Label();
+            lblSPInstructions = new LinkLabel();
             label6 = new Label();
             label5 = new Label();
-            linkLabel1 = new LinkLabel();
+            lblTableInstructions = new LinkLabel();
             SPTemplate = new LinkLabel();
             tableTemplate = new LinkLabel();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            label7 = new Label();
             tblpnlMain.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -61,10 +61,10 @@
             // panel1
             // 
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(linkLabel2);
+            panel1.Controls.Add(lblSPInstructions);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(linkLabel1);
+            panel1.Controls.Add(lblTableInstructions);
             panel1.Controls.Add(SPTemplate);
             panel1.Controls.Add(tableTemplate);
             panel1.Controls.Add(label4);
@@ -77,17 +77,30 @@
             panel1.Size = new Size(1008, 591);
             panel1.TabIndex = 0;
             // 
-            // linkLabel2
+            // label7
             // 
-            linkLabel2.AutoSize = true;
-            linkLabel2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            linkLabel2.LinkColor = Color.Navy;
-            linkLabel2.Location = new Point(615, 291);
-            linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(88, 20);
-            linkLabel2.TabIndex = 9;
-            linkLabel2.TabStop = true;
-            linkLabel2.Text = "Instructions";
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label7.ForeColor = Color.FromArgb(29, 51, 92);
+            label7.Location = new Point(105, 125);
+            label7.Name = "label7";
+            label7.Size = new Size(815, 20);
+            label7.TabIndex = 10;
+            label7.Text = "Develop APIs with Property tables, execute SPs, and integrate seamlessly in a single project for enhanced functionality";
+            label7.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lblSPInstructions
+            // 
+            lblSPInstructions.AutoSize = true;
+            lblSPInstructions.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSPInstructions.LinkColor = Color.Navy;
+            lblSPInstructions.Location = new Point(615, 291);
+            lblSPInstructions.Name = "lblSPInstructions";
+            lblSPInstructions.Size = new Size(88, 20);
+            lblSPInstructions.TabIndex = 9;
+            lblSPInstructions.TabStop = true;
+            lblSPInstructions.Text = "Instructions";
+            lblSPInstructions.LinkClicked += lblSPInstructions_LinkClicked;
             // 
             // label6
             // 
@@ -111,17 +124,18 @@
             label5.TabIndex = 7;
             label5.Text = "to download the Stored Proc Format template, ang follow the";
             // 
-            // linkLabel1
+            // lblTableInstructions
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            linkLabel1.LinkColor = Color.Navy;
-            linkLabel1.Location = new Point(573, 247);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(88, 20);
-            linkLabel1.TabIndex = 6;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Instructions";
+            lblTableInstructions.AutoSize = true;
+            lblTableInstructions.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTableInstructions.LinkColor = Color.Navy;
+            lblTableInstructions.Location = new Point(573, 247);
+            lblTableInstructions.Name = "lblTableInstructions";
+            lblTableInstructions.Size = new Size(88, 20);
+            lblTableInstructions.TabIndex = 6;
+            lblTableInstructions.TabStop = true;
+            lblTableInstructions.Text = "Instructions";
+            lblTableInstructions.LinkClicked += LinkLabel1_LinkClicked;
             // 
             // SPTemplate
             // 
@@ -193,18 +207,6 @@
             label1.TabIndex = 0;
             label1.Text = "DynCodeGen automates the traditionally manual process of API creation";
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label7.ForeColor = Color.FromArgb(29, 51, 92);
-            label7.Location = new Point(105, 125);
-            label7.Name = "label7";
-            label7.Size = new Size(815, 20);
-            label7.TabIndex = 10;
-            label7.Text = "Develop APIs with Property tables, execute SPs, and integrate seamlessly in a single project for enhanced functionality";
-            label7.TextAlign = ContentAlignment.TopCenter;
-            // 
             // HomeControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -230,10 +232,10 @@
         private Label label3;
         private Label label2;
         private LinkLabel SPTemplate;
-        private LinkLabel linkLabel2;
+        private LinkLabel lblSPInstructions;
         private Label label6;
         private Label label5;
-        private LinkLabel linkLabel1;
+        private LinkLabel lblTableInstructions;
         private Label label7;
     }
 }

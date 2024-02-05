@@ -30,7 +30,5 @@ namespace DynCodeGen.CodeGeneration.Controller
             Directory.CreateDirectory(classDirectory);
             File.WriteAllText(classPath, sqlHelperClassContent.ToString());
         }
-
-
     }
 }

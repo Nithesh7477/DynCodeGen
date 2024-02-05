@@ -59,7 +59,6 @@ namespace DynCodeGen.CodeGeneration.Project
                 File.WriteAllText(startupPath, existingContent);
             }
         }
-
         public static void UpdateStartupForRepositoriesAndServicesAdo(string apiName, string apiPath, string className)
         {
             string startupPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "Startup.cs");
