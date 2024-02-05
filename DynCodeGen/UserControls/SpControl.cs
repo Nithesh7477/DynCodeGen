@@ -312,7 +312,7 @@ namespace DynCodeGen.UserControls
             dt.Rows.Clear();
             if (sheetsData.Count != 0)
             {
-                if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework- SP" || _dynCodeGenParent.lblHead.Text == "Enhance Project > ADO.Net - SP")
+                if (_dynCodeGenParent.lblHead.Text == "Project Enhancement > Entity Framework- SP" || _dynCodeGenParent.lblHead.Text == "Project Enhancement > ADO.Net - SP")
                 {
                     txtLog.Visible = false;
                     dgSP.Visible = true;
@@ -340,7 +340,7 @@ namespace DynCodeGen.UserControls
                     btnValidate.Enabled = false;
                     btnCreate.Enabled = true;
                 }
-                else if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First")
+                else if (_dynCodeGenParent.lblHead.Text == "Project Enhancement > Entity Framework-Code First")
                 {
                     dt.Rows.Clear();
                     txtLog.Visible = false;
