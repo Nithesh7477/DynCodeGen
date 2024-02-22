@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using DynCodeGen.CodeGeneration.Model;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,6 +31,14 @@ namespace DynCodeGen.CodeGeneration.Project
             {
                 Debug.WriteLine($"Error: {filePath} does not exist.");
             }
+        }
+
+        public static void UpdateAzureAdSettings(string filePath, AzureAdSettings azureAdSettings)
+        {
+            string json = File.ReadAllText(filePath);
+            JObject settings = JObject.Parse(json);
+            settings["AzureAd"] = JObject.FromObject(azureAdSettings);
+            File.WriteAllText(filePath, settings.ToString());
         }
     }
 }

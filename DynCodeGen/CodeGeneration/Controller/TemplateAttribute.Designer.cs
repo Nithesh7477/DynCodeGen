@@ -133,6 +133,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.Identity.Web --version 1.1.0.
+        /// </summary>
+        public static string AddIdentityWeb {
+            get {
+                return ResourceManager.GetString("AddIdentityWeb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj.
         /// </summary>
         public static string AddInfrastructureProject {
@@ -156,6 +165,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string AddInfrastructureReferringDomain {
             get {
                 return ResourceManager.GetString("AddInfrastructureReferringDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Authentication.JwtBearer --version 5.0.5.
+        /// </summary>
+        public static string AddJwtBearer {
+            get {
+                return ResourceManager.GetString("AddJwtBearer", resourceCulture);
             }
         }
         
@@ -241,7 +259,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \r\n\t[ApiController]\r\n\t[Route(\&quot;api/[controller]\&quot;)]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}.
+        ///   Looks up a localized string similar to \r\n\t[Authorize]\r\n\t[ApiController]\r\n\t[Route(\&quot;api/[controller]\&quot;)]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}.
         /// </summary>
         public static string ContollerClass {
             get {
@@ -286,7 +304,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\n.
+        ///   Looks up a localized string similar to using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\n.
         /// </summary>
         public static string ContollerHeader {
             get {
@@ -313,7 +331,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \r\n\t[ApiController]\r\n\t[Route(\&quot;api/[controller]\&quot;)]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}.
+        ///   Looks up a localized string similar to \r\n\t[Authorize]\r\n\t\r\n\t[ApiController]\r\n\t[Route(\&quot;api/[controller]\&quot;)]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}.
         /// </summary>
         public static string ContollerSPClass {
             get {
@@ -1420,7 +1438,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; c.SwaggerEndpoint(\&quot;/swagger/v1/swagger.json\&quot;, $\&quot;{apiName} v1\&quot;));\r\n\t\t\tapp.UseHttpsRedirection().UseRouting().UseCors(\&quot;AllowAll\&quot;).UseAuthorization().UseEndpoints(endpoints =&gt; endpoints.MapControllers());\r\n\t\t\tConfigureHealthCheck(app);\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; \r\n\t\t\t{\r\n\t\t\t c.SwaggerEndpoint(\&quot;/swagger/v1/swagger.json\&quot;, $\&quot;{apiName} v1\&quot;);\r\n\t\t\tc.OAuthClientId(&quot;1e9ab2d0-7c64-49b2-bde6-693f1cfd16c1&quot;);\r\n\t\t\tc.OAuthClientSecret(&quot;ClientSecret&quot;);\r\n\t\t\tc.OAuthUseBasicAuthenticationWithAccessCodeGrant();\r\n\t\t\t}\r\n\t\t\t);\r\n\t\t\tapp.UseHttpsRedirection();\r\n\t\t\tapp.UseRouting();\r\n\t\t\tapp.UseAuth [rest of string was truncated]&quot;;.
         /// </summary>
         public static string StartupConfigureMethod {
             get {
@@ -1429,7 +1447,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;\r\n\t\t\toptions.UseSqlServer(Configuration.GetConnectionString(\&quot;DefaultConnection\&quot;)));\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\&quot;v1\&quot;, new OpenApiInfo { Title = $\&quot;{apiName}\&quot;, Version = \&quot;v1\&quot; }));\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)\r\n\t\t\t.AddMicrosoftIdentityWebApi(Configuration.GetSection(&quot;AzureAd&quot;));\r\n\t\t\tservices.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;\r\n\t\t\toptions.UseSqlServer(Configuration.GetConnectionString(\&quot;DefaultConnection\&quot;)));\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt;\r\n\t\t\t{\r\n\t\t\t  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string StartupConfigureServicesMethod {
             get {
@@ -1438,7 +1456,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\&quot;v1\&quot;, new OpenApiInfo { Title = $\&quot;{apiName}\&quot;, Version = \&quot;v1\&quot; }));\r\n\t\t\tservices.Configure&lt;ConnectionStrings&gt;(Configuration.GetSection(&quot;ConnectionStrings&quot;));\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\&quot;v1\&quot;, new OpenApiInfo { Title = $\&quot;{apiName}\&quot;, Version = \&quot;v1\&quot; }));\r\n\t\t\tservices.Configure&lt;ConnectionStrings&gt;(Configuration.GetSection(&quot;ConnectionStrings&quot;));\r\n\t\t\tservices.AddSwaggerGen(c =&gt;\r\n\t\t\t{\r\n\t\t\t c.SwaggerDoc(\&quot;v1\&quot;, new OpenApiInfo { Title = $\&quot;{apiName}\&quot;, Version = \&quot;v1\&quot; });\r\n\ [rest of string was truncated]&quot;;.
         /// </summary>
         public static string StartupConfigureServicesMethodAdo {
             get {
@@ -1501,7 +1519,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Data;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n.
+        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Data;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\nusing Microsoft.AspNetCore.Authentication.JwtBear [rest of string was truncated]&quot;;.
         /// </summary>
         public static string StartupUsing {
             get {
@@ -1510,7 +1528,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n.
+        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\nusing Microsoft.AspNetCore.Authentication.JwtBearer;\r\nusing Microsoft.Identity.Web;\r\n.
         /// </summary>
         public static string StartupUsingAdo {
             get {
