@@ -169,6 +169,42 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Settings.Configuration.
+        /// </summary>
+        public static string AddSeriLogConfigurationPackage {
+            get {
+                return ResourceManager.GetString("AddSeriLogConfigurationPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Sinks.Console.
+        /// </summary>
+        public static string AddSeriLogConsolePackage {
+            get {
+                return ResourceManager.GetString("AddSeriLogConsolePackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.AspNetCore.
+        /// </summary>
+        public static string AddSeriLogPackage {
+            get {
+                return ResourceManager.GetString("AddSeriLogPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Sinks.File.
+        /// </summary>
+        public static string AddSeriLogSinksPackage {
+            get {
+                return ResourceManager.GetString("AddSeriLogSinksPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Data.SqlClient --version 5.1.2.
         /// </summary>
         public static string AddSqlClientPackage {
@@ -183,6 +219,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string AddSqlServerPackage {
             get {
                 return ResourceManager.GetString("AddSqlServerPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Swashbuckle.AspNetCore.
+        /// </summary>
+        public static string AddSwashbucklePackage {
+            get {
+                return ResourceManager.GetString("AddSwashbucklePackage", resourceCulture);
             }
         }
         
@@ -219,6 +264,51 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string AddWebAPIReferringInfrastructure {
             get {
                 return ResourceManager.GetString("AddWebAPIReferringInfrastructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System.Net;\r\n\t namespace {apiName}.WebAPI.APIResponses\r\n{\r\n\t     public class APIException : APIResponseBase\r\n    {\r\n\t         public APIException(HttpStatusCode StatusCode, string message = null, string details = null) : base(StatusCode, message)\r\n \t        {\r\n\t             Details = details;\r\n \t        }\r\n \t        public string Details { get; set; }\r\n\t     }\r\n}.
+        /// </summary>
+        public static string ApiExceptionClass {
+            get {
+                return ResourceManager.GetString("ApiExceptionClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System.Net;\r\n namespace {apiName}.WebAPI.APIResponses\r\n { \r\n    public class APIResponseBase \r\n    { \r\n        public int StatusCode { get; set; } \r\n        public string StatusDescription { get { return ((HttpStatusCode)StatusCode).ToString(); } }\r\n        public string Message { get; set; }\r\n\r\n        public APIResponseBase(HttpStatusCode status = HttpStatusCode.NotFound, string message = null)\r\n        {\r\n            StatusCode = (int)status;\r\n            Message = message ? [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string APIResponseBaseClass {
+            get {
+                return ResourceManager.GetString("APIResponseBaseClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System.Net;\r\n\r\nnamespace {apiName}.WebAPI.APIResponses\r\n{\r\n    public class APIResponse&lt;T&gt;: APIResponseBase\r\n    {\r\n        public T Result { get; set; }\r\n        public IEnumerable&lt;string&gt; Errors { get; set; }\r\n\r\n        public APIResponse(HttpStatusCode status = HttpStatusCode.OK, T result = default(T),\r\n            string message = null, IEnumerable&lt;string&gt; errors = null)\r\n            : base(status, message)\r\n        {\r\n            Result = result;\r\n            Errors =  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string APIResponseClass {
+            get {
+                return ResourceManager.GetString("APIResponseClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace {apiName}.WebAPI.APIResponses\r\n{\r\n    public class APIValidationErrorResponse : APIResponseBase\r\n    {\r\n        public APIValidationErrorResponse() : base(System.Net.HttpStatusCode.BadRequest)\r\n        {\r\n\r\n        }\r\n        public IEnumerable&lt;string&gt; Errors { get; set; }\r\n    }\r\n}\r\n		.
+        /// </summary>
+        public static string APIValidationErrorResponseClass {
+            get {
+                return ResourceManager.GetString("APIValidationErrorResponseClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace {apiName}.WebAPI.APIResponses\r\n{\r\n    [Serializable]\r\n    public class BadRequestException : Exception\r\n    {\r\n        public readonly List&lt;string&gt;? Errors;\r\n        public BadRequestException(string? message, List&lt;string&gt;? errors = null)\r\n            : base(message)\r\n        {\r\n            Errors = errors;\r\n        }\r\n    }\r\n}.
+        /// </summary>
+        public static string BadRequestExceptionClass {
+            get {
+                return ResourceManager.GetString("BadRequestExceptionClass", resourceCulture);
             }
         }
         
@@ -453,6 +543,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string DBContextWithModels {
             get {
                 return ResourceManager.GetString("DBContextWithModels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System.Net.Mime;\r\nusing System.Text.Json;\r\nusing System.Net;\r\nusing {apiName}.WebAPI.APIResponses;\r\nnamespace {apiName}.WebAPI\r\n{\r\n    public class ExceptionMiddleware\r\n    {\r\n        private readonly RequestDelegate _next;\r\n        private readonly ILogger&lt;ExceptionMiddleware&gt; _logger;\r\n        private readonly IHostEnvironment _hostEnvironment; \r\n        public ExceptionMiddleware(RequestDelegate next, ILogger&lt;ExceptionMiddleware&gt; logger, IHostEnvironment hostEnvironment)\r\n   [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ExceptionMiddlewareClass {
+            get {
+                return ResourceManager.GetString("ExceptionMiddlewareClass", resourceCulture);
             }
         }
         
@@ -817,7 +916,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic static IHostBuilder CreateHostBuilder(string[] args) =&gt;\r\n\t\t\tHost.CreateDefaultBuilder(args)\r\n\t\t\t\t.ConfigureWebHostDefaults(webBuilder =&gt;\r\n\t\t\t\t{\r\n\t\t\t\t\twebBuilder.UseStartup&lt;Startup&gt;();\r\n\t\t\t\t});\r\n.
+        ///   Looks up a localized string similar to \t\tpublic static IHostBuilder CreateHostBuilder(string[] args) =&gt;\r\n\t\t\tHost.CreateDefaultBuilder(args)\r\n\t\t\t\t.UseSerilog()\r\n\t\t\t\t.ConfigureWebHostDefaults(webBuilder =&gt;\r\n\t\t\t\t{\r\n\t\t\t\t\twebBuilder.UseStartup&lt;Startup&gt;();\r\n\t\t\t\t});\r\n.
         /// </summary>
         public static string ProgramCreateHostBuilderMethod {
             get {
@@ -826,7 +925,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic static void Main(string[] args)\r\n\t\t{\r\n\t\t\tCreateHostBuilder(args).Build().Run();\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \t\tpublic static void Main(string[] args)\r\n\t\t{\r\n  var builder = WebApplication.CreateBuilder(args);\r\n\t\t  string result = &quot;logs/{apiName}_LogFile_&quot; + DateTime.Now.ToString(&quot;yyyyMMdd&quot;) + &quot;.txt&quot;; \r\n\t\t  Log.Logger = new LoggerConfiguration() \r\n\t\t .WriteTo.File(result)\r\n\t\t.CreateLogger();\r\n\t\t builder.Logging.ClearProviders();\r\n\t\t builder.Logging.AddSerilog();\r\n\t\t builder.Host.UseSerilog(); \r\n\t\t CreateHostBuilder(args).Build().Run();\r\n\t\t}\r\n.
         /// </summary>
         public static string ProgramMainMethod {
             get {
@@ -853,7 +952,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Hosting;.
+        ///   Looks up a localized string similar to using Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Hosting;\r\n using Serilog;.
         /// </summary>
         public static string ProgramUsing {
             get {
@@ -1420,7 +1519,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; c.SwaggerEndpoint(\&quot;/swagger/v1/swagger.json\&quot;, $\&quot;{apiName} v1\&quot;));\r\n\t\t\tapp.UseHttpsRedirection().UseRouting().UseCors(\&quot;AllowAll\&quot;).UseAuthorization().UseEndpoints(endpoints =&gt; endpoints.MapControllers());\r\n\t\t\tConfigureHealthCheck(app);\r\n\t\t}\r\n.
+        ///   Looks up a localized string similar to \t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; c.SwaggerEndpoint(\&quot;/swagger/v1/swagger.json\&quot;, $\&quot;{apiName} v1\&quot;));\r\n\t\t\tapp.UseHttpsRedirection().UseRouting().UseCors(\&quot;AllowAll\&quot;).UseAuthorization().UseEndpoints(endpoints =&gt; endpoints.MapControllers());\r\n\t\t\t   app.UseMiddleware&lt;ExceptionMiddleware&gt;(); \r\n\t\t\tapp.UseSerilogRequestLogging(); \r\n\t\t\tConfigureHealthCheck(app);\r\n\t\t}\r\n.
         /// </summary>
         public static string StartupConfigureMethod {
             get {
@@ -1501,7 +1600,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Data;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n.
+        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\n using {apiName}.WebAPI.APIResponses;\r\n using Serilog;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Data;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi. [rest of string was truncated]&quot;;.
         /// </summary>
         public static string StartupUsing {
             get {
@@ -1510,7 +1609,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n.
+        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\n using {apiName}.WebAPI.APIResponses;\r\n using Serilog;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n.
         /// </summary>
         public static string StartupUsingAdo {
             get {

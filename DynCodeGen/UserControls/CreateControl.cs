@@ -316,9 +316,20 @@
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddToolsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddAspNetCoreHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddExtensionsHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+
+            //Add Serilog Packages under WebApiProjects            
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogConfigurationPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogConsolePackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogSinksPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSwashbucklePackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            
+
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AdddotnetefPackage)));
 
             UpdateLabel("generating classes...");
+
+            
 
             string dbContextPath = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data", "ApplicationDbContext.cs");
             DBContext.GenerateApplicationDbContext(dbContextPath, $"{apiName}.Infrastructure");
@@ -331,6 +342,16 @@
 
             UpdateStartupFile.CreateStartupFile(apiName, apiPath);
             UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
+            AddExceptionMiddleware.CreateExceptionMiddlewareFile(apiName, apiPath);
+
+            //Api Response 
+            Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.WebAPI","APIResponses"));
+            AddApiResponse.CreateAPIExceptionFile(apiName, apiPath);
+            AddApiResponse.CreateAPIResponseFile(apiName, apiPath);
+            AddApiResponse.CreateAPIResponseBaseFile(apiName, apiPath);
+            AddApiResponse.CreateAPIValidationErrorResponseFile(apiName, apiPath);
+            AddApiResponse.CreateBadRequestExceptionFile(apiName, apiPath);
+
 
             UpdateProgressBar(50);
             UpdateLabel("creating repositories...");
