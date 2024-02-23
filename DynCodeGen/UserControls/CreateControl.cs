@@ -3,6 +3,7 @@
     using global::DynCodeGen.CodeGeneration.CodeTemplate;
     using global::DynCodeGen.CodeGeneration.Controller;
     using global::DynCodeGen.CodeGeneration.Entity;
+    using global::DynCodeGen.CodeGeneration.Model;
     using global::DynCodeGen.CodeGeneration.Project;
     using OfficeOpenXml;
     using System.Data;
@@ -269,6 +270,16 @@
         }
         private void GenerateWebAPI(string apiName, string apiPath, string connectionString)
         {
+            //Azure Instance with user Values
+            var azureAdSettings = new AzureAdSettings
+            {
+                Instance = "https://login.microsoftonline.com/",
+                Domain = "Domain",
+                TenantId = "TenantID",
+                ClientId = "ClientID",
+                Audience = "Audience"
+            };
+
             ExecuteCliCommand execmd = new ExecuteCliCommand();
             Migrations migrations = new Migrations();
 
@@ -278,10 +289,12 @@
             // Set the connection string in appsettings.json
             string appSettingsPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.json");
             AddConnectionString.SetConnectionString(appSettingsPath, connectionString);
+            AddConnectionString.UpdateAzureAdSettings(appSettingsPath, azureAdSettings);
 
             // Set the connection string in appsettings.Development.json
             string appSettingsDevPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.Development.json");
             AddConnectionString.SetConnectionString(appSettingsDevPath, connectionString);
+            AddConnectionString.UpdateAzureAdSettings(appSettingsPath, azureAdSettings);
 
             // Create a solution
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
@@ -316,6 +329,8 @@
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddToolsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddAspNetCoreHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddExtensionsHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddJwtBearer).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddIdentityWeb).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
             //Add Serilog Packages under WebApiProjects            
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));

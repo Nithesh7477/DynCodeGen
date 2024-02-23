@@ -282,6 +282,8 @@ namespace DynCodeGen.UserControls
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddOptionsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddConfigPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlClientPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddJwtBearer).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddIdentityWeb).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
             UpdateLabel("generating classes...");
 

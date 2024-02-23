@@ -139,19 +139,19 @@
     <value>tool install --global dotnet-ef</value>
   </data>
   <data name="AddSeriLogPackage" xml:space="preserve">
-	<value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.AspNetCore</value>
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.AspNetCore</value>
   </data>
   <data name="AddSeriLogConfigurationPackage" xml:space="preserve">
-	<value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Settings.Configuration</value>
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Settings.Configuration</value>
   </data>
   <data name="AddSeriLogConsolePackage" xml:space="preserve">
-	<value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Sinks.Console</value>
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Sinks.Console</value>
   </data>
   <data name="AddSeriLogSinksPackage" xml:space="preserve">
-	<value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Sinks.File</value>
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Serilog.Sinks.File</value>
   </data>
   <data name="AddSwashbucklePackage" xml:space="preserve">
-	<value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Swashbuckle.AspNetCore</value>
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Swashbuckle.AspNetCore</value>
   </data>
   <data name="AddExtensionsHostingPackage" xml:space="preserve">
     <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.Extensions.Hosting</value>
@@ -193,7 +193,7 @@
     <value>\t\t\r\n\r\n\t\t[HttpPost(\"Add\")]\r\n\t\tpublic IActionResult Add([FromBody] {className} entity)\r\n\t\t{\r\n\t\t\t_service.Add(entity);\r\n\t\t\treturn CreatedAtAction(nameof(GetById), new { {IdName} = entity.{IdName}}, entity);\r\n\t\t}</value>
   </data>
   <data name="ContollerClass" xml:space="preserve">
-    <value>\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
+    <value>\r\n\t[Authorize]\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
   </data>
   <data name="ContollerClassEnd" xml:space="preserve">
     <value>\r\n\t}</value>
@@ -208,7 +208,7 @@
     <value>\t\t\r\n\r\n\t\t[HttpGet(\"GetAll\")]\r\n\t\tpublic ActionResult&lt;IEnumerable&lt;{className}&gt;&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn Ok(_service.GetAll());\r\n\t\t}</value>
   </data>
   <data name="ContollerHeader" xml:space="preserve">
-    <value>using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\n</value>
+    <value>using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\n</value>
   </data>
   <data name="ContollerNamespace" xml:space="preserve">
     <value>namespace {apiName}.Api.Controllers\r\n{</value>
@@ -217,7 +217,7 @@
     <value>\r\n}</value>
   </data>
   <data name="ContollerSPClass" xml:space="preserve">
-    <value>\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
+    <value>\r\n\t[Authorize]\r\n\t\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
   </data>
   <data name="ContollerUpdate" xml:space="preserve">
     <value>\r\n\r\n\t\t[HttpPut(\"Update/{{IdName}}\")]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
@@ -400,28 +400,23 @@
     <value>using Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Hosting;\r\n using Serilog;</value>
   </data>
   <data name="ExceptionMiddlewareClass" xml:space="preserve">
-	<value>using System.Net.Mime;\r\nusing System.Text.Json;\r\nusing System.Net;\r\nusing {apiName}.WebAPI.APIResponses;\r\nnamespace {apiName}.WebAPI\r\n{\r\n    public class ExceptionMiddleware\r\n    {\r\n        private readonly RequestDelegate _next;\r\n        private readonly ILogger&lt;ExceptionMiddleware&gt; _logger;\r\n        private readonly IHostEnvironment _hostEnvironment; \r\n        public ExceptionMiddleware(RequestDelegate next, ILogger&lt;ExceptionMiddleware&gt; logger, IHostEnvironment hostEnvironment)\r\n        {\r\n            _next = next;\r\n            _logger = logger;\r\n            _hostEnvironment = hostEnvironment;\r\n        }\r\n        private async Task WriteAsync&lt;T&gt;(T response, HttpContext httpContext) where T : APIResponseBase\r\n        {\r\n            httpContext.Response.ContentType = MediaTypeNames.Application.Json;\r\n            var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };\r\n            var json = JsonSerializer.Serialize(response, options);\r\n            await httpContext.Response.WriteAsync(json);\r\n        }\r\n        public async Task InvokeAsync(HttpContext httpContext)\r\n        {\r\n            try\r\n            {\r\n                await _next(httpContext);\r\n            }\r\n            catch (BadRequestException ex)\r\n            {\r\n                httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;\r\n                await WriteAsync(new APIResponse&lt;object&gt;(HttpStatusCode.BadRequest, null, ex.Message, ex.Errors), httpContext);\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                _logger.LogError(ex, ex.Message);\r\n                httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;\r\n                await WriteAsync(_hostEnvironment.IsDevelopment() ? new APIException(HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace.ToString()) : new APIException(HttpStatusCode.InternalServerError, ex.Message), httpContext);\r\n            }\r\n        }\r\n    }\r\n} </value>
-   </data>
-	<data name="ApiExceptionClass" xml:space="preserve">
-		<value>using System.Net;\r\n\t namespace {apiName}.WebAPI.APIResponses\r\n{\r\n\t     public class APIException : APIResponseBase\r\n    {\r\n\t         public APIException(HttpStatusCode StatusCode, string message = null, string details = null) : base(StatusCode, message)\r\n \t        {\r\n\t             Details = details;\r\n \t        }\r\n \t        public string Details { get; set; }\r\n\t     }\r\n}</value>
-	</data>
-
-	<data name="APIResponseClass" xml:space="preserve">
-		<value>using System.Net;\r\n\r\nnamespace {apiName}.WebAPI.APIResponses\r\n{\r\n    public class APIResponse&lt;T&gt;: APIResponseBase\r\n    {\r\n        public T Result { get; set; }\r\n        public IEnumerable&lt;string&gt; Errors { get; set; }\r\n\r\n        public APIResponse(HttpStatusCode status = HttpStatusCode.OK, T result = default(T),\r\n            string message = null, IEnumerable&lt;string&gt; errors = null)\r\n            : base(status, message)\r\n        {\r\n            Result = result;\r\n            Errors = errors;\r\n        }\r\n    }\r\n}</value>
-	</data>
-
-	<data name="APIResponseBaseClass" xml:space="preserve">
-		<value>using System.Net;\r\n namespace {apiName}.WebAPI.APIResponses\r\n { \r\n    public class APIResponseBase \r\n    { \r\n        public int StatusCode { get; set; } \r\n        public string StatusDescription { get { return ((HttpStatusCode)StatusCode).ToString(); } }\r\n        public string Message { get; set; }\r\n\r\n        public APIResponseBase(HttpStatusCode status = HttpStatusCode.NotFound, string message = null)\r\n        {\r\n            StatusCode = (int)status;\r\n            Message = message ?? DefaultStatusCodeMessage(StatusCode);\r\n        }\r\n        private string DefaultStatusCodeMessage(int StatusCode)\r\n        {\r\n            return StatusCode switch\r\n            {\r\n                200 => \"Success\",\r\n                400 => \"A bad request you have made\",\r\n                401 => \"UnAuthorized\",\r\n                403 => \"Access Forbidden\",\r\n                404 => \"Resource not Found\",\r\n                500 => \"Internal server error\",\r\n                0 => \"Some Thing Went Wrong\",\r\n                _ => throw new NotImplementedException()\r\n            };\r\n        }\r\n    }\r\n}\r\n</value>
-	</data>
-
-	<data name="APIValidationErrorResponseClass" xml:space="preserve">
-		<value>namespace {apiName}.WebAPI.APIResponses\r\n{\r\n    public class APIValidationErrorResponse : APIResponseBase\r\n    {\r\n        public APIValidationErrorResponse() : base(System.Net.HttpStatusCode.BadRequest)\r\n        {\r\n\r\n        }\r\n        public IEnumerable&lt;string&gt; Errors { get; set; }\r\n    }\r\n}\r\n		</value>
-	</data>
-
-	<data name="BadRequestExceptionClass" xml:space="preserve">
-		<value>namespace {apiName}.WebAPI.APIResponses\r\n{\r\n    [Serializable]\r\n    public class BadRequestException : Exception\r\n    {\r\n        public readonly List&lt;string&gt;? Errors;\r\n        public BadRequestException(string? message, List&lt;string&gt;? errors = null)\r\n            : base(message)\r\n        {\r\n            Errors = errors;\r\n        }\r\n    }\r\n}</value>
-	</data>
-	
+    <value>using System.Net.Mime;\r\nusing System.Text.Json;\r\nusing System.Net;\r\nusing {apiName}.WebAPI.APIResponses;\r\nnamespace {apiName}.WebAPI\r\n{\r\n    public class ExceptionMiddleware\r\n    {\r\n        private readonly RequestDelegate _next;\r\n        private readonly ILogger&lt;ExceptionMiddleware&gt; _logger;\r\n        private readonly IHostEnvironment _hostEnvironment; \r\n        public ExceptionMiddleware(RequestDelegate next, ILogger&lt;ExceptionMiddleware&gt; logger, IHostEnvironment hostEnvironment)\r\n        {\r\n            _next = next;\r\n            _logger = logger;\r\n            _hostEnvironment = hostEnvironment;\r\n        }\r\n        private async Task WriteAsync&lt;T&gt;(T response, HttpContext httpContext) where T : APIResponseBase\r\n        {\r\n            httpContext.Response.ContentType = MediaTypeNames.Application.Json;\r\n            var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };\r\n            var json = JsonSerializer.Serialize(response, options);\r\n            await httpContext.Response.WriteAsync(json);\r\n        }\r\n        public async Task InvokeAsync(HttpContext httpContext)\r\n        {\r\n            try\r\n            {\r\n                await _next(httpContext);\r\n            }\r\n            catch (BadRequestException ex)\r\n            {\r\n                httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;\r\n                await WriteAsync(new APIResponse&lt;object&gt;(HttpStatusCode.BadRequest, null, ex.Message, ex.Errors), httpContext);\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                _logger.LogError(ex, ex.Message);\r\n                httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;\r\n                await WriteAsync(_hostEnvironment.IsDevelopment() ? new APIException(HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace.ToString()) : new APIException(HttpStatusCode.InternalServerError, ex.Message), httpContext);\r\n            }\r\n        }\r\n    }\r\n} </value>
+  </data>
+  <data name="ApiExceptionClass" xml:space="preserve">
+    <value>using System.Net;\r\n\t namespace {apiName}.WebAPI.APIResponses\r\n{\r\n\t     public class APIException : APIResponseBase\r\n    {\r\n\t         public APIException(HttpStatusCode StatusCode, string message = null, string details = null) : base(StatusCode, message)\r\n \t        {\r\n\t             Details = details;\r\n \t        }\r\n \t        public string Details { get; set; }\r\n\t     }\r\n}</value>
+  </data>
+  <data name="APIResponseClass" xml:space="preserve">
+    <value>using System.Net;\r\n\r\nnamespace {apiName}.WebAPI.APIResponses\r\n{\r\n    public class APIResponse&lt;T&gt;: APIResponseBase\r\n    {\r\n        public T Result { get; set; }\r\n        public IEnumerable&lt;string&gt; Errors { get; set; }\r\n\r\n        public APIResponse(HttpStatusCode status = HttpStatusCode.OK, T result = default(T),\r\n            string message = null, IEnumerable&lt;string&gt; errors = null)\r\n            : base(status, message)\r\n        {\r\n            Result = result;\r\n            Errors = errors;\r\n        }\r\n    }\r\n}</value>
+  </data>
+  <data name="APIResponseBaseClass" xml:space="preserve">
+    <value>using System.Net;\r\n namespace {apiName}.WebAPI.APIResponses\r\n { \r\n    public class APIResponseBase \r\n    { \r\n        public int StatusCode { get; set; } \r\n        public string StatusDescription { get { return ((HttpStatusCode)StatusCode).ToString(); } }\r\n        public string Message { get; set; }\r\n\r\n        public APIResponseBase(HttpStatusCode status = HttpStatusCode.NotFound, string message = null)\r\n        {\r\n            StatusCode = (int)status;\r\n            Message = message ?? DefaultStatusCodeMessage(StatusCode);\r\n        }\r\n        private string DefaultStatusCodeMessage(int StatusCode)\r\n        {\r\n            return StatusCode switch\r\n            {\r\n                200 =&gt; \"Success\",\r\n                400 =&gt; \"A bad request you have made\",\r\n                401 =&gt; \"UnAuthorized\",\r\n                403 =&gt; \"Access Forbidden\",\r\n                404 =&gt; \"Resource not Found\",\r\n                500 =&gt; \"Internal server error\",\r\n                0 =&gt; \"Some Thing Went Wrong\",\r\n                _ =&gt; throw new NotImplementedException()\r\n            };\r\n        }\r\n    }\r\n}\r\n</value>
+  </data>
+  <data name="APIValidationErrorResponseClass" xml:space="preserve">
+    <value>namespace {apiName}.WebAPI.APIResponses\r\n{\r\n    public class APIValidationErrorResponse : APIResponseBase\r\n    {\r\n        public APIValidationErrorResponse() : base(System.Net.HttpStatusCode.BadRequest)\r\n        {\r\n\r\n        }\r\n        public IEnumerable&lt;string&gt; Errors { get; set; }\r\n    }\r\n}\r\n		</value>
+  </data>
+  <data name="BadRequestExceptionClass" xml:space="preserve">
+    <value>namespace {apiName}.WebAPI.APIResponses\r\n{\r\n    [Serializable]\r\n    public class BadRequestException : Exception\r\n    {\r\n        public readonly List&lt;string&gt;? Errors;\r\n        public BadRequestException(string? message, List&lt;string&gt;? errors = null)\r\n            : base(message)\r\n        {\r\n            Errors = errors;\r\n        }\r\n    }\r\n}</value>
+  </data>
   <data name="RepositoryAdd" xml:space="preserve">
     <value>\t\tpublic void Add({className} entity)\r\n\t\t{\r\n\t\t\t_context.{className}Set.Add(entity);\r\n\t\t\t_context.SaveChanges();\r\n\t\t}\r\n</value>
   </data>
@@ -609,13 +604,13 @@
     <value>\t\tprivate void ConfigureHealthCheck(IApplicationBuilder app)\r\n\t\t{\r\n\t\t\t// Add health check configurations here.\r\n\t\t}\r\n</value>
   </data>
   <data name="StartupConfigureMethod" xml:space="preserve">
-    <value>\t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; c.SwaggerEndpoint(\"/swagger/v1/swagger.json\", $\"{apiName} v1\"));\r\n\t\t\tapp.UseHttpsRedirection().UseRouting().UseCors(\"AllowAll\").UseAuthorization().UseEndpoints(endpoints =&gt; endpoints.MapControllers());\r\n\t\t\t   app.UseMiddleware&lt;ExceptionMiddleware&gt;(); \r\n\t\t\tapp.UseSerilogRequestLogging(); \r\n\t\t\tConfigureHealthCheck(app);\r\n\t\t}\r\n</value>
+    <value>\t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; \r\n\t\t\t{\r\n\t\t\t c.SwaggerEndpoint(\"/swagger/v1/swagger.json\", $\"{apiName} v1\");\r\n\t\t\tc.OAuthClientId("{ClientID}");\r\n\t\t\tc.OAuthClientSecret("{ClientSecret}");\r\n\t\t\tc.OAuthUseBasicAuthenticationWithAccessCodeGrant();\r\n\t\t\t}\r\n\t\t\t);\r\n\t\t\tapp.UseHttpsRedirection();\r\n\t\t\tapp.UseRouting();\r\n\t\t\tapp.UseAuthentication();\r\n\t\t\tapp.UseAuthorization();\r\n\t\t\tapp.UseHttpsRedirection().UseRouting().UseCors(\"AllowAll\").UseAuthorization().UseEndpoints(endpoints =&gt; endpoints.MapControllers());;\r\n\t\t\t   app.UseMiddleware&lt;ExceptionMiddleware&gt;(); \r\n\t\t\tapp.UseSerilogRequestLogging(); \r\n\t\t\tConfigureHealthCheck(app);\r\n\t\t}\r\n</value>
   </data>
   <data name="StartupConfigureServicesMethod" xml:space="preserve">
-    <value>\t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;\r\n\t\t\toptions.UseSqlServer(Configuration.GetConnectionString(\"DefaultConnection\")));\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\"v1\", new OpenApiInfo { Title = $\"{apiName}\", Version = \"v1\" }));\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n</value>
+    <value>\t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tservices.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)\r\n\t\t\t.AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));\r\n\t\t\tservices.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;\r\n\t\t\toptions.UseSqlServer(Configuration.GetConnectionString(\"DefaultConnection\")));\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt;\r\n\t\t\t{\r\n\t\t\t c.SwaggerDoc(\"v1\", new OpenApiInfo { Title = $\"{apiName}\", Version = \"v1\" });\r\n\t\t\tc.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme\r\n\t\t\t{\r\n\t\t\tType = SecuritySchemeType.OAuth2,\r\n\t\t\tFlows = new OpenApiOAuthFlows()\r\n\t\t\t{\r\n\t\t\tImplicit = new OpenApiOAuthFlow()\r\n\t\t\t{\r\n\t\t\tAuthorizationUrl = new Uri("https://login.microsoftonline.com/{TenantId}/oauth2/v2.0/authorize"),\r\n\t\t\tTokenUrl = new Uri("https://login.microsoftonline.com/{TenantId}/oauth2/v2.0/token"),\r\n\t\t\tScopes = new Dictionary&lt;string, string&gt;\r\n\t\t\t{\r\n\t\t\t{ "{Scope}", "Scope" }\r\n\t\t\t}\r\n\t\t\t}\r\n\t\t\t}\r\n\t\t\t});\r\n\t\t\tc.AddSecurityRequirement(new OpenApiSecurityRequirement()\r\n\t\t\t{\r\n\t\t\t{\r\n\t\t\tnew OpenApiSecurityScheme\r\n\t\t\t{\r\n\t\t\tReference = new OpenApiReference\r\n\t\t\t{Type = ReferenceType.SecurityScheme,\r\n\t\t\tId = "oauth2"\r\n\t\t\t},\r\n\t\t\t Scheme = "oauth2",\r\n\t\t\tName = "oauth2",\r\n\t\t\tIn = ParameterLocation.Header\r\n\t\t\t},\r\n\t\t\tnew List&lt;string&gt;()\r\n\t\t\t}\r\n\t\t\t});\r\n\t\t\t});\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n</value>
   </data>
   <data name="StartupConfigureServicesMethodAdo" xml:space="preserve">
-    <value>\t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\"v1\", new OpenApiInfo { Title = $\"{apiName}\", Version = \"v1\" }));\r\n\t\t\tservices.Configure&lt;ConnectionStrings&gt;(Configuration.GetSection("ConnectionStrings"));\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n</value>
+    <value>\t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\"v1\", new OpenApiInfo { Title = $\"{apiName}\", Version = \"v1\" }));\r\n\t\t\tservices.Configure&lt;ConnectionStrings&gt;(Configuration.GetSection("ConnectionStrings"));\r\n\t\t\tservices.AddSwaggerGen(c =&gt;\r\n\t\t\t{\r\n\t\t\t c.SwaggerDoc(\"v1\", new OpenApiInfo { Title = $\"{apiName}\", Version = \"v1\" });\r\n\t\t\tc.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme\r\n\t\t\t{\r\n\t\t\tType = SecuritySchemeType.OAuth2,\r\n\t\t\tFlows = new OpenApiOAuthFlows()\r\n\t\t\t{\r\n\t\t\tImplicit = new OpenApiOAuthFlow()\r\n\t\t\t{\r\n\t\t\tAuthorizationUrl = new Uri("https://login.microsoftonline.com/339e7abb-6f11-42e2-900b-c3b75eec6d5c/oauth2/v2.0/authorize"),\r\n\t\t\tTokenUrl = new Uri("https://login.microsoftonline.com/339e7abb-6f11-42e2-900b-c3b75eec6d5c/oauth2/v2.0/token"),\r\n\t\t\tScopes = new Dictionary&lt;string, string&gt;\r\n\t\t\t{\r\n\t\t\t{ "https://TestDynGenCode.onmicrosoft.com/1e9ab2d0-7c64-49b2-bde6-693f1cfd16c1/ReadWriteAccess", "Reads the Weather forecast" }\r\n\t\t\t}\r\n\t\t\t}\r\n\t\t\t}\r\n\t\t\t});\r\n\t\t\tc.AddSecurityRequirement(new OpenApiSecurityRequirement()\r\n\t\t\t{\r\n\t\t\t{\r\n\t\t\tnew OpenApiSecurityScheme\r\n\t\t\t{\r\n\t\t\tReference = new OpenApiReference\r\n\t\t\t{Type = ReferenceType.SecurityScheme,\r\n\t\t\tId = "oauth2"\r\n\t\t\t},\r\n\t\t\t Scheme = "oauth2",\r\n\t\t\tName = "oauth2",\r\n\t\t\tIn = ParameterLocation.Header\r\n\t\t\t},\r\n\t\t\tnew List&lt;string&gt;()\r\n\t\t\t}\r\n\t\t\t});\r\n\t\t\t});\r\n\t\t\tAddCors(services);\r\n\t\t}\r\n</value>
   </data>
   <data name="StartupConfigureSwaggerMethod" xml:space="preserve">
     <value>\t\tprivate void ConfigureSwagger(IApplicationBuilder app)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; \r\n\t\t\t{\r\n\t\t\t\tc.SwaggerEndpoint(\"/swagger/v1/swagger.json\", $\"{apiName} v1\");\r\n\t\t\t});\r\n\t\t}\r\n</value>
@@ -636,9 +631,15 @@
     <value>\t\tprivate void RegisterDependencies(IServiceCollection services)\r\n\t\t{\r\n// Add dependency injection registrations here.\r\n\t\t}\r\n</value>
   </data>
   <data name="StartupUsing" xml:space="preserve">
-    <value>using {apiName}.Application.IRepository;\r\n using {apiName}.WebAPI.APIResponses;\r\n using Serilog;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Data;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n</value>
+    <value>using {apiName}.Application.IRepository;\r\n using {apiName}.WebAPI.APIResponses;\r\n using Serilog;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Data;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\nusing Microsoft.AspNetCore.Authentication.JwtBearer;\r\nusing Microsoft.Identity.Web;</value>
   </data>
   <data name="StartupUsingAdo" xml:space="preserve">
     <value>using {apiName}.Application.IRepository;\r\n using {apiName}.WebAPI.APIResponses;\r\n using Serilog;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Infrastructure.Repository;\r\nusing {apiName}.Infrastructure.Service;\r\nusing Microsoft.AspNetCore.Builder;\r\nusing Microsoft.AspNetCore.Hosting;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.DependencyInjection;\r\nusing Microsoft.OpenApi.Models;\r\n</value>
+  </data>
+  <data name="AddIdentityWeb" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.Identity.Web --version 1.1.0</value>
+  </data>
+  <data name="AddJwtBearer" xml:space="preserve">
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Authentication.JwtBearer --version 5.0.5</value>
   </data>
 </root>
