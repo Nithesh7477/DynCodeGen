@@ -1438,7 +1438,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; \r\n\t\t\t{\r\n\t\t\t c.SwaggerEndpoint(\&quot;/swagger/v1/swagger.json\&quot;, $\&quot;{apiName} v1\&quot;);\r\n\t\t\tc.OAuthClientId(&quot;1e9ab2d0-7c64-49b2-bde6-693f1cfd16c1&quot;);\r\n\t\t\tc.OAuthClientSecret(&quot;ClientSecret&quot;);\r\n\t\t\tc.OAuthUseBasicAuthenticationWithAccessCodeGrant();\r\n\t\t\t}\r\n\t\t\t);\r\n\t\t\tapp.UseHttpsRedirection();\r\n\t\t\tapp.UseRouting();\r\n\t\t\tapp.UseAuth [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to \t\tpublic void Configure(IApplicationBuilder app, IWebHostEnvironment env)\r\n\t\t{\r\n\t\t\tapp.UseSwagger();\r\n\t\t\tapp.UseSwaggerUI(c =&gt; \r\n\t\t\t{\r\n\t\t\t c.SwaggerEndpoint(\&quot;/swagger/v1/swagger.json\&quot;, $\&quot;{apiName} v1\&quot;);\r\n\t\t\tc.OAuthClientId(&quot;{ClientID}&quot;);\r\n\t\t\tc.OAuthClientSecret(&quot;{ClientSecret}&quot;);\r\n\t\t\tc.OAuthUseBasicAuthenticationWithAccessCodeGrant();\r\n\t\t\t}\r\n\t\t\t);\r\n\t\t\tapp.UseHttpsRedirection();\r\n\t\t\tapp.UseRouting();\r\n\t\t\tapp.UseAuthentication();\r\n\t\t\ta [rest of string was truncated]&quot;;.
         /// </summary>
         public static string StartupConfigureMethod {
             get {

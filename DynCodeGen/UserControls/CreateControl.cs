@@ -274,10 +274,10 @@
             var azureAdSettings = new AzureAdSettings
             {
                 Instance = "https://login.microsoftonline.com/",
-                Domain = "TestDynGenCode.onmicrosoft.com",
-                TenantId = "339e7abb-6f11-42e2-900b-c3b75eec6d5c",
-                ClientId = "1e9ab2d0-7c64-49b2-bde6-693f1cfd16c1",
-                Audience = "https://TestDynGenCode.onmicrosoft.com/1e9ab2d0-7c64-49b2-bde6-693f1cfd16c1"
+                Domain = "Domain",
+                TenantId = "TenantID",
+                ClientId = "ClientID",
+                Audience = "Audience"
             };
 
             ExecuteCliCommand execmd = new ExecuteCliCommand();
