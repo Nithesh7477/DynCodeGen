@@ -340,7 +340,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\t\r\n\r\n\t\t[HttpPost(\&quot;Add\&quot;)]\r\n\t\tpublic IActionResult Add([FromBody] {className} entity)\r\n\t\t{\r\n\t\t\t_service.Add(entity);\r\n\t\t\treturn CreatedAtAction(nameof(GetById), new { {IdName} = entity.{IdName}}, entity);\r\n\t\t}.
+        ///   Looks up a localized string similar to \t\t[HttpPost(\&quot;Add\&quot;)]\r\n\t\tpublic IActionResult Add([FromBody] {className} entity)\r\n\t\t{\r\n\t\t\t_service.Add(entity);\r\n\t\t\treturn CreatedAtAction(nameof(GetById), new { {IdName} = entity.{IdName}}, entity);\r\n\t\t}.
         /// </summary>
         public static string ContollerAdd {
             get {
@@ -367,7 +367,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\t\r\n\r\n\t\t[HttpDelete(\&quot;Delete/{{IdName}}\&quot;)]\r\n\t\tpublic IActionResult Delete(int {IdName})\r\n\t\t{\r\n\t\t\tvar existingItem = _service.GetById({IdName});\r\n\t\t\tif (existingItem == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\t_service.Delete({IdName});\r\n\t\t\treturn NoContent();\r\n\t\t}.
+        ///   Looks up a localized string similar to \t\t[HttpDelete(\&quot;Delete/{{IdName}}\&quot;)]\r\n\t\tpublic IActionResult Delete(int {IdName})\r\n\t\t{\r\n\t\t\tvar existingItem = _service.GetById({IdName});\r\n\t\t\tif (existingItem == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\t_service.Delete({IdName});\r\n\t\t\treturn NoContent();\r\n\t\t}.
         /// </summary>
         public static string ContollerDelete {
             get {
@@ -376,7 +376,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\t\r\n\r\n\t\t[HttpGet(\&quot;GetById/{{IdName}}\&quot;)]\r\n\t\tpublic ActionResult&lt;{className}&gt; GetById(int {IdName})\r\n\t\t{\r\n\t\t\tvar item = _service.GetById({IdName});\r\n\t\t\tif (item == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\treturn Ok(item);\r\n\t\t}.
+        ///   Looks up a localized string similar to \t\t[HttpGet(\&quot;GetById/{{IdName}}\&quot;)]\r\n\t\tpublic ActionResult&lt;{className}&gt; GetById(int {IdName})\r\n\t\t{\r\n\t\t\tvar item = _service.GetById({IdName});\r\n\t\t\tif (item == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\treturn Ok(item);\r\n\t\t}.
         /// </summary>
         public static string ContollerGet {
             get {
@@ -385,7 +385,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\t\r\n\r\n\t\t[HttpGet(\&quot;GetAll\&quot;)]\r\n\t\tpublic ActionResult&lt;IEnumerable&lt;{className}&gt;&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn Ok(_service.GetAll());\r\n\t\t}.
+        ///   Looks up a localized string similar to \t\t[HttpGet(\&quot;GetAll\&quot;)]\r\n\t\tpublic ActionResult&lt;IEnumerable&lt;{className}&gt;&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn Ok(_service.GetAll());\r\n\t\t}.
         /// </summary>
         public static string ContollerGetAll {
             get {
@@ -430,7 +430,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \r\n\r\n\t\t[HttpPut(\&quot;Update/{{IdName}}\&quot;)]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}.
+        ///   Looks up a localized string similar to \t\t[HttpPut(\&quot;Update/{{IdName}}\&quot;)]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}.
         /// </summary>
         public static string ContollerUpdate {
             get {
@@ -448,7 +448,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n.
+        ///   Looks up a localized string similar to \r\n\n\t\t// Get\r\n\n\t\t// GetAll\r\n\n\t\t// Insert \r\n\n\t\t// Update\r\n\n\t\t// Delete\r\n.
         /// </summary>
         public static string ControllerMethodComments {
             get {

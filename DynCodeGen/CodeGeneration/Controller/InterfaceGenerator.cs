@@ -56,6 +56,10 @@ namespace DynCodeGen.CodeGeneration.Controller
                         TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IServiceGet), "// Get");
                         TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IServiceDelete), "// Delete");
                     }
+                    else
+                    {
+                        TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IServiceDelete), "// Delete");
+                    }
                 }
             }
             Directory.CreateDirectory(interfaceDirectory);
@@ -127,6 +131,10 @@ namespace DynCodeGen.CodeGeneration.Controller
                     else if ((bool)temp[1] == false && (bool)temp[3] == false)
                     {
                         TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IRepositoryGet), "// Get");
+                        TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IRepositoryDelete), "// Delete");
+                    }
+                    else
+                    {
                         TemplateHelper.InsertCodeBeforeComments(interfaceContent, Regex.Unescape(TemplateHelper.Instance.IRepositoryDelete), "// Delete");
                     }
                 }

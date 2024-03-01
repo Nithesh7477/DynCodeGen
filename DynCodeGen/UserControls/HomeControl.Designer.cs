@@ -122,7 +122,7 @@
             label5.Name = "label5";
             label5.Size = new Size(424, 20);
             label5.TabIndex = 7;
-            label5.Text = "to download the Stored Proc Format template, ang follow the";
+            label5.Text = "to download the Stored Proc Format template, and follow the";
             // 
             // lblTableInstructions
             // 
@@ -183,7 +183,7 @@
             label3.Name = "label3";
             label3.Size = new Size(384, 20);
             label3.TabIndex = 2;
-            label3.Text = "to download the Table Format template, ang follow the";
+            label3.Text = "to download the Table Format template, and follow the";
             // 
             // label2
             // 

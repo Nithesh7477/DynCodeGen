@@ -60,7 +60,7 @@ namespace DynCodeGen.UserControls
 
         private void lblSPInstructions_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            SPInstructions spInstructions = new SPInstructions();   
+            SPInstructions spInstructions = new SPInstructions();
             spInstructions.Show();
         }
     }

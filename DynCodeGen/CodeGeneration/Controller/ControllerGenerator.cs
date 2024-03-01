@@ -67,6 +67,10 @@
                             TemplateHelper.InsertCodeBeforeComments(controllerContent, Regex.Unescape(TemplateHelper.Instance.ContollerGet), "// Get");
                             TemplateHelper.InsertCodeBeforeComments(controllerContent, Regex.Unescape(TemplateHelper.Instance.ContollerDelete), "// Delete");
                         }
+                        else
+                        {
+                            TemplateHelper.InsertCodeBeforeComments(controllerContent, Regex.Unescape(TemplateHelper.Instance.ContollerDelete), "// Delete");
+                        }
                     }
                 }
                 controllerContent.Replace("{apiName}", $"{apiName}").Replace("{className}", $"{className}").Replace("{IdName}", $"{IdName}");

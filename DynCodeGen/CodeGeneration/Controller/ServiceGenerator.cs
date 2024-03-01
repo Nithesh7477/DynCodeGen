@@ -55,6 +55,10 @@ namespace DynCodeGen.CodeGeneration.Controller
                         TemplateHelper.InsertCodeBeforeComments(classContent, Regex.Unescape(TemplateHelper.Instance.ServiceGetById), "// Get");
                         TemplateHelper.InsertCodeBeforeComments(classContent, Regex.Unescape(TemplateHelper.Instance.ServiceDelete), "// Delete");
                     }
+                    else
+                    {
+                        TemplateHelper.InsertCodeBeforeComments(classContent, Regex.Unescape(TemplateHelper.Instance.ServiceDelete), "// Delete");
+                    }
                 }
             }
             Directory.CreateDirectory(classDirectory);

@@ -190,7 +190,7 @@
     <value>namespace {apiName}.Infrastructure.Repository\r\n{\r\n    using Microsoft.Extensions.Configuration;\r\n\r\n    /// &lt;summary&gt;\r\n    /// BaseRepository.\r\n    /// &lt;/summary&gt;\r\n    public class BaseRepository\r\n    {\r\n        private readonly IConfiguration config;\r\n\r\n        /// &lt;summary&gt;\r\n        /// Initializes a new instance of the &lt;see cref=\"BaseRepository\"/&gt; class.\r\n        /// BaseRepository.\r\n        /// &lt;/summary&gt;\r\n        /// &lt;param name=\"config\"&gt;config.&lt;/param&gt;\r\n        public BaseRepository(IConfiguration config)\r\n        {\r\n            this.config = config;\r\n        }\r\n\r\n        /// &lt;summary&gt;\r\n        /// This method is used to retrieve connection string from the configuration.\r\n        /// &lt;/summary&gt;\r\n        /// &lt;returns&gt;Connection String.&lt;/returns&gt;\r\n        public string GetConnectionString()\r\n        {\r\n            string cs = this.config[\"DBSettings:ConnectionString\"];\r\n            return cs;\r\n        }\r\n    }\r\n}\r\n</value>
   </data>
   <data name="ContollerAdd" xml:space="preserve">
-    <value>\t\t\r\n\r\n\t\t[HttpPost(\"Add\")]\r\n\t\tpublic IActionResult Add([FromBody] {className} entity)\r\n\t\t{\r\n\t\t\t_service.Add(entity);\r\n\t\t\treturn CreatedAtAction(nameof(GetById), new { {IdName} = entity.{IdName}}, entity);\r\n\t\t}</value>
+    <value>\t\t[HttpPost(\"Add\")]\r\n\t\tpublic IActionResult Add([FromBody] {className} entity)\r\n\t\t{\r\n\t\t\t_service.Add(entity);\r\n\t\t\treturn CreatedAtAction(nameof(GetById), new { {IdName} = entity.{IdName}}, entity);\r\n\t\t}</value>
   </data>
   <data name="ContollerClass" xml:space="preserve">
     <value>\r\n\t[Authorize]\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
@@ -199,13 +199,13 @@
     <value>\r\n\t}</value>
   </data>
   <data name="ContollerDelete" xml:space="preserve">
-    <value>\t\t\r\n\r\n\t\t[HttpDelete(\"Delete/{{IdName}}\")]\r\n\t\tpublic IActionResult Delete(int {IdName})\r\n\t\t{\r\n\t\t\tvar existingItem = _service.GetById({IdName});\r\n\t\t\tif (existingItem == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\t_service.Delete({IdName});\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
+    <value>\t\t[HttpDelete(\"Delete/{{IdName}}\")]\r\n\t\tpublic IActionResult Delete(int {IdName})\r\n\t\t{\r\n\t\t\tvar existingItem = _service.GetById({IdName});\r\n\t\t\tif (existingItem == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\t_service.Delete({IdName});\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
   </data>
   <data name="ContollerGet" xml:space="preserve">
-    <value>\t\t\r\n\r\n\t\t[HttpGet(\"GetById/{{IdName}}\")]\r\n\t\tpublic ActionResult&lt;{className}&gt; GetById(int {IdName})\r\n\t\t{\r\n\t\t\tvar item = _service.GetById({IdName});\r\n\t\t\tif (item == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\treturn Ok(item);\r\n\t\t}</value>
+    <value>\t\t[HttpGet(\"GetById/{{IdName}}\")]\r\n\t\tpublic ActionResult&lt;{className}&gt; GetById(int {IdName})\r\n\t\t{\r\n\t\t\tvar item = _service.GetById({IdName});\r\n\t\t\tif (item == null)\r\n\t\t\t{\r\n\t\t\t\treturn NotFound();\r\n\t\t\t}\r\n\t\t\treturn Ok(item);\r\n\t\t}</value>
   </data>
   <data name="ContollerGetAll" xml:space="preserve">
-    <value>\t\t\r\n\r\n\t\t[HttpGet(\"GetAll\")]\r\n\t\tpublic ActionResult&lt;IEnumerable&lt;{className}&gt;&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn Ok(_service.GetAll());\r\n\t\t}</value>
+    <value>\t\t[HttpGet(\"GetAll\")]\r\n\t\tpublic ActionResult&lt;IEnumerable&lt;{className}&gt;&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn Ok(_service.GetAll());\r\n\t\t}</value>
   </data>
   <data name="ContollerHeader" xml:space="preserve">
     <value>using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\n</value>
@@ -220,13 +220,13 @@
     <value>\r\n\t[Authorize]\r\n\t\r\n\t[ApiController]\r\n\t[Route(\"api/[controller]\")]\r\n\tpublic class {className}Controller : ControllerBase\r\n\t{\r\n\t\tprivate readonly I{className}Service _service;\r\n\r\n\t\tpublic {className}Controller(I{className}Service service)\r\n\t\t{\r\n\t\t_service = service;\r\n\t\t}</value>
   </data>
   <data name="ContollerUpdate" xml:space="preserve">
-    <value>\r\n\r\n\t\t[HttpPut(\"Update/{{IdName}}\")]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
+    <value>\t\t[HttpPut(\"Update/{{IdName}}\")]\r\n\t\tpublic IActionResult Update(int {IdName}, [FromBody] {className} entity)\r\n\t\t{\r\n\t\t\tif ({IdName} != entity.{IdName})\r\n\t\t\t{\r\n\t\t\t\treturn BadRequest();\r\n\t\t\t}\r\n\t\t\t_service.Update(entity);\r\n\t\t\treturn NoContent();\r\n\t\t}</value>
   </data>
   <data name="ControllerGetMethod" xml:space="preserve">
     <value>\t[HttpPost(\"Get{className}Async\")]\r\n\t\tpublic IActionResult Get{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Get{className}Async({className});\r\n\t\t\t\treturn Ok(Result);\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \"An error occurred while processing your request.\");\r\n\t\t\t}\r\n\t\t}</value>
   </data>
   <data name="ControllerMethodComments" xml:space="preserve">
-    <value>\r\n\t\t// Get\r\n\t\t// GetAll\r\n\t\t// Insert \r\n\t\t// Update\r\n\t\t// Delete\r\n</value>
+    <value>\r\n\n\t\t// Get\r\n\n\t\t// GetAll\r\n\n\t\t// Insert \r\n\n\t\t// Update\r\n\n\t\t// Delete\r\n</value>
   </data>
   <data name="ControllerPostMethod" xml:space="preserve">
     <value>\t[HttpPost(\"Post{className}Async\")]\r\n\t\tpublic IActionResult Post{className}Async([FromBody] Request{className} {className})\r\n\t\t{\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\tvar Result = _service.Post{className}Async({className});\r\n\t\t\t\treturn Ok("Record inserted/updated Successfully");\r\n\t\t\t}\r\n\t\t\tcatch (Exception ex)\r\n\t\t\t{\r\n\t\t\t\t// Log the exception\r\n\t\t\t\treturn StatusCode(500, \"An error occurred while processing your request.\");\r\n\t\t\t}\r\n\t\t}</value>

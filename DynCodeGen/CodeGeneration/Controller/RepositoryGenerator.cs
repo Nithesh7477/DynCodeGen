@@ -59,6 +59,10 @@ namespace DynCodeGen.CodeGeneration.Controller
                         TemplateHelper.InsertCodeBeforeComments(classContent, Regex.Unescape(TemplateHelper.Instance.RepositoryGetById), "// Get");
                         TemplateHelper.InsertCodeBeforeComments(classContent, Regex.Unescape(TemplateHelper.Instance.RepositoryDelete), "// Delete");
                     }
+                    else
+                    {
+                        TemplateHelper.InsertCodeBeforeComments(classContent, Regex.Unescape(TemplateHelper.Instance.RepositoryDelete), "// Delete");
+                    }
                 }
             }
             Directory.CreateDirectory(classDirectory); // Create the directory if it doesn't exist
