@@ -1555,7 +1555,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.AddSwaggerGen(c =&gt; c.SwaggerDoc(\&quot;v1\&quot;, new OpenApiInfo { Title = $\&quot;{apiName}\&quot;, Version = \&quot;v1\&quot; }));\r\n\t\t\tservices.Configure&lt;ConnectionStrings&gt;(Configuration.GetSection(&quot;ConnectionStrings&quot;));\r\n\t\t\tservices.AddSwaggerGen(c =&gt;\r\n\t\t\t{\r\n\t\t\t c.SwaggerDoc(\&quot;v1\&quot;, new OpenApiInfo { Title = $\&quot;{apiName}\&quot;, Version = \&quot;v1\&quot; });\r\n\ [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to \t\tpublic void ConfigureServices(IServiceCollection services)\r\n\t\t{\r\n\t\t\tRegisterDependencies(services);\r\n\t\t\tservices.AddControllers();\r\n\t\t\tservices.Configure&lt;ConnectionStrings&gt;(Configuration.GetSection(&quot;AzureAd&quot;));\r\n\t\t\tservices.AddSwaggerGen(c =&gt;\r\n\t\t\t{\r\n\t\t\t c.SwaggerDoc(\&quot;v1\&quot;, new OpenApiInfo { Title = $\&quot;{apiName}\&quot;, Version = \&quot;v1\&quot; });\r\n\t\t\tc.AddSecurityDefinition(&quot;oauth2&quot;, new OpenApiSecurityScheme\r\n\t\t\t{\r\n\t\t\tType = SecuritySchemeType.OAuth2,\r\n\t\t\tFlow [rest of string was truncated]&quot;;.
         /// </summary>
         public static string StartupConfigureServicesMethodAdo {
             get {

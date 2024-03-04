@@ -1,6 +1,7 @@
 ﻿using DynCodeGen.CodeGeneration.CodeTemplate;
 using DynCodeGen.CodeGeneration.Controller;
 using DynCodeGen.CodeGeneration.Entity;
+using DynCodeGen.CodeGeneration.Model;
 using DynCodeGen.CodeGeneration.Project;
 using OfficeOpenXml;
 using System;
@@ -233,6 +234,15 @@ namespace DynCodeGen.UserControls
 
         private void GenerateWebAPI(string apiName, string apiPath, string connectionString)
         {
+            var azureAdSettings = new AzureAdSettings
+            {
+                Instance = "https://login.microsoftonline.com/",
+                Domain = "Domain",
+                TenantId = "TenantID",
+                ClientId = "ClientID",
+                Audience = "Audience"
+            };
+
             ExecuteCliCommand execmd = new ExecuteCliCommand();
             UpdateProgressBar(25);
 
@@ -242,10 +252,14 @@ namespace DynCodeGen.UserControls
             // Set the connection string in appsettings.json
             string appSettingsPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.json");
             AddConnectionString.SetConnectionString(appSettingsPath, connectionString);
+            AddConnectionString.UpdateAzureAdSettings(appSettingsPath, azureAdSettings);
+
 
             // Set the connection string in appsettings.Development.json
             string appSettingsDevPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.Development.json");
             AddConnectionString.SetConnectionString(appSettingsDevPath, connectionString);
+            AddConnectionString.UpdateAzureAdSettings(appSettingsPath, azureAdSettings);
+
 
             // Create a solution
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
@@ -285,6 +299,16 @@ namespace DynCodeGen.UserControls
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddJwtBearer).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
             AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddIdentityWeb).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
+            //Add Serilog Packages under WebApiProjects            
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogConfigurationPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogConsolePackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogSinksPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSwashbucklePackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+
+
+            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AdddotnetefPackage)));
+
             UpdateLabel("generating classes...");
 
             string requestModelClassPath = Path.Combine(apiPath + $"\\{apiName}.Domain", "Entities", "Request");
@@ -296,6 +320,16 @@ namespace DynCodeGen.UserControls
 
             UpdateStartupFile.CreateStartupFileAdo(apiName, apiPath);
             UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
+            AddExceptionMiddleware.CreateExceptionMiddlewareFile(apiName, apiPath);
+
+
+            //Api Response 
+            Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.WebAPI", "APIResponses"));
+            AddApiResponse.CreateAPIExceptionFile(apiName, apiPath);
+            AddApiResponse.CreateAPIResponseFile(apiName, apiPath);
+            AddApiResponse.CreateAPIResponseBaseFile(apiName, apiPath);
+            AddApiResponse.CreateAPIValidationErrorResponseFile(apiName, apiPath);
+            AddApiResponse.CreateBadRequestExceptionFile(apiName, apiPath);
 
             UpdateProgressBar(75);
             UpdateLabel("creating repositories...");
