@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using DynCodeGen.UserControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using DynCodeGen.Forms;
 
 namespace DynCodeGen
 {
@@ -19,7 +20,9 @@ namespace DynCodeGen
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Login frm = new Login();
+            this.Hide();
+            frm.Show();
         }
 
         bool CreateProjectExpand = false;
