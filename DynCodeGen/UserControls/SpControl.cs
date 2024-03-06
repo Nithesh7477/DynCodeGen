@@ -132,7 +132,6 @@ namespace DynCodeGen.UserControls
 
                     string apiName = Path.GetFileName(folderPath);
                     string apiPath = folderPath;
-                    string connectionString = txtConnectionString.Text;
 
                     // Check if the directory exists, create if not
                     //if (!Directory.Exists(apiPath))
@@ -147,12 +146,12 @@ namespace DynCodeGen.UserControls
                     }
                     UpdateLabel("creating project files...");
                     UpdateProgressBar(50);
-                    await Task.Run(() => GenerateSpExistingProject(apiName, apiPath, connectionString));
+                    await Task.Run(() => GenerateSpExistingProject(apiName, apiPath));
                     UpdateProgressBar(80);
                     UpdateLabel("task completed...");
                     UpdateProgressBar(100);
 
-                    DialogResult result = MessageBox.Show($"{(_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First" ? "API" : "StoreProcedure Execution code")} has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show($"{(_dynCodeGenParent.lblHead.Text == "Project Enhancement > Entity Framework-Code First" ? "API" : "StoreProcedure Execution code")} has been generated successfully..! Do you want to navigate '{apiName}' Application? ", "Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
                     if (result == DialogResult.OK)
                     {
@@ -186,14 +185,14 @@ namespace DynCodeGen.UserControls
                 MessageBox.Show("Please select any one value");
             }
         }
-        private void GenerateSpExistingProject(string apiName, string apiPath, string connectionString)
+        private void GenerateSpExistingProject(string apiName, string apiPath)
         {
             try
             {
 
                 string dbContextPath = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data", "ApplicationDbContext.cs");
                 Migrations migrations = new Migrations();
-                if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework-Code First")
+                if (_dynCodeGenParent.lblHead.Text == "Project Enhancement > Entity Framework-Code First")
                 {
                     string modelClassPath = Path.Combine(apiPath, $"{apiName}.Domain", "Entities");
 
@@ -235,7 +234,7 @@ namespace DynCodeGen.UserControls
                     AppendLog(migrations.RunMigrationsAndUpdates(migrationPath, infrastructurePath, "AddNewTable", "ApplicationDbContext").ToString());
 
                 }
-                else if (_dynCodeGenParent.lblHead.Text == "Enhance Project > Entity Framework- SP")
+                else if (_dynCodeGenParent.lblHead.Text == "Project Enhancement > Entity Framework- SP")
                 {
                     string requestModelClassPath = Path.Combine(apiPath + $"\\{apiName}.Domain", "Entities", "Request");
                     string responseModelClassPath = Path.Combine(apiPath + $"\\{apiName}.Domain", "Entities", "Response");
@@ -269,10 +268,10 @@ namespace DynCodeGen.UserControls
                     UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "SP");
                     UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
                 }
-                else if (_dynCodeGenParent.lblHead.Text == "Enhance Project > ADO.Net - SP")
-                {
+                //else if (_dynCodeGenParent.lblHead.Text == "Enhance Project > ADO.Net - SP")
+                //{
 
-                }
+                //}
             }
             catch (Exception ex)
             {

@@ -49,14 +49,8 @@ namespace DynCodeGen
 
                     _createControlParent.txtConnectionString.Text = ConnectionString;
                     _createControlParent.txtConnectionString.ReadOnly = true;
-                    _spControlParent.txtConnectionString.Text = ConnectionString;
-                    _spControlParent.txtConnectionString.ReadOnly = true;
-                    _createModelControlParent.txtConnectionString.Text = ConnectionString;
-                    _createModelControlParent.txtConnectionString.ReadOnly = true;
                     _adoCreateControlParent.txtConnectionString.Text = ConnectionString;
-                    _adoCreateControlParent.txtConnectionString.ReadOnly = true;
-                    _adoEnhanceControlParent.txtConnectionString.Text = ConnectionString;
-                    _adoEnhanceControlParent.txtConnectionString.ReadOnly = true;                 
+                    _adoCreateControlParent.txtConnectionString.ReadOnly = true;           
                     this.Close();
 
                 }

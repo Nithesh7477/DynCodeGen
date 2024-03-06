@@ -131,8 +131,6 @@ namespace DynCodeGen.UserControls
 
                     string apiName = Path.GetFileName(folderPath);
                     string apiPath = folderPath;
-                    string connectionString = txtConnectionString.Text;
-
                     if (string.IsNullOrEmpty(apiPath))
                     {
                         MessageBox.Show("Existing project Path must not be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);

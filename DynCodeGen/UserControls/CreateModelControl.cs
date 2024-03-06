@@ -132,7 +132,6 @@ namespace DynCodeGen.UserControls
 
                 string apiName = Path.GetFileName(folderPath);
                 string apiPath = folderPath;
-                string connectionString = txtConnectionString.Text;
 
                 // Check if the directory exists, create if not
                 //if (!Directory.Exists(apiPath))
@@ -147,7 +146,7 @@ namespace DynCodeGen.UserControls
                 }
                 UpdateLabel("creating project files...");
                 UpdateProgressBar(70);
-                await Task.Run(() => GenerateCreateModelInExistingProject(apiName, apiPath, connectionString));
+                await Task.Run(() => GenerateCreateModelInExistingProject(apiName, apiPath));
                 UpdateLabel("task completed...");
                 UpdateProgressBar(100);
 
@@ -185,7 +184,7 @@ namespace DynCodeGen.UserControls
         //    MessageBox.Show("Please select any one value");
         //}
         //}
-        private void GenerateCreateModelInExistingProject(string apiName, string apiPath, string connectionString)
+        private void GenerateCreateModelInExistingProject(string apiName, string apiPath)
         {
             try
             {
