@@ -209,7 +209,7 @@ namespace DynCodeGen.UserControls
                     // Generate repositories
                     string className = sheetEntry.Key;
                 }
-                ModelClassGenerator.GenerateModelClassesFromData(sheetsData, modelClassPath);
+                ModelClassGenerator.GenerateModelClassesFromData(apiName,sheetsData, modelClassPath);
                 DBContext.UpdateApplicationDbContextWithModels(sheetsData, dbContextPath);
                 //UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "Table");
                 UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);

@@ -90,7 +90,7 @@ namespace DynCodeGen.CodeGeneration.Controller
 
         public static void GenerateServiceImplementationAdo(string apiName, string apiPath, string className, DataTable dt)
         {
-            StringBuilder classContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ServiceUsing) + Regex.Unescape(TemplateHelper.Instance.ServiceNamespace) + Regex.Unescape(TemplateHelper.Instance.ServiceSPClassStart) + Regex.Unescape(TemplateHelper.Instance.ServiceSPConstructor) + Regex.Unescape(TemplateHelper.Instance.ServiceSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.ServiceClassEnd) + Regex.Unescape(TemplateHelper.Instance.ServiceNamespaceEnd));
+            StringBuilder classContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ADOServiceUsing) + Regex.Unescape(TemplateHelper.Instance.ServiceNamespace) + Regex.Unescape(TemplateHelper.Instance.ServiceSPClassStart) + Regex.Unescape(TemplateHelper.Instance.ServiceSPConstructor) + Regex.Unescape(TemplateHelper.Instance.ServiceSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.ServiceClassEnd) + Regex.Unescape(TemplateHelper.Instance.ServiceNamespaceEnd));
             string classDirectory = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Service");
             string classPath = Path.Combine(classDirectory, $"{className}Service.cs");
             var temp = dt.Rows.Cast<DataRow>()

@@ -14,7 +14,7 @@ namespace DynCodeGen.CodeGeneration.Controller
     {
         public static void GenerateServiceInterface(string apiName, string apiPath, string className, string IdName,DataTable dt)
         {
-            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.IServiceNamespace)+ Regex.Unescape(TemplateHelper.Instance.IServiceInterface)+Regex.Unescape(TemplateHelper.Instance.IServiceMethodComments)+ Regex.Unescape(TemplateHelper.Instance.IServiceClassEnd)+ Regex.Unescape(TemplateHelper.Instance.IServiceNamespaceEnd));
+            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.CommonUsingHeaderforModel).Replace("{apiName}", $"{apiName}") + Regex.Unescape(TemplateHelper.Instance.IServiceNamespace)+ Regex.Unescape(TemplateHelper.Instance.IServiceInterface)+Regex.Unescape(TemplateHelper.Instance.IServiceMethodComments)+ Regex.Unescape(TemplateHelper.Instance.IServiceClassEnd)+ Regex.Unescape(TemplateHelper.Instance.IServiceNamespaceEnd));
             string interfaceDirectory = Path.Combine(apiPath, $"{apiName}.Application", "IService");
             string interfacePath = Path.Combine(interfaceDirectory, $"I{className}Service.cs");
             var temp = dt.Rows.Cast<DataRow>()
@@ -68,7 +68,7 @@ namespace DynCodeGen.CodeGeneration.Controller
         }
         public static void GenerateSPServiceInterface(string apiName, string apiPath, string className, string IdName, DataTable dt)
         {
-            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.IServiceNamespace) + Regex.Unescape(TemplateHelper.Instance.IServiceSPInterface) + Regex.Unescape(TemplateHelper.Instance.IServiceSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.IServiceClassEnd) + Regex.Unescape(TemplateHelper.Instance.IServiceNamespaceEnd));
+            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.CommonUsingHeaderforModel).Replace("{apiName}", $"{apiName}") +Regex.Unescape(TemplateHelper.Instance.IServiceNamespace) + Regex.Unescape(TemplateHelper.Instance.IServiceSPInterface) + Regex.Unescape(TemplateHelper.Instance.IServiceSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.IServiceClassEnd) + Regex.Unescape(TemplateHelper.Instance.IServiceNamespaceEnd));
             string interfaceDirectory = Path.Combine(apiPath, $"{apiName}.Application", "IService");
             string interfacePath = Path.Combine(interfaceDirectory, $"I{className}Service.cs");
             var temp = dt.Rows.Cast<DataRow>()
@@ -91,7 +91,7 @@ namespace DynCodeGen.CodeGeneration.Controller
 
         public static void GenerateRepositoryInterface(string apiName, string apiPath, string className, string IdName, DataTable dt)
             {
-            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespace) + Regex.Unescape(TemplateHelper.Instance.IRepositoryInterface) + Regex.Unescape(TemplateHelper.Instance.IRepositoryMethodComments)+  Regex.Unescape(TemplateHelper.Instance.IRepositoryInterfaceEnd) + Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespaceEnd));
+            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.CommonUsingHeaderforModel).Replace("{apiName}", $"{apiName}") +Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespace) + Regex.Unescape(TemplateHelper.Instance.IRepositoryInterface) + Regex.Unescape(TemplateHelper.Instance.IRepositoryMethodComments)+  Regex.Unescape(TemplateHelper.Instance.IRepositoryInterfaceEnd) + Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespaceEnd));
             string interfaceDirectory = Path.Combine(apiPath, $"{apiName}.Application", "IRepository");
             string interfacePath = Path.Combine(interfaceDirectory, $"I{className}Repository.cs");
             var temp = dt.Rows.Cast<DataRow>()
@@ -145,7 +145,7 @@ namespace DynCodeGen.CodeGeneration.Controller
         }
         public static void GenerateSPRepositoryInterface(string apiName, string apiPath, string className, string IdName, DataTable dt)
         {
-            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespace) + Regex.Unescape(TemplateHelper.Instance.IRepositorySPInterface) + Regex.Unescape(TemplateHelper.Instance.IRepositorySPMethodComments) + Regex.Unescape(TemplateHelper.Instance.IRepositoryInterfaceEnd) + Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespaceEnd));
+            StringBuilder interfaceContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.CommonUsingHeaderforModel).Replace("{apiName}", $"{apiName}") + Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespace) + Regex.Unescape(TemplateHelper.Instance.IRepositorySPInterface) + Regex.Unescape(TemplateHelper.Instance.IRepositorySPMethodComments) + Regex.Unescape(TemplateHelper.Instance.IRepositoryInterfaceEnd) + Regex.Unescape(TemplateHelper.Instance.IRepositoryNamespaceEnd));
             string interfaceDirectory = Path.Combine(apiPath, $"{apiName}.Application", "IRepository");
             string interfacePath = Path.Combine(interfaceDirectory, $"I{className}Repository.cs");
             string classLower = className.ToLower();

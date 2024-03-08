@@ -114,7 +114,7 @@
 
         public static void GenerateControllerAdo(string apiName, string apiPath, string className, DataTable dt)
         {
-            StringBuilder controllerContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ContollerHeader) + Regex.Unescape(TemplateHelper.Instance.ContollerNamespace) + Regex.Unescape(TemplateHelper.Instance.ContollerSPClass) + Regex.Unescape(TemplateHelper.Instance.ControllerSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.ContollerClassEnd) + Regex.Unescape(TemplateHelper.Instance.ContollerNamespaceEnd));
+            StringBuilder controllerContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.ADOControllerHeader) + Regex.Unescape(TemplateHelper.Instance.ContollerNamespace) + Regex.Unescape(TemplateHelper.Instance.ContollerSPClass) + Regex.Unescape(TemplateHelper.Instance.ControllerSPMethodComments) + Regex.Unescape(TemplateHelper.Instance.ContollerClassEnd) + Regex.Unescape(TemplateHelper.Instance.ContollerNamespaceEnd));
             string controllerDirectory = Path.Combine(apiPath, $"{apiName}.WebAPI", "Controllers");
             string controllerPath = Path.Combine(controllerDirectory, $"{className}Controller.cs");
             var temp = dt.Rows.Cast<DataRow>()

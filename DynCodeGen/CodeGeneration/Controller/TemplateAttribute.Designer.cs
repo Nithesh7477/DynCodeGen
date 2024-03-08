@@ -88,7 +88,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Extensions.Configuration.Abstractions --version 8.0.0.
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Extensions.Configuration.Abstractions.
         /// </summary>
         public static string AddConfigPackage {
             get {
@@ -97,7 +97,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design --version 7.0.11.
+        ///   Looks up a localized string similar to dotnet add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design .
         /// </summary>
         public static string AddDesignPackage {
             get {
@@ -169,7 +169,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Authentication.JwtBearer --version 5.0.5.
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Authentication.JwtBearer.
         /// </summary>
         public static string AddJwtBearer {
             get {
@@ -232,7 +232,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.11.
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer.
         /// </summary>
         public static string AddSqlServerPackage {
             get {
@@ -250,7 +250,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Tools --version 7.0.11.
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Tools.
         /// </summary>
         public static string AddToolsPackage {
             get {
@@ -286,7 +286,25 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using System.Net;\r\n\t namespace {apiName}.WebAPI.APIResponses\r\n{\r\n\t     public class APIException : APIResponseBase\r\n    {\r\n\t         public APIException(HttpStatusCode StatusCode, string message = null, string details = null) : base(StatusCode, message)\r\n \t        {\r\n\t             Details = details;\r\n \t        }\r\n \t        public string Details { get; set; }\r\n\t     }\r\n}.
+        ///   Looks up a localized string similar to using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\n.
+        /// </summary>
+        public static string ADOControllerHeader {
+            get {
+                return ResourceManager.GetString("ADOControllerHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\n.
+        /// </summary>
+        public static string ADOServiceUsing {
+            get {
+                return ResourceManager.GetString("ADOServiceUsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System.Net;\r\nnamespace {apiName}.WebAPI.APIResponses\r\n{\r\n\tpublic class APIException : APIResponseBase\r\n{\r\n\tpublic APIException(HttpStatusCode StatusCode, string message = null, string details = null) : base(StatusCode, message)\r\n \t{\r\n\tDetails = details;\r\n \t}\r\n \tpublic string Details { get; set; }\r\n\t}\r\n}.
         /// </summary>
         public static string ApiExceptionClass {
             get {
@@ -336,6 +354,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string BaseRepository {
             get {
                 return ResourceManager.GetString("BaseRepository", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using {apiName}.Domain.Entities;\r\n.
+        /// </summary>
+        public static string CommonUsingHeaderforModel {
+            get {
+                return ResourceManager.GetString("CommonUsingHeaderforModel", resourceCulture);
             }
         }
         
@@ -394,7 +421,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\n.
+        ///   Looks up a localized string similar to using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\nusing {apiName}.Domain.Entities;\r\n.
         /// </summary>
         public static string ContollerHeader {
             get {
@@ -520,7 +547,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to new webapi -n {apiName} -o {apiPath}\\{apiName}.WebAPI.
+        ///   Looks up a localized string similar to new webapi -n {apiName} -o {apiPath}\\{apiName}.WebAPI --framework net8.0.
         /// </summary>
         public static string CreateWebAPI {
             get {
@@ -547,7 +574,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using Microsoft.EntityFrameworkCore;\r\n.
+        ///   Looks up a localized string similar to using Microsoft.EntityFrameworkCore;\r\nusing {apiName}.Domain.Entities;\r\n.
         /// </summary>
         public static string DBcontextUsing {
             get {
@@ -727,7 +754,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \t\tvoid Delete(int EmployeeId);\r\n.
+        ///   Looks up a localized string similar to \t\tvoid Delete(int {IdName});\r\n.
         /// </summary>
         public static string IServiceDelete {
             get {
@@ -853,7 +880,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to }.
+        ///   Looks up a localized string similar to \t}\r\n}.
         /// </summary>
         public static string ModelClassEnd {
             get {
@@ -862,7 +889,16 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \tpublic {propertyType} {propertyName} { get; set;}\r\n.
+        ///   Looks up a localized string similar to namespace {apiName}.Domain.Entities\r\n{\r\n.
+        /// </summary>
+        public static string ModelClassNameSpace {
+            get {
+                return ResourceManager.GetString("ModelClassNameSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \t\tpublic {propertyType} {propertyName} { get; set;}\r\n.
         /// </summary>
         public static string ModelClassProperty {
             get {
@@ -871,7 +907,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public class {className} \r\n{\r\n\t.
+        ///   Looks up a localized string similar to \tpublic class {className} \r\n\t{\r\n\t.
         /// </summary>
         public static string ModelClassStart {
             get {
@@ -894,6 +930,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string ModelClassStartKeyProperty {
             get {
                 return ResourceManager.GetString("ModelClassStartKeyProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \tpublic {propertyType}? {propertyName} { get; set;}\r\n.
+        /// </summary>
+        public static string ModelClassStringProperty {
+            get {
+                return ResourceManager.GetString("ModelClassStringProperty", resourceCulture);
             }
         }
         
@@ -1204,7 +1249,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\nusing Microsoft.Data.SqlClient;\r\nusing Microsoft.EntityFrameworkCore;.
+        ///   Looks up a localized string similar to using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\nusing Microsoft.Data.SqlClient;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing {apiName}.Domain.Entities;\r\n.
         /// </summary>
         public static string RepositoryUsing {
             get {
@@ -1384,7 +1429,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\n.
+        ///   Looks up a localized string similar to using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Domain.Entities;\r\n.
         /// </summary>
         public static string ServiceUsing {
             get {

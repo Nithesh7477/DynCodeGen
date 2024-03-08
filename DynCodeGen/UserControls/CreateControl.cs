@@ -347,10 +347,10 @@
             
 
             string dbContextPath = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data", "ApplicationDbContext.cs");
-            DBContext.GenerateApplicationDbContext(dbContextPath, $"{apiName}.Infrastructure");
+            DBContext.GenerateApplicationDbContext(apiName,dbContextPath, $"{apiName}.Infrastructure");
 
             string modelClassPath = Path.Combine(apiPath, $"{apiName}.Domain", "Entities");
-            ModelClassGenerator.GenerateModelClassesFromData(sheetsData, modelClassPath);
+            ModelClassGenerator.GenerateModelClassesFromData(apiName,sheetsData, modelClassPath);
 
             // Now update ApplicationDbContext with models
             DBContext.UpdateApplicationDbContextWithModels(sheetsData, dbContextPath);

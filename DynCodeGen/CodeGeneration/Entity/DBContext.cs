@@ -11,9 +11,9 @@ namespace DynCodeGen.CodeGeneration.Entity
 {
     public class DBContext
     {
-        public static void GenerateApplicationDbContext(string dbContextPath, string namespaceName)
+        public static void GenerateApplicationDbContext(string apiName, string dbContextPath, string namespaceName)
         {
-            StringBuilder dbContextContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.DBcontextUsing)+ Regex.Unescape(TemplateHelper.Instance.DBcontextNamespace)+ Regex.Unescape(TemplateHelper.Instance.DBcontextClass));
+            StringBuilder dbContextContent = new StringBuilder(Regex.Unescape(TemplateHelper.Instance.DBcontextUsing.Replace("{apiName}", $"{apiName}")) + Regex.Unescape(TemplateHelper.Instance.DBcontextNamespace)+ Regex.Unescape(TemplateHelper.Instance.DBcontextClass));
             dbContextContent.Replace("{namespaceName}", $"{namespaceName}");
             File.WriteAllText(dbContextPath, dbContextContent.ToString());
         }

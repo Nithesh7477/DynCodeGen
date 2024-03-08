@@ -127,10 +127,10 @@
     <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Hosting</value>
   </data>
   <data name="AddConfigPackage" xml:space="preserve">
-    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Extensions.Configuration.Abstractions --version 8.0.0</value>
+    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Extensions.Configuration.Abstractions</value>
   </data>
   <data name="AddDesignPackage" xml:space="preserve">
-    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design --version 7.0.11</value>
+    <value>dotnet add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Design </value>
   </data>
   <data name="AddDomainProject" xml:space="preserve">
     <value>sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.Domain/{apiName}.Domain.csproj</value>
@@ -172,10 +172,10 @@
     <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Data.SqlClient --version 5.1.2</value>
   </data>
   <data name="AddSqlServerPackage" xml:space="preserve">
-    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.11</value>
+    <value>add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.EntityFrameworkCore.SqlServer</value>
   </data>
   <data name="AddToolsPackage" xml:space="preserve">
-    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Tools --version 7.0.11</value>
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.EntityFrameworkCore.Tools</value>
   </data>
   <data name="AddWebAPIProject" xml:space="preserve">
     <value>sln {apiPath}/{apiName}.sln add {apiPath}/{apiName}.WebAPI/{apiName}.csproj</value>
@@ -208,7 +208,7 @@
     <value>\t\t[HttpGet(\"GetAll\")]\r\n\t\tpublic ActionResult&lt;IEnumerable&lt;{className}&gt;&gt; GetAll()\r\n\t\t{\r\n\t\t\treturn Ok(_service.GetAll());\r\n\t\t}</value>
   </data>
   <data name="ContollerHeader" xml:space="preserve">
-    <value>using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\n</value>
+    <value>using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\nusing {apiName}.Domain.Entities;\r\n</value>
   </data>
   <data name="ContollerNamespace" xml:space="preserve">
     <value>namespace {apiName}.Api.Controllers\r\n{</value>
@@ -250,7 +250,7 @@
     <value>new sln -n {apiName} -o {apiPath}</value>
   </data>
   <data name="CreateWebAPI" xml:space="preserve">
-    <value>new webapi -n {apiName} -o {apiPath}\\{apiName}.WebAPI</value>
+    <value>new webapi -n {apiName} -o {apiPath}\\{apiName}.WebAPI --framework net8.0</value>
   </data>
   <data name="DBcontextClass" xml:space="preserve">
     <value>\tpublic class ApplicationDbContext : DbContext\r\n\t{\r\n\t\tpublic ApplicationDbContext(DbContextOptions&lt;ApplicationDbContext&gt; options) : base(options)\r\n\t\t{\r\n}\r\n//DBSets go here\r\n\t}\r\n}</value>
@@ -259,7 +259,7 @@
     <value>namespace {namespaceName}.Data\r\n{\r\n</value>
   </data>
   <data name="DBcontextUsing" xml:space="preserve">
-    <value>using Microsoft.EntityFrameworkCore;\r\n</value>
+    <value>using Microsoft.EntityFrameworkCore;\r\nusing {apiName}.Domain.Entities;\r\n</value>
   </data>
   <data name="DBContextWithModels" xml:space="preserve">
     <value>\t\tpublic DbSet&lt;{className}&gt; {className}Set { get; set; }\r\n</value>
@@ -316,7 +316,7 @@
     <value>\r\n\t}</value>
   </data>
   <data name="IServiceDelete" xml:space="preserve">
-    <value>\t\tvoid Delete(int EmployeeId);\r\n</value>
+    <value>\t\tvoid Delete(int {IdName});\r\n</value>
   </data>
   <data name="IServiceGet" xml:space="preserve">
     <value>\t\t{className} GetById(int {IdName});\r\n</value>
@@ -358,13 +358,13 @@
     <value>\t[{annotation}]</value>
   </data>
   <data name="ModelClassEnd" xml:space="preserve">
-    <value>}</value>
+    <value>\t}\r\n}</value>
   </data>
   <data name="ModelClassProperty" xml:space="preserve">
-    <value>\tpublic {propertyType} {propertyName} { get; set;}\r\n</value>
+    <value>\t\tpublic {propertyType} {propertyName} { get; set;}\r\n</value>
   </data>
   <data name="ModelClassStart" xml:space="preserve">
-    <value>public class {className} \r\n{\r\n\t</value>
+    <value>\tpublic class {className} \r\n\t{\r\n\t</value>
   </data>
   <data name="ModelClassStartKey" xml:space="preserve">
     <value>\t[Key]\r\n</value>
@@ -403,7 +403,7 @@
     <value>using System.Net.Mime;\r\nusing System.Text.Json;\r\nusing System.Net;\r\nusing {apiName}.WebAPI.APIResponses;\r\nnamespace {apiName}.WebAPI\r\n{\r\n    public class ExceptionMiddleware\r\n    {\r\n        private readonly RequestDelegate _next;\r\n        private readonly ILogger&lt;ExceptionMiddleware&gt; _logger;\r\n        private readonly IHostEnvironment _hostEnvironment; \r\n        public ExceptionMiddleware(RequestDelegate next, ILogger&lt;ExceptionMiddleware&gt; logger, IHostEnvironment hostEnvironment)\r\n        {\r\n            _next = next;\r\n            _logger = logger;\r\n            _hostEnvironment = hostEnvironment;\r\n        }\r\n        private async Task WriteAsync&lt;T&gt;(T response, HttpContext httpContext) where T : APIResponseBase\r\n        {\r\n            httpContext.Response.ContentType = MediaTypeNames.Application.Json;\r\n            var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };\r\n            var json = JsonSerializer.Serialize(response, options);\r\n            await httpContext.Response.WriteAsync(json);\r\n        }\r\n        public async Task InvokeAsync(HttpContext httpContext)\r\n        {\r\n            try\r\n            {\r\n                await _next(httpContext);\r\n            }\r\n            catch (BadRequestException ex)\r\n            {\r\n                httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;\r\n                await WriteAsync(new APIResponse&lt;object&gt;(HttpStatusCode.BadRequest, null, ex.Message, ex.Errors), httpContext);\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                _logger.LogError(ex, ex.Message);\r\n                httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;\r\n                await WriteAsync(_hostEnvironment.IsDevelopment() ? new APIException(HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace.ToString()) : new APIException(HttpStatusCode.InternalServerError, ex.Message), httpContext);\r\n            }\r\n        }\r\n    }\r\n} </value>
   </data>
   <data name="ApiExceptionClass" xml:space="preserve">
-    <value>using System.Net;\r\n\t namespace {apiName}.WebAPI.APIResponses\r\n{\r\n\t     public class APIException : APIResponseBase\r\n    {\r\n\t         public APIException(HttpStatusCode StatusCode, string message = null, string details = null) : base(StatusCode, message)\r\n \t        {\r\n\t             Details = details;\r\n \t        }\r\n \t        public string Details { get; set; }\r\n\t     }\r\n}</value>
+    <value>using System.Net;\r\nnamespace {apiName}.WebAPI.APIResponses\r\n{\r\n\tpublic class APIException : APIResponseBase\r\n{\r\n\tpublic APIException(HttpStatusCode StatusCode, string message = null, string details = null) : base(StatusCode, message)\r\n \t{\r\n\tDetails = details;\r\n \t}\r\n \tpublic string Details { get; set; }\r\n\t}\r\n}</value>
   </data>
   <data name="APIResponseClass" xml:space="preserve">
     <value>using System.Net;\r\n\r\nnamespace {apiName}.WebAPI.APIResponses\r\n{\r\n    public class APIResponse&lt;T&gt;: APIResponseBase\r\n    {\r\n        public T Result { get; set; }\r\n        public IEnumerable&lt;string&gt; Errors { get; set; }\r\n\r\n        public APIResponse(HttpStatusCode status = HttpStatusCode.OK, T result = default(T),\r\n            string message = null, IEnumerable&lt;string&gt; errors = null)\r\n            : base(status, message)\r\n        {\r\n            Result = result;\r\n            Errors = errors;\r\n        }\r\n    }\r\n}</value>
@@ -493,7 +493,7 @@
     <value>\t\tpublic void Update({className} entity)\r\n\t\t{\r\n\t\t\t_context.{className}Set.Update(entity);\r\n\t\t\t_context.SaveChanges();\r\n\t\t}\r\n</value>
   </data>
   <data name="RepositoryUsing" xml:space="preserve">
-    <value>using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\nusing Microsoft.Data.SqlClient;\r\nusing Microsoft.EntityFrameworkCore;</value>
+    <value>using {apiName}.Infrastructure.Data;\r\nusing {apiName}.Application.IRepository;\r\nusing Microsoft.Data.SqlClient;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing {apiName}.Domain.Entities;\r\n</value>
   </data>
   <data name="RepositoryUsingAdo" xml:space="preserve">
     <value>using {apiName}.Infrastructure.DataAccess;\r\nusing {apiName}.Application.IRepository;\r\nusing System.Data;\r\nusing System.Data.Common;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.Options;\r\nusing Microsoft.Data.SqlClient;\r\n</value>
@@ -553,7 +553,7 @@
     <value>\t\tpublic void Update({className} entity)\r\n\t\t{\r\n\t\t\t_repository.Update(entity);\r\n\t\t}\r\n</value>
   </data>
   <data name="ServiceUsing" xml:space="preserve">
-    <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\n</value>
+    <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\nusing {apiName}.Domain.Entities;\r\n</value>
   </data>
   <data name="SpDBContext" xml:space="preserve">
     <value>\t\tpublic DbSet&lt;Response{className}&gt; {className}Set { get; set; }\r\n</value>
@@ -640,6 +640,21 @@
     <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.Identity.Web --version 1.1.0</value>
   </data>
   <data name="AddJwtBearer" xml:space="preserve">
-    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Authentication.JwtBearer --version 5.0.5</value>
+    <value>add {apiPath}/{apiName}.WebAPI/{apiName}.csproj package Microsoft.AspNetCore.Authentication.JwtBearer</value>
+  </data>
+  <data name="ADOControllerHeader" xml:space="preserve">
+    <value>using Microsoft.AspNetCore.Mvc;\r\nusing {apiName}.Application.IService;\r\nusing System.Collections.Generic;\r\nusing Microsoft.AspNetCore.Authorization;\r\n</value>
+  </data>
+  <data name="ADOServiceUsing" xml:space="preserve">
+    <value>using {apiName}.Application.IRepository;\r\nusing {apiName}.Application.IService;\r\n</value>
+  </data>
+  <data name="CommonUsingHeaderforModel" xml:space="preserve">
+    <value>using {apiName}.Domain.Entities;\r\n</value>
+  </data>
+  <data name="ModelClassNameSpace" xml:space="preserve">
+    <value>namespace {apiName}.Domain.Entities\r\n{\r\n</value>
+  </data>
+  <data name="ModelClassStringProperty" xml:space="preserve">
+    <value>\tpublic {propertyType}? {propertyName} { get; set;}\r\n</value>
   </data>
 </root>

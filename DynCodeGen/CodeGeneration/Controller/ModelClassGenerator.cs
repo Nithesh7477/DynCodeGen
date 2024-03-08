@@ -12,7 +12,7 @@ namespace DynCodeGen.CodeGeneration.Controller
 {
     public class ModelClassGenerator
     {
-        public static void GenerateModelClassesFromData(Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData, string modelClassPath)
+        public static void GenerateModelClassesFromData(string apiName,Dictionary<string, List<Tuple<string, string, string, string>>> sheetsData, string modelClassPath)
         {
             
             // Check if the directory exists, create if not
@@ -36,7 +36,7 @@ namespace DynCodeGen.CodeGeneration.Controller
                 }
                 // Start building the class definition
                 StringBuilder classDefinition = new StringBuilder();
-                classDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelUsing) + Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"{className}"));
+                classDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelUsing)+Regex.Unescape(TemplateHelper.Instance.ModelClassNameSpace).Replace("{apiName}", $"{apiName}") + Regex.Unescape(TemplateHelper.Instance.ModelClassStart).Replace("{className}", $"{className}"));
 
                 // Iterate through each property (tuple) in the list
                 foreach (var property in properties)
@@ -64,11 +64,12 @@ namespace DynCodeGen.CodeGeneration.Controller
                     }
 
                     // Append property definition to the class
-                    classDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+                    classDefinition.AppendLine(Regex.Unescape(propertyType.ToLower() == "string" ?TemplateHelper.Instance.ModelClassStringProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}"): TemplateHelper.Instance.ModelClassProperty.Replace("{propertyName}", $"{propertyName}").Replace("{propertyType}", $"{propertyType}")));
+                    
                 }
 
                 // Close the class definition
-                classDefinition.AppendLine("}");
+                classDefinition.AppendLine(Regex.Unescape(TemplateHelper.Instance.ModelClassEnd));
 
                 // Write the class definition to a file
                 File.WriteAllText(Path.Combine(modelClassPath, $"{className}.cs"), classDefinition.ToString());
