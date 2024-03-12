@@ -6,11 +6,17 @@ using System.Text;
 using DynCodeGen.UserControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using DynCodeGen.Forms;
+using DynCodeGen.CodeGeneration.Project;
+using System.Windows.Forms;
+using DynCodeGen.CodeGeneration.Controller;
+using DynCodeGen.CodeGeneration.CodeTemplate;
 
 namespace DynCodeGen
 {
     public partial class DynCodeGen : Form
     {
+        Login frm = new Login();
+
         private string folderPath = string.Empty;
 
         public DynCodeGen()
@@ -20,7 +26,6 @@ namespace DynCodeGen
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Login frm = new Login();
             this.Hide();
             frm.Show();
         }
@@ -83,9 +88,16 @@ namespace DynCodeGen
         }
         private void btnCP_ADO_SP_Click(object sender, EventArgs e)
         {
-            ButtonSelectionBGChanged();
-            AdoCreatePanelUpdate(btnCP_ADO_SP.Text.ToString());
-            btnCP_ADO_SP.BackColor = Color.FromArgb(107, 125, 157);
+            if (checkDotNetVersion() == true)
+            {
+                ButtonSelectionBGChanged();
+                AdoCreatePanelUpdate(btnCP_ADO_SP.Text.ToString());
+                btnCP_ADO_SP.BackColor = Color.FromArgb(107, 125, 157);
+            }
+            else
+            {
+                this.Show();
+            }         
         }
 
         private void btn_EP_ADO_sp_Click(object sender, EventArgs e)
@@ -97,9 +109,16 @@ namespace DynCodeGen
 
         private void btnCPEntityFrameworkCF_Click(object sender, EventArgs e)
         {
-            ButtonSelectionBGChanged();
-            CreatePanelUpdate(btnCPEntityFrameworkCF.Text.ToString());
-            btnCPEntityFrameworkCF.BackColor = Color.FromArgb(107, 125, 157);
+            if (checkDotNetVersion() == true)
+            {
+                ButtonSelectionBGChanged();
+                CreatePanelUpdate(btnCPEntityFrameworkCF.Text.ToString());
+                btnCPEntityFrameworkCF.BackColor = Color.FromArgb(107, 125, 157);
+            }
+            else
+            {
+                this.Show();
+            }
         }
 
         public void CreatePanelUpdate(string header)
@@ -195,6 +214,32 @@ namespace DynCodeGen
             ButtonSelectionBGChanged();
             CreateModelPanelUpdate(btnCreateModel.Text.ToString());
             btnCreateModel.BackColor = Color.FromArgb(107, 125, 157);
+        }
+
+        public bool checkDotNetVersion()
+        {
+            ExecuteCliCommand execmd = new ExecuteCliCommand();
+            string dotNetVersion = execmd.ExecuteCommand(TemplateAttribute.CheckUserDotNETVersion).TrimEnd();
+            if (dotNetVersion.Contains(TemplateAttribute.DotNETVersion))
+            {
+                return true;
+            }
+            else
+            {
+                if (MessageBox.Show("Please upgrade to the latest .NET Core version for improved features and enhancements." + Environment.NewLine + Environment.NewLine + "Click 'Yes' to download the latest .NET Core version.", "Warning", MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "https://dotnet.microsoft.com/en-us/download/dotnet",
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    this.Show();
+                }
+                return false;
+            }
         }
     }
 }

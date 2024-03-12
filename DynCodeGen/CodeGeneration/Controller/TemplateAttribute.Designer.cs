@@ -358,6 +358,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to dotnet --version.
+        /// </summary>
+        public static string CheckUserDotNETVersion {
+            get {
+                return ResourceManager.GetString("CheckUserDotNETVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to using {apiName}.Domain.Entities;\r\n.
         /// </summary>
         public static string CommonUsingHeaderforModel {
@@ -588,6 +597,15 @@ namespace DynCodeGen.CodeGeneration.Controller {
         public static string DBContextWithModels {
             get {
                 return ResourceManager.GetString("DBContextWithModels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8.0.
+        /// </summary>
+        public static string DotNETVersion {
+            get {
+                return ResourceManager.GetString("DotNETVersion", resourceCulture);
             }
         }
         

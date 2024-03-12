@@ -5,8 +5,10 @@
     using global::DynCodeGen.CodeGeneration.Entity;
     using global::DynCodeGen.CodeGeneration.Model;
     using global::DynCodeGen.CodeGeneration.Project;
+    using Microsoft.Identity.Client;
     using OfficeOpenXml;
     using System.Data;
+    using System.Diagnostics;
     using System.Diagnostics.Metrics;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
@@ -283,127 +285,128 @@
             ExecuteCliCommand execmd = new ExecuteCliCommand();
             Migrations migrations = new Migrations();
 
-            // Create a WebAPI project
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateWebAPI).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")).ToString());
+                // Create a WebAPI project
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateWebAPI).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")).ToString());
 
-            // Set the connection string in appsettings.json
-            string appSettingsPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.json");
-            AddConnectionString.SetConnectionString(appSettingsPath, connectionString);
-            AddConnectionString.UpdateAzureAdSettings(appSettingsPath, azureAdSettings);
+                // Set the connection string in appsettings.json
+                string appSettingsPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.json");
+                AddConnectionString.SetConnectionString(appSettingsPath, connectionString);
+                AddConnectionString.UpdateAzureAdSettings(appSettingsPath, azureAdSettings);
 
-            // Set the connection string in appsettings.Development.json
-            string appSettingsDevPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.Development.json");
-            AddConnectionString.SetConnectionString(appSettingsDevPath, connectionString);
-            AddConnectionString.UpdateAzureAdSettings(appSettingsPath, azureAdSettings);
+                // Set the connection string in appsettings.Development.json
+                string appSettingsDevPath = Path.Combine(apiPath, $"{apiName}.WebAPI", "appsettings.Development.json");
+                AddConnectionString.SetConnectionString(appSettingsDevPath, connectionString);
+                AddConnectionString.UpdateAzureAdSettings(appSettingsPath, azureAdSettings);
 
-            // Create a solution
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                // Create a solution
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateSolution).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
-            // Create Application, Domain, and Infrastructure projects
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                // Create Application, Domain, and Infrastructure projects
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.CreateInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
-            Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Domain", "Entities"));
-            Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data"));
+                Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Domain", "Entities"));
+                Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data"));
 
-            // Add all projects to the solution
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDomainProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                // Add all projects to the solution
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDomainProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureProject).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
-            UpdateProgressBar(25);
-            UpdateLabel("adding project dependencies...");
+                UpdateProgressBar(25);
+                UpdateLabel("adding project dependencies...");
 
-            // You can even add project references
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                // You can even add project references
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddWebAPIReferringInfrastructure).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddApplicationReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringDomain).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddInfrastructureReferringApplication).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
-            // Add EF Core packages to the Infrastructure and WebAPI projects
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlServerPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDesignPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddToolsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddAspNetCoreHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddExtensionsHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddJwtBearer).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddIdentityWeb).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                // Add EF Core packages to the Infrastructure and WebAPI projects
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSqlServerPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddDesignPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddToolsPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddAspNetCoreHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddExtensionsHostingPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddJwtBearer).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddIdentityWeb).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
-            //Add Serilog Packages under WebApiProjects            
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogConfigurationPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogConsolePackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogSinksPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSwashbucklePackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
-            
-
-            AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AdddotnetefPackage)));
-
-            UpdateLabel("generating classes...");
-
-            
-
-            string dbContextPath = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data", "ApplicationDbContext.cs");
-            DBContext.GenerateApplicationDbContext(apiName,dbContextPath, $"{apiName}.Infrastructure");
-
-            string modelClassPath = Path.Combine(apiPath, $"{apiName}.Domain", "Entities");
-            ModelClassGenerator.GenerateModelClassesFromData(apiName,sheetsData, modelClassPath);
-
-            // Now update ApplicationDbContext with models
-            DBContext.UpdateApplicationDbContextWithModels(sheetsData, dbContextPath);
-
-            UpdateStartupFile.CreateStartupFile(apiName, apiPath);
-            UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
-            AddExceptionMiddleware.CreateExceptionMiddlewareFile(apiName, apiPath);
-
-            //Api Response 
-            Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.WebAPI","APIResponses"));
-            AddApiResponse.CreateAPIExceptionFile(apiName, apiPath);
-            AddApiResponse.CreateAPIResponseFile(apiName, apiPath);
-            AddApiResponse.CreateAPIResponseBaseFile(apiName, apiPath);
-            AddApiResponse.CreateAPIValidationErrorResponseFile(apiName, apiPath);
-            AddApiResponse.CreateBadRequestExceptionFile(apiName, apiPath);
+                //Add Serilog Packages under WebApiProjects            
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogConfigurationPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogConsolePackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSeriLogSinksPackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AddSwashbucklePackage).Replace("{apiName}", $"{apiName}").Replace("{apiPath}", $"{apiPath}")));
 
 
-            UpdateProgressBar(50);
-            UpdateLabel("creating repositories...");
+                AppendLog(execmd.ExecuteCommand(Regex.Unescape(TemplateHelper.Instance.AdddotnetefPackage)));
+
+                UpdateLabel("generating classes...");
 
 
-            foreach (var sheetEntry in sheetsData)
-            {
-                string IdName = "";
-                foreach (var Value in sheetEntry.Value)
+
+                string dbContextPath = Path.Combine(apiPath, $"{apiName}.Infrastructure", "Data", "ApplicationDbContext.cs");
+                DBContext.GenerateApplicationDbContext(apiName, dbContextPath, $"{apiName}.Infrastructure");
+
+                string modelClassPath = Path.Combine(apiPath, $"{apiName}.Domain", "Entities");
+                ModelClassGenerator.GenerateModelClassesFromData(apiName, sheetsData, modelClassPath);
+
+                // Now update ApplicationDbContext with models
+                DBContext.UpdateApplicationDbContextWithModels(sheetsData, dbContextPath);
+
+                UpdateStartupFile.CreateStartupFile(apiName, apiPath);
+                UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
+                AddExceptionMiddleware.CreateExceptionMiddlewareFile(apiName, apiPath);
+
+                //Api Response 
+                Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.WebAPI", "APIResponses"));
+                AddApiResponse.CreateAPIExceptionFile(apiName, apiPath);
+                AddApiResponse.CreateAPIResponseFile(apiName, apiPath);
+                AddApiResponse.CreateAPIResponseBaseFile(apiName, apiPath);
+                AddApiResponse.CreateAPIValidationErrorResponseFile(apiName, apiPath);
+                AddApiResponse.CreateBadRequestExceptionFile(apiName, apiPath);
+
+
+                UpdateProgressBar(50);
+                UpdateLabel("creating repositories...");
+
+
+                foreach (var sheetEntry in sheetsData)
                 {
-                    if (Value.Item1.Contains("Id") && !Value.Item3.Contains("ForeignKey"))
+                    string IdName = "";
+                    foreach (var Value in sheetEntry.Value)
                     {
-                        IdName = Value.Item1;
+                        if (Value.Item1.Contains("Id") && !Value.Item3.Contains("ForeignKey"))
+                        {
+                            IdName = Value.Item1;
+                        }
                     }
+
+                    // Generate repositories
+                    string className = sheetEntry.Key;
+                    InterfaceGenerator.GenerateRepositoryInterface(apiName, apiPath, className, IdName, dt);
+                    RepositoryGenerator.GenerateRepositoryImplementation(apiName, apiPath, className, IdName, dt);
+
+                    // Generate services
+                    InterfaceGenerator.GenerateServiceInterface(apiName, apiPath, className, IdName, dt);
+                    ServiceGenerator.GenerateServiceImplementation(apiName, apiPath, className, IdName, dt);
+
+                    // Generate controllers
+                    ControllerGenerator.GenerateController(apiName, apiPath, className, IdName, dt);
                 }
 
-                // Generate repositories
-                string className = sheetEntry.Key;
-                InterfaceGenerator.GenerateRepositoryInterface(apiName, apiPath, className, IdName, dt);
-                RepositoryGenerator.GenerateRepositoryImplementation(apiName, apiPath, className, IdName, dt);
+                UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "Table");
 
-                // Generate services
-                InterfaceGenerator.GenerateServiceInterface(apiName, apiPath, className, IdName, dt);
-                ServiceGenerator.GenerateServiceImplementation(apiName, apiPath, className, IdName, dt);
+                UpdateProgressBar(75);
+                UpdateLabel("running migrations...");
 
-                // Generate controllers
-                ControllerGenerator.GenerateController(apiName, apiPath, className, IdName, dt);
-            }
-
-            UpdateStartupFile.UpdateStartupForRepositoriesAndServices(apiName, apiPath, sheetsData, "Table");
-
-            UpdateProgressBar(75);
-            UpdateLabel("running migrations...");
-
-            string migrationPath = Path.Combine(apiPath, $"{apiName}.WebAPI");
-            string infrastructurePath = Path.Combine(apiPath, $"{apiName}.Infrastructure");
-            AppendLog(migrations.RunMigrationsAndUpdates(migrationPath, infrastructurePath, "InitialCreate", "ApplicationDbContext").ToString());
+                string migrationPath = Path.Combine(apiPath, $"{apiName}.WebAPI");
+                string infrastructurePath = Path.Combine(apiPath, $"{apiName}.Infrastructure");
+                AppendLog(migrations.RunMigrationsAndUpdates(migrationPath, infrastructurePath, "InitialCreate", "ApplicationDbContext").ToString());
+            
         }
 
         private void ShowOrHideProgressBar(string text)

@@ -657,4 +657,10 @@
   <data name="ModelClassStringProperty" xml:space="preserve">
     <value>\tpublic {propertyType}? {propertyName} { get; set;}\r\n</value>
   </data>
+  <data name="CheckUserDotNETVersion" xml:space="preserve">
+    <value>dotnet --version</value>
+  </data>
+  <data name="DotNETVersion" xml:space="preserve">
+    <value>8.0</value>
+  </data>
 </root>
