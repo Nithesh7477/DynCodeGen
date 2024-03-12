@@ -357,17 +357,17 @@
                 // Now update ApplicationDbContext with models
                 DBContext.UpdateApplicationDbContextWithModels(sheetsData, dbContextPath);
 
-                UpdateStartupFile.CreateStartupFile(apiName, apiPath);
-                UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
-                AddExceptionMiddleware.CreateExceptionMiddlewareFile(apiName, apiPath);
+            UpdateStartupFile.CreateStartupFile(apiName, apiPath);
+            UpdateProgramFile.CreateOrUpdateProgramFile(apiName, apiPath);
 
-                //Api Response 
-                Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.WebAPI", "APIResponses"));
-                AddApiResponse.CreateAPIExceptionFile(apiName, apiPath);
-                AddApiResponse.CreateAPIResponseFile(apiName, apiPath);
-                AddApiResponse.CreateAPIResponseBaseFile(apiName, apiPath);
-                AddApiResponse.CreateAPIValidationErrorResponseFile(apiName, apiPath);
-                AddApiResponse.CreateBadRequestExceptionFile(apiName, apiPath);
+            //Api Response 
+            Directory.CreateDirectory(Path.Combine(apiPath, $"{apiName}.WebAPI", "ExceptionMiddleWare"));
+            AddExceptionMiddleware.CreateExceptionMiddlewareFile(apiName, apiPath);
+            AddMiddleWareResponse.CreateAPIExceptionFile(apiName, apiPath);
+            AddMiddleWareResponse.CreateAPIResponseFile(apiName, apiPath);
+            AddMiddleWareResponse.CreateAPIResponseBaseFile(apiName, apiPath);
+            AddMiddleWareResponse.CreateAPIValidationErrorResponseFile(apiName, apiPath);
+            AddMiddleWareResponse.CreateBadRequestExceptionFile(apiName, apiPath);
 
 
                 UpdateProgressBar(50);

@@ -32,6 +32,7 @@ namespace DynCodeGen
             _adoCreateControlParent = adoCreateControlParent;
             _adoEnhanceControlParent = adoEnhanceControlParent;
             txtPassword.Leave += txtPassword_TextChanged;
+            cmbAuthetication.SelectedIndex = 0;
 
         }
         private void btnTestConnection_Click(object sender, EventArgs e)
