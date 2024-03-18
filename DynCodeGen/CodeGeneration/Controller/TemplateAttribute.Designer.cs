@@ -223,7 +223,7 @@ namespace DynCodeGen.CodeGeneration.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Data.SqlClient --version 5.1.2.
+        ///   Looks up a localized string similar to add {apiPath}/{apiName}.Infrastructure/{apiName}.Infrastructure.csproj package Microsoft.Data.SqlClient.
         /// </summary>
         public static string AddSqlClientPackage {
             get {
